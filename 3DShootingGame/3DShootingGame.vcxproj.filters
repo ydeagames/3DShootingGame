@@ -149,6 +149,9 @@
     <ClInclude Include="Framework\PhysXScene.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\PhysXRenderer.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -220,6 +223,9 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Framework\PhysXScene.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\PhysXRenderer.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>

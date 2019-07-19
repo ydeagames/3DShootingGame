@@ -6,6 +6,7 @@
 #include <Framework/DebugTools/GridFloorWrapper.h>
 #include <Utilities/Input.h>
 #include <Utilities/MathUtils.h>
+#include <Utilities/Random.h>
 #include <Framework/Scene.h>
 #include <Framework/PhysXManager.h>
 #include <Framework/PhysXScene.h>
@@ -101,14 +102,41 @@ void PlayScene::Build(GameContext& context)
 		{
 			auto& manager = context.GetPhysics();
 			auto& scene = context.GetScene().GetPhysics();
-			auto size = *gameObject->transform->lossyScale;
-			auto radius = (size.x + size.y + size.z) / 3;
-			auto geo = physx::PxSphereGeometry(radius);
-			auto material = manager.GetPhysics()->createMaterial(1, 1, 1);
-			auto shape = manager.GetPhysics()->createShape(geo, *material);
 			auto trans = physx::PxTransform(physx::toPhysX(gameObject->transform->position), physx::toPhysX(gameObject->transform->rotation));
 			rigid = manager.GetPhysics()->createRigidDynamic(trans);
-			rigid->attachShape(*shape);
+
+			auto material = manager.CreateMaterial(PhysicsMaterials::Wood);
+			auto size = *gameObject->transform->lossyScale;
+
+			switch (Random::Range(0, 2))
+			{
+			case 0:
+			{
+				auto diameter = (size.x + size.y + size.z) / 3;
+				auto geo = physx::PxSphereGeometry(diameter / 2);
+				auto shape = manager.GetPhysics()->createShape(geo, *material);
+				rigid->attachShape(*shape);
+			}
+			break;
+
+			case 1:
+			{
+				auto geo = physx::PxBoxGeometry(physx::toPhysX(size) / 2);
+				auto shape = manager.GetPhysics()->createShape(geo, *material);
+				rigid->attachShape(*shape);
+			}
+			break;
+
+			case 2:
+			{
+				auto diameter = (size.x + size.z) / 2;
+				auto geo = physx::PxCapsuleGeometry(diameter / 2, size.y / 2);
+				auto shape = manager.GetPhysics()->createShape(geo, *material);
+				rigid->attachShape(*shape);
+			}
+			break;
+			}
+
 			scene.CreateObject(*rigid);
 		}
 
@@ -188,10 +216,10 @@ void PlayScene::Build(GameContext& context)
 			if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
 			{
 				auto bullet = GameObject::Create();
-				bullet->AddComponent<GeometricObject>(
-					[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
-					Color(Colors::Yellow)
-					);
+				//bullet->AddComponent<GeometricObject>(
+				//	[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
+				//	Color(Colors::Yellow)
+				//	);
 				bullet->transform->position = *gameObject->transform->position;
 				bullet->AddComponent<Rigidbody>();
 				context << bullet;

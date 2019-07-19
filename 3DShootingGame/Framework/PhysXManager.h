@@ -34,6 +34,14 @@ public:
 		return m_pvd.get();
 	}
 
+	physx::PxMaterial* CreateMaterial(const PhysicsMaterial& material)
+	{
+		auto mat = m_physics->createMaterial(material.staticFriction, material.dynamicFriction, material.bounciness);
+		mat->setFrictionCombineMode(material.frictionCombine);
+		mat->setRestitutionCombineMode(material.bounceCombine);
+		return mat;
+	}
+
 	// ¶¬
 	void Initialize(GameContext& context);
 	// XV

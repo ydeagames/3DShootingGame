@@ -22,6 +22,26 @@ struct px_shared_ptr : public std::shared_ptr<T>
 	}
 };
 
+struct PhysicsMaterial
+{
+	float dynamicFriction;
+	float staticFriction;
+	float bounciness;
+	physx::PxCombineMode::Enum frictionCombine;
+	physx::PxCombineMode::Enum bounceCombine;
+};
+
+namespace PhysicsMaterials
+{
+	constexpr const PhysicsMaterial Bouncy			= { .3f, .3f, 1.f, physx::PxCombineMode::eAVERAGE, physx::PxCombineMode::eMAX };
+	constexpr const PhysicsMaterial Ice				= { .1f, .1f, 0.f, physx::PxCombineMode::eMULTIPLY, physx::PxCombineMode::eMULTIPLY };
+	constexpr const PhysicsMaterial MaxFriction		= { 1.f, 1.f, 0.f, physx::PxCombineMode::eMAX, physx::PxCombineMode::eAVERAGE };
+	constexpr const PhysicsMaterial Metal			= { .15f, .15f, 1.f, physx::PxCombineMode::eMIN, physx::PxCombineMode::eAVERAGE };
+	constexpr const PhysicsMaterial Rubber			= { 1.f, 1.f, .5f, physx::PxCombineMode::eMAX, physx::PxCombineMode::eAVERAGE };
+	constexpr const PhysicsMaterial Wood			= { .45f, .45f, 0.f, physx::PxCombineMode::eAVERAGE, physx::PxCombineMode::eAVERAGE };
+	constexpr const PhysicsMaterial ZeroFriction	= { 0.f, 0.f, 0.f, physx::PxCombineMode::eMULTIPLY, physx::PxCombineMode::eAVERAGE };
+}
+
 namespace physx
 {
 	inline DirectX::SimpleMath::Vector2 fromPhysX(const physx::PxVec2& vec) { return DirectX::SimpleMath::Vector2(vec.x, vec.y); }
