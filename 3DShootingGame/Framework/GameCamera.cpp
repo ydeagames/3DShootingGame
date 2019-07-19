@@ -24,7 +24,7 @@ DirectX::SimpleMath::Ray GameCamera::ViewportPointToRay(const DirectX::SimpleMat
 	auto rayFar = Vector3::Transform(pointFar, inverseviewproj);
 	auto raySubtraction = rayFar - rayNear;
 	auto rayDirection = raySubtraction;
-	rayDirection.Normalize();
+	//rayDirection.Normalize();
 
 	return Ray(Vector3(rayNear), Vector3(rayDirection));
 }

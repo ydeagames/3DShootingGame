@@ -165,6 +165,10 @@ void PlayScene::Build(GameContext& context)
 		std::unordered_map<physx::PxRigidDynamicLockFlag::Enum, bool> lockFlags;
 		std::vector<std::shared_ptr<Collider>> colliders;
 
+	private:
+		physx::PxVec3 preForce;
+		physx::PxVec3 preVelocity;
+
 	public:
 		void Initialize(GameContext& context)
 		{
@@ -178,6 +182,8 @@ void PlayScene::Build(GameContext& context)
 				auto dynamic = manager.GetPhysics()->createRigidDynamic(trans);
 				for (auto& flagSet : lockFlags)
 					dynamic->setRigidDynamicLockFlag(flagSet.first, flagSet.second);
+				dynamic->setLinearVelocity(preVelocity);
+				dynamic->addForce(preForce);
 				rigid = dynamic;
 			}
 
@@ -196,13 +202,15 @@ void PlayScene::Build(GameContext& context)
 
 		void AddForce(Vector3 force)
 		{
-			if (rigid->is<physx::PxRigidBody>())
+			preForce = physx::toPhysX(force);
+			if (rigid && rigid->is<physx::PxRigidBody>())
 				rigid->is<physx::PxRigidBody>()->addForce(physx::toPhysX(force));
 		}
 
 		void SetVelocity(Vector3 velocity)
 		{
-			if (rigid->is<physx::PxRigidBody>())
+			preVelocity = physx::toPhysX(velocity);
+			if (rigid && rigid->is<physx::PxRigidBody>())
 				rigid->is<physx::PxRigidBody>()->setLinearVelocity(physx::toPhysX(velocity));
 		}
 
@@ -279,9 +287,12 @@ void PlayScene::Build(GameContext& context)
 					[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
 					Color(Colors::Yellow)
 					);
-				bullet->transform->position = *gameObject->transform->position;
+				auto ray = context.GetCamera().ViewportPointToRay(Vector3::Zero);
+				ray.direction.Normalize();
+				bullet->transform->position = *gameObject->transform->position + ray.direction * 5;
 				auto rigidbody = bullet->AddComponent<Rigidbody>();
 				rigidbody->Add(std::make_shared<SphereCollider>());
+				rigidbody->SetVelocity(ray.direction * 50);
 				context << bullet;
 			}
 		}
@@ -306,4 +317,13 @@ void PlayScene::Build(GameContext& context)
 
 	auto playerCamera = camera->AddComponent<PlayerCamera>();
 	playerCamera->player = player->transform;
+
+	{
+		auto box = GameObject::Create();
+		box->transform->localScale = Vector3(4);
+		box->transform->localPosition = Vector3(8, 0, 3);
+		auto rigid = box->AddComponent<Rigidbody>();
+		rigid->Add(std::make_shared<BoxCollider>());
+		context << box;
+	}
 }
