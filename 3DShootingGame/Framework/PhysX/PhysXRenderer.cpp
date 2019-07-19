@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "PhysXRenderer.h"
 #include "PhysXCommons.h"
-#include "GameContext.h"
-#include "GameCamera.h"
+#include <Framework/GameContext.h>
+#include <Framework/GameCamera.h>
 #include <Common/StepTimer.h>
 
 using namespace physx;

@@ -2,8 +2,8 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "GameContext.h"
-#include "PhysXScene.h"
-#include "PhysXManager.h"
+#include <Framework/PhysX/PhysXScene.h>
+#include <Framework/PhysX/PhysXManager.h>
 
 Scene::Scene()
 {

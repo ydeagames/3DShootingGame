@@ -8,8 +8,8 @@
 #include <Utilities/MathUtils.h>
 #include <Utilities/Random.h>
 #include <Framework/Scene.h>
-#include <Framework/PhysXManager.h>
-#include <Framework/PhysXScene.h>
+#include <Framework/PhysX/PhysXManager.h>
+#include <Framework/PhysX/PhysXScene.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -94,48 +94,95 @@ void PlayScene::Build(GameContext& context)
 	camera->AddComponent<Plane>();
 	context << camera;
 
-	struct Rigidbody : public Component
+	class Collider
 	{
-		physx::PxRigidDynamic* rigid;
+	public:
+		Transform localTransform;
+		PhysicsMaterial material;
 
+	public:
+		virtual ~Collider() = default;
+
+	public:
+		virtual void AddCollider(GameContext& context, physx::PxRigidActor* rigid) const = 0;
+	};
+
+	class SphereCollider : public Collider
+	{
+	public:
+		void AddCollider(GameContext& context, physx::PxRigidActor* rigid) const override
+		{
+			auto& manager = context.GetPhysics();
+			auto mat = manager.CreateMaterial(material);
+			auto size = *localTransform.lossyScale;
+
+			auto diameter = (size.x + size.y + size.z) / 3;
+			auto geo = physx::PxSphereGeometry(diameter / 2);
+			auto shape = manager.GetPhysics()->createShape(geo, *mat);
+			shape->setLocalPose(physx::PxTransform(physx::toPhysX(localTransform.position), physx::toPhysX(localTransform.rotation)));
+			rigid->attachShape(*shape);
+		}
+	};
+
+	class BoxCollider : public Collider
+	{
+	public:
+		void AddCollider(GameContext& context, physx::PxRigidActor* rigid) const override
+		{
+			auto& manager = context.GetPhysics();
+			auto mat = manager.CreateMaterial(material);
+			auto size = *localTransform.lossyScale;
+
+			auto geo = physx::PxBoxGeometry(physx::toPhysX(size) / 2);
+			auto shape = manager.GetPhysics()->createShape(geo, *mat);
+			shape->setLocalPose(physx::PxTransform(physx::toPhysX(localTransform.position), physx::toPhysX(localTransform.rotation)));
+			rigid->attachShape(*shape);
+		}
+	};
+
+	class CapsuleCollider : public Collider
+	{
+	public:
+		void AddCollider(GameContext& context, physx::PxRigidActor* rigid) const override
+		{
+			auto& manager = context.GetPhysics();
+			auto mat = manager.CreateMaterial(material);
+			auto size = *localTransform.lossyScale;
+
+			auto diameter = (size.x + size.z) / 2;
+			auto geo = physx::PxCapsuleGeometry(diameter / 2, size.y / 2);
+			auto shape = manager.GetPhysics()->createShape(geo, *mat);
+			shape->setLocalPose(physx::PxTransform(physx::toPhysX(localTransform.position), physx::toPhysX(localTransform.rotation)));
+			rigid->attachShape(*shape);
+		}
+	};
+
+	class Rigidbody : public Component
+	{
+	private:
+		physx::PxRigidActor* rigid;
+		bool isStatic = false;
+		std::unordered_map<physx::PxRigidDynamicLockFlag::Enum, bool> lockFlags;
+		std::vector<std::shared_ptr<Collider>> colliders;
+
+	public:
 		void Initialize(GameContext& context)
 		{
 			auto& manager = context.GetPhysics();
 			auto& scene = context.GetScene().GetPhysics();
 			auto trans = physx::PxTransform(physx::toPhysX(gameObject->transform->position), physx::toPhysX(gameObject->transform->rotation));
-			rigid = manager.GetPhysics()->createRigidDynamic(trans);
-
-			auto material = manager.CreateMaterial(PhysicsMaterials::Wood);
-			auto size = *gameObject->transform->lossyScale;
-
-			switch (Random::Range(0, 2))
+			if (isStatic)
+				rigid = manager.GetPhysics()->createRigidStatic(trans);
+			else
 			{
-			case 0:
-			{
-				auto diameter = (size.x + size.y + size.z) / 3;
-				auto geo = physx::PxSphereGeometry(diameter / 2);
-				auto shape = manager.GetPhysics()->createShape(geo, *material);
-				rigid->attachShape(*shape);
+				auto dynamic = manager.GetPhysics()->createRigidDynamic(trans);
+				for (auto& flagSet : lockFlags)
+					dynamic->setRigidDynamicLockFlag(flagSet.first, flagSet.second);
+				rigid = dynamic;
 			}
-			break;
 
-			case 1:
-			{
-				auto geo = physx::PxBoxGeometry(physx::toPhysX(size) / 2);
-				auto shape = manager.GetPhysics()->createShape(geo, *material);
-				rigid->attachShape(*shape);
-			}
-			break;
-
-			case 2:
-			{
-				auto diameter = (size.x + size.z) / 2;
-				auto geo = physx::PxCapsuleGeometry(diameter / 2, size.y / 2);
-				auto shape = manager.GetPhysics()->createShape(geo, *material);
-				rigid->attachShape(*shape);
-			}
-			break;
-			}
+			for (auto& collider : colliders)
+				collider->AddCollider(context, rigid);
 
 			scene.CreateObject(*rigid);
 		}
@@ -149,17 +196,29 @@ void PlayScene::Build(GameContext& context)
 
 		void AddForce(Vector3 force)
 		{
-			rigid->addForce(physx::toPhysX(force));
+			if (rigid->is<physx::PxRigidBody>())
+				rigid->is<physx::PxRigidBody>()->addForce(physx::toPhysX(force));
 		}
 
 		void SetVelocity(Vector3 velocity)
 		{
-			rigid->setLinearVelocity(physx::toPhysX(velocity));
+			if (rigid->is<physx::PxRigidBody>())
+				rigid->is<physx::PxRigidBody>()->setLinearVelocity(physx::toPhysX(velocity));
 		}
 
 		void SetLock(physx::PxRigidDynamicLockFlag::Enum flag, bool value)
 		{
-			rigid->setRigidDynamicLockFlag(flag, value);
+			lockFlags[flag] = value;
+		}
+
+		void Add(const std::shared_ptr<Collider> collider)
+		{
+			colliders.push_back(collider);
+		}
+
+		void SetStatic(bool staticFlag)
+		{
+			isStatic = staticFlag;
 		}
 
 		Property<std::shared_ptr<Transform>> transform = {
@@ -216,12 +275,13 @@ void PlayScene::Build(GameContext& context)
 			if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
 			{
 				auto bullet = GameObject::Create();
-				//bullet->AddComponent<GeometricObject>(
-				//	[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
-				//	Color(Colors::Yellow)
-				//	);
+				bullet->AddComponent<GeometricObject>(
+					[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
+					Color(Colors::Yellow)
+					);
 				bullet->transform->position = *gameObject->transform->position;
-				bullet->AddComponent<Rigidbody>();
+				auto rigidbody = bullet->AddComponent<Rigidbody>();
+				rigidbody->Add(std::make_shared<SphereCollider>());
 				context << bullet;
 			}
 		}
@@ -240,7 +300,8 @@ void PlayScene::Build(GameContext& context)
 		Color(Colors::Blue)
 		);
 	player->AddComponent<PlayerBehaviour>();
-	player->AddComponent<Rigidbody>();
+	auto rigidbody = player->AddComponent<Rigidbody>();
+	rigidbody->Add(std::make_shared<BoxCollider>());
 	context << player;
 
 	auto playerCamera = camera->AddComponent<PlayerCamera>();

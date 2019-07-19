@@ -26,6 +26,9 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{3cabf63c-93d3-4911-a9e2-6b44bf879037}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\PhysX">
+      <UniqueIdentifier>{7b01bfa2-6ca7-490b-ac5b-16d4575d9dad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -131,12 +134,6 @@
     <ClInclude Include="Utilities\MathUtils.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\PhysXManager.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\PhysXCommons.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Object.h">
       <Filter>Framework</Filter>
     </ClInclude>
@@ -146,11 +143,17 @@
     <ClInclude Include="Utilities\Property.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\PhysXScene.h">
-      <Filter>Framework</Filter>
+    <ClInclude Include="Framework\PhysX\PhysXCommons.h">
+      <Filter>Framework\PhysX</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\PhysXRenderer.h">
-      <Filter>Framework</Filter>
+    <ClInclude Include="Framework\PhysX\PhysXManager.h">
+      <Filter>Framework\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\PhysX\PhysXRenderer.h">
+      <Filter>Framework\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\PhysX\PhysXScene.h">
+      <Filter>Framework\PhysX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -216,17 +219,17 @@
     <ClCompile Include="Utilities\MathUtils.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\PhysXManager.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\SerializedField.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\PhysXScene.cpp">
-      <Filter>Framework</Filter>
+    <ClCompile Include="Framework\PhysX\PhysXManager.cpp">
+      <Filter>Framework\PhysX</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\PhysXRenderer.cpp">
-      <Filter>Framework</Filter>
+    <ClCompile Include="Framework\PhysX\PhysXRenderer.cpp">
+      <Filter>Framework\PhysX</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\PhysX\PhysXScene.cpp">
+      <Filter>Framework\PhysX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

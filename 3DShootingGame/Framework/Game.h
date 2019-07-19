@@ -18,7 +18,7 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "GameCamera.h"
-#include "PhysXManager.h"
+#include <Framework/PhysX/PhysXManager.h>
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
