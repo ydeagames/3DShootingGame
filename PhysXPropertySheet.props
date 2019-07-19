@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+
+  <!-- 表示名 -->
+  <PropertyGroup>
+    <_PropertySheetDisplayName>PhysX</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <!-- 共有設定 -->
+  <PropertyGroup>
+    <IncludePath>C:\PhysX\physx\include;C:\PhysX\pxshared\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\PhysX\physx\bin\win.x86_$(PlatformArchitecture).vc$(PlatformToolsetVersion).mt\$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>PhysX_$(PlatformArchitecture).lib;PhysXCommon_$(PlatformArchitecture).lib;PhysXFoundation_$(PlatformArchitecture).lib;%(AdditionalDependencies);PhysXPvdSDK_static_$(PlatformArchitecture).lib;PhysXExtensions_static_$(PlatformArchitecture).lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemGroup />
+</Project>

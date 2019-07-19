@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+
+  <!-- 表示名 -->
+  <PropertyGroup>
+    <_PropertySheetDisplayName>3DPG</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <!-- 共有設定 -->
+  <PropertyGroup>
+    <IncludePath>C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(PlatformToolset)'=='v140'">C:\DirectXTK\Bin\Desktop_2015\$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(PlatformToolset)'=='v141'">C:\DirectXTK\Bin\Desktop_2017\$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(PlatformToolset)'=='v142'">C:\DirectXTK\Bin\Desktop_2019\$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <!-- デバッグ -->
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <!-- リリース -->
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <ItemGroup />
+</Project>
