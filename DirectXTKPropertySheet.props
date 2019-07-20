@@ -5,8 +5,9 @@
 
   <!-- 表示名 -->
   <PropertyGroup>
-    <_PropertySheetDisplayName>3DPG</_PropertySheetDisplayName>
+    <_PropertySheetDisplayName>DirectXTK</_PropertySheetDisplayName>
   </PropertyGroup>
+
   <!-- 共有設定 -->
   <PropertyGroup>
     <IncludePath>C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
@@ -19,20 +20,4 @@
       <AdditionalDependencies>DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-
-  <!-- デバッグ -->
-  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
-    <ClCompile>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-    </ClCompile>
-  </ItemDefinitionGroup>
-
-  <!-- リリース -->
-  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
-    <ClCompile>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-    </ClCompile>
-  </ItemDefinitionGroup>
-
-  <ItemGroup />
 </Project>

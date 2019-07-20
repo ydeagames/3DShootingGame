@@ -60,23 +60,27 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\3DPGPropertySheet.props" />
     <Import Project="..\PhysXPropertySheet.props" />
+    <Import Project="..\BasicPropertySheet.props" />
+    <Import Project="..\DirectXTKPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\3DPGPropertySheet.props" />
     <Import Project="..\PhysXPropertySheet.props" />
+    <Import Project="..\BasicPropertySheet.props" />
+    <Import Project="..\DirectXTKPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\3DPGPropertySheet.props" />
     <Import Project="..\PhysXPropertySheet.props" />
+    <Import Project="..\BasicPropertySheet.props" />
+    <Import Project="..\DirectXTKPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\3DPGPropertySheet.props" />
     <Import Project="..\PhysXPropertySheet.props" />
+    <Import Project="..\BasicPropertySheet.props" />
+    <Import Project="..\DirectXTKPropertySheet.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -207,7 +211,7 @@
     <ClInclude Include="Utilities\MathUtils.h" />
     <ClInclude Include="Utilities\MemoryLeakDetector.h" />
     <ClInclude Include="Utilities\Optional.h" />
-    <ClInclude Include="Utilities\picojson.h" />
+    <ClInclude Include="Libraries\picojson.h" />
     <ClInclude Include="Utilities\Property.h" />
     <ClInclude Include="Utilities\Random.h" />
     <ClInclude Include="Utilities\Singleton.h" />
@@ -257,8 +261,9 @@
     <Manifest Include="Resources\settings.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\3DPGPropertySheet.props" />
-    <None Include="..\PhysXPropertySheet.props" />
+    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
+      <Project>{a2b7cadf-ee4d-4294-ad5b-6c8048fcd5f7}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

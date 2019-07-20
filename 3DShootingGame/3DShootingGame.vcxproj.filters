@@ -29,6 +29,9 @@
     <Filter Include="Framework\PhysX">
       <UniqueIdentifier>{7b01bfa2-6ca7-490b-ac5b-16d4575d9dad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{f51ead3e-6acf-4b03-b0d7-1b38c4166517}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -107,9 +110,6 @@
     <ClInclude Include="Utilities\Optional.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\picojson.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\Random.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -157,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="Utilities\FPS.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\picojson.h">
+      <Filter>Libraries</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -249,9 +252,5 @@
     <Manifest Include="Resources\settings.manifest">
       <Filter>Resources</Filter>
     </Manifest>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\3DPGPropertySheet.props" />
-    <None Include="..\PhysXPropertySheet.props" />
   </ItemGroup>
 </Project>

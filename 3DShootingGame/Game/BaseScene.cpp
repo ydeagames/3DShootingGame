@@ -5,7 +5,7 @@
 #include <Framework/DebugTools/DebugCameraWrapper.h>
 #include <Framework/DebugTools/GridFloorWrapper.h>
 #include <Utilities/Input.h>
-#include <Utilities/picojson.h>
+#include <Libraries/picojson.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
