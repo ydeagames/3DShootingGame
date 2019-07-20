@@ -1,13 +1,6 @@
 #pragma once
 #include "ISceneBuilder.h"
 
-// シーン情報
-struct SceneInfo
-{
-	std::wstring name;
-	std::unique_ptr<Scene> scene;
-};
-
 // シーンオプション
 enum class LoadSceneMode
 {
@@ -19,7 +12,7 @@ enum class LoadSceneMode
 struct SceneView : public Component
 {
 public:
-	std::deque<std::unique_ptr<SceneInfo>> scenes;
+	std::deque<std::unique_ptr<Scene>> scenes;
 
 public:
 	// 生成
@@ -51,7 +44,7 @@ public:
 	SceneManager();
 
 public:
-	inline const SceneInfo& GetActiveScene() const
+	inline Scene& GetActiveScene() const
 	{
 		return *m_sceneView.scenes.front();
 	}

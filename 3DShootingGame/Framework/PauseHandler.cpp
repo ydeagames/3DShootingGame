@@ -19,16 +19,18 @@ namespace
 
 void PauseHandler::SetPaused(GameContext& context, bool pause)
 {
+	auto& manager = context.GetSceneManager();
+
+	auto paused = ends_with(manager.GetActiveScene().name, L"Pause");
 	if (paused == pause)
 		return;
 
-	auto& manager = context.GetSceneManager();
 	if (paused)
 	{
 		//bool found = false;
 		//auto foundname = std::wstring();
 
-		auto sceneview = manager.GetSceneView();
+		auto& sceneview = manager.GetSceneView();
 		for (auto& scene : sceneview.scenes)
 			if (ends_with(scene->name, L"Pause"))
 			{
@@ -37,7 +39,7 @@ void PauseHandler::SetPaused(GameContext& context, bool pause)
 				//	found = true;
 				//	foundname = substring_before(scene->name, L"Pause");
 				//}
-				Object::Destroy(*scene->scene);
+				Object::Destroy(*scene);
 			}
 	}
 	else

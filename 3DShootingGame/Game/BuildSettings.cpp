@@ -5,6 +5,7 @@
 #include "LogoScene.h"
 #include "TitleScene.h"
 #include "PlayScene.h"
+#include "PlayScenePause.h"
 #include "ResultScene.h"
 
 const std::wstring BuildSettings::GAME_TITLE = L"カタトウス";
@@ -16,6 +17,7 @@ void BuildSettings::Build(GameContext& context)
 	context.GetSceneManager().Register<LogoScene>();
 	context.GetSceneManager().Register<TitleScene>();
 	context.GetSceneManager().Register<PlayScene>();
+	context.GetSceneManager().Register<PlayScenePause>();
 	context.GetSceneManager().Register<ResultScene>();
 
 	//context.GetSceneManager().LoadScene(L"BaseScene");

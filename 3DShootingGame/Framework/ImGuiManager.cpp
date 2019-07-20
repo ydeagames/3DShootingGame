@@ -3,6 +3,7 @@
 #include "GameContext.h"
 #include "ISceneBuilder.h"
 #include "SaveHandler.h"
+#include "ImGuiStyles.h"
 #include <Utilities/Input.h>
 
 ImGuiManager::ImGuiManager()
@@ -28,6 +29,12 @@ void ImGuiManager::Initialize(GameContext& context)
 	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();
 	//ImGui::StyleColorsClassic();
+	{
+		auto& style = ImGui::GetStyle();
+		//ImGuiStyles::darkTheme(style);
+		//ImGuiStyles::cyberTheme(style);
+		ImGuiStyles::darkrichTheme(style);
+	}
 
 	// Setup Platform/Renderer bindings
 	ImGui_ImplWin32_Init(context.GetWindowHandle());

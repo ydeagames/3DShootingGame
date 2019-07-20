@@ -15,7 +15,7 @@ private:
 	std::string m_settingFile;
 
 public:
-	void RegisterWindow(const std::shared_ptr<ISceneBuilder>& window)
+	void Add(const std::shared_ptr<ISceneBuilder>& window)
 	{
 		m_windows.push_back(window);
 	}

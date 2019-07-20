@@ -161,8 +161,18 @@
     <ClInclude Include="Framework\ImGuiManager.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\SaveHandler.h" />
-    <ClInclude Include="Framework\PauseHandler.h" />
+    <ClInclude Include="Game\PlayScenePause.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\PauseHandler.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SaveHandler.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ImGuiStyles.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -242,8 +252,18 @@
     <ClCompile Include="Framework\ImGuiManager.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\SaveHandler.cpp" />
-    <ClCompile Include="Framework\PauseHandler.cpp" />
+    <ClCompile Include="Game\PlayScenePause.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\PauseHandler.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SaveHandler.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ImGuiStyles.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">

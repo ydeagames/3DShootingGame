@@ -123,7 +123,7 @@ public:
 	DirectX::EffectFactory& GetEffectFactory() { return *m_effectFactory; }
 
 	// シーン
-	Scene& GetScene() { return *m_sceneManager->GetActiveScene().scene; }
+	Scene& GetScene() { return m_sceneManager->GetActiveScene(); }
 
 	// オブジェクト追加
 	GameContext& operator<<(const std::shared_ptr<GameObject>& obj) { GetScene().Add(obj); return *this; }

@@ -10,13 +10,28 @@
 #include <Framework/Scene.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/PhysX/PhysXScene.h>
+#include <Framework/PauseHandler.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 void PlayScene::Build(GameContext& context)
 {
+	context.GetScene().mouseMode = DirectX::Mouse::Mode::MODE_RELATIVE;
+
 	context.GetCamera().view = Matrix::CreateLookAt(Vector3(0, 5, 10), Vector3::Zero, Vector3::Up);
+
+	struct PauseBehaviour : public Component
+	{
+		void Update(GameContext& context)
+		{
+			if (Input::GetKeyDown(Keyboard::Keys::Escape))
+				context.GetPauseHandler().SetPaused(context, true);
+		}
+	};
+	auto pausedirector = GameObject::Create();
+	pausedirector->AddComponent<PauseBehaviour>();
+	context << pausedirector;
 
 	struct FPSCamera : Component
 	{

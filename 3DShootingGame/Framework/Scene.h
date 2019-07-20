@@ -9,6 +9,8 @@ class GameContext;
 class Scene : public Component
 {
 public:
+	// 名前
+	std::wstring name = L"Scene";
 	// 子ゲームオブジェクト
 	std::list<std::shared_ptr<GameObject>> gameObjects;
 	// 子ゲームオブジェクト
@@ -17,6 +19,11 @@ public:
 	bool updateBehind = false;
 	// 後ろを描画するか
 	bool renderBehind = false;
+	// マウスモード
+	DirectX::Mouse::Mode mouseMode = DirectX::Mouse::Mode::MODE_ABSOLUTE;
+
+public:
+	std::wstring GetName() const override { return name; }
 
 private:
 	// PhysX
