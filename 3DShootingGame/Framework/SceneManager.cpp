@@ -25,6 +25,11 @@ void SceneManager::LoadScene(const std::wstring& name, LoadSceneMode mode)
 	m_loadQueue.push(SceneTask{ name, mode });
 }
 
+bool SceneManager::IsSceneValid(const std::wstring& name)
+{
+	return m_sceneBuilders.count(name) > 0;
+}
+
 void SceneManager::ProcessScene(GameContext& context)
 {
 	while (!m_loadQueue.empty())

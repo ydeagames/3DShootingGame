@@ -9,6 +9,7 @@ class GameCamera;
 class PhysXManager;
 class ImGuiManager;
 class SaveHandler;
+class PauseHandler;
 
 // GameContextインターフェイス
 class GameContext
@@ -42,4 +43,6 @@ public:
 	virtual ImGuiManager& GetGuiManager() = 0;
 	// セーブハンドラ
 	virtual SaveHandler& GetSaveHandler() = 0;
+	// ポーズハンドラ
+	virtual PauseHandler& GetPauseHandler() = 0;
 };

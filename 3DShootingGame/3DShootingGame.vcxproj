@@ -191,6 +191,7 @@
     <ClInclude Include="Framework\ImGuiManager.h" />
     <ClInclude Include="Framework\ISceneBuilder.h" />
     <ClInclude Include="Framework\Object.h" />
+    <ClInclude Include="Framework\PauseHandler.h" />
     <ClInclude Include="Framework\PhysX\PhysXCommons.h" />
     <ClInclude Include="Framework\PhysX\PhysXManager.h" />
     <ClInclude Include="Framework\PhysX\PhysXRenderer.h" />
@@ -232,6 +233,7 @@
     <ClCompile Include="Framework\Game.cpp" />
     <ClCompile Include="Framework\GameCamera.cpp" />
     <ClCompile Include="Framework\ImGuiManager.cpp" />
+    <ClCompile Include="Framework\PauseHandler.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXManager.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXRenderer.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />

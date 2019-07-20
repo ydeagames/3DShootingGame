@@ -114,7 +114,19 @@ public:
 		for (auto& component : m_components)
 			component->Update(context);
 
-		m_components.remove_if(std::mem_fn(&Object::destroyed));
+		for (auto itr = m_components.begin(); itr != m_components.end();)
+		{
+			auto& component = *itr;
+			if (component->destroyed)
+			{
+				component->Finalize(context);
+				itr = m_components.erase(itr);
+			}
+			else
+			{
+				++itr;
+			}
+		}
 	}
 
 	// •`‰æ

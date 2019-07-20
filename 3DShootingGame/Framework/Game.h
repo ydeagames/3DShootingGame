@@ -21,6 +21,7 @@
 #include <Framework/PhysX/PhysXManager.h>
 #include "ImGuiManager.h"
 #include "SaveHandler.h"
+#include "PauseHandler.h"
 #include <Utilities/FPS.h>
 
 // A basic game implementation that creates a D3D11 device and
@@ -99,8 +100,11 @@ private:
 	// GUI
 	std::unique_ptr<ImGuiManager>			m_imgui;
 
-	// セーブ
-	std::unique_ptr<SaveHandler>			m_saves;
+	// セーブハンドラ
+	std::unique_ptr<SaveHandler>			m_saveHandler;
+
+	// ポーズハンドラ
+	std::unique_ptr<PauseHandler>			m_pauseHandler;
 
 public:
 	// DeviceResource取得
@@ -137,5 +141,8 @@ public:
 	ImGuiManager& GetGuiManager() { return *m_imgui; }
 
 	// セーブハンドラ
-	SaveHandler& GetSaveHandler() { return *m_saves; }
+	SaveHandler& GetSaveHandler() { return *m_saveHandler; }
+
+	// ポーズハンドラ
+	PauseHandler& GetPauseHandler() { return *m_pauseHandler; }
 };

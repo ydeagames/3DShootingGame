@@ -162,6 +162,7 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\SaveHandler.h" />
+    <ClInclude Include="Framework\PauseHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -242,6 +243,7 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Framework\SaveHandler.cpp" />
+    <ClCompile Include="Framework\PauseHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">

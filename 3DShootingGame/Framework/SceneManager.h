@@ -70,5 +70,6 @@ public:
 	}
 
 	void LoadScene(const std::wstring& name, LoadSceneMode mode = LoadSceneMode::Single);
+	bool IsSceneValid(const std::wstring& name);
 	void ProcessScene(GameContext& context);
 };

@@ -52,7 +52,9 @@ void Game::Initialize(HWND window, int width, int height)
 	// テクスチャの読み込みパス指定
 	m_effectFactory->SetDirectory(L"Resources/Models");
 	// セーブ
-	m_saves = std::make_unique<SaveHandler>(L"Saves/");
+	m_saveHandler = std::make_unique<SaveHandler>(L"Saves/");
+	// ポーズ
+	m_pauseHandler = std::make_unique<PauseHandler>();
 	// 物理
 	m_physics = std::make_unique<PhysXManager>();
 	m_physics->Initialize(*this);
