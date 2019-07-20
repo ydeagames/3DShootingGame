@@ -7,6 +7,15 @@ class PhysXScene;
 
 class PhysXManager : public Component
 {
+public:
+	enum IngamePvdMode
+	{
+		Game = 0x1,
+		Collision = 0x2,
+		GameCollision = 0x3,
+	};
+	IngamePvdMode debugMode = IngamePvdMode::Game;
+
 private:
 	physx::PxDefaultAllocator						m_allocator;
 	physx::PxDefaultErrorCallback					m_errorCallback;

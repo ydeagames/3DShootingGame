@@ -17,7 +17,7 @@ void ResultScene::Build(GameContext& context)
 		void Update(GameContext& context)
 		{
 			if (Input::GetKeyDown(Keyboard::Space))
-				context.GetSceneManager().LoadScene("TitleScene");
+				context.GetSceneManager().LoadScene(L"TitleScene");
 		}
 	};
 	auto obj2 = GameObject::Create();

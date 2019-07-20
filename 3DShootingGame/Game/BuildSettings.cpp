@@ -12,12 +12,12 @@ const std::wstring BuildSettings::GAME_TITLE_CLASS = L"KatatousWindowClass";
 
 void BuildSettings::Build(GameContext& context)
 {
-	context.GetSceneManager().Register<BaseScene>("BaseScene");
-	context.GetSceneManager().Register<LogoScene>("LogoScene");
-	context.GetSceneManager().Register<TitleScene>("TitleScene");
-	context.GetSceneManager().Register<PlayScene>("PlayScene");
-	context.GetSceneManager().Register<ResultScene>("ResultScene");
+	context.GetSceneManager().Register<BaseScene>();
+	context.GetSceneManager().Register<LogoScene>();
+	context.GetSceneManager().Register<TitleScene>();
+	context.GetSceneManager().Register<PlayScene>();
+	context.GetSceneManager().Register<ResultScene>();
 
-	//context.GetSceneManager().LoadScene("BaseScene");
-	context.GetSceneManager().LoadScene("PlayScene");
+	//context.GetSceneManager().LoadScene(L"BaseScene");
+	context.GetSceneManager().LoadScene(L"PlayScene");
 }

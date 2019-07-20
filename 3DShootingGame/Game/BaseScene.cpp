@@ -23,5 +23,5 @@ void BaseScene::Build(GameContext& context)
 	context << bit;
 	*/
 
-	context.GetSceneManager().LoadScene("LogoScene");
+	context.GetSceneManager().LoadScene(L"LogoScene");
 }

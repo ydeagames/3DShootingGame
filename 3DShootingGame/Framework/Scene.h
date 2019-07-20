@@ -13,6 +13,10 @@ public:
 	std::list<std::shared_ptr<GameObject>> gameObjects;
 	// 子ゲームオブジェクト
 	std::list<std::shared_ptr<GameObject>> addingObjects;
+	// 後ろを更新するか
+	bool updateBehind = false;
+	// 後ろを描画するか
+	bool renderBehind = false;
 
 private:
 	// PhysX

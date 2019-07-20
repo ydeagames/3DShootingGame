@@ -33,7 +33,7 @@ void LogoScene::Build(GameContext& context)
 			m_text->SetText(sb.str());
 
 			if (time > 3.f)
-				context.GetSceneManager().LoadScene("TitleScene");
+				context.GetSceneManager().LoadScene(L"TitleScene");
 		}
 	};
 	auto obj1 = GameObject::Create();

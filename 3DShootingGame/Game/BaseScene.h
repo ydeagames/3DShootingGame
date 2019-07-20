@@ -5,6 +5,7 @@
 class BaseScene : public ISceneBuilder
 {
 public:
+	std::wstring GetName() const override { return L"BaseScene"; }
 	// ê∂ê¨
 	void Build(GameContext& context);
 };

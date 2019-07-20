@@ -95,63 +95,32 @@ private:
 
 public:
 	// DeviceResource取得
-	DX::DeviceResources& GetDR()
-	{
-		return *m_deviceResources;
-	}
+	DX::DeviceResources& GetDR() { return *m_deviceResources; }
 
 	// タイマー取得
-	DX::StepTimer& GetTimer()
-	{
-		return m_timer;
-	}
+	DX::StepTimer& GetTimer() { return m_timer; }
 
 	// カメラ取得
-	GameCamera& GetCamera()
-	{
-		return m_camera;
-	}
+	GameCamera& GetCamera() { return m_camera; }
 
 	// コモンステート
-	DirectX::CommonStates& GetStates()
-	{
-		return *m_state;
-	}
+	DirectX::CommonStates& GetStates() { return *m_state; }
 
 	// コモンステート
-	DirectX::EffectFactory& GetEffectFactory()
-	{
-		return *m_effectFactory;
-	}
+	DirectX::EffectFactory& GetEffectFactory() { return *m_effectFactory; }
 
 	// シーン
-	Scene& GetScene()
-	{
-		return *m_sceneManager->GetActiveScene().scene;
-	}
+	Scene& GetScene() { return *m_sceneManager->GetActiveScene().scene; }
 
 	// オブジェクト追加
-	GameContext& operator<<(const std::shared_ptr<GameObject>& obj)
-	{
-		GetScene().Add(obj);
-		return *this;
-	}
+	GameContext& operator<<(const std::shared_ptr<GameObject>& obj) { GetScene().Add(obj); return *this; }
 
 	// シーン
-	SceneManager& GetSceneManager()
-	{
-		return *m_sceneManager;
-	}
+	SceneManager& GetSceneManager() { return *m_sceneManager; }
 
 	// 物理マネージャ
-	PhysXManager& GetPhysics()
-	{
-		return *m_physics;
-	}
+	PhysXManager& GetPhysics() { return *m_physics; }
 
 	// ウィンドウを取得
-	HWND& GetWindowHandle()
-	{
-		return m_window;
-	}
+	HWND& GetWindowHandle() { return m_window; }
 };

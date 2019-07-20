@@ -85,12 +85,22 @@ void Game::Update(DX::StepTimer const& timer)
 {
 	// インプット更新
 	Input::Update();
+	// PhysX描画モード
+	if (Input::GetKeyDown(Keyboard::Keys::F3))
+	{
+		switch (m_physics->debugMode)
+		{
+		case PhysXManager::IngamePvdMode::Game:				m_physics->debugMode = PhysXManager::IngamePvdMode::GameCollision;	break;
+		case PhysXManager::IngamePvdMode::GameCollision:	m_physics->debugMode = PhysXManager::IngamePvdMode::Collision;		break;
+		default:											m_physics->debugMode = PhysXManager::IngamePvdMode::Game;			break;
+		}
+	}
 	// 物理
 	m_physics->Update(*this);
 	// シーン処理
 	GetSceneManager().ProcessScene(*this);
 	// 更新
-	GetSceneManager().GetActiveScene().scene->Update(*this);
+	GetSceneManager().GetSceneView().Update(*this);
 }
 #pragma endregion
 
@@ -110,11 +120,16 @@ void Game::Render()
 	// ここから描画
     m_deviceResources->PIXBeginEvent(L"Render");
 
-	// 物理
-	m_physics->Render(*this);
-
     // TODO: Add your rendering code here.
-	GetSceneManager().GetActiveScene().scene->Render(*this);
+	if (m_physics->debugMode & PhysXManager::IngamePvdMode::Collision)
+	{
+		// 物理
+		m_physics->Render(*this);
+	}
+	if (m_physics->debugMode & PhysXManager::IngamePvdMode::Game)
+	{
+		GetSceneManager().GetSceneView().Render(*this);
+	}
 
 	// FPS
 	m_fps.update();
@@ -208,7 +223,8 @@ void Game::CreateDeviceDependentResources()
     // TODO: Initialize device dependent objects here (independent of window size).
 
 	// 作成
-	BuildSettings().Build(*this);
+	GetSceneManager().Register<BuildSettings>();
+	GetSceneManager().LoadScene(L"BuildSettings");
 }
 
 // Allocate all memory resources that change on a window SizeChanged event.
@@ -243,7 +259,7 @@ void Game::OnDeviceLost()
 	m_physics->Finalize(*this);
 
 	// 破棄
-	GetSceneManager().GetActiveScene().scene->Finalize(*this);
+	GetSceneManager().GetSceneView().Finalize(*this);
 }
 
 void Game::OnDeviceRestored()

@@ -7,5 +7,8 @@ class Object
 		return L"Object";
 	}
 
-	virtual bool IsDestroyed();
+	virtual bool IsDestroyed()
+	{
+		return false;
+	}
 };
