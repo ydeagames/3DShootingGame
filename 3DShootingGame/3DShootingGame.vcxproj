@@ -63,24 +63,28 @@
     <Import Project="..\PhysXPropertySheet.props" />
     <Import Project="..\BasicPropertySheet.props" />
     <Import Project="..\DirectXTKPropertySheet.props" />
+    <Import Project="..\ImGuiPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\PhysXPropertySheet.props" />
     <Import Project="..\BasicPropertySheet.props" />
     <Import Project="..\DirectXTKPropertySheet.props" />
+    <Import Project="..\ImGuiPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\PhysXPropertySheet.props" />
     <Import Project="..\BasicPropertySheet.props" />
     <Import Project="..\DirectXTKPropertySheet.props" />
+    <Import Project="..\ImGuiPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\PhysXPropertySheet.props" />
     <Import Project="..\BasicPropertySheet.props" />
     <Import Project="..\DirectXTKPropertySheet.props" />
+    <Import Project="..\ImGuiPropertySheet.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -184,6 +188,7 @@
     <ClInclude Include="Framework\GameCamera.h" />
     <ClInclude Include="Framework\GameContext.h" />
     <ClInclude Include="Framework\GameObject.h" />
+    <ClInclude Include="Framework\ImGuiManager.h" />
     <ClInclude Include="Framework\ISceneBuilder.h" />
     <ClInclude Include="Framework\Object.h" />
     <ClInclude Include="Framework\PhysX\PhysXCommons.h" />
@@ -193,7 +198,6 @@
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="Framework\SceneManager.h" />
     <ClInclude Include="Framework\SerializedField.h" />
-    <ClInclude Include="Framework\StepTimer.h" />
     <ClInclude Include="Framework\Transform.h" />
     <ClInclude Include="Game\BaseScene.h" />
     <ClInclude Include="Game\BuildSettings.h" />
@@ -226,6 +230,7 @@
     <ClCompile Include="Framework\DebugTools\GridFloorWrapper.cpp" />
     <ClCompile Include="Framework\Game.cpp" />
     <ClCompile Include="Framework\GameCamera.cpp" />
+    <ClCompile Include="Framework\ImGuiManager.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXManager.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXRenderer.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />

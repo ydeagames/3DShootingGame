@@ -35,7 +35,7 @@ void Scene::Update(GameContext& context)
 	for (auto& object : gameObjects)
 		object->Update(context);
 
-	gameObjects.remove_if(std::mem_fn(&GameObject::destroyed));
+	gameObjects.remove_if(std::mem_fn(&Object::destroyed));
 }
 
 void Scene::Render(GameContext& context)

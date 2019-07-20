@@ -19,6 +19,7 @@
 #include "SceneManager.h"
 #include "GameCamera.h"
 #include <Framework/PhysX/PhysXManager.h>
+#include "ImGuiManager.h"
 #include <Utilities/FPS.h>
 
 // A basic game implementation that creates a D3D11 device and
@@ -31,6 +32,7 @@ public:
 
     // Initialization and management
     void Initialize(HWND window, int width, int height);
+	void Finalize();
 
     // Basic game loop
     void Tick();
@@ -93,6 +95,9 @@ private:
 	// ウィンドウ
 	HWND									m_window;
 
+	// 物理
+	std::unique_ptr<ImGuiManager>			m_imgui;
+
 public:
 	// DeviceResource取得
 	DX::DeviceResources& GetDR() { return *m_deviceResources; }
@@ -123,4 +128,7 @@ public:
 
 	// ウィンドウを取得
 	HWND& GetWindowHandle() { return m_window; }
+
+	// GUIマネージャ
+	ImGuiManager& GetGuiManager() { return *m_imgui; }
 };

@@ -54,9 +54,16 @@ void Game::Initialize(HWND window, int width, int height)
 	// 物理
 	m_physics = std::make_unique<PhysXManager>();
 	m_physics->Initialize(*this);
+	// GUI
+	m_imgui = std::make_unique<ImGuiManager>();
+	m_imgui->Initialize(*this);
 
     CreateDeviceDependentResources();
     CreateWindowSizeDependentResources();
+
+	// 作成
+	GetSceneManager().Register<BuildSettings>();
+	GetSceneManager().LoadScene(L"BuildSettings");
 
     // TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
@@ -64,6 +71,18 @@ void Game::Initialize(HWND window, int width, int height)
     m_timer.SetFixedTimeStep(true);
     m_timer.SetTargetElapsedSeconds(1.0 / 60);
     */
+}
+
+void Game::Finalize()
+{
+	// GUI
+	m_imgui->Finalize(*this);
+
+	// 物理
+	m_physics->Finalize(*this);
+
+	// 破棄
+	GetSceneManager().GetSceneView().Finalize(*this);
 }
 
 #pragma region Frame Update
@@ -97,6 +116,8 @@ void Game::Update(DX::StepTimer const& timer)
 	}
 	// 物理
 	m_physics->Update(*this);
+	// GUI
+	m_imgui->Update(*this);
 	// シーン処理
 	GetSceneManager().ProcessScene(*this);
 	// 更新
@@ -130,6 +151,9 @@ void Game::Render()
 	{
 		GetSceneManager().GetSceneView().Render(*this);
 	}
+
+	// GUI
+	m_imgui->Render(*this);
 
 	// FPS
 	m_fps.update();
@@ -221,10 +245,6 @@ void Game::GetDefaultSize(int& width, int& height) const
 void Game::CreateDeviceDependentResources()
 {
     // TODO: Initialize device dependent objects here (independent of window size).
-
-	// 作成
-	GetSceneManager().Register<BuildSettings>();
-	GetSceneManager().LoadScene(L"BuildSettings");
 }
 
 // Allocate all memory resources that change on a window SizeChanged event.
@@ -254,12 +274,6 @@ void Game::CreateWindowSizeDependentResources()
 void Game::OnDeviceLost()
 {
     // TODO: Add Direct3D resource cleanup here.
-
-	// 物理
-	m_physics->Finalize(*this);
-
-	// 破棄
-	GetSceneManager().GetSceneView().Finalize(*this);
 }
 
 void Game::OnDeviceRestored()

@@ -53,9 +53,6 @@
     <ClInclude Include="Framework\SceneManager.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\StepTimer.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Transform.h">
       <Filter>Framework</Filter>
     </ClInclude>
@@ -161,6 +158,9 @@
     <ClInclude Include="Libraries\picojson.h">
       <Filter>Libraries</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\ImGuiManager.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -236,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp">
       <Filter>Framework\PhysX</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ImGuiManager.cpp">
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

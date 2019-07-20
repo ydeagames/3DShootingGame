@@ -7,6 +7,7 @@ class GameObject;
 class SceneManager;
 class GameCamera;
 class PhysXManager;
+class ImGuiManager;
 
 // GameContextインターフェイス
 class GameContext
@@ -36,4 +37,6 @@ public:
 	virtual PhysXManager& GetPhysics() = 0;
 	// ウィンドウを取得
 	virtual HWND& GetWindowHandle() = 0;
+	// GUIマネージャ
+	virtual ImGuiManager& GetGuiManager() = 0;
 };

@@ -2,13 +2,21 @@
 
 class Object
 {
-	virtual std::wstring GetName()
+public:
+	bool destroyed = false;
+
+	virtual std::wstring GetType() const
 	{
 		return L"Object";
 	}
 
-	virtual bool IsDestroyed()
+	virtual std::wstring GetName() const
 	{
-		return false;
+		return L"Object";
+	}
+
+	static void Destroy(Object& object)
+	{
+		object.destroyed = true;
 	}
 };

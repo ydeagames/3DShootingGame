@@ -1,4 +1,5 @@
 #pragma once
+#include "Object.h"
 
 class GameContext;
 class GameObject;
@@ -8,7 +9,7 @@ class GameObject;
 		using Base = TYPE;
 
 // コンポーネント
-class Component
+class Component : public Object
 {
 public:
 	Component() = default;
@@ -16,6 +17,9 @@ public:
 
 public:
 	GameObject* gameObject = nullptr;
+
+	std::wstring GetName() const override { return L"Component"; }
+	std::wstring GetType() const override { return L"Component"; }
 
 public:
 	// 生成

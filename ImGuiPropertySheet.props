@@ -10,12 +10,12 @@
 
   <!-- プロジェクトリファレンス -->
   <ItemGroup>
-    <ProjectReference Include="ImGui\ImGui.vcxproj">
+    <ProjectReference Include="$(SolutionDir)ImGui\ImGui.vcxproj">
       <Project>{A2B7CADF-EE4D-4294-AD5B-6C8048FCD5F7}</Project>
     </ProjectReference>
   </ItemGroup>
   <!-- 共有設定 -->
   <PropertyGroup>
-    <IncludePath>$(SolutionDir)ImGui</IncludePath>
+    <IncludePath>$(SolutionDir)ImGui;$(IncludePath)</IncludePath>
   </PropertyGroup>
 </Project>

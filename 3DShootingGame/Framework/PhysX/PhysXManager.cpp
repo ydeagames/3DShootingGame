@@ -60,7 +60,7 @@ void PhysXManager::Render(GameContext& context)
 			if (nbActors)
 			{
 				std::vector<PxRigidActor*> actors(nbActors);
-				scene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<PxActor**>(&actors[0]), nbActors);
+				scene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<PxActor * *>(&actors[0]), nbActors);
 				PhysXRenderer::RenderActors(context, actors, true, physx::PxVec3(0, 0, 1));
 			}
 		}
@@ -69,6 +69,13 @@ void PhysXManager::Render(GameContext& context)
 
 void PhysXManager::Finalize(GameContext& context)
 {
+	m_dispatcher.reset();
+	m_physics.reset();
+
+	m_pvd.reset();
+	m_pvdTransport.reset();
+
+	m_foundation.reset();
 }
 
 std::unique_ptr<PhysXScene> PhysXManager::CreateScene()
