@@ -11,12 +11,13 @@ public:
 	~ImGuiManager();
 
 private:
-	std::vector<std::shared_ptr<ISceneBuilder>> windows;
+	std::vector<std::shared_ptr<ISceneBuilder>> m_windows;
+	std::string m_settingFile;
 
 public:
 	void RegisterWindow(const std::shared_ptr<ISceneBuilder>& window)
 	{
-		windows.push_back(window);
+		m_windows.push_back(window);
 	}
 
 public:

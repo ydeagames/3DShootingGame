@@ -8,6 +8,7 @@ class SceneManager;
 class GameCamera;
 class PhysXManager;
 class ImGuiManager;
+class SaveHandler;
 
 // GameContextインターフェイス
 class GameContext
@@ -39,4 +40,6 @@ public:
 	virtual HWND& GetWindowHandle() = 0;
 	// GUIマネージャ
 	virtual ImGuiManager& GetGuiManager() = 0;
+	// セーブハンドラ
+	virtual SaveHandler& GetSaveHandler() = 0;
 };

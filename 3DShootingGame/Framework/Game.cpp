@@ -51,6 +51,8 @@ void Game::Initialize(HWND window, int width, int height)
 	m_effectFactory = std::make_unique<DirectX::EffectFactory>(m_deviceResources->GetD3DDevice());
 	// テクスチャの読み込みパス指定
 	m_effectFactory->SetDirectory(L"Resources/Models");
+	// セーブ
+	m_saves = std::make_unique<SaveHandler>(L"Saves/");
 	// 物理
 	m_physics = std::make_unique<PhysXManager>();
 	m_physics->Initialize(*this);

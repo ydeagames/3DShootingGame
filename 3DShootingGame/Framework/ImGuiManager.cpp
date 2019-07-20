@@ -2,6 +2,7 @@
 #include "ImGuiManager.h"
 #include "GameContext.h"
 #include "ISceneBuilder.h"
+#include "SaveHandler.h"
 #include <Utilities/Input.h>
 
 ImGuiManager::ImGuiManager()
@@ -17,7 +18,10 @@ void ImGuiManager::Initialize(GameContext& context)
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGuiIO& io = ImGui::GetIO();
+	auto wpath = context.GetSaveHandler().GetDir() + L"GuiSettings.ini";
+	m_settingFile = std::string(wpath.begin(), wpath.end());
+	io.IniFilename = m_settingFile.c_str();
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
@@ -64,7 +68,7 @@ void ImGuiManager::Render(GameContext& context)
 	}
 
 	// ウィンドウ
-	for (auto itr = windows.begin(); itr != windows.end();)
+	for (auto itr = m_windows.begin(); itr != m_windows.end();)
 	{
 		auto& window = *itr;
 		if (!window->destroyed)
@@ -74,7 +78,7 @@ void ImGuiManager::Render(GameContext& context)
 		}
 		else
 		{
-			itr = windows.erase(itr);
+			itr = m_windows.erase(itr);
 		}
 	}
 

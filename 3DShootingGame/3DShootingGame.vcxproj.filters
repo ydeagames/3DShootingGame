@@ -161,6 +161,7 @@
     <ClInclude Include="Framework\ImGuiManager.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\SaveHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -240,6 +241,7 @@
     <ClCompile Include="Framework\ImGuiManager.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\SaveHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">

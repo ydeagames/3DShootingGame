@@ -195,6 +195,7 @@
     <ClInclude Include="Framework\PhysX\PhysXManager.h" />
     <ClInclude Include="Framework\PhysX\PhysXRenderer.h" />
     <ClInclude Include="Framework\PhysX\PhysXScene.h" />
+    <ClInclude Include="Framework\SaveHandler.h" />
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="Framework\SceneManager.h" />
     <ClInclude Include="Framework\SerializedField.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="Framework\PhysX\PhysXManager.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXRenderer.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />
+    <ClCompile Include="Framework\SaveHandler.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
     <ClCompile Include="Framework\SceneManager.cpp" />
     <ClCompile Include="Framework\SerializedField.cpp" />

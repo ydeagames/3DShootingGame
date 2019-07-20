@@ -20,6 +20,7 @@
 #include "GameCamera.h"
 #include <Framework/PhysX/PhysXManager.h>
 #include "ImGuiManager.h"
+#include "SaveHandler.h"
 #include <Utilities/FPS.h>
 
 // A basic game implementation that creates a D3D11 device and
@@ -95,8 +96,11 @@ private:
 	// ウィンドウ
 	HWND									m_window;
 
-	// 物理
+	// GUI
 	std::unique_ptr<ImGuiManager>			m_imgui;
+
+	// セーブ
+	std::unique_ptr<SaveHandler>			m_saves;
 
 public:
 	// DeviceResource取得
@@ -131,4 +135,7 @@ public:
 
 	// GUIマネージャ
 	ImGuiManager& GetGuiManager() { return *m_imgui; }
+
+	// セーブハンドラ
+	SaveHandler& GetSaveHandler() { return *m_saves; }
 };
