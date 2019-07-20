@@ -36,8 +36,11 @@ void PlayScene::Build(GameContext& context)
 
 		void Update(GameContext& context)
 		{
-			auto move = Input::GetMousePosition();
-			Move(float(move.x), float(move.y));
+			if (Input::GetMouseMode() == DirectX::Mouse::Mode::MODE_RELATIVE)
+			{
+				auto move = Input::GetMousePosition();
+				Move(float(move.x), float(move.y));
+			}
 
 			m_xAngleLast = MathUtils::Lerp(.25f, m_xAngleLast, m_xAngle);
 			m_yAngleLast = MathUtils::Lerp(.25f, m_yAngleLast, m_yAngle);
@@ -182,8 +185,6 @@ void PlayScene::Build(GameContext& context)
 				auto dynamic = manager.GetPhysics()->createRigidDynamic(trans);
 				for (auto& flagSet : lockFlags)
 					dynamic->setRigidDynamicLockFlag(flagSet.first, flagSet.second);
-				dynamic->setLinearVelocity(preVelocity);
-				dynamic->addForce(preForce);
 				rigid = dynamic;
 			}
 
@@ -191,6 +192,13 @@ void PlayScene::Build(GameContext& context)
 				collider->AddCollider(context, rigid);
 
 			scene.CreateObject(*rigid);
+
+			if (rigid && rigid->is<physx::PxRigidBody>())
+			{
+				auto dynamic = rigid->is<physx::PxRigidBody>();
+				dynamic->setLinearVelocity(preVelocity);
+				dynamic->addForce(preForce);
+			}
 		}
 
 		void Update(GameContext& context)

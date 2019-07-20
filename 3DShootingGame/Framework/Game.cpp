@@ -155,11 +155,13 @@ void Game::Clear()
 void Game::OnActivated()
 {
     // TODO: Game is becoming active window.
+	Input::SetMouseMode(DirectX::Mouse::Mode::MODE_RELATIVE);
 }
 
 void Game::OnDeactivated()
 {
     // TODO: Game is becoming background window.
+	Input::SetMouseMode(DirectX::Mouse::Mode::MODE_ABSOLUTE);
 }
 
 void Game::OnSuspending()

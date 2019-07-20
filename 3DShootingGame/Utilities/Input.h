@@ -44,6 +44,7 @@ public:
 	static DirectX::Mouse::ButtonStateTracker& GetMouseTracker();
 
 	static void SetMouseMode(DirectX::Mouse::Mode mode);
+	static DirectX::Mouse::Mode GetMouseMode();
 
 	// キーボード
 	static bool GetKey(DirectX::Keyboard::Keys button);

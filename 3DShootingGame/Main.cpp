@@ -91,6 +91,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
         if (!hwnd)
             return 1;
 
+		//nCmdShow = SW_SHOWMAXIMIZED;
+
         ShowWindow(hwnd, nCmdShow);
         // TODO: Change nCmdShow to SW_SHOWMAXIMIZED to default to fullscreen.
 

@@ -79,6 +79,11 @@ void Input::SetMouseMode(DirectX::Mouse::Mode mode)
 	Update();
 }
 
+DirectX::Mouse::Mode Input::GetMouseMode()
+{
+	return GetMouseState().positionMode;
+}
+
 bool Input::GetKey(DirectX::Keyboard::Keys button)
 {
 	return m_keyboardTracker.lastState.IsKeyDown(button);
