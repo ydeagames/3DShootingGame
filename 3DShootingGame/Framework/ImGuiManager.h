@@ -1,6 +1,7 @@
 #pragma once
 #include <Framework/Component.h>
 
+class ISceneBuilder;
 class GameContext;
 
 class ImGuiManager : public Component
@@ -10,10 +11,10 @@ public:
 	~ImGuiManager();
 
 private:
-	std::vector<std::function<void(GameContext&)>> windows;
+	std::vector<std::shared_ptr<ISceneBuilder>> windows;
 
 public:
-	void RegisterWindow(const std::function<void(GameContext&)>& window)
+	void RegisterWindow(const std::shared_ptr<ISceneBuilder>& window)
 	{
 		windows.push_back(window);
 	}

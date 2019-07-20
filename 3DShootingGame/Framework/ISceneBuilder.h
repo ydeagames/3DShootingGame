@@ -5,10 +5,10 @@
 #include "GameObject.h"
 #include "GameCamera.h"
 
-class ISceneBuilder
+class ISceneBuilder : public Object
 {
 public:
-	virtual std::wstring GetName() const = 0;
+	std::wstring GetType() const override { return L"SceneBuilder"; };
 	virtual ~ISceneBuilder() = default;
 	virtual void Build(GameContext& context) = 0;
 };

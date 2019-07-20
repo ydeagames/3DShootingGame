@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ImGuiManager.h"
-#include <Framework/GameContext.h>
+#include "GameContext.h"
+#include "ISceneBuilder.h"
+#include <Utilities/Input.h>
 
 ImGuiManager::ImGuiManager()
 {
@@ -50,16 +52,37 @@ void ImGuiManager::Update(GameContext& context)
 void ImGuiManager::Render(GameContext& context)
 {
 	// Start the Dear ImGui frame
-	ImGui_ImplDX11_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
+	{
+		ImGui_ImplDX11_NewFrame();
+		ImGui_ImplWin32_NewFrame();
+
+		ImGuiIO& io = ImGui::GetIO();
+		if (Input::GetMouseMode() != DirectX::Mouse::Mode::MODE_ABSOLUTE)
+			io.MousePos = ImVec2(-FLT_MAX, -FLT_MAX);
+
+		ImGui::NewFrame();
+	}
 
 	// ウィンドウ
-	for (auto& window : windows)
-		window(context);
+	for (auto itr = windows.begin(); itr != windows.end();)
+	{
+		auto& window = *itr;
+		if (!window->destroyed)
+		{
+			window->Build(context);
+			++itr;
+		}
+		else
+		{
+			itr = windows.erase(itr);
+		}
+	}
 
 	// Rendering
-	ImGui::Render();
+	{
+		ImGui::Render();
+		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	}
 }
 
 void ImGuiManager::Finalize(GameContext& context)
