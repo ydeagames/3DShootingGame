@@ -29,6 +29,9 @@ Game::Game() noexcept(false)
 // Initialize the Direct3D resources required to run.
 void Game::Initialize(HWND window, int width, int height)
 {
+	// ウィンドウ
+	m_window = window;
+
 	// マウスの作成
 	m_pMouse = std::make_unique<Mouse>();
 	m_pMouse->SetWindow(window);
@@ -112,6 +115,11 @@ void Game::Render()
 
     // TODO: Add your rendering code here.
 	GetSceneManager().GetActiveScene().scene->Render(*this);
+
+	// FPS
+	m_fps.update();
+	if (m_fps.hasFPSChanged())
+		SetWindowTextW(GetWindowHandle(), (BuildSettings::GAME_TITLE + L" - FPS: " + std::to_wstring(static_cast<int>(m_fps.getFPS()))).c_str());
 
 	// ここまで描画
     m_deviceResources->PIXEndEvent();

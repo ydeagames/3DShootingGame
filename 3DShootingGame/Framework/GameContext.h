@@ -34,4 +34,6 @@ public:
 	virtual SceneManager& GetSceneManager() = 0;
 	// 物理マネージャを取得
 	virtual PhysXManager& GetPhysics() = 0;
+	// ウィンドウを取得
+	virtual HWND& GetWindowHandle() = 0;
 };

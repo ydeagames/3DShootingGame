@@ -19,6 +19,7 @@
 #include "SceneManager.h"
 #include "GameCamera.h"
 #include <Framework/PhysX/PhysXManager.h>
+#include <Utilities/FPS.h>
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
@@ -65,6 +66,9 @@ private:
     // Rendering loop timer.
     DX::StepTimer							m_timer;
 
+	// FPS
+	FPS										m_fps = FPS(m_timer);
+
 	// カメラオブジェクト
     GameCamera								m_camera;
 
@@ -85,6 +89,9 @@ private:
 
 	// 物理
 	std::unique_ptr<PhysXManager>			m_physics;
+
+	// ウィンドウ
+	HWND									m_window;
 
 public:
 	// DeviceResource取得
@@ -140,5 +147,11 @@ public:
 	PhysXManager& GetPhysics()
 	{
 		return *m_physics;
+	}
+
+	// ウィンドウを取得
+	HWND& GetWindowHandle()
+	{
+		return m_window;
 	}
 };

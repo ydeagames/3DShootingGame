@@ -155,6 +155,9 @@
     <ClInclude Include="Framework\PhysX\PhysXScene.h">
       <Filter>Framework\PhysX</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\FPS.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
