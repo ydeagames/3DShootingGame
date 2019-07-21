@@ -23,6 +23,7 @@
 #include "SaveHandler.h"
 #include "PauseHandler.h"
 #include <Utilities/FPS.h>
+#include "WindowHandler.h"
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
@@ -65,84 +66,12 @@ private:
     void CreateWindowSizeDependentResources();
 
     // Device resources.
-    std::unique_ptr<DX::DeviceResources>	m_deviceResources;
-
-    // Rendering loop timer.
-    DX::StepTimer							m_timer;
-
-	// FPS
-	FPS										m_fps = FPS(m_timer);
-
-	// カメラオブジェクト
-    GameCamera								m_camera;
-
-	// コモンステート
-	std::unique_ptr<DirectX::CommonStates>	m_state;
-	
-	// エフェクトファクトリー
-	std::unique_ptr<DirectX::EffectFactory>	m_effectFactory;
-
-	// シーンマネージャー
-	std::unique_ptr<SceneManager>			m_sceneManager;
-
-	// マウス
-	std::unique_ptr<DirectX::Mouse>			m_pMouse;
-
-	// キーボード
-	std::unique_ptr<DirectX::Keyboard>		m_pKeyboard;
-
-	// 物理
-	std::unique_ptr<PhysXManager>			m_physics;
-
-	// ウィンドウ
-	HWND									m_window;
-
-	// GUI
-	std::unique_ptr<ImGuiManager>			m_imgui;
-
-	// セーブハンドラ
-	std::unique_ptr<SaveHandler>			m_saveHandler;
-
-	// ポーズハンドラ
-	std::unique_ptr<PauseHandler>			m_pauseHandler;
+    DX::DeviceResources*					m_deviceResources;
 
 public:
-	// DeviceResource取得
-	DX::DeviceResources& GetDR() { return *m_deviceResources; }
-
-	// タイマー取得
-	DX::StepTimer& GetTimer() { return m_timer; }
-
-	// カメラ取得
-	GameCamera& GetCamera() { return m_camera; }
-
-	// コモンステート
-	DirectX::CommonStates& GetStates() { return *m_state; }
-
-	// コモンステート
-	DirectX::EffectFactory& GetEffectFactory() { return *m_effectFactory; }
-
 	// シーン
-	Scene& GetScene() { return m_sceneManager->GetActiveScene(); }
+	Scene& GetScene() { return GetSceneManager().GetActiveScene(); }
 
 	// オブジェクト追加
 	GameContext& operator<<(const std::shared_ptr<GameObject>& obj) { GetScene().Add(obj); return *this; }
-
-	// シーン
-	SceneManager& GetSceneManager() { return *m_sceneManager; }
-
-	// 物理マネージャ
-	PhysXManager& GetPhysics() { return *m_physics; }
-
-	// ウィンドウを取得
-	HWND& GetWindowHandle() { return m_window; }
-
-	// GUIマネージャ
-	ImGuiManager& GetGuiManager() { return *m_imgui; }
-
-	// セーブハンドラ
-	SaveHandler& GetSaveHandler() { return *m_saveHandler; }
-
-	// ポーズハンドラ
-	PauseHandler& GetPauseHandler() { return *m_pauseHandler; }
 };

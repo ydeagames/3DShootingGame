@@ -25,14 +25,12 @@ private:
 		struct IContextHolder
 		{
 			virtual ~IContextHolder() = default;
-			virtual void* GetPtr() const = 0;
 		};
 
 		template<typename T>
 		struct ContextHolder : public IContextHolder
 		{
 			virtual T* Get() const = 0;
-			void* GetPtr() const override { return Get(); }
 		};
 
 		template<typename T>
@@ -78,9 +76,18 @@ private:
 
 		std::unordered_map<type_id_t, std::unique_ptr<IContextHolder>> m_contexts;
 
-		template<typename T> T* Get() { return dynamic_cast<T*>(m_contexts[type_id<T>()].Get()); }
+		template<typename T> T* Get()
+		{
+			auto key = type_id<T>();
+			if (m_contexts.count(key) > 0)
+			{
+				auto holder = m_contexts.at(key).get();
+				return dynamic_cast<ContextHolder<T>*>(holder)->Get();
+			}
+			return nullptr;
+		}
 
-		template<typename T> void Register(std::unique_ptr<T>&& context) { m_contexts[type_id<T>()] = std::make_unique<ContextUniquePtrHolder<T>>(context); }
+		template<typename T> void Register(std::unique_ptr<T>&& context) { m_contexts[type_id<T>()] = std::make_unique<ContextUniquePtrHolder<T>>(std::move(context)); }
 		template<typename T> void Register(const std::shared_ptr<T>& context) { m_contexts[type_id<T>()] = std::make_unique<ContextSharedPtrHolder<T>>(context); }
 		template<typename T> void Register(const std::weak_ptr<T>& context) { m_contexts[type_id<T>()] = std::make_unique<ContextWeakPtrHolder<T>>(context); }
 		template<typename T> void Register(const std::reference_wrapper<T>& context) { m_contexts[type_id<T>()] = std::make_unique<ContextRefHolder<T>>(context); }
@@ -89,15 +96,30 @@ private:
 	};
 
 	ContextLocator m_locator;
-	GameContext* m_parent;
 
 public:
+	virtual GameContext* GetParent()
+	{
+		return nullptr;
+	}
+
+	template<typename T>
+	T* GetPtr()
+	{
+		auto context = m_locator.Get<T>();
+		if (context == nullptr)
+		{
+			auto parent = GetParent();
+			if (parent != nullptr)
+				context = parent->GetPtr<T>();
+		}
+		return context;
+	}
+
 	template<typename T>
 	T& Get()
 	{
-		auto context = m_locator.Get<T>();
-		if (context == nullptr && m_parent != nullptr)
-			context = m_parent->Get<T>();
+		auto context = GetPtr<T>();
 		if (context == nullptr)
 			throw std::exception("missing service.");
 		return *context;
@@ -106,33 +128,31 @@ public:
 	template<typename T>
 	void Register(T&& context)
 	{
-		return m_locator.Register(std::forward<T>(context));
+		m_locator.Register(std::forward<T>(context));
 	}
 
 	// DeviceResource取得
-	virtual DX::DeviceResources& GetDR() = 0;
+	virtual DX::DeviceResources& GetDR() { return Get<DX::DeviceResources>(); };
 	// タイマー取得
-	virtual DX::StepTimer& GetTimer() = 0;
+	virtual DX::StepTimer& GetTimer() { return Get<DX::StepTimer>(); };
 	// カメラ取得
-	virtual GameCamera& GetCamera() = 0;
+	virtual GameCamera& GetCamera() { return Get<GameCamera>(); };
 	// コモンステート取得
-	virtual DirectX::CommonStates& GetStates() = 0;
+	virtual DirectX::CommonStates& GetStates() { return Get<DirectX::CommonStates>(); };
 	// エフェクトファクトリー取得
-	virtual DirectX::EffectFactory& GetEffectFactory() = 0;
+	virtual DirectX::EffectFactory& GetEffectFactory() { return Get<DirectX::EffectFactory>(); };
 	// シーンを取得
 	virtual Scene& GetScene() = 0;
 	// シーンにオブジェクトを追加
 	virtual GameContext& operator<<(const std::shared_ptr<GameObject>& obj) = 0;
 	// シーンマネージャを取得
-	virtual SceneManager& GetSceneManager() = 0;
+	virtual SceneManager& GetSceneManager() { return Get<SceneManager>(); };
 	// 物理マネージャを取得
-	virtual PhysXManager& GetPhysics() = 0;
-	// ウィンドウを取得
-	virtual HWND& GetWindowHandle() = 0;
+	virtual PhysXManager& GetPhysics() { return Get<PhysXManager>(); };
 	// GUIマネージャ
-	virtual ImGuiManager& GetGuiManager() = 0;
+	virtual ImGuiManager& GetGuiManager() { return Get<ImGuiManager>(); };
 	// セーブハンドラ
-	virtual SaveHandler& GetSaveHandler() = 0;
+	virtual SaveHandler& GetSaveHandler() { return Get<SaveHandler>(); };
 	// ポーズハンドラ
-	virtual PauseHandler& GetPauseHandler() = 0;
+	virtual PauseHandler& GetPauseHandler() { return Get<PauseHandler>(); };
 };

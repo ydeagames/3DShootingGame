@@ -4,6 +4,7 @@
 #include "ISceneBuilder.h"
 #include "SaveHandler.h"
 #include "ImGuiStyles.h"
+#include "WindowHandler.h"
 #include <Utilities/Input.h>
 
 ImGuiManager::ImGuiManager()
@@ -37,7 +38,7 @@ void ImGuiManager::Initialize(GameContext& context)
 	}
 
 	// Setup Platform/Renderer bindings
-	ImGui_ImplWin32_Init(context.GetWindowHandle());
+	ImGui_ImplWin32_Init(context.Get<WindowHandler>().GetHandle());
 	ImGui_ImplDX11_Init(context.GetDR().GetD3DDevice(), context.GetDR().GetD3DDeviceContext());
 
 	// Load Fonts
