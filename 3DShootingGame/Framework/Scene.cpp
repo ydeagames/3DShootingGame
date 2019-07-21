@@ -13,9 +13,11 @@ Scene::~Scene()
 {
 }
 
-void Scene::Add(ObjectHolder<GameObject>&& obj)
+ObjectField<GameObject> Scene::Add(ObjectHolder<GameObject>&& obj)
 {
+	ObjectField<GameObject> field = obj;
 	addingObjects.emplace_back(std::move(obj));
+	return field;
 }
 
 void Scene::Initialize(GameContext& context)

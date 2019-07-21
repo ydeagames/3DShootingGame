@@ -144,8 +144,6 @@ public:
 	virtual DirectX::EffectFactory& GetEffectFactory() { return Get<DirectX::EffectFactory>(); };
 	// シーンを取得
 	virtual Scene& GetScene() = 0;
-	// シーンにオブジェクトを追加
-	virtual GameContext& operator<<(ObjectHolder<GameObject>&& obj) = 0;
 	// シーンマネージャを取得
 	virtual SceneManager& GetSceneManager() { return Get<SceneManager>(); };
 	// 物理マネージャを取得

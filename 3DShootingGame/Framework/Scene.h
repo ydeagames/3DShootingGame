@@ -40,7 +40,8 @@ public:
 	~Scene();
 
 public:
-	void Add(ObjectHolder<GameObject>&& obj);
+	ObjectField<GameObject> Add(ObjectHolder<GameObject>&& obj);
+	template<typename... T> ObjectField<GameObject> AddGameObject(T&&... args) { return Add(GameObject::Create(std::forward(args)...)); }
 	PhysXScene& GetPhysics() const { return *physics; }
 	std::list<ObjectHolder<GameObject>>& GetObjects() { return gameObjects; }
 

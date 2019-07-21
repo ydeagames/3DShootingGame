@@ -17,7 +17,8 @@ using namespace DirectX::SimpleMath;
 
 void PlayScene::Build(GameContext& context)
 {
-	context.GetScene().mouseMode = DirectX::Mouse::Mode::MODE_RELATIVE;
+	auto& scene = context.GetScene();
+	scene.mouseMode = DirectX::Mouse::Mode::MODE_RELATIVE;
 
 	context.GetCamera().view = Matrix::CreateLookAt(Vector3(0, 5, 10), Vector3::Zero, Vector3::Up);
 
@@ -29,9 +30,8 @@ void PlayScene::Build(GameContext& context)
 				context.GetPauseHandler().SetPaused(context, true);
 		}
 	};
-	auto pausedirector = GameObject::Create();
+	auto pausedirector = scene.AddGameObject();
 	pausedirector->AddComponent<PauseBehaviour>();
-	context << std::move(pausedirector);
 
 	struct FPSCamera : Component
 	{
@@ -105,12 +105,11 @@ void PlayScene::Build(GameContext& context)
 			scene.CreateObject(*rigid);
 		}
 	};
-	auto camera = GameObject::Create();
+	auto camera = scene.AddGameObject();
 	//camCtrl->AddComponent<DebugCameraWrapper>();
 	camera->AddComponent<FPSCamera>();
 	camera->AddComponent<GridFloorWrapper>();
 	camera->AddComponent<Plane>();
-	context << std::move(camera);
 
 	class Collider
 	{
@@ -305,7 +304,8 @@ void PlayScene::Build(GameContext& context)
 
 			if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
 			{
-				auto bullet = GameObject::Create();
+				auto& scene = context.GetScene();
+				auto bullet = scene.AddGameObject();
 				bullet->AddComponent<GeometricObject>(
 					[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
 					Color(Colors::Yellow)
@@ -316,7 +316,6 @@ void PlayScene::Build(GameContext& context)
 				auto rigidbody = bullet->AddComponent<Rigidbody>();
 				rigidbody->Add(std::make_shared<SphereCollider>());
 				rigidbody->SetVelocity(ray.direction * 50);
-				context << std::move(bullet);
 			}
 		}
 	};
@@ -328,7 +327,7 @@ void PlayScene::Build(GameContext& context)
 			gameObject->transform->position = Vector3::Lerp(gameObject->transform->position, player->position + Vector3::Up * 2, .25f);
 		}
 	};
-	auto player = GameObject::Create();
+	auto player = scene.AddGameObject();
 	player->AddComponent<GeometricObject>(
 		[](GameContext& context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
 		Color(Colors::Blue)
@@ -336,17 +335,15 @@ void PlayScene::Build(GameContext& context)
 	player->AddComponent<PlayerBehaviour>();
 	auto rigidbody = player->AddComponent<Rigidbody>();
 	rigidbody->Add(std::make_shared<BoxCollider>());
-	context << std::move(player);
 
 	auto playerCamera = camera->AddComponent<PlayerCamera>();
 	playerCamera->player = player->transform;
 
 	{
-		auto box = GameObject::Create();
+		auto box = scene.AddGameObject();
 		box->transform->localScale = Vector3(4);
 		box->transform->localPosition = Vector3(8, 0, 3);
 		auto rigid = box->AddComponent<Rigidbody>();
 		rigid->Add(std::make_shared<BoxCollider>());
-		context << std::move(box);
 	}
 }

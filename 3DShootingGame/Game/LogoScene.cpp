@@ -1,13 +1,15 @@
 #include "pch.h"
 #include "LogoScene.h"
 #include "SceneCommons.h"
+#include <Framework/Scene.h>
 #include <Framework/SceneManager.h>
 
 void LogoScene::Build(GameContext& context)
 {
-	auto obj = GameObject::Create();
+	auto& scene = context.GetScene();
+
+	auto obj = scene.AddGameObject();
 	auto text = obj->AddComponent<FontObject>(L"Resources/Fonts/logofont.spritefont", L"ÉçÉSÉVÅ[Éì");
-	context << std::move(obj);
 
 	class A : public Component
 	{
@@ -36,7 +38,6 @@ void LogoScene::Build(GameContext& context)
 				context.GetSceneManager().LoadScene(L"TitleScene");
 		}
 	};
-	auto obj1 = GameObject::Create();
+	auto obj1 = scene.AddGameObject();
 	auto cmp = obj1->AddComponent<A>(text);
-	context << std::move(obj1);
 }

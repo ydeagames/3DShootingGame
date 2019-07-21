@@ -10,13 +10,13 @@ private:
 		: m_object(object) {}
 
 public:
-	constexpr ObjectHolder() noexcept {};
-	constexpr ObjectHolder(nullptr_t) noexcept {};
+	constexpr ObjectHolder() noexcept(nullptr) {};
+	constexpr ObjectHolder(nullptr_t) noexcept : m_object(nullptr) {};
 	ObjectHolder(const ObjectHolder&) = delete;
 	ObjectHolder& operator=(const ObjectHolder&) = delete;
 	ObjectHolder(ObjectHolder&&) noexcept = default;
 	ObjectHolder& operator=(ObjectHolder&&) noexcept = default;
-	ObjectHolder& operator=(nullptr_t) noexcept {}
+	ObjectHolder& operator=(nullptr_t) noexcept { m_object = nullptr; }
 
 public:
 	T* operator->() const noexcept { return m_object.get(); }
@@ -43,13 +43,13 @@ private:
 	std::weak_ptr<T> m_object;
 
 public:
-	ObjectField(const ObjectHolder& object)
+	ObjectField(const ObjectHolder<T>& object)
 		: m_object(object.GetWeakPtr()) {}
 
 	T* operator->() const noexcept
 	{
 		if (auto p = m_object.lock())
-			return m_object.get();std::unique_ptr
+			return p.get();
 		return nullptr;
 	}
 	explicit operator bool() const noexcept { return !m_object.expired(); }

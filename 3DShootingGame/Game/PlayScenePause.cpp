@@ -12,7 +12,8 @@ using namespace DirectX::SimpleMath;
 
 void PlayScenePause::Build(GameContext& context)
 {
-	context.GetScene().renderBehind = true;
+	auto& scene = context.GetScene();
+	scene.renderBehind = true;
 
 	struct Background : public Component
 	{
@@ -37,9 +38,8 @@ void PlayScenePause::Build(GameContext& context)
 			m_plane->Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity, Colors::Black * .4f);
 		}
 	};
-	auto background = GameObject::Create();
+	auto background = scene.AddGameObject();
 	background->AddComponent<Background>();
-	context << std::move(background);
 
 	struct PauseMenu : public Component
 	{
@@ -85,7 +85,6 @@ void PlayScenePause::Build(GameContext& context)
 			Destroy(*m_window);
 		}
 	};
-	auto pausedirector = GameObject::Create();
+	auto pausedirector = scene.AddGameObject();
 	pausedirector->AddComponent<PauseMenu>();
-	context << std::move(pausedirector);
 }
