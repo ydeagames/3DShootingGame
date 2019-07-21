@@ -28,10 +28,14 @@ using namespace DirectX::SimpleMath;
 
 using Microsoft::WRL::ComPtr;
 
+// オブジェクトタイム
+float Object::objectTime = 0;
+
 Game::Game() noexcept(false)
 {
 	// StepTimer
 	Register(std::make_unique<DX::StepTimer>());
+	Object::objectTime = float(Get<DX::StepTimer>().GetTotalSeconds());
 
 	// デバイスリソース初期化
 	Register(std::make_unique<DX::DeviceResources>());
@@ -116,7 +120,8 @@ void Game::Tick()
 {
 	// 毎チック処理
 	auto& timer = Get<DX::StepTimer>();
-    timer.Tick([&]()
+	Object::objectTime = float(timer.GetTotalSeconds());
+	timer.Tick([&]()
     {
         Update(timer);
     });

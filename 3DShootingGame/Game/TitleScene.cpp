@@ -60,7 +60,7 @@ void TitleScene::Build(GameContext& context)
 					}
 					if (ImGui::Button(u8"リスタート", ImVec2(200, 50)))
 					{
-						context.GetSceneManager().LoadScene(L"PlayScene");
+						context.GetSceneManager().LoadSceneWithTransition(L"PlayScene");
 					}
 					if (ImGui::Button(u8"タイトルに戻る", ImVec2(200, 50)))
 					{

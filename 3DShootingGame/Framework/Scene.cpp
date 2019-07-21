@@ -28,7 +28,7 @@ ObjectField<GameObject> Scene::Find(const std::wstring& key)
 		for (auto itr = m_objectMap.find(key); itr != m_objectMap.end();)
 		{
 			auto& component = (*itr).second;
-			if (component && !component->destroyed)
+			if (component && !component->IsDestroyed())
 				return component;
 			itr = m_objectMap.erase(itr);
 		}
@@ -44,7 +44,7 @@ std::list<ObjectField<GameObject>> Scene::FindAll(const std::wstring& key)
 		for (auto itr = m_objectMap.find(key); itr != m_objectMap.end();)
 		{
 			auto& component = (*itr).second;
-			if (component && !component->destroyed)
+			if (component && !component->IsDestroyed())
 			{
 				result.push_back(component);
 				++itr;
@@ -78,7 +78,7 @@ void Scene::Update(GameContext & context)
 	for (auto itr = m_gameObjects.begin(); itr != m_gameObjects.end();)
 	{
 		auto& object = *itr;
-		if (object->destroyed)
+		if (object->IsDestroyed())
 		{
 			object->Finalize(context);
 			itr = m_gameObjects.erase(itr);

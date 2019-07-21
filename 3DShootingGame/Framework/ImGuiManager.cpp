@@ -79,7 +79,7 @@ void ImGuiManager::Render(GameContext& context)
 	for (auto itr = m_windows.begin(); itr != m_windows.end();)
 	{
 		auto& window = *itr;
-		if (!window->destroyed)
+		if (!window->IsDestroyed())
 		{
 			window->Build(context);
 			++itr;

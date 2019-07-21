@@ -76,7 +76,7 @@ public:
 		{
 			auto& component = m_componentMap.at(key);
 			if (component)
-				if (!component->destroyed)
+				if (!component->IsDestroyed())
 					return ObjectField<T>(component);
 			m_componentMap.erase(key);
 		}
@@ -122,7 +122,7 @@ public:
 		for (auto itr = m_components.begin(); itr != m_components.end();)
 		{
 			auto& component = *itr;
-			if (component->destroyed)
+			if (component->IsDestroyed())
 			{
 				component->Finalize(context);
 				itr = m_components.erase(itr);
