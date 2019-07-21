@@ -299,7 +299,7 @@ void Game::CreateWindowSizeDependentResources()
 	float aspectRatio = window.GetAspectRatio();
 	auto size = window.GetSize();
 	// ‰æŠp‚ğİ’è
-	float fovAngleY = XMConvertToRadians(45.0f);
+	float fovAngleY = XMConvertToRadians(70.0f);
 	// Ë‰es—ñ‚ğì¬‚·‚é
 	GetCamera().projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(
 		fovAngleY,

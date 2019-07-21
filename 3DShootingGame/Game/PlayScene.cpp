@@ -59,6 +59,8 @@ void PlayScene::Build(GameContext& context)
 				Move(float(move.x), float(move.y));
 			}
 
+			m_xAngle = MathUtils::Clamp(m_xAngle, -XM_PIDIV2, XM_PIDIV2);
+
 			m_xAngleLast = MathUtils::Lerp(.25f, m_xAngleLast, m_xAngle);
 			m_yAngleLast = MathUtils::Lerp(.25f, m_yAngleLast, m_yAngle);
 
@@ -86,9 +88,9 @@ void PlayScene::Build(GameContext& context)
 			if (dx != 0.0f || dy != 0.0f)
 			{
 				// ‚xŽ²‚Ì‰ñ“]
-				float yAngle = dx * DirectX::XM_PI / 180.0f;
+				float yAngle = XMConvertToRadians(dx);
 				// ‚wŽ²‚Ì‰ñ“]
-				float xAngle = dy * DirectX::XM_PI / 180.0f;
+				float xAngle = XMConvertToRadians(dy);
 
 				m_xAngle += xAngle;
 				m_yAngle += yAngle;
