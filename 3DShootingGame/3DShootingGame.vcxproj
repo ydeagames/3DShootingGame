@@ -184,6 +184,7 @@
     <ClInclude Include="Framework\DebugTools\DebugCameraWrapper.h" />
     <ClInclude Include="Framework\DebugTools\GridFloor.h" />
     <ClInclude Include="Framework\DebugTools\GridFloorWrapper.h" />
+    <ClInclude Include="Framework\ExitHandler.h" />
     <ClInclude Include="Framework\Game.h" />
     <ClInclude Include="Framework\GameCamera.h" />
     <ClInclude Include="Framework\GameContext.h" />

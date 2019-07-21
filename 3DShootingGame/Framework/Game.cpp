@@ -9,6 +9,8 @@
 
 #include <WICTextureLoader.h>
 
+#include "ExitHandler.h"
+
 #include "GameObject.h"
 #include "GameContext.h"
 #include "Scene.h"
@@ -20,8 +22,6 @@
 #include "PauseHandler.h"
 #include <Utilities/FPS.h>
 #include "WindowHandler.h"
-
-extern void ExitGame();
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

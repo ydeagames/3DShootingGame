@@ -6,6 +6,7 @@
 #include <Framework/PauseHandler.h>
 #include <Framework/Scene.h>
 #include <Framework/SceneManager.h>
+#include <Framework/ExitHandler.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -17,6 +18,7 @@ void TitleScene::Build(GameContext& context)
 	struct Background : public Component
 	{
 		std::unique_ptr<GeometricPrimitive> m_plane;
+		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 
 		void Initialize(GameContext& context)
 		{
@@ -30,11 +32,15 @@ void TitleScene::Build(GameContext& context)
 				0, 1, 2, 0, 2, 3,
 			};
 			m_plane = GeometricPrimitive::CreateCustom(context.GetDR().GetD3DDeviceContext(), vertices, indices);
+
+			DX::ThrowIfFailed(CreateWICTextureFromFile(
+				context.GetDR().GetD3DDevice(), context.GetDR().GetD3DDeviceContext(),
+				L"Resources/Textures/Title/Background.png", nullptr, m_texture.ReleaseAndGetAddressOf()));
 		}
 
 		void Render(GameContext& context)
 		{
-			m_plane->Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity, Colors::Black * .4f);
+			m_plane->Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity, Colors::White, m_texture.Get());
 		}
 	};
 	auto background = scene.AddGameObject();
@@ -49,24 +55,40 @@ void TitleScene::Build(GameContext& context)
 			struct PauseWindow : public ISceneBuilder
 			{
 				std::wstring GetName() const override { return L"PauseWindow"; }
+				bool showCredit = false;
 				void Build(GameContext& context)
 				{
 					ImGui::SetNextWindowPosCenter();
 					ImGui::SetNextWindowSize(ImVec2(230, 230));
-					ImGui::Begin(u8"ゲームメニュー", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize);
-					if (ImGui::Button(u8"ゲーム続行", ImVec2(200, 50)))
-					{
-						context.GetPauseHandler().SetPaused(context, false);
-					}
-					if (ImGui::Button(u8"リスタート", ImVec2(200, 50)))
+					ImGui::Begin(u8"スリングヒーローズ", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize);
+					if (ImGui::Button(u8"ゲームスタート", ImVec2(200, 50)))
 					{
 						context.GetSceneManager().LoadSceneWithTransition(L"PlayScene");
 					}
-					if (ImGui::Button(u8"タイトルに戻る", ImVec2(200, 50)))
+					if (ImGui::Button(u8"終了", ImVec2(200, 50)))
 					{
-						context.GetSceneManager().LoadScene(L"TitleScene");
+						ExitGame();
+					}
+					if (ImGui::Button(u8"クレジット", ImVec2(200, 50)))
+					{
+						showCredit = true;
 					}
 					ImGui::End();
+
+					if (showCredit)
+					{
+						ImGui::SetNextWindowPosCenter();
+						ImGui::SetNextWindowSize(ImVec2(700, 200));
+						ImGui::Begin(u8"クレジット", nullptr, ImGuiFocusedFlags_None);
+						ImGui::Text(u8"スリングヒーローズ - (c) 2019 YdeaGames");
+						ImGui::Text(u8"PhysX - Copyright (c) 2019 NVIDIA Corporation. All rights reserved.");
+						ImGui::Text(u8"ImGui - Copyright (c) 2014-2019 Omar Cornut");
+						if (ImGui::Button(u8"閉じる", ImVec2(680, 30)))
+						{
+							showCredit = false;
+						}
+						ImGui::End();
+					}
 				}
 			};
 

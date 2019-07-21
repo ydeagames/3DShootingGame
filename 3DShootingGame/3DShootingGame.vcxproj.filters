@@ -179,6 +179,9 @@
     <ClInclude Include="Framework\ObjectField.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\ExitHandler.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
