@@ -1,6 +1,7 @@
 #pragma once
 #include <Common/StepTimer.h>
 #include <Common/DeviceResources.h>
+#include <Utilities/TypeId.h>
 
 class Scene;
 class GameObject;
@@ -18,7 +19,22 @@ public:
 	GameContext() = default;
 	virtual ~GameContext() = default;
 
+private:
+	std::unordered_map<type_id_t, std::unique_ptr<void>> m_contexts;
+
 public:
+	template<typename T>
+	T& Get()
+	{
+		return *dynamic_cast<T*>(m_contexts[type_id<T>()].get());
+	}
+
+	template<typename T>
+	void Register(std::unique_ptr<T>&& context)
+	{
+		m_contexts[type_id<T>()] = std::move(context);
+	}
+
 	// DeviceResource取得
 	virtual DX::DeviceResources& GetDR() = 0;
 	// タイマー取得
