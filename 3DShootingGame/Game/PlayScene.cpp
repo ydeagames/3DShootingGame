@@ -321,7 +321,7 @@ void PlayScene::Build(GameContext& context)
 	};
 	struct PlayerCamera : public Component
 	{
-		std::shared_ptr<Transform> player;
+		ObjectField<Transform> player;
 		void Update(GameContext& context)
 		{
 			gameObject->transform->position = Vector3::Lerp(gameObject->transform->position, player->position + Vector3::Up * 2, .25f);

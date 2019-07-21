@@ -15,7 +15,7 @@ Scene::~Scene()
 
 ObjectField<GameObject> Scene::Add(ObjectHolder<GameObject>&& obj)
 {
-	ObjectField<GameObject> field = obj;
+	auto field = ObjectField<GameObject>(obj);
 	addingObjects.emplace_back(std::move(obj));
 	return field;
 }

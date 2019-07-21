@@ -14,10 +14,10 @@ void LogoScene::Build(GameContext& context)
 	class A : public Component
 	{
 		float lastTime;
-		std::shared_ptr<FontObject> m_text;
+		ObjectField<FontObject> m_text;
 
 	public:
-		A(const std::shared_ptr<FontObject>& text)
+		A(const ObjectField<FontObject>& text)
 			: m_text(text) {}
 
 		void Initialize(GameContext& context)
