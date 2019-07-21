@@ -179,6 +179,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="Framework\Collider.h" />
     <ClInclude Include="Framework\Component.h" />
     <ClInclude Include="Framework\DebugTools\DebugCamera.h" />
     <ClInclude Include="Framework\DebugTools\DebugCameraWrapper.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Framework\PhysX\PhysXManager.h" />
     <ClInclude Include="Framework\PhysX\PhysXRenderer.h" />
     <ClInclude Include="Framework\PhysX\PhysXScene.h" />
+    <ClInclude Include="Framework\Rigidbody.h" />
     <ClInclude Include="Framework\SaveHandler.h" />
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="Framework\SceneManager.h" />
@@ -231,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="Framework\Collider.cpp" />
     <ClCompile Include="Framework\DebugTools\DebugCamera.cpp" />
     <ClCompile Include="Framework\DebugTools\DebugCameraWrapper.cpp" />
     <ClCompile Include="Framework\DebugTools\GridFloor.cpp" />
@@ -242,6 +245,7 @@
     <ClCompile Include="Framework\PhysX\PhysXManager.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXRenderer.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />
+    <ClCompile Include="Framework\Rigidbody.cpp" />
     <ClCompile Include="Framework\SaveHandler.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
     <ClCompile Include="Framework\SceneManager.cpp" />

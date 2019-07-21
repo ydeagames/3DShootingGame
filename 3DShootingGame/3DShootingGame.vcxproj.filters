@@ -182,6 +182,12 @@
     <ClInclude Include="Framework\ExitHandler.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Rigidbody.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collider.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -271,6 +277,12 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Framework\ImGuiStyles.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Rigidbody.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collider.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>

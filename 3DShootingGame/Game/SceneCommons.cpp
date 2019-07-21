@@ -28,10 +28,3 @@ void FontObject::Render(GameContext& context)
 	m_spriteFont->DrawString(m_spriteBatch.get(), m_text.c_str(), *gameObject->transform->position);
 	m_spriteBatch->End();
 }
-
-void Rigidbody::Update(GameContext& context)
-{
-	auto elapsed = float(context.GetTimer().GetElapsedSeconds());
-	velocity += acceleration * elapsed;
-	gameObject->transform->localPosition += velocity * elapsed;
-}

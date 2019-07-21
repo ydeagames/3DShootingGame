@@ -62,23 +62,3 @@ public:
 	inline void SetText(const std::wstring& text) { m_text = text; }
 	inline const std::wstring GetText() const { return m_text; }
 };
-
-class Rigidbody : public Component
-{
-	COMPONENT(Component)
-
-public:
-	// 速度
-	DirectX::SimpleMath::Vector3 velocity;
-	// 速度
-	DirectX::SimpleMath::Vector3 acceleration;
-
-public:
-	// コンストラクタ
-	Rigidbody()
-	{
-	}
-	// 更新
-	void Update(GameContext& context);
-};
-
