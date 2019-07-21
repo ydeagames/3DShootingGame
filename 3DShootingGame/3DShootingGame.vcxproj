@@ -201,6 +201,7 @@
     <ClInclude Include="Framework\SceneManager.h" />
     <ClInclude Include="Framework\SerializedField.h" />
     <ClInclude Include="Framework\Transform.h" />
+    <ClInclude Include="Framework\WindowHandler.h" />
     <ClInclude Include="Game\BaseScene.h" />
     <ClInclude Include="Game\BuildSettings.h" />
     <ClInclude Include="Game\LogoScene.h" />

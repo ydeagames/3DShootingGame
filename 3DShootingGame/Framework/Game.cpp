@@ -9,6 +9,8 @@
 
 #include <WICTextureLoader.h>
 
+#include "WindowHandler.h"
+
 extern void ExitGame();
 
 using namespace DirectX;

@@ -173,6 +173,9 @@
     <ClInclude Include="Framework\ImGuiStyles.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\WindowHandler.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />

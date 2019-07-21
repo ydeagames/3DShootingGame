@@ -5,6 +5,8 @@ class Object
 public:
 	bool destroyed = false;
 
+	virtual ~Object() = default;
+
 	virtual std::wstring GetType() const
 	{
 		return L"Object";
