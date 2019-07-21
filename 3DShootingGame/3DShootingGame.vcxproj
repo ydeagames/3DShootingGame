@@ -191,6 +191,7 @@
     <ClInclude Include="Framework\ImGuiManager.h" />
     <ClInclude Include="Framework\ISceneBuilder.h" />
     <ClInclude Include="Framework\Object.h" />
+    <ClInclude Include="Framework\ObjectField.h" />
     <ClInclude Include="Framework\PauseHandler.h" />
     <ClInclude Include="Framework\PhysX\PhysXCommons.h" />
     <ClInclude Include="Framework\PhysX\PhysXManager.h" />

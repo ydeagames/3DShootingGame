@@ -24,9 +24,9 @@ private:
 	std::list<std::shared_ptr<Component>> m_components;
 	std::list<std::shared_ptr<Component>> m_addingComponents;
 	std::unordered_map<type_id_t, std::weak_ptr<Component>> m_componentMap;
+	std::wstring m_name;
 
 public:
-	std::wstring name;
 	std::shared_ptr<Transform> transform;
 
 private:
@@ -80,7 +80,7 @@ public:
 
 private:
 	GameObject(const std::wstring & name)
-		: name(name)
+		: m_name(name)
 	{
 		transform = AddComponent<Transform>();
 	}
@@ -93,7 +93,7 @@ public:
 		return std::shared_ptr<GameObject>(new GameObject(name));
 	}
 
-	std::wstring GetName() const override { return name; }
+	std::wstring GetName() const override { return m_name; }
 	std::wstring GetType() const override { return L"GameObject"; }
 
 public:

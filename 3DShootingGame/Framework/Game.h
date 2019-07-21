@@ -13,17 +13,9 @@
 #include <SpriteBatch.h>
 #include <SimpleMath.h>
 
-#include "GameObject.h"
 #include "GameContext.h"
 #include "Scene.h"
 #include "SceneManager.h"
-#include "GameCamera.h"
-#include <Framework/PhysX/PhysXManager.h>
-#include "ImGuiManager.h"
-#include "SaveHandler.h"
-#include "PauseHandler.h"
-#include <Utilities/FPS.h>
-#include "WindowHandler.h"
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.

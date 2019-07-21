@@ -1,5 +1,7 @@
 #pragma once
 #include "Component.h"
+#include "ObjectField.h"
+#include <Utilities/TypeId.h>
 
 class GameObject;
 class PhysXScene;
@@ -8,13 +10,17 @@ class GameContext;
 // ゲームオブジェクトコンテナ
 class Scene : public Component
 {
-public:
-	// 名前
-	std::wstring name = L"Scene";
+private:
 	// 子ゲームオブジェクト
 	std::list<std::shared_ptr<GameObject>> gameObjects;
 	// 子ゲームオブジェクト
 	std::list<std::shared_ptr<GameObject>> addingObjects;
+	// 検索用
+	std::unordered_multimap<type_id_t, std::weak_ptr<GameObject>> m_objectMap;
+
+public:
+	// 名前
+	std::wstring name = L"Scene";
 	// 後ろを更新するか
 	bool updateBehind = false;
 	// 後ろを描画するか
@@ -36,6 +42,7 @@ public:
 public:
 	void Add(const std::shared_ptr<GameObject>& obj);
 	PhysXScene& GetPhysics() const { return *physics; }
+	std::list<std::shared_ptr<GameObject>>& GetObjects() { return gameObjects; }
 
 public:
 	// 生成
