@@ -12,11 +12,11 @@ class Scene : public Component
 {
 private:
 	// 子ゲームオブジェクト
-	std::list<ObjectHolder<GameObject>> gameObjects;
+	std::list<ObjectHolder<GameObject>> m_gameObjects;
 	// 子ゲームオブジェクト
-	std::list<ObjectHolder<GameObject>> addingObjects;
+	std::list<ObjectHolder<GameObject>> m_addingObjects;
 	// 検索用
-	std::unordered_multimap<type_id_t, std::weak_ptr<GameObject>> m_objectMap;
+	std::unordered_multimap<std::wstring, ObjectField<GameObject>> m_objectMap;
 
 public:
 	// 名前
@@ -41,9 +41,11 @@ public:
 
 public:
 	ObjectField<GameObject> Add(ObjectHolder<GameObject>&& obj);
+	ObjectField<GameObject> Find(const std::wstring& name);
+	std::list<ObjectField<GameObject>> FindAll(const std::wstring& name);
 	template<typename... T> ObjectField<GameObject> AddGameObject(T&&... args) { return Add(GameObject::Create(std::forward(args)...)); }
 	PhysXScene& GetPhysics() const { return *physics; }
-	std::list<ObjectHolder<GameObject>>& GetObjects() { return gameObjects; }
+	std::list<ObjectHolder<GameObject>>& GetObjects() { return m_gameObjects; }
 
 public:
 	// 生成
