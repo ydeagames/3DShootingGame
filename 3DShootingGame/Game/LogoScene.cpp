@@ -7,7 +7,7 @@ void LogoScene::Build(GameContext& context)
 {
 	auto obj = GameObject::Create();
 	auto text = obj->AddComponent<FontObject>(L"Resources/Fonts/logofont.spritefont", L"ƒƒSƒV[ƒ“");
-	context << obj;
+	context << std::move(obj);
 
 	class A : public Component
 	{
@@ -38,5 +38,5 @@ void LogoScene::Build(GameContext& context)
 	};
 	auto obj1 = GameObject::Create();
 	auto cmp = obj1->AddComponent<A>(text);
-	context << obj1;
+	context << std::move(obj1);
 }

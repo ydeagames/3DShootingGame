@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include "Component.h"
 #include "Object.h"
+#include "ObjectField.h"
 #include <Utilities/TypeId.h>
 
 class GameContext;
@@ -88,9 +89,9 @@ private:
 public:
 	~GameObject() = default;
 
-	static std::shared_ptr<GameObject> Create(const std::wstring & name = L"GameObject")
+	static ObjectHolder<GameObject> Create(const std::wstring & name = L"GameObject")
 	{
-		return std::shared_ptr<GameObject>(new GameObject(name));
+		return ObjectHolder<GameObject>::CreateFromUniqueSharedPtr(std::shared_ptr<GameObject>(new GameObject(name)));
 	}
 
 	std::wstring GetName() const override { return m_name; }

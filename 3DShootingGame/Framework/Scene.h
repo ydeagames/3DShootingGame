@@ -12,9 +12,9 @@ class Scene : public Component
 {
 private:
 	// 子ゲームオブジェクト
-	std::list<std::shared_ptr<GameObject>> gameObjects;
+	std::list<ObjectHolder<GameObject>> gameObjects;
 	// 子ゲームオブジェクト
-	std::list<std::shared_ptr<GameObject>> addingObjects;
+	std::list<ObjectHolder<GameObject>> addingObjects;
 	// 検索用
 	std::unordered_multimap<type_id_t, std::weak_ptr<GameObject>> m_objectMap;
 
@@ -40,9 +40,9 @@ public:
 	~Scene();
 
 public:
-	void Add(const std::shared_ptr<GameObject>& obj);
+	void Add(ObjectHolder<GameObject>&& obj);
 	PhysXScene& GetPhysics() const { return *physics; }
-	std::list<std::shared_ptr<GameObject>>& GetObjects() { return gameObjects; }
+	std::list<ObjectHolder<GameObject>>& GetObjects() { return gameObjects; }
 
 public:
 	// 生成

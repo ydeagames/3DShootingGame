@@ -10,7 +10,7 @@ void ResultScene::Build(GameContext& context)
 {
 	auto obj = GameObject::Create();
 	auto text = obj->AddComponent<FontObject>(L"Resources/Fonts/logofont.spritefont", L"リザルトシーン");
-	context << obj;
+	context << std::move(obj);
 
 	class D : public Component
 	{
@@ -22,5 +22,5 @@ void ResultScene::Build(GameContext& context)
 	};
 	auto obj2 = GameObject::Create();
 	obj2->AddComponent<D>();
-	context << obj2;
+	context << std::move(obj2);
 }

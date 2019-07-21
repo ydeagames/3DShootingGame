@@ -13,9 +13,9 @@ Scene::~Scene()
 {
 }
 
-void Scene::Add(const std::shared_ptr<GameObject>& obj)
+void Scene::Add(ObjectHolder<GameObject>&& obj)
 {
-	addingObjects.push_back(obj);
+	addingObjects.emplace_back(std::move(obj));
 }
 
 void Scene::Initialize(GameContext& context)

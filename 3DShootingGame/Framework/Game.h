@@ -65,5 +65,5 @@ public:
 	Scene& GetScene() { return GetSceneManager().GetActiveScene(); }
 
 	// オブジェクト追加
-	GameContext& operator<<(const std::shared_ptr<GameObject>& obj) { GetScene().Add(obj); return *this; }
+	GameContext& operator<<(ObjectHolder<GameObject>&& obj) { GetScene().Add(std::move(obj)); return *this; }
 };

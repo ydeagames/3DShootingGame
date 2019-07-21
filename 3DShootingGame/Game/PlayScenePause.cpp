@@ -39,7 +39,7 @@ void PlayScenePause::Build(GameContext& context)
 	};
 	auto background = GameObject::Create();
 	background->AddComponent<Background>();
-	context << background;
+	context << std::move(background);
 
 	struct PauseMenu : public Component
 	{
@@ -87,5 +87,5 @@ void PlayScenePause::Build(GameContext& context)
 	};
 	auto pausedirector = GameObject::Create();
 	pausedirector->AddComponent<PauseMenu>();
-	context << pausedirector;
+	context << std::move(pausedirector);
 }

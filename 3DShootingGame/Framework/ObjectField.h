@@ -9,21 +9,19 @@ private:
 	ObjectHolder(const std::shared_ptr<T>& object)
 		: m_object(object) {}
 
+public:
+	constexpr ObjectHolder() noexcept {};
+	constexpr ObjectHolder(nullptr_t) noexcept {};
 	ObjectHolder(const ObjectHolder&) = delete;
-	ObjectHolder(ObjectHolder&&) noexcept = default;
 	ObjectHolder& operator=(const ObjectHolder&) = delete;
+	ObjectHolder(ObjectHolder&&) noexcept = default;
 	ObjectHolder& operator=(ObjectHolder&&) noexcept = default;
+	ObjectHolder& operator=(nullptr_t) noexcept {}
 
 public:
-	T* operator->() const
-	{
-		return m_object.get();
-	}
-
-	std::weak_ptr<T> GetWeakPtr() const
-	{
-		return m_object;
-	}
+	T* operator->() const noexcept { return m_object.get(); }
+	explicit operator bool() const noexcept { return m_object; }
+	std::weak_ptr<T> GetWeakPtr() const { return m_object; }
 
 	template<typename U = T, typename... Args>
 	static ObjectHolder<U> Create(Args&&... args)
@@ -51,7 +49,8 @@ public:
 	T* operator->() const noexcept
 	{
 		if (auto p = m_object.lock())
-			return m_object.get();
+			return m_object.get();std::unique_ptr
 		return nullptr;
 	}
+	explicit operator bool() const noexcept { return !m_object.expired(); }
 };

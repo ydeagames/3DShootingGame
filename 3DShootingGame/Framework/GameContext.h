@@ -1,6 +1,7 @@
 #pragma once
 #include <Common/StepTimer.h>
 #include <Common/DeviceResources.h>
+#include <Framework/ObjectField.h>
 #include <Utilities/TypeId.h>
 
 class Scene;
@@ -144,7 +145,7 @@ public:
 	// シーンを取得
 	virtual Scene& GetScene() = 0;
 	// シーンにオブジェクトを追加
-	virtual GameContext& operator<<(const std::shared_ptr<GameObject>& obj) = 0;
+	virtual GameContext& operator<<(ObjectHolder<GameObject>&& obj) = 0;
 	// シーンマネージャを取得
 	virtual SceneManager& GetSceneManager() { return Get<SceneManager>(); };
 	// 物理マネージャを取得

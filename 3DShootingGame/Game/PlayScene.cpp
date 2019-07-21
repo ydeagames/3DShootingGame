@@ -31,7 +31,7 @@ void PlayScene::Build(GameContext& context)
 	};
 	auto pausedirector = GameObject::Create();
 	pausedirector->AddComponent<PauseBehaviour>();
-	context << pausedirector;
+	context << std::move(pausedirector);
 
 	struct FPSCamera : Component
 	{
@@ -110,7 +110,7 @@ void PlayScene::Build(GameContext& context)
 	camera->AddComponent<FPSCamera>();
 	camera->AddComponent<GridFloorWrapper>();
 	camera->AddComponent<Plane>();
-	context << camera;
+	context << std::move(camera);
 
 	class Collider
 	{
@@ -316,7 +316,7 @@ void PlayScene::Build(GameContext& context)
 				auto rigidbody = bullet->AddComponent<Rigidbody>();
 				rigidbody->Add(std::make_shared<SphereCollider>());
 				rigidbody->SetVelocity(ray.direction * 50);
-				context << bullet;
+				context << std::move(bullet);
 			}
 		}
 	};
@@ -336,7 +336,7 @@ void PlayScene::Build(GameContext& context)
 	player->AddComponent<PlayerBehaviour>();
 	auto rigidbody = player->AddComponent<Rigidbody>();
 	rigidbody->Add(std::make_shared<BoxCollider>());
-	context << player;
+	context << std::move(player);
 
 	auto playerCamera = camera->AddComponent<PlayerCamera>();
 	playerCamera->player = player->transform;
@@ -347,6 +347,6 @@ void PlayScene::Build(GameContext& context)
 		box->transform->localPosition = Vector3(8, 0, 3);
 		auto rigid = box->AddComponent<Rigidbody>();
 		rigid->Add(std::make_shared<BoxCollider>());
-		context << box;
+		context << std::move(box);
 	}
 }
