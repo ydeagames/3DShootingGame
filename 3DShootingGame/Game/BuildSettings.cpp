@@ -21,5 +21,6 @@ void BuildSettings::Build(GameContext& context)
 	context.GetSceneManager().Register<ResultScene>();
 
 	//context.GetSceneManager().LoadScene(L"BaseScene");
-	context.GetSceneManager().LoadScene(L"PlayScene");
+	context.GetSceneManager().LoadScene(L"TitleScene");
+	//context.GetSceneManager().LoadScene(L"PlayScene");
 }

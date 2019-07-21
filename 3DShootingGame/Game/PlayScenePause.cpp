@@ -41,7 +41,7 @@ void PlayScenePause::Build(GameContext& context)
 	auto background = scene.AddGameObject();
 	background->AddComponent<Background>();
 
-	struct PauseMenu : public Component
+	struct Menu : public Component
 	{
 		std::shared_ptr<ISceneBuilder> m_window;
 
@@ -65,6 +65,7 @@ void PlayScenePause::Build(GameContext& context)
 					}
 					if (ImGui::Button(u8"ƒ^ƒCƒgƒ‹‚É–ß‚é", ImVec2(200, 50)))
 					{
+						context.GetSceneManager().LoadScene(L"TitleScene");
 					}
 					ImGui::End();
 				}
@@ -85,6 +86,6 @@ void PlayScenePause::Build(GameContext& context)
 			Destroy(*m_window);
 		}
 	};
-	auto pausedirector = scene.AddGameObject();
-	pausedirector->AddComponent<PauseMenu>();
+	auto menu = scene.AddGameObject();
+	menu->AddComponent<Menu>();
 }
