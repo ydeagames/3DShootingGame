@@ -42,9 +42,10 @@ public:
 		lockFlags[flag] = value;
 	}
 
-	void Add(const std::shared_ptr<Collider> collider)
+	std::shared_ptr<Collider> Add(const std::shared_ptr<Collider>& collider)
 	{
 		colliders.push_back(collider);
+		return collider;
 	}
 
 	void SetStatic(bool staticFlag)

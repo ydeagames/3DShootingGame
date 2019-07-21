@@ -113,6 +113,66 @@ void PlayScene::Build(GameContext& context)
 	camera->AddComponent<GridFloorWrapper>();
 	camera->AddComponent<Plane>();
 
+	struct Skydoom : public Component
+	{
+		std::unique_ptr<GeometricPrimitive> m_skydoom;
+		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+		std::unique_ptr<DirectX::BasicEffect> m_pBasicEffect;
+		Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
+
+		void Initialize(GameContext& context)
+		{
+			m_skydoom = GeometricPrimitive::CreateGeoSphere(context.GetDR().GetD3DDeviceContext(), 1.f, 3U, false);
+
+			DX::ThrowIfFailed(CreateWICTextureFromFile(
+				context.GetDR().GetD3DDevice(), context.GetDR().GetD3DDeviceContext(),
+				L"Resources/Textures/Play/Skydoom.jpg", nullptr, m_texture.ReleaseAndGetAddressOf()));
+
+			// ポリゴン用エフェクト作成
+			m_pBasicEffect = std::make_unique<BasicEffect>(context.GetDR().GetD3DDevice());
+			m_pBasicEffect->SetTextureEnabled(true);
+
+			// ライト有効
+			m_pBasicEffect->SetLightingEnabled(true);
+			// 環境光の色を設定
+			m_pBasicEffect->SetAmbientLightColor(SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
+			// 拡散反射光の素材色を設定
+			m_pBasicEffect->SetDiffuseColor(SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
+
+			// シェーダー取得
+			m_skydoom->CreateInputLayout(m_pBasicEffect.get(), m_pInputLayout.GetAddressOf());
+		}
+
+		void Render(GameContext& context)
+		{
+			auto ctx = context.GetDR().GetD3DDeviceContext();
+			// ワールド行列設定
+			m_pBasicEffect->SetWorld(gameObject->transform->GetMatrix());
+			// ビュー行列設定
+			m_pBasicEffect->SetView(context.GetCamera().view);
+			// プロジェクション行列設定
+			m_pBasicEffect->SetProjection(context.GetCamera().projection);
+			// エフェクトの設定
+			m_pBasicEffect->Apply(ctx);
+			// 深度ステンシルステートの設定
+			ctx->OMSetDepthStencilState(context.GetStates().DepthDefault(), 0);
+			// ブレンドステートの設定
+			ctx->OMSetBlendState(context.GetStates().AlphaBlend(), nullptr, 0xffffffff);
+			// ラスタライザステートを設定
+			ctx->RSSetState(context.GetStates().CullClockwise());
+			// 入力レイアウトの設定
+			ctx->IASetInputLayout(m_pInputLayout.Get());
+
+			m_pBasicEffect->SetTexture(m_texture.Get());
+
+			m_skydoom->Draw(m_pBasicEffect.get(), m_pInputLayout.Get());
+			//m_skydoom->Draw(gameObject->transform->GetMatrix(), context.GetCamera().view, context.GetCamera().projection, Colors::White, m_texture.Get(), false);
+		}
+	};
+	auto skydoom = scene.AddGameObject();
+	skydoom->transform->localScale = Vector3(1000);
+	skydoom->AddComponent<Skydoom>();
+
 	struct PlayerBehaviour : public Component
 	{
 		void Update(GameContext& context)
@@ -188,6 +248,8 @@ void PlayScene::Build(GameContext& context)
 		box->transform->localScale = Vector3(4);
 		box->transform->localPosition = Vector3(8, 0, 3);
 		auto rigid = box->AddComponent<Rigidbody>();
-		rigid->Add(std::make_shared<BoxCollider>());
+		rigid->SetStatic(true);
+		auto col = rigid->Add(std::make_shared<BoxCollider>());
+		col->localTransform.localScale = Vector3(4);
 	}
 }
