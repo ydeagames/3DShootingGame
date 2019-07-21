@@ -10,6 +10,7 @@
 #include <Framework/Scene.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/PhysX/PhysXScene.h>
+#include <Framework/ImGuiManager.h>
 #include <Framework/PauseHandler.h>
 #include <Framework/Collider.h>
 #include <Framework/Rigidbody.h>
@@ -17,6 +18,11 @@
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
+
+namespace
+{
+	float chargeForce = 0;
+}
 
 void PlayScene::Build(GameContext& context)
 {
@@ -33,8 +39,55 @@ void PlayScene::Build(GameContext& context)
 				context.GetPauseHandler().SetPaused(context, true);
 		}
 	};
-	auto pausedirector = scene.AddGameObject();
-	pausedirector->AddComponent<PauseBehaviour>();
+	struct Menu : public Component
+	{
+		std::shared_ptr<ISceneBuilder> m_window;
+
+		void Initialize(GameContext& context)
+		{
+			struct PauseWindow : public ISceneBuilder
+			{
+				float last;
+				PauseWindow(float last) : last(last) {}
+
+				std::wstring GetName() const override { return L"PauseWindow"; }
+				void Build(GameContext& context)
+				{
+					ImGui::SetNextWindowPos(ImVec2(10, 10));
+					ImGui::Begin(u8"パラメータ", nullptr);
+					ImGui::Text(u8"強さ: %.2f", chargeForce);
+					ImGui::End();
+
+					ImGui::SetNextWindowPos(ImVec2(300, 10));
+					ImGui::Begin(u8"スコア", nullptr);
+					ImGui::Text(u8"スコア: 00000032435 (未実装)");
+					ImGui::End();
+
+					ImGui::SetNextWindowPos(ImVec2(10, 500));
+					ImGui::Begin(u8"タイム", nullptr);
+					ImGui::Text(u8"タイム: %.2f秒", float(context.GetTimer().GetTotalSeconds()) - last);
+					ImGui::End();
+				}
+			};
+
+			m_window = std::make_shared<PauseWindow>(float(context.GetTimer().GetTotalSeconds()));
+			context.GetGuiManager().Add(m_window);
+		}
+
+		void Update(GameContext& context)
+		{
+			if (Input::GetKeyDown(Keyboard::Keys::Escape))
+				context.GetPauseHandler().SetPaused(context, false);
+		}
+
+		void Finalize(GameContext& context)
+		{
+			Destroy(*m_window);
+		}
+	};
+	auto menu = scene.AddGameObject();
+	menu->AddComponent<PauseBehaviour>();
+	menu->AddComponent<Menu>();
 
 	struct FPSCamera : Component
 	{
@@ -105,7 +158,7 @@ void PlayScene::Build(GameContext& context)
 			auto& manager = context.GetPhysics();
 			auto& scene = context.GetScene().GetPhysics();
 			auto geo = physx::PxPlane(physx::toPhysX(Vector3::Zero), physx::toPhysX(Vector3::Up));
-			auto material = manager.GetPhysics()->createMaterial(1, 1, 1);
+			auto material = manager.CreateMaterial(PhysicsMaterials::Wood);
 			auto rigid = physx::PxCreatePlane(*manager.GetPhysics(), geo, *material);
 			scene.CreateObject(*rigid);
 		}
@@ -224,7 +277,7 @@ void PlayScene::Build(GameContext& context)
 			gameObject->transform->localPosition += force * .1f;
 
 			auto rigid = gameObject->GetComponent<Rigidbody>();
-			rigid->SetVelocity(force * 10.f);
+			rigid->AddForce(force * 30.f);
 
 			if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
 			{
@@ -241,6 +294,22 @@ void PlayScene::Build(GameContext& context)
 				rigidbody->Add(std::make_shared<SphereCollider>());
 				rigidbody->SetVelocity(ray.direction * 50);
 			}
+
+			if (Input::GetMouseButtonDown(Input::Buttons::MouseRight))
+			{
+				chargeForce = 0;
+			}
+			if (Input::GetMouseButton(Input::Buttons::MouseRight))
+			{
+				chargeForce += float(context.GetTimer().GetElapsedSeconds() * 10);
+			}
+			if (Input::GetMouseButtonUp(Input::Buttons::MouseRight))
+			{
+				auto ray = context.GetCamera().ViewportPointToRay(Vector3::Zero);
+				ray.direction.Normalize();
+				rigid->SetVelocity(ray.direction * chargeForce);
+				chargeForce = 0;
+			}
 		}
 	};
 	struct PlayerCamera : public Component
@@ -251,17 +320,21 @@ void PlayScene::Build(GameContext& context)
 			gameObject->transform->position = Vector3::Lerp(gameObject->transform->position, player->position + Vector3::Up * 2, .25f);
 		}
 	};
-	auto player = scene.AddGameObject();
-	player->AddComponent<GeometricObject>(
-		[](GameContext& context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
-		Color(Colors::Blue)
-		);
-	player->AddComponent<PlayerBehaviour>();
-	auto rigidbody = player->AddComponent<Rigidbody>();
-	rigidbody->Add(std::make_shared<BoxCollider>());
 
-	auto playerCamera = camera->AddComponent<PlayerCamera>();
-	playerCamera->player = player->transform;
+	{
+		auto player = scene.AddGameObject();
+		player->AddComponent<GeometricObject>(
+			[](GameContext & context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
+			Color(Colors::Blue)
+			);
+		player->AddComponent<PlayerBehaviour>();
+		auto rigidbody = player->AddComponent<Rigidbody>();
+		auto col = rigidbody->Add(std::make_shared<BoxCollider>());
+		col->material = PhysicsMaterials::Wood;
+
+		auto playerCamera = camera->AddComponent<PlayerCamera>();
+		playerCamera->player = player->transform;
+	}
 
 	{
 		auto box = scene.AddGameObject();
