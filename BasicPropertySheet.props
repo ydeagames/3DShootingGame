@@ -22,5 +22,12 @@
     </ClCompile>
   </ItemDefinitionGroup>
 
+  <!-- 警告抑制 -->
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
   <ItemGroup />
 </Project>

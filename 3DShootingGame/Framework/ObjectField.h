@@ -67,12 +67,8 @@ public:
 	template<typename U> ObjectField(const ObjectHolder<U>& object) : m_object(cast<U>(object.GetWeakPtr())) {}
 	template<typename U> ObjectField(const ObjectField<U>& object) : m_object(cast<U>(object.GetWeakPtr())) {}
 
-	T* operator->() const noexcept
-	{
-		if (auto p = m_object.lock())
-			return p.get();
-		return nullptr;
-	}
+	T* operator->() const noexcept { if (auto p = m_object.lock()) return p.get(); else return nullptr; }
+	T* operator*() const noexcept { if (auto p = m_object.lock()) return p.get(); return nullptr; }
 	explicit operator bool() const noexcept { return !m_object.expired(); }
 	std::weak_ptr<T> GetWeakPtr() const { return m_object; }
 };

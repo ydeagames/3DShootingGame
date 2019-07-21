@@ -22,7 +22,7 @@ void Rigidbody::Initialize(GameContext& context)
 	}
 
 	for (auto& collider : colliders)
-		collider->AddCollider(context, rigid);
+		collider->AddCollider(context, rigid, gameObject->transform);
 
 	scene.CreateObject(*rigid);
 

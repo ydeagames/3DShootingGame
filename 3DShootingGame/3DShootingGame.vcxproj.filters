@@ -188,6 +188,9 @@
     <ClInclude Include="Framework\Collider.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Game\InfinityGridFloor.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -284,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Collider.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\InfinityGridFloor.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@
 #include <Framework/PauseHandler.h>
 #include <Framework/Collider.h>
 #include <Framework/Rigidbody.h>
+#include "InfinityGridFloor.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -109,10 +110,27 @@ void PlayScene::Build(GameContext& context)
 			scene.CreateObject(*rigid);
 		}
 	};
+	struct InfinityGridFloorWrapper : public Component
+	{
+		// グリッド床
+		std::unique_ptr<InfinityGridFloor> m_pGridFloor;
+		// 生成
+		void Initialize(GameContext& context)
+		{
+			// グリッド床作成
+			m_pGridFloor = std::make_unique<InfinityGridFloor>(context, 2.f, Vector2(200, 200));
+		}
+		// 描画
+		void Render(GameContext& context)
+		{
+			m_pGridFloor->draw(context, Colors::White);
+		}
+	};
 	auto camera = scene.AddGameObject();
 	//camCtrl->AddComponent<DebugCameraWrapper>();
 	camera->AddComponent<FPSCamera>();
-	camera->AddComponent<GridFloorWrapper>();
+	//camera->AddComponent<GridFloorWrapper>();
+	camera->AddComponent<InfinityGridFloorWrapper>();
 	camera->AddComponent<Plane>();
 
 	struct Skydoom : public Component
@@ -249,9 +267,13 @@ void PlayScene::Build(GameContext& context)
 		auto box = scene.AddGameObject();
 		box->transform->localScale = Vector3(4);
 		box->transform->localPosition = Vector3(8, 0, 3);
+		box->AddComponent<GeometricObject>(
+			[](GameContext& context) { return GeometricPrimitive::CreateCube(context.GetDR().GetD3DDeviceContext()); },
+			Color(Colors::Fuchsia)
+			);
 		auto rigid = box->AddComponent<Rigidbody>();
 		rigid->SetStatic(true);
 		auto col = rigid->Add(std::make_shared<BoxCollider>());
-		col->localTransform.localScale = Vector3(4);
+		col->localTransform.localScale = box->transform->localScale;
 	}
 }
