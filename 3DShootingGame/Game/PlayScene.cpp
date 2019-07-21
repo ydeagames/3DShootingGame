@@ -67,6 +67,11 @@ void PlayScene::Build(GameContext& context)
 					ImGui::Begin(u8"タイム", nullptr);
 					ImGui::Text(u8"タイム: %.2f秒", float(context.GetTimer().GetTotalSeconds()) - last);
 					ImGui::End();
+
+					ImGui::SetNextWindowPos(ImVec2(10, 300));
+					ImGui::Begin(u8"目標", nullptr);
+					ImGui::Text(u8"一番てっぺんに登れ (仮)");
+					ImGui::End();
 				}
 			};
 
@@ -336,13 +341,14 @@ void PlayScene::Build(GameContext& context)
 		playerCamera->player = player->transform;
 	}
 
+	for (int i = 0; i < 100; i++)
 	{
 		auto box = scene.AddGameObject();
-		box->transform->localScale = Vector3(4);
-		box->transform->localPosition = Vector3(8, 0, 3);
+		box->transform->localScale = Vector3(float(Random::Range(1, 10)), float(Random::Range(1, 5)), float(Random::Range(1, 10)));
+		box->transform->localPosition = Vector3(float(Random::Range(-50, 50)), float(Random::Range(3, 50)), float(Random::Range(-50, 50)));
 		box->AddComponent<GeometricObject>(
 			[](GameContext& context) { return GeometricPrimitive::CreateCube(context.GetDR().GetD3DDeviceContext()); },
-			Color(Colors::Fuchsia)
+			Color(Vector4(Random::Range(0.f, 1.f), Random::Range(0.f, 1.f), Random::Range(0.f, 1.f), 1.f))
 			);
 		auto rigid = box->AddComponent<Rigidbody>();
 		rigid->SetStatic(true);

@@ -8,7 +8,7 @@
 #include "PlayScenePause.h"
 #include "ResultScene.h"
 
-const std::wstring BuildSettings::GAME_TITLE = L"カタトウス";
+const std::wstring BuildSettings::GAME_TITLE = L"スリングヒーローズ";
 const std::wstring BuildSettings::GAME_TITLE_CLASS = L"KatatousWindowClass";
 
 void BuildSettings::Build(GameContext& context)

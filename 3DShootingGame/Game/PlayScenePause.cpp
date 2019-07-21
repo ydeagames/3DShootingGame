@@ -54,7 +54,7 @@ void PlayScenePause::Build(GameContext& context)
 				{
 					ImGui::SetNextWindowPosCenter();
 					ImGui::SetNextWindowSize(ImVec2(230, 230));
-					ImGui::Begin(u8"ゲームメニュー", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize);
+					ImGui::Begin(u8"ゲームメニュー", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
 					if (ImGui::Button(u8"ゲーム続行", ImVec2(200, 50)))
 					{
 						context.GetPauseHandler().SetPaused(context, false);
