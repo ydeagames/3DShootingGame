@@ -59,19 +59,23 @@ void TitleScene::Build(GameContext& context)
 				void Build(GameContext& context)
 				{
 					ImGui::SetNextWindowPosCenter();
-					ImGui::SetNextWindowSize(ImVec2(230, 230));
+					ImGui::SetNextWindowSize(ImVec2(230, 300));
 					ImGui::Begin(u8"スリングヒーローズ", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
 					if (ImGui::Button(u8"ゲームスタート", ImVec2(200, 50)))
 					{
 						context.GetSceneManager().LoadSceneWithTransition(L"PlayScene");
 					}
-					if (ImGui::Button(u8"終了", ImVec2(200, 50)))
+					if (ImGui::Button(u8"オプション", ImVec2(200, 50)))
 					{
-						ExitGame();
+
 					}
 					if (ImGui::Button(u8"クレジット", ImVec2(200, 50)))
 					{
 						showCredit = true;
+					}
+					if (ImGui::Button(u8"終了", ImVec2(200, 50)))
+					{
+						ExitGame();
 					}
 					ImGui::End();
 

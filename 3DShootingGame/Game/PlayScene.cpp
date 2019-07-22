@@ -72,6 +72,12 @@ void PlayScene::Build(GameContext& context)
 					ImGui::Begin(u8"目標", nullptr);
 					ImGui::Text(u8"一番てっぺんに登れ (仮)");
 					ImGui::End();
+
+					ImGui::SetNextWindowPos(ImVec2(10, 700));
+					ImGui::Begin(u8"操作説明", nullptr);
+					ImGui::Text(u8"1. 右クリック長押しで力をためる");
+					ImGui::Text(u8"2. 右クリックを離してスリングジャーンプ！");
+					ImGui::End();
 				}
 			};
 
