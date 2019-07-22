@@ -307,4 +307,12 @@
       <Filter>Resources</Filter>
     </Manifest>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Models\target.fbx">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="Resources\Models\igaguri.fbx">
+      <Filter>Assets</Filter>
+    </None>
+  </ItemGroup>
 </Project>

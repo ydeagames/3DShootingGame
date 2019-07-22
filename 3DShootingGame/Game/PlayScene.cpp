@@ -257,8 +257,26 @@ void PlayScene::Build(GameContext& context)
 	skydoom->transform->localScale = Vector3(1000);
 	skydoom->AddComponent<Skydoom>();
 
+	struct ModelRenderer : public Component
+	{
+		Model* m_model;
+		ModelRenderer(Model* model) : m_model(model) {}
+
+		void Render(GameContext& context)
+		{
+			m_model->Draw(context.GetDR().GetD3DDeviceContext(), context.GetStates(), gameObject->transform->GetMatrix(), context.GetCamera().view, context.GetCamera().projection);
+		}
+	};
+
 	struct PlayerBehaviour : public Component
 	{
+		std::unique_ptr<Model> m_model;
+
+		void Initialize(GameContext& context)
+		{
+			m_model = Model::CreateFromCMO(context.GetDR().GetD3DDevice(), L"Resources/Models/igaguri.cmo", context.GetEffectFactory());
+		}
+
 		void Update(GameContext& context)
 		{
 			auto input = Vector3::Zero;
@@ -294,10 +312,14 @@ void PlayScene::Build(GameContext& context)
 			{
 				auto& scene = context.GetScene();
 				auto bullet = scene.AddGameObject();
-				bullet->AddComponent<GeometricObject>(
-					[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
-					Color(Colors::Yellow)
-					);
+				auto bulletModel = scene.AddGameObject();
+				bulletModel->AddComponent<ModelRenderer>(m_model.get());
+				bulletModel->transform->parent = *bullet->transform;
+				bulletModel->transform->localScale = Vector3(.0175f);
+				//bullet->AddComponent<GeometricObject>(
+				//	[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
+				//	Color(Colors::Yellow)
+				//	);
 				auto ray = context.GetCamera().ViewportPointToRay(Vector3::Zero);
 				ray.direction.Normalize();
 				bullet->transform->position = *gameObject->transform->position + ray.direction * 5;
@@ -361,4 +383,35 @@ void PlayScene::Build(GameContext& context)
 		auto col = rigid->Add(std::make_shared<BoxCollider>());
 		col->localTransform.localScale = box->transform->localScale;
 	}
+
+	struct TargetGenerator : public Component
+	{
+		float time = 0;
+		float span = 1;
+
+		std::unique_ptr<Model> m_model;
+
+		void Initialize(GameContext& context)
+		{
+			m_model = Model::CreateFromCMO(context.GetDR().GetD3DDevice(), L"Resources/Models/target.cmo", context.GetEffectFactory());
+		}
+
+		void Update(GameContext& context)
+		{
+			time += float(context.GetTimer().GetElapsedSeconds());
+			if (time > span)
+			{
+				auto& scene = context.GetScene();
+				auto target = scene.AddGameObject();
+				auto targetModel = scene.AddGameObject();
+				targetModel->AddComponent<ModelRenderer>(m_model.get());
+				targetModel->transform->parent = *target->transform;
+				targetModel->transform->localScale = Vector3(.0175f);
+				auto rigidbody = target->AddComponent<Rigidbody>();
+				rigidbody->Add(std::make_shared<BoxCollider>());
+				target->transform->position = Vector3(Random::Range(-25, 25), .5f, Random::Range(-25, 25));
+				time = 0;
+			}
+		}
+	};
 }
