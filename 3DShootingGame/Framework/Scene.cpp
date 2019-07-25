@@ -58,6 +58,11 @@ std::list<ObjectField<GameObject>> Scene::FindAll(const std::wstring& key)
 	return result;
 }
 
+ObjectField<GameObject> Scene::AddGameObject(const std::wstring& objname)
+{
+	return Add(GameObject::Create(objname));
+}
+
 void Scene::Initialize(GameContext& context)
 {
 	physics = context.GetPhysics().CreateScene();

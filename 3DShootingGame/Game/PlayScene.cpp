@@ -22,6 +22,7 @@ using namespace DirectX::SimpleMath;
 namespace
 {
 	float chargeForce = 0;
+	float targetScale = .00175f;
 }
 
 void PlayScene::Build(GameContext& context)
@@ -53,9 +54,24 @@ void PlayScene::Build(GameContext& context)
 				std::wstring GetName() const override { return L"PauseWindow"; }
 				void Build(GameContext& context)
 				{
+					auto& scene = context.GetScene();
+
 					ImGui::SetNextWindowPos(ImVec2(10, 10));
 					ImGui::Begin(u8"パラメータ", nullptr);
 					ImGui::Text(u8"強さ: %.2f", chargeForce);
+					ImGui::SliderFloat(u8"的サイズ", &targetScale, 0, .5f);
+					if (ImGui::Button(u8"リセットいがぐり"))
+					{
+						auto find = scene.FindAll(L"Bullet");
+						for (auto& f : find)
+							Destroy(**f);
+					}
+					if (ImGui::Button(u8"リセットターゲット"))
+					{
+						auto find = scene.FindAll(L"Target");
+						for (auto& f : find)
+							Destroy(**f);
+					}
 					ImGui::End();
 
 					ImGui::SetNextWindowPos(ImVec2(300, 10));
@@ -312,7 +328,7 @@ void PlayScene::Build(GameContext& context)
 			{
 				auto& scene = context.GetScene();
 				auto bullet = scene.AddGameObject();
-				auto bulletModel = scene.AddGameObject();
+				auto bulletModel = scene.AddGameObject(L"Bullet");
 				bulletModel->AddComponent<ModelRenderer>(m_model.get());
 				bulletModel->transform->parent = *bullet->transform;
 				bulletModel->transform->localScale = Vector3(.0175f);
@@ -402,16 +418,18 @@ void PlayScene::Build(GameContext& context)
 			if (time > span)
 			{
 				auto& scene = context.GetScene();
-				auto target = scene.AddGameObject();
+				auto target = scene.AddGameObject(L"Target");
 				auto targetModel = scene.AddGameObject();
 				targetModel->AddComponent<ModelRenderer>(m_model.get());
 				targetModel->transform->parent = *target->transform;
-				targetModel->transform->localScale = Vector3(.0175f);
+				targetModel->transform->localScale = Vector3(targetScale);
 				auto rigidbody = target->AddComponent<Rigidbody>();
 				rigidbody->Add(std::make_shared<BoxCollider>());
-				target->transform->position = Vector3(Random::Range(-25, 25), .5f, Random::Range(-25, 25));
+				target->transform->position = Vector3(Random::Range(-25.f, 25.f), .5f, Random::Range(-25.f, 25.f));
 				time = 0;
 			}
 		}
 	};
+	auto targen = scene.AddGameObject();
+	targen->AddComponent<TargetGenerator>();
 }

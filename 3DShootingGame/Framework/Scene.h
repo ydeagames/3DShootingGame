@@ -43,7 +43,7 @@ public:
 	ObjectField<GameObject> Add(ObjectHolder<GameObject>&& obj);
 	ObjectField<GameObject> Find(const std::wstring& name);
 	std::list<ObjectField<GameObject>> FindAll(const std::wstring& name);
-	template<typename... T> ObjectField<GameObject> AddGameObject(T&&... args) { return Add(GameObject::Create(std::forward(args)...)); }
+	ObjectField<GameObject> AddGameObject(const std::wstring& objname = L"GameObject");
 	PhysXScene& GetPhysics() const { return *physics; }
 	std::list<ObjectHolder<GameObject>>& GetObjects() { return m_gameObjects; }
 

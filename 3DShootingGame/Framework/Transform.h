@@ -28,14 +28,14 @@ public:
 		[&]()
 		{
 			if (parent)
-				return DirectX::SimpleMath::Vector3::Transform(localPosition, parent->GetMatrix().Invert());
+				return DirectX::SimpleMath::Vector3::Transform(localPosition, parent->GetMatrix());
 			else
 				return localPosition;
 		},
 		[&](const auto& value)
 		{
 			if (parent)
-				localPosition = DirectX::SimpleMath::Vector3::Transform(value, parent->GetMatrix());
+				localPosition = DirectX::SimpleMath::Vector3::Transform(value, parent->GetMatrix().Invert());
 			else
 				localPosition = value;
 		}
@@ -46,14 +46,14 @@ public:
 		[&]()
 		{
 			if (parent)
-				return localRotation * DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(parent->GetMatrix().Invert());
+				return localRotation * DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(parent->GetMatrix());
 			else
 				return localRotation;
 		},
 		[&](const auto& value)
 		{
 			if (parent)
-				localRotation = value * DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(parent->GetMatrix());
+				localRotation = value * DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(parent->GetMatrix().Invert());
 			else
 				localRotation = value;
 		}
@@ -70,7 +70,7 @@ public:
 				DirectX::SimpleMath::Vector3 parentScale;
 				parent->GetMatrix().Decompose(parentScale, parentRotation, parentPosition);
 				auto mat = DirectX::SimpleMath::Matrix::CreateScale(parentScale) * DirectX::SimpleMath::Matrix::CreateFromQuaternion(parentRotation);
-				return DirectX::SimpleMath::Vector3::Transform(localScale, mat.Invert());
+				return DirectX::SimpleMath::Vector3::Transform(localScale, mat);
 			}
 			else
 				return localScale;
@@ -84,7 +84,7 @@ public:
 				DirectX::SimpleMath::Vector3 parentScale;
 				parent->GetMatrix().Decompose(parentScale, parentRotation, parentPosition);
 				auto mat = DirectX::SimpleMath::Matrix::CreateScale(parentScale) * DirectX::SimpleMath::Matrix::CreateFromQuaternion(parentRotation);
-				localScale = DirectX::SimpleMath::Vector3::Transform(value, mat);
+				localScale = DirectX::SimpleMath::Vector3::Transform(value, mat.Invert());
 			}
 			else
 				localScale = value;
