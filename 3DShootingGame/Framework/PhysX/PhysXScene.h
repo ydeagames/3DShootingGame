@@ -7,6 +7,7 @@ class PhysXManager;
 class PhysXScene : public Component
 {
 private:
+	PhysXManager* m_manager;
 	physx::PxScene* m_scene;
 
 public:

@@ -185,10 +185,9 @@ void Game::Render()
 	{
 		GetSceneManager().GetSceneView().Render(*this);
 	}
-	if (physics.debugMode & PhysXManager::IngamePvdMode::Collision)
+	else
 	{
-		// •¨—
-		physics.Render(*this);
+		GetSceneManager().GetActiveScene().Find(L"SceneDirector")->Render(*this);
 	}
 
 	// GUI

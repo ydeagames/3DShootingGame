@@ -6,6 +6,7 @@
 using namespace physx;
 
 PhysXScene::PhysXScene(PhysXManager& manager)
+	: m_manager(&manager)
 {
 	auto physics = manager.GetPhysics();
 	auto sceneDesc = PxSceneDesc(physics->getTolerancesScale());
@@ -55,12 +56,15 @@ void PhysXScene::Update(GameContext& context)
 
 void PhysXScene::Render(GameContext& context)
 {
-	PxU32 nbActors = m_scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC);
-	if (nbActors)
+	if (m_manager->debugMode & PhysXManager::IngamePvdMode::Collision)
 	{
-		std::vector<PxRigidActor*> actors(nbActors);
-		m_scene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<PxActor**>(&actors[0]), nbActors);
-		PhysXRenderer::RenderActors(context, actors, true, physx::PxVec3(0, 0, 1));
+		PxU32 nbActors = m_scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC);
+		if (nbActors)
+		{
+			std::vector<PxRigidActor*> actors(nbActors);
+			m_scene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<PxActor * *>(&actors[0]), nbActors);
+			PhysXRenderer::RenderActors(context, actors, true, physx::PxVec3(0, 0, 1));
+		}
 	}
 }
 
