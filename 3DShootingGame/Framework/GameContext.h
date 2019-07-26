@@ -9,6 +9,7 @@ class GameObject;
 class SceneManager;
 class GameCamera;
 class PhysXManager;
+class PhysXScene;
 class ImGuiManager;
 class SaveHandler;
 class PauseHandler;
@@ -126,6 +127,15 @@ public:
 		return *context;
 	}
 
+	template<>
+	GameCamera& Get()
+	{
+		static auto context = GetPtr<GameCamera>();
+		if (context == nullptr)
+			throw std::exception("missing service.");
+		return *context;
+	}
+
 	template<typename T>
 	void Register(T&& context)
 	{
@@ -148,6 +158,8 @@ public:
 	virtual SceneManager& GetSceneManager() { return Get<SceneManager>(); };
 	// 物理マネージャを取得
 	virtual PhysXManager& GetPhysics() { return Get<PhysXManager>(); };
+	// 物理シーンを取得
+	virtual PhysXScene& GetPhysicsScene() { return Get<PhysXScene>(); };
 	// GUIマネージャ
 	virtual ImGuiManager& GetGuiManager() { return Get<ImGuiManager>(); };
 	// セーブハンドラ

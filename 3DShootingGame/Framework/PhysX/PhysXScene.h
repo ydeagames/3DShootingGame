@@ -1,15 +1,16 @@
 #pragma once
 #include "PhysXCommons.h"
+#include <Framework/Component.h>
 
 class PhysXManager;
 
-class PhysXScene
+class PhysXScene : public Component
 {
 private:
 	physx::PxScene* m_scene;
 
 public:
-	PhysXScene(physx::PxScene* scene);
+	PhysXScene(PhysXManager& manager);
 	~PhysXScene();
 
 	// シーン取得
@@ -18,5 +19,14 @@ public:
 	void ActivatePvd();
 	// オブジェクト追加
 	void CreateObject(physx::PxActor& obj);
+
+	// 生成
+	void Initialize(GameContext& context);
+	// 更新
+	void Update(GameContext& context);
+	// 描画
+	void Render(GameContext& context);
+	// 破棄
+	void Finalize(GameContext& context);
 };
 

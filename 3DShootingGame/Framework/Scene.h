@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "ObjectField.h"
+#include "GameContext.h"
 #include <Utilities/TypeId.h>
 
 class GameObject;
@@ -8,7 +9,7 @@ class PhysXScene;
 class GameContext;
 
 // ゲームオブジェクトコンテナ
-class Scene : public Component
+class Scene : public Component, public GameContext
 {
 private:
 	// 子ゲームオブジェクト
@@ -31,10 +32,6 @@ public:
 public:
 	std::wstring GetName() const override { return name; }
 
-private:
-	// PhysX
-	std::unique_ptr<PhysXScene> physics;
-
 public:
 	Scene();
 	~Scene();
@@ -44,7 +41,6 @@ public:
 	ObjectField<GameObject> Find(const std::wstring& name);
 	std::list<ObjectField<GameObject>> FindAll(const std::wstring& name);
 	ObjectField<GameObject> AddGameObject(const std::wstring& objname = L"GameObject");
-	PhysXScene& GetPhysics() const { return *physics; }
 	std::list<ObjectHolder<GameObject>>& GetObjects() { return m_gameObjects; }
 
 public:
@@ -56,4 +52,19 @@ public:
 	void Render(GameContext& context);
 	// 破棄
 	void Finalize(GameContext& context);
+
+private:
+	GameContext* m_parent;
+
+public:
+	virtual GameContext* GetParent()
+	{
+		return m_parent;
+	}
+
+	// シーンを取得
+	virtual Scene& GetScene()
+	{
+		return *this;
+	};
 };

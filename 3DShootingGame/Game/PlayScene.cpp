@@ -22,7 +22,7 @@ using namespace DirectX::SimpleMath;
 namespace
 {
 	float chargeForce = 0;
-	float targetScale = .00175f;
+	ObjectHolder<float> targetScale = ObjectHolder<float>::Create(.00175f);
 }
 
 void PlayScene::Build(GameContext& context)
@@ -59,7 +59,7 @@ void PlayScene::Build(GameContext& context)
 					ImGui::SetNextWindowPos(ImVec2(10, 10));
 					ImGui::Begin(u8"パラメータ", nullptr);
 					ImGui::Text(u8"強さ: %.2f", chargeForce);
-					ImGui::SliderFloat(u8"的サイズ", &targetScale, 0, .5f);
+					ImGui::SliderFloat(u8"的サイズ", targetScale.GetWeakPtr().lock().get(), 0, .003f, u8"%.6f");
 					if (ImGui::Button(u8"リセットいがぐり"))
 					{
 						auto find = scene.FindAll(L"Bullet");
@@ -183,7 +183,7 @@ void PlayScene::Build(GameContext& context)
 		void Initialize(GameContext& context)
 		{
 			auto& manager = context.GetPhysics();
-			auto& scene = context.GetScene().GetPhysics();
+			auto& scene = context.GetPhysicsScene();
 			auto geo = physx::PxPlane(physx::toPhysX(Vector3::Zero), physx::toPhysX(Vector3::Up));
 			auto material = manager.CreateMaterial(PhysicsMaterials::Wood);
 			auto rigid = physx::PxCreatePlane(*manager.GetPhysics(), geo, *material);
@@ -422,7 +422,15 @@ void PlayScene::Build(GameContext& context)
 				auto targetModel = scene.AddGameObject();
 				targetModel->AddComponent<ModelRenderer>(m_model.get());
 				targetModel->transform->parent = *target->transform;
-				targetModel->transform->localScale = Vector3(targetScale);
+				targetModel->transform->localScale = Vector3(**targetScale);
+				struct A : public Component
+				{
+					void Render(GameContext& context)
+					{
+						gameObject->transform->localScale = Vector3(**targetScale);
+					}
+				};
+				targetModel->AddComponent<A>();
 				auto rigidbody = target->AddComponent<Rigidbody>();
 				rigidbody->Add(std::make_shared<BoxCollider>());
 				target->transform->position = Vector3(Random::Range(-25.f, 25.f), .5f, Random::Range(-25.f, 25.f));

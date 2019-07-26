@@ -43,6 +43,11 @@ public:
 		return m_pvd.get();
 	}
 
+	physx::PxCpuDispatcher* GetDispatcher()
+	{
+		return m_dispatcher.get();
+	}
+
 	physx::PxMaterial* CreateMaterial(const PhysicsMaterial& material)
 	{
 		auto mat = m_physics->createMaterial(material.staticFriction, material.dynamicFriction, material.bounciness);
@@ -59,8 +64,5 @@ public:
 	void Render(GameContext& context);
 	// ”jŠü
 	void Finalize(GameContext& context);
-
-	// ƒV[ƒ“ì¬
-	std::unique_ptr<PhysXScene> CreateScene();
 };
 

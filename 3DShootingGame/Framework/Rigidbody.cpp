@@ -9,7 +9,7 @@
 void Rigidbody::Initialize(GameContext& context)
 {
 	auto& manager = context.GetPhysics();
-	auto& scene = context.GetScene().GetPhysics();
+	auto& scene = context.GetPhysicsScene();
 	auto trans = physx::PxTransform(physx::toPhysX(gameObject->transform->position), physx::toPhysX(gameObject->transform->rotation));
 	if (isStatic)
 		rigid = manager.GetPhysics()->createRigidStatic(trans);

@@ -1,12 +1,18 @@
 #include "pch.h"
 #include "PhysXScene.h"
 #include "PhysXManager.h"
+#include "PhysXRenderer.h"
 
 using namespace physx;
 
-PhysXScene::PhysXScene(physx::PxScene* scene)
-	: m_scene(scene)
+PhysXScene::PhysXScene(PhysXManager& manager)
 {
+	auto physics = manager.GetPhysics();
+	auto sceneDesc = PxSceneDesc(physics->getTolerancesScale());
+	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
+	sceneDesc.cpuDispatcher = manager.GetDispatcher();
+	sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+	m_scene = physics->createScene(sceneDesc);
 }
 
 PhysXScene::~PhysXScene()
@@ -32,4 +38,32 @@ void PhysXScene::ActivatePvd()
 void PhysXScene::CreateObject(physx::PxActor& obj)
 {
 	m_scene->addActor(obj);
+}
+
+void PhysXScene::Initialize(GameContext& context)
+{
+
+}
+
+void PhysXScene::Update(GameContext& context)
+{
+	m_scene->simulate(1.0f / 60.0f);
+	//std::cout << float(context.GetTimer().GetElapsedSeconds()) << std::endl;
+	//scene->simulate(float(context.GetTimer().GetElapsedSeconds()));
+	m_scene->fetchResults(true);
+}
+
+void PhysXScene::Render(GameContext& context)
+{
+	PxU32 nbActors = m_scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC);
+	if (nbActors)
+	{
+		std::vector<PxRigidActor*> actors(nbActors);
+		m_scene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<PxActor**>(&actors[0]), nbActors);
+		PhysXRenderer::RenderActors(context, actors, true, physx::PxVec3(0, 0, 1));
+	}
+}
+
+void PhysXScene::Finalize(GameContext& context)
+{
 }

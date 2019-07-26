@@ -65,27 +65,31 @@ ObjectField<GameObject> Scene::AddGameObject(const std::wstring& objname)
 
 void Scene::Initialize(GameContext& context)
 {
-	physics = context.GetPhysics().CreateScene();
+	m_parent = &context;
+
+	auto director = AddGameObject(L"SceneDirector");
+	auto pxscene = director->AddComponent<PhysXScene>(context.GetPhysics());
+	Register(*pxscene);
 
 	for (auto& object : m_gameObjects)
-		object->Initialize(context);
+		object->Initialize(*this);
 }
 
 void Scene::Update(GameContext & context)
 {
 	for (auto& object : m_addingObjects)
-		object->Initialize(context);
+		object->Initialize(*this);
 	m_gameObjects.splice(m_gameObjects.end(), std::move(m_addingObjects));
 
 	for (auto& object : m_gameObjects)
-		object->Update(context);
+		object->Update(*this);
 
 	for (auto itr = m_gameObjects.begin(); itr != m_gameObjects.end();)
 	{
 		auto& object = *itr;
 		if (object->IsDestroyed())
 		{
-			object->Finalize(context);
+			object->Finalize(*this);
 			itr = m_gameObjects.erase(itr);
 		}
 		else
@@ -98,12 +102,12 @@ void Scene::Update(GameContext & context)
 void Scene::Render(GameContext & context)
 {
 	for (auto& object : m_gameObjects)
-		object->Render(context);
+		object->Render(*this);
 }
 
 void Scene::Finalize(GameContext & context)
 {
 	for (auto& object : m_gameObjects)
-		object->Finalize(context);
+		object->Finalize(*this);
 }
 

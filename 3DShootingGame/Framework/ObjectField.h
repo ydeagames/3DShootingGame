@@ -21,8 +21,8 @@ public:
 	ObjectHolder& operator=(nullptr_t) noexcept { m_object = nullptr; }
 	template<typename U> ObjectHolder(const ObjectHolder<U>& object) : m_object(std::dynamic_pointer_cast<T>(object.GetWeakPtr().lock())) {}
 
-public:
 	T* operator->() const noexcept { return m_object.get(); }
+	T* operator*() const noexcept { return m_object.get(); }
 	explicit operator bool() const noexcept { return m_object; }
 	std::weak_ptr<T> GetWeakPtr() const { return m_object; }
 

@@ -181,14 +181,14 @@ void Game::Render()
 
     // TODO: Add your rendering code here.
 	auto& physics = Get<PhysXManager>();
+	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
+	{
+		GetSceneManager().GetSceneView().Render(*this);
+	}
 	if (physics.debugMode & PhysXManager::IngamePvdMode::Collision)
 	{
 		// ï®óù
 		physics.Render(*this);
-	}
-	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
-	{
-		GetSceneManager().GetSceneView().Render(*this);
 	}
 
 	// GUI
