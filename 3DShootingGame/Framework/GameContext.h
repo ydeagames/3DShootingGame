@@ -76,6 +76,58 @@ private:
 			T* Get() const override { return m_context; }
 		};
 
+#ifndef GAMECONTEXT_USE_MAP
+		template<typename T>
+		struct sparse_set
+		{
+			std::vector<std::unique_ptr<T>> reserve;
+
+			bool managed(type_id_t id)
+			{
+				return id < reserve.size() && reserve[id];
+			}
+
+			void assure(type_id_t id)
+			{
+				if (!(id < reserve.size()))
+					reserve.resize(id + 1);
+			}
+
+			void put(type_id_t id, std::unique_ptr<T>&& value)
+			{
+				assure(id);
+				reserve[id] = std::move(value);
+			}
+
+			std::unique_ptr<T>& get(type_id_t id)
+			{
+				if (managed(id))
+					return reserve[id];
+				return nullptr;
+			}
+
+			std::unique_ptr<T>& getfast(type_id_t id)
+			{
+				return reserve[id];
+			}
+		};
+		sparse_set<IContextHolder> m_contexts;
+
+		template<typename T> T* Get()
+		{
+			auto key = type_id<T>();
+			if (m_contexts.managed(key))
+				return static_cast<ContextHolder<T>*>(m_contexts.getfast(key).get())->Get();
+			return nullptr;
+		}
+
+		template<typename T> void Register(std::unique_ptr<T>&& context) { m_contexts.put(type_id<T>(), std::make_unique<ContextUniquePtrHolder<T>>(std::move(context))); }
+		template<typename T> void Register(const std::shared_ptr<T>& context) { m_contexts.put(type_id<T>(), std::make_unique<ContextSharedPtrHolder<T>>(context)); }
+		template<typename T> void Register(const std::weak_ptr<T>& context) { m_contexts.put(type_id<T>(), std::make_unique<ContextWeakPtrHolder<T>>(context)); }
+		template<typename T> void Register(const std::reference_wrapper<T>& context) { m_contexts.put(type_id<T>(), std::make_unique<ContextRefHolder<T>>(context)); }
+		template<typename T> void Register(T& context) { m_contexts.put(type_id<T>(), std::make_unique<ContextRefHolder<T>>(context)); }
+		template<typename T> void Register(T* context) { m_contexts.put(type_id<T>(), std::make_unique<ContextPtrHolder<T>>(context)); }
+#else
 		std::unordered_map<type_id_t, std::unique_ptr<IContextHolder>> m_contexts;
 
 		template<typename T> T* Get()
@@ -95,6 +147,7 @@ private:
 		template<typename T> void Register(const std::reference_wrapper<T>& context) { m_contexts[type_id<T>()] = std::make_unique<ContextRefHolder<T>>(context); }
 		template<typename T> void Register(T& context) { m_contexts[type_id<T>()] = std::make_unique<ContextRefHolder<T>>(context); }
 		template<typename T> void Register(T* context) { m_contexts[type_id<T>()] = std::make_unique<ContextPtrHolder<T>>(context); }
+#endif
 	};
 
 	ContextLocator m_locator;
@@ -122,15 +175,6 @@ public:
 	T& Get()
 	{
 		auto context = GetPtr<T>();
-		if (context == nullptr)
-			throw std::exception("missing service.");
-		return *context;
-	}
-
-	template<>
-	GameCamera& Get()
-	{
-		static auto context = GetPtr<GameCamera>();
 		if (context == nullptr)
 			throw std::exception("missing service.");
 		return *context;
