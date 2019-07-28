@@ -101,6 +101,9 @@
 #include <imgui_impl_win32.h>
 #include <imgui_impl_dx11.h>
 
+// EnTT
+#include <Libraries/entt/entt.hpp>
+
 namespace DX
 {
 	// Helper class for COM exceptions

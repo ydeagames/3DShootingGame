@@ -32,6 +32,30 @@
     <Filter Include="Libraries">
       <UniqueIdentifier>{f51ead3e-6acf-4b03-b0d7-1b38c4166517}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries\entt">
+      <UniqueIdentifier>{18490d86-28d3-43e0-b71b-0a554da8f5f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\entt\config">
+      <UniqueIdentifier>{d7cb8d82-d192-4d2f-884b-34be721b0adc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\entt\core">
+      <UniqueIdentifier>{917039ed-8c7a-4d29-87e1-3fb32e48fa7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\entt\entity">
+      <UniqueIdentifier>{de1967a4-f3c5-4e39-9505-da160420ac60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\entt\locator">
+      <UniqueIdentifier>{58c80bd2-a7c8-42f0-9759-99111d21670f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\entt\process">
+      <UniqueIdentifier>{9f50b01f-98fc-409d-81ad-ea1ed8e81ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\entt\resource">
+      <UniqueIdentifier>{fcca93f8-ce06-4d38-a4f5-8f7e5c262aa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\entt\signal">
+      <UniqueIdentifier>{40bd6c40-54c1-4991-a038-0e84b7707d83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -191,6 +215,90 @@
     <ClInclude Include="Game\InfinityGridFloor.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Libraries\entt\config\config.h">
+      <Filter>Libraries\entt\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\core\algorithm.hpp">
+      <Filter>Libraries\entt\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\core\family.hpp">
+      <Filter>Libraries\entt\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\core\hashed_string.hpp">
+      <Filter>Libraries\entt\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\core\ident.hpp">
+      <Filter>Libraries\entt\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\core\monostate.hpp">
+      <Filter>Libraries\entt\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\actor.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\attachee.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\entity.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\entt_traits.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\helper.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\prototype.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\registry.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\snapshot.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\sparse_set.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\utility.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entity\view.hpp">
+      <Filter>Libraries\entt\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\locator\locator.hpp">
+      <Filter>Libraries\entt\locator</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\process\process.hpp">
+      <Filter>Libraries\entt\process</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\process\scheduler.hpp">
+      <Filter>Libraries\entt\process</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\resource\cache.hpp">
+      <Filter>Libraries\entt\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\resource\handle.hpp">
+      <Filter>Libraries\entt\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\resource\loader.hpp">
+      <Filter>Libraries\entt\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\signal\delegate.hpp">
+      <Filter>Libraries\entt\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\signal\dispatcher.hpp">
+      <Filter>Libraries\entt\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\signal\emitter.hpp">
+      <Filter>Libraries\entt\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\signal\sigh.hpp">
+      <Filter>Libraries\entt\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\entt\entt.hpp">
+      <Filter>Libraries\entt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -308,11 +416,11 @@
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Models\target.fbx">
+    <MeshContentTask Include="Resources\Models\igaguri.fbx">
       <Filter>Assets</Filter>
-    </None>
-    <None Include="Resources\Models\igaguri.fbx">
+    </MeshContentTask>
+    <MeshContentTask Include="Resources\Models\target.fbx">
       <Filter>Assets</Filter>
-    </None>
+    </MeshContentTask>
   </ItemGroup>
 </Project>
