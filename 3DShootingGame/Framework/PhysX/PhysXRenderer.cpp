@@ -133,8 +133,8 @@ namespace
 void PhysXRenderer::RenderGeometry(GameContext& context, const PxGeometry& geom, const PxMat44& pxworld, const PxVec3& pxcolor, bool wireframe)
 {
 	static auto cube = GeometricPrimitive::CreateCube(context.GetDR().GetD3DDeviceContext());
-	static auto sphere = CreateCircleSphere(context.GetDR().GetD3DDeviceContext(), false, .5f, 32U);
-	static auto spherehalf = CreateCircleSphere(context.GetDR().GetD3DDeviceContext(), true, .5f, 32U);
+	static auto sphere = CreateCircleSphere(context.GetDR().GetD3DDeviceContext(), false, .5f, 8U);
+	static auto spherehalf = CreateCircleSphere(context.GetDR().GetD3DDeviceContext(), true, .5f, 8U);
 	static auto cylinderside = CreateCylinderSide(context.GetDR().GetD3DDeviceContext(), true);
 
 	Matrix world = fromPhysX(pxworld);
