@@ -61,28 +61,28 @@ public:
 
 	Property<DirectX::SimpleMath::Vector3> lossyScale
 	{
-		[&]()
+		[this]()
 		{
-			if (parent)
+			if (this->parent)
 			{
 				DirectX::SimpleMath::Vector3 parentPosition;
 				DirectX::SimpleMath::Quaternion parentRotation;
 				DirectX::SimpleMath::Vector3 parentScale;
-				parent->GetMatrix().Decompose(parentScale, parentRotation, parentPosition);
+				this->parent->GetMatrix().Decompose(parentScale, parentRotation, parentPosition);
 				auto mat = DirectX::SimpleMath::Matrix::CreateScale(parentScale) * DirectX::SimpleMath::Matrix::CreateFromQuaternion(parentRotation);
 				return DirectX::SimpleMath::Vector3::Transform(localScale, mat);
 			}
 			else
 				return localScale;
 		},
-		[&](const auto& value)
+		[this](const auto& value)
 		{
-			if (parent)
+			if (this->parent)
 			{
 				DirectX::SimpleMath::Vector3 parentPosition;
 				DirectX::SimpleMath::Quaternion parentRotation;
 				DirectX::SimpleMath::Vector3 parentScale;
-				parent->GetMatrix().Decompose(parentScale, parentRotation, parentPosition);
+				this->parent->GetMatrix().Decompose(parentScale, parentRotation, parentPosition);
 				auto mat = DirectX::SimpleMath::Matrix::CreateScale(parentScale) * DirectX::SimpleMath::Matrix::CreateFromQuaternion(parentRotation);
 				localScale = DirectX::SimpleMath::Vector3::Transform(value, mat.Invert());
 			}

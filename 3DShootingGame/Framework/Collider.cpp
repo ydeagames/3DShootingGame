@@ -17,7 +17,7 @@ void SphereCollider::AddCollider(GameContext& context, physx::PxRigidActor* rigi
 	auto diameter = (size.x + size.y + size.z) / 3;
 	auto geo = physx::PxSphereGeometry(diameter / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
-	shape->setLocalPose(physx::PxTransform(physx::toPhysX(localTransform.position), physx::toPhysX(localTransform.rotation)));
+	shape->setLocalPose(physx::PxTransform(physx::toPhysX(t.position), physx::toPhysX(t.rotation)));
 	rigid->attachShape(*shape);
 }
 
@@ -31,7 +31,7 @@ void BoxCollider::AddCollider(GameContext& context, physx::PxRigidActor* rigid, 
 
 	auto geo = physx::PxBoxGeometry(physx::toPhysX(size) / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
-	shape->setLocalPose(physx::PxTransform(physx::toPhysX(localTransform.position), physx::toPhysX(localTransform.rotation)));
+	shape->setLocalPose(physx::PxTransform(physx::toPhysX(t.position), physx::toPhysX(t.rotation)));
 	rigid->attachShape(*shape);
 }
 
@@ -46,6 +46,6 @@ void CapsuleCollider::AddCollider(GameContext& context, physx::PxRigidActor* rig
 	auto diameter = (size.x + size.z) / 2;
 	auto geo = physx::PxCapsuleGeometry(diameter / 2, size.y / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
-	shape->setLocalPose(physx::PxTransform(physx::toPhysX(localTransform.position), physx::toPhysX(localTransform.rotation)));
+	shape->setLocalPose(physx::PxTransform(physx::toPhysX(t.position), physx::toPhysX(t.rotation)));
 	rigid->attachShape(*shape);
 }

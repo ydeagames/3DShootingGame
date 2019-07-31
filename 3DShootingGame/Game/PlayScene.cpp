@@ -432,8 +432,10 @@ void PlayScene::Build(GameContext& context)
 				};
 				targetModel->AddComponent<A>();
 				auto rigidbody = target->AddComponent<Rigidbody>();
-				rigidbody->Add(std::make_shared<BoxCollider>());
+				auto col = rigidbody->Add(std::make_shared<BoxCollider>());
+				col->localTransform.localScale = Vector3(.7f, 1.f, .1f);
 				target->transform->position = Vector3(Random::Range(-25.f, 25.f), .5f, Random::Range(-25.f, 25.f));
+				target->transform->localScale = Vector3(4);
 				time = 0;
 			}
 		}
