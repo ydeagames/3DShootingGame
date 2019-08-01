@@ -22,6 +22,7 @@ private:
 public:
 	void Initialize(GameContext& context);
 	void Update(GameContext& context);
+	void Finalize(GameContext& context);
 
 	void AddForce(DirectX::SimpleMath::Vector3 force)
 	{

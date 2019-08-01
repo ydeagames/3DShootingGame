@@ -21,7 +21,7 @@ public:
 		return L"Object";
 	}
 
-	virtual bool IsDestroyed()
+	virtual bool IsDestroyed() const
 	{
 		return (time >= 0 && objectTime >= time);
 	}

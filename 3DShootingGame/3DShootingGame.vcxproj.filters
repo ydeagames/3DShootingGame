@@ -399,6 +399,9 @@
     <ClCompile Include="Game\InfinityGridFloor.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Transform.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">

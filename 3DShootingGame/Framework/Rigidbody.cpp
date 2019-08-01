@@ -40,3 +40,8 @@ void Rigidbody::Update(GameContext& context)
 	gameObject->transform->position = physx::fromPhysX(trans.p);
 	gameObject->transform->rotation = physx::fromPhysX(trans.q);
 }
+
+void Rigidbody::Finalize(GameContext& context)
+{
+	px_release(rigid);
+}

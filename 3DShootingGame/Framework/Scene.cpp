@@ -84,6 +84,10 @@ void Scene::Update(GameContext & context)
 	for (auto& object : m_gameObjects)
 		object->Update(*this);
 
+	for (auto& object : m_gameObjects)
+		if (object->transform->IsParentDestroyed())
+			Destroy(**object);
+
 	for (auto itr = m_gameObjects.begin(); itr != m_gameObjects.end();)
 	{
 		auto& object = *itr;

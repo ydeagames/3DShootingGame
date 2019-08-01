@@ -1,12 +1,18 @@
 #pragma once
 
 template<typename T>
+inline void px_release(T* t)
+{
+	if (t)
+		t->release();
+}
+
+template<typename T>
 struct px_deleter
 {
 	void operator()(T* t)
 	{
-		if (t)
-			t->release();
+		px_release(t);
 	}
 };
 
