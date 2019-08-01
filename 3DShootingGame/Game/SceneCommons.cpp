@@ -25,6 +25,6 @@ void FontObject::Initialize(GameContext& context)
 void FontObject::Render(GameContext& context)
 {
 	m_spriteBatch->Begin(SpriteSortMode_Deferred, context.GetStates().AlphaBlend());
-	m_spriteFont->DrawString(m_spriteBatch.get(), m_text.c_str(), *gameObject->transform->position);
+	m_spriteFont->DrawString(m_spriteBatch.get(), m_text.c_str(), gameObject->transform->position);
 	m_spriteBatch->End();
 }

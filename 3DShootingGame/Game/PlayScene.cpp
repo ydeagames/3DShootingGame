@@ -23,6 +23,7 @@ namespace
 {
 	float chargeForce = 0;
 	ObjectHolder<float> targetScale = ObjectHolder<float>::Create(.00175f);
+	ObjectHolder<float> targetY = ObjectHolder<float>::Create(.5f);
 }
 
 void PlayScene::Build(GameContext& context)
@@ -43,62 +44,56 @@ void PlayScene::Build(GameContext& context)
 	struct Menu : public Component
 	{
 		std::shared_ptr<ISceneBuilder> m_window;
+		float last;
 
 		void Initialize(GameContext& context)
 		{
-			struct PauseWindow : public ISceneBuilder
+			last = float(context.GetTimer().GetTotalSeconds());
+		}
+
+		void Render(GameContext& context)
+		{
+			auto& scene = context.GetScene();
+
+			ImGui::SetNextWindowPos(ImVec2(10, 10));
+			ImGui::Begin(u8"パラメータ", nullptr);
+			ImGui::Text(u8"強さ: %.2f", chargeForce);
+			ImGui::SliderFloat(u8"的サイズ", targetScale.GetWeakPtr().lock().get(), 0, .003f, u8"%.6f");
+			ImGui::SliderFloat(u8"Y", targetY.GetWeakPtr().lock().get(), 0, 6, u8"%.2f");
+			if (ImGui::Button(u8"リセットいがぐり"))
 			{
-				float last;
-				PauseWindow(float last) : last(last) {}
+				auto find = scene.FindAll(L"Bullet");
+				for (auto& f : find)
+					Destroy(**f);
+			}
+			if (ImGui::Button(u8"リセットターゲット"))
+			{
+				auto find = scene.FindAll(L"Target");
+				for (auto& f : find)
+					Destroy(**f);
+			}
+			ImGui::End();
 
-				std::wstring GetName() const override { return L"PauseWindow"; }
-				void Build(GameContext& context)
-				{
-					auto& scene = context.GetScene();
+			ImGui::SetNextWindowPos(ImVec2(300, 10));
+			ImGui::Begin(u8"スコア", nullptr);
+			ImGui::Text(u8"スコア: 00000032435 (未実装)");
+			ImGui::End();
 
-					ImGui::SetNextWindowPos(ImVec2(10, 10));
-					ImGui::Begin(u8"パラメータ", nullptr);
-					ImGui::Text(u8"強さ: %.2f", chargeForce);
-					ImGui::SliderFloat(u8"的サイズ", targetScale.GetWeakPtr().lock().get(), 0, .003f, u8"%.6f");
-					if (ImGui::Button(u8"リセットいがぐり"))
-					{
-						auto find = scene.FindAll(L"Bullet");
-						for (auto& f : find)
-							Destroy(**f);
-					}
-					if (ImGui::Button(u8"リセットターゲット"))
-					{
-						auto find = scene.FindAll(L"Target");
-						for (auto& f : find)
-							Destroy(**f);
-					}
-					ImGui::End();
+			ImGui::SetNextWindowPos(ImVec2(10, 500));
+			ImGui::Begin(u8"タイム", nullptr);
+			ImGui::Text(u8"タイム: %.2f秒", float(context.GetTimer().GetTotalSeconds()) - last);
+			ImGui::End();
 
-					ImGui::SetNextWindowPos(ImVec2(300, 10));
-					ImGui::Begin(u8"スコア", nullptr);
-					ImGui::Text(u8"スコア: 00000032435 (未実装)");
-					ImGui::End();
+			ImGui::SetNextWindowPos(ImVec2(10, 300));
+			ImGui::Begin(u8"目標", nullptr);
+			ImGui::Text(u8"一番てっぺんに登れ (仮)");
+			ImGui::End();
 
-					ImGui::SetNextWindowPos(ImVec2(10, 500));
-					ImGui::Begin(u8"タイム", nullptr);
-					ImGui::Text(u8"タイム: %.2f秒", float(context.GetTimer().GetTotalSeconds()) - last);
-					ImGui::End();
-
-					ImGui::SetNextWindowPos(ImVec2(10, 300));
-					ImGui::Begin(u8"目標", nullptr);
-					ImGui::Text(u8"一番てっぺんに登れ (仮)");
-					ImGui::End();
-
-					ImGui::SetNextWindowPos(ImVec2(10, 700));
-					ImGui::Begin(u8"操作説明", nullptr);
-					ImGui::Text(u8"1. 右クリック長押しで力をためる");
-					ImGui::Text(u8"2. 右クリックを離してスリングジャーンプ！");
-					ImGui::End();
-				}
-			};
-
-			m_window = std::make_shared<PauseWindow>(float(context.GetTimer().GetTotalSeconds()));
-			context.GetGuiManager().Add(m_window);
+			ImGui::SetNextWindowPos(ImVec2(10, 700));
+			ImGui::Begin(u8"操作説明", nullptr);
+			ImGui::Text(u8"1. 右クリック長押しで力をためる");
+			ImGui::Text(u8"2. 右クリックを離してスリングジャーンプ！");
+			ImGui::End();
 		}
 
 		void Update(GameContext& context)
@@ -338,7 +333,7 @@ void PlayScene::Build(GameContext& context)
 				//	);
 				auto ray = context.GetCamera().ViewportPointToRay(Vector3::Zero);
 				ray.direction.Normalize();
-				bullet->transform->position = *gameObject->transform->position + ray.direction * 5;
+				bullet->transform->position = gameObject->transform->position + ray.direction * 5;
 				auto rigidbody = bullet->AddComponent<Rigidbody>();
 				rigidbody->Add(std::make_shared<SphereCollider>());
 				rigidbody->SetVelocity(ray.direction * 50);
@@ -373,7 +368,7 @@ void PlayScene::Build(GameContext& context)
 	{
 		auto player = scene.AddGameObject();
 		player->AddComponent<GeometricObject>(
-			[](GameContext & context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
+			[](GameContext& context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
 			Color(Colors::Blue)
 			);
 		player->AddComponent<PlayerBehaviour>();
@@ -397,7 +392,6 @@ void PlayScene::Build(GameContext& context)
 		auto rigid = box->AddComponent<Rigidbody>();
 		rigid->SetStatic(true);
 		auto col = rigid->Add(std::make_shared<BoxCollider>());
-		col->localTransform.localScale = box->transform->localScale;
 	}
 
 	struct TargetGenerator : public Component
@@ -432,8 +426,16 @@ void PlayScene::Build(GameContext& context)
 				};
 				targetModel->AddComponent<A>();
 				auto rigidbody = target->AddComponent<Rigidbody>();
-				auto col = rigidbody->Add(std::make_shared<BoxCollider>());
-				col->localTransform.localScale = Vector3(.7f, 1.f, .1f);
+				{
+					auto col = rigidbody->Add(std::make_shared<BoxCollider>());
+					col->localTransform.localScale = Vector3(.7f, .7f, .1f);
+					col->localTransform.localPosition = Vector3(0.f, 4.5f, 0.f);
+				}
+				{
+					auto col = rigidbody->Add(std::make_shared<BoxCollider>());
+					col->localTransform.localScale = Vector3(.5f, .1f, .5f);
+					col->localTransform.localPosition = Vector3(0.f, 0.f, 0.f);
+				}
 				target->transform->position = Vector3(Random::Range(-25.f, 25.f), .5f, Random::Range(-25.f, 25.f));
 				target->transform->localScale = Vector3(4);
 				time = 0;

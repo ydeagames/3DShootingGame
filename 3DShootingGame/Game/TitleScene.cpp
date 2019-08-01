@@ -48,57 +48,7 @@ void TitleScene::Build(GameContext& context)
 
 	struct Menu : public Component
 	{
-		std::shared_ptr<ISceneBuilder> m_window;
-
-		void Initialize(GameContext& context)
-		{
-			struct PauseWindow : public ISceneBuilder
-			{
-				std::wstring GetName() const override { return L"PauseWindow"; }
-				bool showCredit = false;
-				void Build(GameContext& context)
-				{
-					ImGui::SetNextWindowPosCenter();
-					ImGui::SetNextWindowSize(ImVec2(230, 300));
-					ImGui::Begin(u8"スリングヒーローズ", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
-					if (ImGui::Button(u8"ゲームスタート", ImVec2(200, 50)))
-					{
-						context.GetSceneManager().LoadSceneWithTransition(L"PlayScene");
-					}
-					if (ImGui::Button(u8"オプション", ImVec2(200, 50)))
-					{
-
-					}
-					if (ImGui::Button(u8"クレジット", ImVec2(200, 50)))
-					{
-						showCredit = true;
-					}
-					if (ImGui::Button(u8"終了", ImVec2(200, 50)))
-					{
-						ExitGame();
-					}
-					ImGui::End();
-
-					if (showCredit)
-					{
-						ImGui::SetNextWindowPosCenter();
-						ImGui::SetNextWindowSize(ImVec2(700, 200));
-						ImGui::Begin(u8"クレジット", nullptr, ImGuiFocusedFlags_None);
-						ImGui::Text(u8"スリングヒーローズ - (c) 2019 YdeaGames");
-						ImGui::Text(u8"PhysX - Copyright (c) 2019 NVIDIA Corporation. All rights reserved.");
-						ImGui::Text(u8"ImGui - Copyright (c) 2014-2019 Omar Cornut");
-						if (ImGui::Button(u8"閉じる", ImVec2(680, 30)))
-						{
-							showCredit = false;
-						}
-						ImGui::End();
-					}
-				}
-			};
-
-			m_window = std::make_shared<PauseWindow>();
-			context.GetGuiManager().Add(m_window);
-		}
+		bool showCredit = false;
 
 		void Update(GameContext& context)
 		{
@@ -106,9 +56,43 @@ void TitleScene::Build(GameContext& context)
 				context.GetPauseHandler().SetPaused(context, false);
 		}
 
-		void Finalize(GameContext& context)
+		void Render(GameContext& context)
 		{
-			Destroy(*m_window);
+			ImGui::SetNextWindowPosCenter();
+			ImGui::SetNextWindowSize(ImVec2(230, 300));
+			ImGui::Begin(u8"スリングヒーローズ", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
+			if (ImGui::Button(u8"ゲームスタート", ImVec2(200, 50)))
+			{
+				context.GetSceneManager().LoadSceneWithTransition(L"PlayScene");
+			}
+			if (ImGui::Button(u8"オプション", ImVec2(200, 50)))
+			{
+
+			}
+			if (ImGui::Button(u8"クレジット", ImVec2(200, 50)))
+			{
+				showCredit = true;
+			}
+			if (ImGui::Button(u8"終了", ImVec2(200, 50)))
+			{
+				ExitGame();
+			}
+			ImGui::End();
+
+			if (showCredit)
+			{
+				ImGui::SetNextWindowPosCenter();
+				ImGui::SetNextWindowSize(ImVec2(700, 200));
+				ImGui::Begin(u8"クレジット", nullptr, ImGuiFocusedFlags_None);
+				ImGui::Text(u8"スリングヒーローズ - (c) 2019 YdeaGames");
+				ImGui::Text(u8"PhysX - Copyright (c) 2019 NVIDIA Corporation. All rights reserved.");
+				ImGui::Text(u8"ImGui - Copyright (c) 2014-2019 Omar Cornut");
+				if (ImGui::Button(u8"閉じる", ImVec2(680, 30)))
+				{
+					showCredit = false;
+				}
+				ImGui::End();
+			}
 		}
 	};
 	auto menu = scene.AddGameObject();

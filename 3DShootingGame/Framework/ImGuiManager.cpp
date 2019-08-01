@@ -61,7 +61,7 @@ void ImGuiManager::Update(GameContext& context)
 {
 }
 
-void ImGuiManager::Render(GameContext& context)
+void ImGuiManager::BeforeRender(GameContext& context)
 {
 	// Start the Dear ImGui frame
 	{
@@ -74,22 +74,14 @@ void ImGuiManager::Render(GameContext& context)
 
 		ImGui::NewFrame();
 	}
+}
 
-	// ウィンドウ
-	for (auto itr = m_windows.begin(); itr != m_windows.end();)
-	{
-		auto& window = *itr;
-		if (!window->IsDestroyed())
-		{
-			window->Build(context);
-			++itr;
-		}
-		else
-		{
-			itr = m_windows.erase(itr);
-		}
-	}
+void ImGuiManager::Render(GameContext& context)
+{
+}
 
+void ImGuiManager::AfterRender(GameContext& context)
+{
 	// Rendering
 	{
 		ImGui::Render();

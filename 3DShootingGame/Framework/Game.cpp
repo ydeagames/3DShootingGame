@@ -179,6 +179,9 @@ void Game::Render()
 	// ‚±‚±‚©‚ç•`‰æ
     m_deviceResources->PIXBeginEvent(L"Render");
 
+	// GUI
+	Get<ImGuiManager>().BeforeRender(*this);
+
     // TODO: Add your rendering code here.
 	auto& physics = Get<PhysXManager>();
 	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
@@ -191,7 +194,7 @@ void Game::Render()
 	}
 
 	// GUI
-	Get<ImGuiManager>().Render(*this);
+	Get<ImGuiManager>().AfterRender(*this);
 
 	// FPS
 	auto& fps = Get<FPS>();

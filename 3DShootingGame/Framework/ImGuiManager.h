@@ -11,14 +11,7 @@ public:
 	~ImGuiManager();
 
 private:
-	std::vector<std::shared_ptr<ISceneBuilder>> m_windows;
 	std::string m_settingFile;
-
-public:
-	void Add(const std::shared_ptr<ISceneBuilder>& window)
-	{
-		m_windows.push_back(window);
-	}
 
 public:
 	// ê∂ê¨
@@ -26,7 +19,9 @@ public:
 	// çXêV
 	void Update(GameContext& context);
 	// ï`âÊ
+	void BeforeRender(GameContext& context);
 	void Render(GameContext& context);
+	void AfterRender(GameContext& context);
 	// îjä¸
 	void Finalize(GameContext& context);
 };

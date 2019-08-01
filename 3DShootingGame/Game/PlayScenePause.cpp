@@ -43,47 +43,30 @@ void PlayScenePause::Build(GameContext& context)
 
 	struct Menu : public Component
 	{
-		std::shared_ptr<ISceneBuilder> m_window;
-
-		void Initialize(GameContext& context)
-		{
-			struct PauseWindow : public ISceneBuilder
-			{
-				std::wstring GetName() const override { return L"PauseWindow"; }
-				void Build(GameContext& context)
-				{
-					ImGui::SetNextWindowPosCenter();
-					ImGui::SetNextWindowSize(ImVec2(230, 230));
-					ImGui::Begin(u8"ゲームメニュー", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
-					if (ImGui::Button(u8"ゲーム続行", ImVec2(200, 50)))
-					{
-						context.GetPauseHandler().SetPaused(context, false);
-					}
-					if (ImGui::Button(u8"リスタート", ImVec2(200, 50)))
-					{
-						context.GetSceneManager().LoadSceneWithTransition(L"PlayScene");
-					}
-					if (ImGui::Button(u8"タイトルに戻る", ImVec2(200, 50)))
-					{
-						context.GetSceneManager().LoadSceneWithTransition(L"TitleScene");
-					}
-					ImGui::End();
-				}
-			};
-
-			m_window = std::make_shared<PauseWindow>();
-			context.GetGuiManager().Add(m_window);
-		}
-
 		void Update(GameContext& context)
 		{
 			if (Input::GetKeyDown(Keyboard::Keys::Escape))
 				context.GetPauseHandler().SetPaused(context, false);
 		}
 
-		void Finalize(GameContext& context)
+		void Render(GameContext& context)
 		{
-			Destroy(*m_window);
+			ImGui::SetNextWindowPosCenter();
+			ImGui::SetNextWindowSize(ImVec2(230, 230));
+			ImGui::Begin(u8"ゲームメニュー", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
+			if (ImGui::Button(u8"ゲーム続行", ImVec2(200, 50)))
+			{
+				context.GetPauseHandler().SetPaused(context, false);
+			}
+			if (ImGui::Button(u8"リスタート", ImVec2(200, 50)))
+			{
+				context.GetSceneManager().LoadSceneWithTransition(L"PlayScene");
+			}
+			if (ImGui::Button(u8"タイトルに戻る", ImVec2(200, 50)))
+			{
+				context.GetSceneManager().LoadSceneWithTransition(L"TitleScene");
+			}
+			ImGui::End();
 		}
 	};
 	auto menu = scene.AddGameObject();
