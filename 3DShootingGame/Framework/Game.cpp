@@ -13,9 +13,9 @@
 
 #include "GameObject.h"
 #include "GameContext.h"
-#include "Scene.h"
-#include "SceneManager.h"
 #include "GameCamera.h"
+#include <Framework/SceneManagement/Scene.h>
+#include <Framework/SceneManagement/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include "ImGuiManager.h"
 #include "SaveHandler.h"

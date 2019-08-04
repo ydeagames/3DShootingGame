@@ -1,5 +1,5 @@
 #pragma once
-#include "ISceneBuilder.h"
+#include <Framework/ISceneBuilder.h>
 
 // シーンオプション
 enum class LoadSceneMode

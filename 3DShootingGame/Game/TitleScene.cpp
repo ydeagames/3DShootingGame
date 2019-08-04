@@ -4,8 +4,8 @@
 #include <Utilities/Input.h>
 #include <Framework/ImGuiManager.h>
 #include <Framework/PauseHandler.h>
-#include <Framework/Scene.h>
-#include <Framework/SceneManager.h>
+#include <Framework/SceneManagement/Scene.h>
+#include <Framework/SceneManagement/SceneManager.h>
 #include <Framework/ExitHandler.h>
 
 using namespace DirectX;

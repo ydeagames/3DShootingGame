@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "BaseScene.h"
 #include "SceneCommons.h"
-#include <Framework/SceneManager.h>
+#include <Framework/SceneManagement/Scene.h>
+#include <Framework/SceneManagement/SceneManager.h>
 #include <Framework/DebugTools/DebugCameraWrapper.h>
 #include <Framework/DebugTools/GridFloorWrapper.h>
 #include <Utilities/Input.h>

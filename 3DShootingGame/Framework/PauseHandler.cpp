@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "PauseHandler.h"
 #include "GameContext.h"
-#include "SceneManager.h"
-#include "Scene.h"
+#include <Framework/SceneManagement/Scene.h>
+#include <Framework/SceneManagement/SceneManager.h>
 
 namespace
 {

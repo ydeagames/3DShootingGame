@@ -14,8 +14,9 @@
 #include <SimpleMath.h>
 
 #include "GameContext.h"
-#include "Scene.h"
-#include "SceneManager.h"
+
+#include <Framework/SceneManagement/Scene.h>
+#include <Framework/SceneManagement/SceneManager.h>
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.

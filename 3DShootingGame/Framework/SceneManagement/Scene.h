@@ -1,7 +1,7 @@
 #pragma once
-#include "Component.h"
-#include "ObjectField.h"
-#include "GameContext.h"
+#include <Framework/Component.h>
+#include <Framework/ObjectField.h>
+#include <Framework/GameContext.h>
 #include <Utilities/TypeId.h>
 
 class GameObject;

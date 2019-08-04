@@ -1,13 +1,13 @@
 #include "pch.h"
 #include "PlayScene.h"
 #include "SceneCommons.h"
-#include <Framework/SceneManager.h>
+#include <Framework/SceneManagement/Scene.h>
+#include <Framework/SceneManagement/SceneManager.h>
 #include <Framework/DebugTools/DebugCameraWrapper.h>
 #include <Framework/DebugTools/GridFloorWrapper.h>
 #include <Utilities/Input.h>
 #include <Utilities/MathUtils.h>
 #include <Utilities/Random.h>
-#include <Framework/Scene.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/PhysX/PhysXScene.h>
 #include <Framework/ImGuiManager.h>

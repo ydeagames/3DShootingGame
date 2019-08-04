@@ -56,6 +56,9 @@
     <Filter Include="Libraries\entt\signal">
       <UniqueIdentifier>{40bd6c40-54c1-4991-a038-0e84b7707d83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\SceneManagement">
+      <UniqueIdentifier>{93cb9e8a-6484-4eda-827f-c685444c9f8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -69,12 +72,6 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\ISceneBuilder.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Scene.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneManager.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Transform.h">
@@ -299,17 +296,17 @@
     <ClInclude Include="Libraries\entt\entt.hpp">
       <Filter>Libraries\entt</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\SceneManagement\Scene.h">
+      <Filter>Framework\SceneManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SceneManagement\SceneManager.h">
+      <Filter>Framework\SceneManagement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Framework\Game.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Scene.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneManager.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -401,6 +398,12 @@
     </ClCompile>
     <ClCompile Include="Framework\Transform.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SceneManagement\Scene.cpp">
+      <Filter>Framework\SceneManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SceneManagement\SceneManager.cpp">
+      <Filter>Framework\SceneManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

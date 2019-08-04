@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "LogoScene.h"
 #include "SceneCommons.h"
-#include <Framework/Scene.h>
-#include <Framework/SceneManager.h>
+#include <Framework/SceneManagement/Scene.h>
+#include <Framework/SceneManagement/SceneManager.h>
 
 void LogoScene::Build(GameContext& context)
 {

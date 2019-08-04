@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Rigidbody.h"
 #include "GameContext.h"
-#include "Scene.h"
 #include "GameObject.h"
+#include <Framework/SceneManagement/Scene.h>
+#include <Framework/SceneManagement/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/PhysX/PhysXScene.h>
 
