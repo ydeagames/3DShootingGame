@@ -272,6 +272,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Common\StepTimer.h" />
     <ClInclude Include="Utilities\AspectUtils.h" />
+    <ClInclude Include="Utilities\BinaryFile.h" />
     <ClInclude Include="Utilities\Event.h" />
     <ClInclude Include="Utilities\FPS.h" />
     <ClInclude Include="Utilities\HashedString.h" />
@@ -325,6 +326,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Utilities\AspectUtils.cpp" />
+    <ClCompile Include="Utilities\BinaryFile.cpp" />
     <ClCompile Include="Utilities\Input.cpp" />
     <ClCompile Include="Utilities\MathUtils.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
@@ -352,16 +354,16 @@
     </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shaders\Assets\Particle.hlsli" />
+    <None Include="Resources\Shaders\Assets\RuleTransition.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Resources\Shaders\Assets\ParticlePS.hlsl">
+    <FxCompile Include="Resources\Shaders\Assets\RuleTransitionPS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="Resources\Shaders\Assets\ParticleVS.hlsl">
+    <FxCompile Include="Resources\Shaders\Assets\RuleTransitionVS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>

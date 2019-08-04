@@ -1,4 +1,4 @@
-#include "Particle.hlsli"
+#include "RuleTransition.hlsli"
 
 PS_INPUT main(VS_INPUT input)
 {

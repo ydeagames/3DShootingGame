@@ -6,6 +6,7 @@
 #include <Framework/PauseHandler.h>
 #include <Framework/SceneManagement/Scene.h>
 #include <Framework/SceneManagement/SceneManager.h>
+#include <Framework/SceneManagement/SceneTransitions.h>
 #include <Framework/ExitHandler.h>
 
 using namespace DirectX;
@@ -63,7 +64,7 @@ void TitleScene::Build(GameContext& context)
 			ImGui::Begin(u8"スリングヒーローズ", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
 			if (ImGui::Button(u8"ゲームスタート", ImVec2(200, 50)))
 			{
-				context.GetSceneManager().LoadSceneWithTransition(L"PlayScene");
+				context.GetSceneManager().LoadSceneWithTransition(L"PlayScene", SceneTransitions::CreateRuleTransition(3));
 			}
 			if (ImGui::Button(u8"オプション", ImVec2(200, 50)))
 			{

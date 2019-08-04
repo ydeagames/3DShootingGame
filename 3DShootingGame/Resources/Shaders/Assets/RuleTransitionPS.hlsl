@@ -1,4 +1,4 @@
-#include "Particle.hlsli"
+#include "RuleTransition.hlsli"
 
 Texture2D _MainTex : register(t0);
 Texture2D _MaskTex : register(t1);
