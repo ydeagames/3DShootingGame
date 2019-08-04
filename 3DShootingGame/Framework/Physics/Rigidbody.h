@@ -1,9 +1,9 @@
 #pragma once
-#include "Component.h"
+#include "Collider.h"
+#include <Framework/Component.h>
 #include <Utilities/Property.h>
 #include <Framework/PhysX/PhysXCommons.h>
-#include "Transform.h"
-#include "Collider.h"
+#include <Framework/Transform.h>
 
 class GameContext;
 

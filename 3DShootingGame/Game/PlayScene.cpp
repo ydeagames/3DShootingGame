@@ -12,8 +12,8 @@
 #include <Framework/PhysX/PhysXScene.h>
 #include <Framework/ImGui/ImGuiManager.h>
 #include <Framework/PauseHandler.h>
-#include <Framework/Collider.h>
-#include <Framework/Rigidbody.h>
+#include <Framework/Physics/Collider.h>
+#include <Framework/Physics/Rigidbody.h>
 #include "InfinityGridFloor.h"
 
 using namespace DirectX;

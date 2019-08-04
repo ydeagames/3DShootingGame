@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Collider.h"
-#include "GameContext.h"
+#include <Framework/GameContext.h>
 #include <Framework/PhysX/PhysXManager.h>
 
 using namespace DirectX;

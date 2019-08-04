@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Rigidbody.h"
-#include "GameContext.h"
-#include "GameObject.h"
+#include <Framework/GameContext.h>
+#include <Framework/GameObject.h>
 #include <Framework/SceneManagement/Scene.h>
 #include <Framework/SceneManagement/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
