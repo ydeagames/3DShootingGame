@@ -308,6 +308,12 @@
     <ClInclude Include="Framework\Physics\Rigidbody.h">
       <Filter>Framework\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\SceneManagement\SceneTransitions.h">
+      <Filter>Framework\SceneManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SceneManagement\SceneTransition.h">
+      <Filter>Framework\SceneManagement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -410,6 +416,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Physics\Rigidbody.cpp">
       <Filter>Framework\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp">
+      <Filter>Framework\SceneManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

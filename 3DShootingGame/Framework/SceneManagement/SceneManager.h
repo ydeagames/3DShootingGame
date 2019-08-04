@@ -1,25 +1,14 @@
 #pragma once
 #include <Framework/ISceneBuilder.h>
 
+class SceneTransition;
+
 // シーンオプション
 enum class LoadSceneMode
 {
 	Single,
 	Additive,
 };
-
-// シーン遷移
-class SceneTransition : public Component
-{
-public:
-	std::function<void(GameContext&)> unloadBefore;
-	std::function<void(GameContext&)> loadAfter;
-};
-
-namespace SceneTransitions
-{
-	std::shared_ptr<SceneTransition> CreateFadeTransition(float duration);
-}
 
 // シーンビュー
 struct SceneView : public Component
@@ -81,5 +70,6 @@ public:
 	bool IsSceneValid(const std::wstring& name);
 	void ProcessScene(GameContext& context);
 
-	void LoadSceneWithTransition(const std::wstring& name, const std::shared_ptr<SceneTransition>& transition = SceneTransitions::CreateFadeTransition(2.f));
+	void LoadSceneWithTransition(const std::wstring& name, const std::shared_ptr<SceneTransition>& transition);
+	void LoadSceneWithTransition(const std::wstring& name);
 };

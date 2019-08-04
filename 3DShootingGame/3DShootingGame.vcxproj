@@ -217,6 +217,8 @@
     <ClInclude Include="Framework\SaveHandler.h" />
     <ClInclude Include="Framework\SceneManagement\Scene.h" />
     <ClInclude Include="Framework\SceneManagement\SceneManager.h" />
+    <ClInclude Include="Framework\SceneManagement\SceneTransition.h" />
+    <ClInclude Include="Framework\SceneManagement\SceneTransitions.h" />
     <ClInclude Include="Framework\SerializedField.h" />
     <ClInclude Include="Framework\Transform.h" />
     <ClInclude Include="Framework\WindowHandler.h" />
@@ -292,6 +294,7 @@
     <ClCompile Include="Framework\SaveHandler.cpp" />
     <ClCompile Include="Framework\SceneManagement\Scene.cpp" />
     <ClCompile Include="Framework\SceneManagement\SceneManager.cpp" />
+    <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp" />
     <ClCompile Include="Framework\SerializedField.cpp" />
     <ClCompile Include="Framework\Transform.cpp" />
     <ClCompile Include="Game\BaseScene.cpp" />
