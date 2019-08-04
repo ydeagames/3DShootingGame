@@ -65,6 +65,12 @@
     <Filter Include="Framework\Physics">
       <UniqueIdentifier>{968b202d-8ad8-45fc-b895-d2e54b4b2abc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Models">
+      <UniqueIdentifier>{9b5cb267-9962-4216-93b7-bafe3443cf78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{a4e9b9d3-6215-4d78-a9b4-4d9590eec3bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -440,11 +446,24 @@
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Resources\Models\igaguri.fbx">
-      <Filter>Assets</Filter>
+    <MeshContentTask Include="Resources\Models\Assets\igaguri.fbx">
+      <Filter>Assets\Models</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="Resources\Models\target.fbx">
-      <Filter>Assets</Filter>
+    <MeshContentTask Include="Resources\Models\Assets\target.fbx">
+      <Filter>Assets\Models</Filter>
     </MeshContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\Assets\Particle.hlsli">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resources\Shaders\Assets\ParticlePS.hlsl">
+      <Filter>Assets\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\ParticleVS.hlsl">
+      <Filter>Assets\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

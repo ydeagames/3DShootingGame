@@ -28,6 +28,20 @@
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
+  
+  <!-- モデル -->
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\MeshContentTask.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup>
+    <MeshContentTask>
+      <ContentOutput>$(ProjectDir)Resources\Models\%(Filename).cmo</ContentOutput>
+    </MeshContentTask>
+    <FxCompile>
+      <ObjectFileOutput>$(ProjectDir)Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+  </ItemDefinitionGroup>
 
   <ItemGroup />
 </Project>
