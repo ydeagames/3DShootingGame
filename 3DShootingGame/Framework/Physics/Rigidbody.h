@@ -1,7 +1,6 @@
 #pragma once
 #include "Collider.h"
 #include <Framework/Component.h>
-#include <Utilities/Property.h>
 #include <Framework/PhysX/PhysXCommons.h>
 #include <Framework/Transform.h>
 
@@ -54,21 +53,20 @@ public:
 		isStatic = staticFlag;
 	}
 
-	Property<std::shared_ptr<Transform>> transform = {
-		[&]()
-		{
-			auto t = std::make_shared<Transform>();
-			auto trans = rigid->getGlobalPose();
-			t->position = physx::fromPhysX(trans.p);
-			t->rotation = physx::fromPhysX(trans.q);
-			return t;
-		},
-		[&](const std::shared_ptr<Transform> & value)
-		{
-			physx::PxTransform trans;
-			trans.p = physx::toPhysX(value->position);
-			trans.q = physx::toPhysX(value->rotation);
-			rigid->setGlobalPose(trans);
-		}
-	};
+	Transform GetTransform()
+	{
+		Transform t;
+		auto trans = rigid->getGlobalPose();
+		t.position = physx::fromPhysX(trans.p);
+		t.rotation = physx::fromPhysX(trans.q);
+		return t;
+	}
+	void SetTransform(const Transform& value)
+	{
+		physx::PxTransform trans;
+		trans.p = physx::toPhysX(value.position);
+		trans.q = physx::toPhysX(value.rotation);
+		rigid->setGlobalPose(trans);
+	}
+	__declspec(property(get = GetTransform, put = SetTransform)) Transform transform;
 };
