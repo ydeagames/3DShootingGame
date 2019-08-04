@@ -361,16 +361,16 @@ void PlayScene::Build(GameContext& context)
 		ObjectField<Transform> player;
 		void Update(GameContext& context)
 		{
-			gameObject->transform->position = Vector3::Lerp(gameObject->transform->position, player->position + Vector3::Up * 2, .25f);
+			gameObject->transform->position = Vector3::Lerp(gameObject->transform->position, player->position, .25f);
 		}
 	};
 
 	{
 		auto player = scene.AddGameObject();
-		player->AddComponent<GeometricObject>(
-			[](GameContext& context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
-			Color(Colors::Blue)
-			);
+		//player->AddComponent<GeometricObject>(
+		//	[](GameContext& context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
+		//	Color(Colors::Blue)
+		//	);
 		player->AddComponent<PlayerBehaviour>();
 		auto rigidbody = player->AddComponent<Rigidbody>();
 		auto col = rigidbody->Add(std::make_shared<BoxCollider>());
@@ -397,7 +397,7 @@ void PlayScene::Build(GameContext& context)
 	struct TargetGenerator : public Component
 	{
 		float time = 0;
-		float span = 1;
+		float span = 10;
 
 		std::unique_ptr<Model> m_model;
 
