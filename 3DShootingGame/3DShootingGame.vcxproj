@@ -265,6 +265,7 @@
     <ClInclude Include="Utilities\AspectUtils.h" />
     <ClInclude Include="Utilities\Event.h" />
     <ClInclude Include="Utilities\FPS.h" />
+    <ClInclude Include="Utilities\HashedString.h" />
     <ClInclude Include="Utilities\Input.h" />
     <ClInclude Include="Utilities\MathUtils.h" />
     <ClInclude Include="Utilities\MemoryLeakDetector.h" />
