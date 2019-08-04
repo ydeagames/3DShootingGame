@@ -59,6 +59,9 @@
     <Filter Include="Framework\SceneManagement">
       <UniqueIdentifier>{93cb9e8a-6484-4eda-827f-c685444c9f8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\ImGui">
+      <UniqueIdentifier>{653870b9-633f-4429-9e86-214f8ba913a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -179,9 +182,6 @@
     <ClInclude Include="Libraries\picojson.h">
       <Filter>Libraries</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\ImGuiManager.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Game\PlayScenePause.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -189,9 +189,6 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\SaveHandler.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ImGuiStyles.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\WindowHandler.h">
@@ -302,6 +299,12 @@
     <ClInclude Include="Framework\SceneManagement\SceneManager.h">
       <Filter>Framework\SceneManagement</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\ImGui\ImGuiManager.h">
+      <Filter>Framework\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ImGui\ImGuiStyles.h">
+      <Filter>Framework\ImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -372,9 +375,6 @@
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp">
       <Filter>Framework\PhysX</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\ImGuiManager.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Game\PlayScenePause.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -382,9 +382,6 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Framework\SaveHandler.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\ImGuiStyles.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Rigidbody.cpp">
@@ -404,6 +401,12 @@
     </ClCompile>
     <ClCompile Include="Framework\SceneManagement\SceneManager.cpp">
       <Filter>Framework\SceneManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ImGui\ImGuiManager.cpp">
+      <Filter>Framework\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ImGui\ImGuiStyles.cpp">
+      <Filter>Framework\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

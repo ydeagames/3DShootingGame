@@ -2,7 +2,7 @@
 #include "TitleScene.h"
 #include "SceneCommons.h"
 #include <Utilities/Input.h>
-#include <Framework/ImGuiManager.h>
+#include <Framework/ImGui/ImGuiManager.h>
 #include <Framework/PauseHandler.h>
 #include <Framework/SceneManagement/Scene.h>
 #include <Framework/SceneManagement/SceneManager.h>

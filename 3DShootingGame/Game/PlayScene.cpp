@@ -10,7 +10,7 @@
 #include <Utilities/Random.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/PhysX/PhysXScene.h>
-#include <Framework/ImGuiManager.h>
+#include <Framework/ImGui/ImGuiManager.h>
 #include <Framework/PauseHandler.h>
 #include <Framework/Collider.h>
 #include <Framework/Rigidbody.h>

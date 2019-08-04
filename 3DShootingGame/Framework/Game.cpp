@@ -17,7 +17,7 @@
 #include <Framework/SceneManagement/Scene.h>
 #include <Framework/SceneManagement/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
-#include "ImGuiManager.h"
+#include <Framework/ImGui/ImGuiManager.h>
 #include "SaveHandler.h"
 #include "PauseHandler.h"
 #include <Utilities/FPS.h>

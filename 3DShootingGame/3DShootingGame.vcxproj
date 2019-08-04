@@ -204,7 +204,7 @@
     <ClInclude Include="Framework\GameCamera.h" />
     <ClInclude Include="Framework\GameContext.h" />
     <ClInclude Include="Framework\GameObject.h" />
-    <ClInclude Include="Framework\ImGuiManager.h" />
+    <ClInclude Include="Framework\ImGui\ImGuiManager.h" />
     <ClInclude Include="Framework\ISceneBuilder.h" />
     <ClInclude Include="Framework\Object.h" />
     <ClInclude Include="Framework\ObjectField.h" />
@@ -229,7 +229,7 @@
     <ClInclude Include="Game\ResultScene.h" />
     <ClInclude Include="Game\SceneCommons.h" />
     <ClInclude Include="Game\TitleScene.h" />
-    <ClInclude Include="Framework\ImGuiStyles.h" />
+    <ClInclude Include="Framework\ImGui\ImGuiStyles.h" />
     <ClInclude Include="Libraries\entt\config\config.h" />
     <ClInclude Include="Libraries\entt\core\algorithm.hpp" />
     <ClInclude Include="Libraries\entt\core\family.hpp" />
@@ -283,7 +283,7 @@
     <ClCompile Include="Framework\DebugTools\GridFloorWrapper.cpp" />
     <ClCompile Include="Framework\Game.cpp" />
     <ClCompile Include="Framework\GameCamera.cpp" />
-    <ClCompile Include="Framework\ImGuiManager.cpp" />
+    <ClCompile Include="Framework\ImGui\ImGuiManager.cpp" />
     <ClCompile Include="Framework\PauseHandler.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXManager.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXRenderer.cpp" />
@@ -303,7 +303,7 @@
     <ClCompile Include="Game\ResultScene.cpp" />
     <ClCompile Include="Game\SceneCommons.cpp" />
     <ClCompile Include="Game\TitleScene.cpp" />
-    <ClCompile Include="Framework\ImGuiStyles.cpp" />
+    <ClCompile Include="Framework\ImGui\ImGuiStyles.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
