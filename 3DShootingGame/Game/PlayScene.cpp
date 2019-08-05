@@ -14,6 +14,7 @@
 #include <Framework/PauseHandler.h>
 #include <Framework/Physics/Collider.h>
 #include <Framework/Physics/Rigidbody.h>
+#include <Framework/WindowHandler.h>
 #include "InfinityGridFloor.h"
 
 using namespace DirectX;
@@ -444,4 +445,58 @@ void PlayScene::Build(GameContext& context)
 	};
 	auto targen = scene.AddGameObject();
 	targen->AddComponent<TargetGenerator>();
+
+	struct CenterUI : public Component
+	{
+		std::unique_ptr<GeometricPrimitive> m_plane;
+		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+
+		void Initialize(GameContext& context)
+		{
+			std::vector<GeometricPrimitive::VertexType> vertices = {
+				{ Vector3(-0.5f, +0.5f, 0.0f), Vector3::Forward, Vector2(0.0f, 0.0f) },
+				{ Vector3(+0.5f, +0.5f, 0.0f), Vector3::Forward, Vector2(1.0f, 0.0f) },
+				{ Vector3(+0.5f, -0.5f, 0.0f), Vector3::Forward, Vector2(1.0f, 1.0f) },
+				{ Vector3(-0.5f, -0.5f, 0.0f), Vector3::Forward, Vector2(0.0f, 1.0f) },
+			};
+			std::vector<uint16_t> indices = {
+				0, 1, 2, 0, 2, 3,
+			};
+			m_plane = GeometricPrimitive::CreateCustom(context.GetDR().GetD3DDeviceContext(), vertices, indices);
+
+			DX::ThrowIfFailed(CreateWICTextureFromFile(
+				context.GetDR().GetD3DDevice(), context.GetDR().GetD3DDeviceContext(),
+				L"Resources/Textures/UI/Center.png", nullptr, m_texture.ReleaseAndGetAddressOf()));
+		}
+
+		void Render(GameContext& context)
+		{
+			auto device = context.GetDR().GetD3DDevice();
+			auto ctx = context.GetDR().GetD3DDeviceContext();
+
+			auto size = context.Get<WindowHandler>().GetSize();
+			m_plane->Draw(SimpleMath::Matrix::CreateScale(Vector3(size.x, size.y, 1.f)).Invert() * Matrix::CreateScale(64), Matrix::Identity, Matrix::Identity, Colors::White, m_texture.Get(), false, [&]() {
+				ID3D11BlendState* pBlendState = NULL;
+				D3D11_BLEND_DESC BlendDesc;
+				ZeroMemory(&BlendDesc, sizeof(BlendDesc));
+				BlendDesc.AlphaToCoverageEnable = FALSE;
+				BlendDesc.IndependentBlendEnable = FALSE;
+				BlendDesc.RenderTarget[0].BlendEnable = TRUE;
+				BlendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_INV_DEST_COLOR;
+				BlendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_COLOR;
+				BlendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+				BlendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+				BlendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_DEST_ALPHA;
+				BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+				BlendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+				float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+				device->CreateBlendState(&BlendDesc, &pBlendState);
+
+				ctx->OMSetBlendState(pBlendState, blendFactor, 0xFFFFFFFF);
+			});
+		}
+	};
+	auto background = scene.AddGameObject();
+	background->AddComponent<CenterUI>();
 }

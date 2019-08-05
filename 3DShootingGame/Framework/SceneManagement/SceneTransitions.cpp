@@ -115,8 +115,8 @@ namespace SceneTransitions
 			m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>>(ctx);
 
 			// コンパイルされたシェーダファイルを読み込み
-			BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ParticleVS.cso");
-			BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/ParticlePS.cso");
+			BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/RuleTransitionVS.cso");
+			BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/RuleTransitionPS.cso");
 
 			// インプットレイアウト生成
 			device->CreateInputLayout(VertexPositionTexture::InputElements,
