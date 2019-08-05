@@ -7,6 +7,7 @@
 
 class GameContext;
 
+#ifdef DONT_USE_ENTT
 template <typename T>
 struct hasParent {
 private:
@@ -148,4 +149,94 @@ public:
 			component->Finalize(context);
 	}
 };
+#else
 
+// ゲームオブジェクト
+class GameObject final : public Object, public std::enable_shared_from_this<GameObject>
+{
+private:
+	entt::DefaultActor m_actor;
+
+public:
+	std::reference_wrapper<Transform> transform;
+
+public:
+	template<typename T, typename... Args>
+	T& AddComponent(Args&& ... args)
+	{
+		return m_actor.assign<T>(std::forward<Args>(args)...);
+	}
+
+	template<typename T>
+	T& GetComponent()
+	{
+		return m_actor.get<T>();
+	}
+
+private:
+	GameObject(const std::wstring& name)
+		: m_name(name)
+	{
+		transform = std::ref(AddComponent<Transform>());
+	}
+
+public:
+	~GameObject() = default;
+
+	static ObjectHolder<GameObject> Create(const std::wstring& name = L"GameObject")
+	{
+		return ObjectHolder<GameObject>::CreateFromUniqueSharedPtr(std::shared_ptr<GameObject>(new GameObject(name)));
+	}
+
+	std::wstring GetName() const override { return m_name; }
+	std::wstring GetType() const override { return L"GameObject"; }
+
+public:
+	// 生成
+	void Initialize(GameContext& context)
+	{
+		for (auto& component : m_components)
+			component->Initialize(context);
+	}
+
+	// 更新
+	void Update(GameContext& context)
+	{
+		for (auto& component : m_addingComponents)
+			component->Initialize(context);
+		m_components.splice(m_components.end(), std::move(m_addingComponents));
+
+		for (auto& component : m_components)
+			component->Update(context);
+
+		for (auto itr = m_components.begin(); itr != m_components.end();)
+		{
+			auto& component = *itr;
+			if (component->IsDestroyed())
+			{
+				component->Finalize(context);
+				itr = m_components.erase(itr);
+			}
+			else
+			{
+				++itr;
+			}
+		}
+	}
+
+	// 描画
+	void Render(GameContext& context)
+	{
+		for (auto& component : m_components)
+			component->Render(context);
+	}
+
+	// 破棄
+	void Finalize(GameContext& context)
+	{
+		for (auto& component : m_components)
+			component->Finalize(context);
+	}
+};
+
+#endif
