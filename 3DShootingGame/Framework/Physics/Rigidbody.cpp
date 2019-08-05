@@ -44,5 +44,8 @@ void Rigidbody::Update(GameContext& context)
 
 void Rigidbody::Finalize(GameContext& context)
 {
+	auto scene = rigid->getScene();
+	if (scene)
+		scene->removeActor(*rigid);
 	px_release(rigid);
 }

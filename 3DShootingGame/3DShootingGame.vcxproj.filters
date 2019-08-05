@@ -458,6 +458,9 @@
     <MeshContentTask Include="Resources\Models\Assets\target.fbx">
       <Filter>Assets\Models</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Resources\Models\Assets\Terrain.obj">
+      <Filter>Assets\Models</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\Assets\RuleTransitionPS.hlsl">

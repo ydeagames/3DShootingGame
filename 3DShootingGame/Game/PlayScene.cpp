@@ -15,6 +15,7 @@
 #include <Framework/Physics/Collider.h>
 #include <Framework/Physics/Rigidbody.h>
 #include <Framework/WindowHandler.h>
+#include <Utilities/BinaryFile.h>
 #include "InfinityGridFloor.h"
 
 using namespace DirectX;
@@ -186,6 +187,52 @@ void PlayScene::Build(GameContext& context)
 			scene.CreateObject(*rigid);
 		}
 	};
+	struct Terrain : public Component
+	{
+		std::unique_ptr<Model> m_model;
+
+		void Initialize(GameContext& context)
+		{
+			auto& manager = context.GetPhysics();
+			auto& scene = context.GetPhysicsScene();
+
+			Transform localTransform;
+			auto trans = physx::PxTransform(physx::toPhysX(gameObject->transform->position), physx::toPhysX(gameObject->transform->rotation));
+			auto rigid = manager.GetPhysics()->createRigidStatic(trans);
+			auto material = manager.CreateMaterial(PhysicsMaterials::Wood);
+
+			int numRows = 33, numCols = 33;
+
+			BinaryFile HFData = BinaryFile::LoadFile(L"Resources/Textures/Play/Terrain.raw");
+			physx::PxHeightFieldSample* samples = new physx::PxHeightFieldSample[numRows * numCols];
+			uint16_t* Int16HFData = reinterpret_cast<uint16_t*>(HFData.GetData());
+			for (int i = 0; i < numRows * numCols; i++)
+				samples[i].height = Int16HFData[i];
+
+			physx::PxHeightFieldDesc hfDesc;
+			hfDesc.format = physx::PxHeightFieldFormat::eS16_TM;
+			hfDesc.nbColumns = numCols;
+			hfDesc.nbRows = numRows;
+			hfDesc.samples.data = samples;
+			hfDesc.samples.stride = sizeof(physx::PxHeightFieldSample);
+
+			physx::PxHeightField* hf = manager.GetCooking()->createHeightField(hfDesc,
+				manager.GetPhysics()->getPhysicsInsertionCallback());
+
+			auto geo = physx::PxHeightFieldGeometry(hf, physx::PxMeshGeometryFlags(), 1.f / 256, 1.f * 4, 1.f * 4);
+			auto shape = manager.GetPhysics()->createShape(geo, *material);
+			shape->setLocalPose(physx::PxTransform(physx::toPhysX(localTransform.position), physx::toPhysX(localTransform.rotation)));
+			rigid->attachShape(*shape);
+			scene.CreateObject(*rigid);
+
+			m_model = Model::CreateFromCMO(context.GetDR().GetD3DDevice(), L"Resources/Models/Terrain.cmo", context.GetEffectFactory());
+		}
+
+		void Render(GameContext& context)
+		{
+			m_model->Draw(context.GetDR().GetD3DDeviceContext(), context.GetStates(), gameObject->transform->GetMatrix() * Matrix::CreateRotationY(XM_PIDIV2), context.GetCamera().view, context.GetCamera().projection);
+		}
+	};
 	struct InfinityGridFloorWrapper : public Component
 	{
 		// ƒOƒŠƒbƒh°
@@ -202,12 +249,15 @@ void PlayScene::Build(GameContext& context)
 			m_pGridFloor->draw(context, Colors::White);
 		}
 	};
+	auto terrain = scene.AddGameObject(L"Terrain");
+	//terrain->AddComponent<GridFloorWrapper>();
+	terrain->AddComponent<InfinityGridFloorWrapper>();
+	terrain->AddComponent<Plane>();
+	terrain->AddComponent<Terrain>();
+
 	auto camera = scene.AddGameObject();
 	//camCtrl->AddComponent<DebugCameraWrapper>();
 	camera->AddComponent<FPSCamera>();
-	//camera->AddComponent<GridFloorWrapper>();
-	camera->AddComponent<InfinityGridFloorWrapper>();
-	camera->AddComponent<Plane>();
 
 	struct Skydoom : public Component
 	{
@@ -323,8 +373,8 @@ void PlayScene::Build(GameContext& context)
 			if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
 			{
 				auto& scene = context.GetScene();
-				auto bullet = scene.AddGameObject();
-				auto bulletModel = scene.AddGameObject(L"Bullet");
+				auto bullet = scene.AddGameObject(L"Bullet");
+				auto bulletModel = scene.AddGameObject(L"BulletModel");
 				bulletModel->AddComponent<ModelRenderer>(m_model.get());
 				bulletModel->transform->parent = *bullet->transform;
 				bulletModel->transform->localScale = Vector3(.0175f);
@@ -383,7 +433,7 @@ void PlayScene::Build(GameContext& context)
 
 	for (int i = 0; i < 100; i++)
 	{
-		auto box = scene.AddGameObject();
+		auto box = scene.AddGameObject(L"Cube");
 		box->transform->localScale = Vector3(float(Random::Range(1, 10)), float(Random::Range(1, 5)), float(Random::Range(1, 10)));
 		box->transform->localPosition = Vector3(float(Random::Range(-50, 50)), float(Random::Range(3, 50)), float(Random::Range(-50, 50)));
 		box->AddComponent<GeometricObject>(

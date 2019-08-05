@@ -30,10 +30,6 @@
   </ItemDefinitionGroup>
   
   <!-- モデル -->
-  <ImportGroup Label="ExtensionSettings">
-    <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.props" />
-    <Import Project="$(VCTargetsPath)\BuildCustomizations\MeshContentTask.props" />
-  </ImportGroup>
   <ItemDefinitionGroup>
     <MeshContentTask>
       <ContentOutput>$(ProjectDir)Resources\Models\%(Filename).cmo</ContentOutput>

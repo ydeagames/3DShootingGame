@@ -14,7 +14,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies>PhysX_$(PlatformArchitecture).lib;PhysXCommon_$(PlatformArchitecture).lib;PhysXFoundation_$(PlatformArchitecture).lib;%(AdditionalDependencies);PhysXPvdSDK_static_$(PlatformArchitecture).lib;PhysXExtensions_static_$(PlatformArchitecture).lib</AdditionalDependencies>
+      <AdditionalDependencies>PhysX_$(PlatformArchitecture).lib;PhysXCommon_$(PlatformArchitecture).lib;PhysXFoundation_$(PlatformArchitecture).lib;PhysXCooking_$(PlatformArchitecture).lib;PhysXPvdSDK_static_$(PlatformArchitecture).lib;PhysXExtensions_static_$(PlatformArchitecture).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
 

@@ -25,6 +25,7 @@ private:
 
 	px_unique_ptr<physx::PxDefaultCpuDispatcher>	m_dispatcher;
 
+	px_unique_ptr<physx::PxCooking>					m_cooking;
 	px_unique_ptr<physx::PxPhysics>					m_physics;
 	px_unique_ptr<physx::PxFoundation>				m_foundation;
 
@@ -36,6 +37,11 @@ public:
 	physx::PxPhysics* GetPhysics()
 	{
 		return m_physics.get();
+	}
+
+	physx::PxCooking* GetCooking()
+	{
+		return m_cooking.get();
 	}
 
 	physx::PxPvd* GetPvd()
