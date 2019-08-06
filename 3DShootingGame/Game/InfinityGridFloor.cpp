@@ -37,10 +37,10 @@ InfinityGridFloor::InfinityGridFloor(GameContext& ctx, float cellsize, const Dir
 	void const* shaderByteCode;
 	size_t byteCodeLength;
 	m_basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
-	device->CreateInputLayout(DirectX::VertexPositionColor::InputElements,
+	DX::ThrowIfFailed(device->CreateInputLayout(DirectX::VertexPositionColor::InputElements,
 		DirectX::VertexPositionColor::InputElementCount,
 		shaderByteCode, byteCodeLength,
-		m_pInputLayout.GetAddressOf());
+		m_pInputLayout.ReleaseAndGetAddressOf()));
 }
 
 // デストラクタ

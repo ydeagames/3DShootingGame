@@ -286,7 +286,7 @@ void PlayScene::Build(GameContext& context)
 			m_pBasicEffect->SetDiffuseColor(SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
 
 			// シェーダー取得
-			m_skydoom->CreateInputLayout(m_pBasicEffect.get(), m_pInputLayout.GetAddressOf());
+			m_skydoom->CreateInputLayout(m_pBasicEffect.get(), m_pInputLayout.ReleaseAndGetAddressOf());
 		}
 
 		void Render(GameContext& context)
@@ -501,8 +501,13 @@ void PlayScene::Build(GameContext& context)
 		std::unique_ptr<GeometricPrimitive> m_plane;
 		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 
+		Microsoft::WRL::ComPtr<ID3D11BlendState> m_blendState;
+		float m_blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+
 		void Initialize(GameContext& context)
 		{
+			auto device = context.GetDR().GetD3DDevice();
+
 			std::vector<GeometricPrimitive::VertexType> vertices = {
 				{ Vector3(-0.5f, +0.5f, 0.0f), Vector3::Forward, Vector2(0.0f, 0.0f) },
 				{ Vector3(+0.5f, +0.5f, 0.0f), Vector3::Forward, Vector2(1.0f, 0.0f) },
@@ -517,33 +522,29 @@ void PlayScene::Build(GameContext& context)
 			DX::ThrowIfFailed(CreateWICTextureFromFile(
 				context.GetDR().GetD3DDevice(), context.GetDR().GetD3DDeviceContext(),
 				L"Resources/Textures/UI/Center.png", nullptr, m_texture.ReleaseAndGetAddressOf()));
+
+			D3D11_BLEND_DESC BlendDesc = {};
+			BlendDesc.AlphaToCoverageEnable = FALSE;
+			BlendDesc.IndependentBlendEnable = FALSE;
+			BlendDesc.RenderTarget[0].BlendEnable = TRUE;
+			BlendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_INV_DEST_COLOR;
+			BlendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_COLOR;
+			BlendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+			BlendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+			BlendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_DEST_ALPHA;
+			BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+			BlendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+			device->CreateBlendState(&BlendDesc, m_blendState.ReleaseAndGetAddressOf());
 		}
 
 		void Render(GameContext& context)
 		{
-			auto device = context.GetDR().GetD3DDevice();
 			auto ctx = context.GetDR().GetD3DDeviceContext();
 
 			auto size = context.Get<WindowHandler>().GetSize();
 			m_plane->Draw(SimpleMath::Matrix::CreateScale(Vector3(size.x, size.y, 1.f)).Invert() * Matrix::CreateScale(64), Matrix::Identity, Matrix::Identity, Colors::White, m_texture.Get(), false, [&]() {
-				ID3D11BlendState* pBlendState = NULL;
-				D3D11_BLEND_DESC BlendDesc;
-				ZeroMemory(&BlendDesc, sizeof(BlendDesc));
-				BlendDesc.AlphaToCoverageEnable = FALSE;
-				BlendDesc.IndependentBlendEnable = FALSE;
-				BlendDesc.RenderTarget[0].BlendEnable = TRUE;
-				BlendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_INV_DEST_COLOR;
-				BlendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_COLOR;
-				BlendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-				BlendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
-				BlendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_DEST_ALPHA;
-				BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-				BlendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-
-				float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-				device->CreateBlendState(&BlendDesc, &pBlendState);
-
-				ctx->OMSetBlendState(pBlendState, blendFactor, 0xFFFFFFFF);
+				ctx->OMSetBlendState(m_blendState.Get(), m_blendFactor, 0xFFFFFFFF);
 			});
 		}
 	};

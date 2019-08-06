@@ -23,10 +23,10 @@ GridFloor::GridFloor(ID3D11Device* device, ID3D11DeviceContext* context, DirectX
 	void const* shaderByteCode;
 	size_t byteCodeLength;
 	m_basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
-	device->CreateInputLayout(DirectX::VertexPositionColor::InputElements,
+	DX::ThrowIfFailed(device->CreateInputLayout(DirectX::VertexPositionColor::InputElements,
 		DirectX::VertexPositionColor::InputElementCount,
 		shaderByteCode, byteCodeLength,
-		m_pInputLayout.GetAddressOf());
+		m_pInputLayout.ReleaseAndGetAddressOf()));
 }
 
 // デストラクタ

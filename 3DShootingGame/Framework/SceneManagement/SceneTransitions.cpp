@@ -119,18 +119,18 @@ namespace SceneTransitions
 			BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/RuleTransitionPS.cso");
 
 			// インプットレイアウト生成
-			device->CreateInputLayout(VertexPositionTexture::InputElements,
+			DX::ThrowIfFailed(device->CreateInputLayout(VertexPositionTexture::InputElements,
 				UINT(VertexPositionTexture::InputElementCount),
 				VSData.GetData(), VSData.GetSize(),
-				m_inputLayout.GetAddressOf());
+				m_inputLayout.ReleaseAndGetAddressOf()));
 			// 頂点シェーダ作成
 			DX::ThrowIfFailed(device->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_VertexShader.ReleaseAndGetAddressOf()));
 			// ピクセルシェーダ作成
 			DX::ThrowIfFailed(device->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_PixelShader.ReleaseAndGetAddressOf()));
 
 			// テクスチャのロード
-			CreateWICTextureFromFile(device, L"Resources/Textures/Transition/RuleTransitionBack.png", nullptr, m_texture.GetAddressOf());
-			CreateWICTextureFromFile(device, L"Resources/Textures/Transition/RuleTransitionRule.png", nullptr, m_texture2.GetAddressOf());
+			DX::ThrowIfFailed(CreateWICTextureFromFile(device, L"Resources/Textures/Transition/RuleTransitionBack.png", nullptr, m_texture.ReleaseAndGetAddressOf()));
+			DX::ThrowIfFailed(CreateWICTextureFromFile(device, L"Resources/Textures/Transition/RuleTransitionRule.png", nullptr, m_texture2.ReleaseAndGetAddressOf()));
 
 			// バッファの作成
 			D3D11_BUFFER_DESC bd;
@@ -139,7 +139,7 @@ namespace SceneTransitions
 			bd.ByteWidth = sizeof(ConstBuffer);
 			bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 			bd.CPUAccessFlags = 0;
-			device->CreateBuffer(&bd, nullptr, &m_CBuffer);
+			DX::ThrowIfFailed(device->CreateBuffer(&bd, nullptr, &m_CBuffer));
 		}
 
 		void Update(GameContext& context)
