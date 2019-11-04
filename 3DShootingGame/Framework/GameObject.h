@@ -156,6 +156,7 @@ class GameObject final : public Object, public std::enable_shared_from_this<Game
 {
 private:
 	entt::DefaultActor m_actor;
+	std::wstring m_name;
 
 public:
 	std::reference_wrapper<Transform> transform;
@@ -174,18 +175,19 @@ public:
 	}
 
 private:
-	GameObject(const std::wstring& name)
+	GameObject(entt::DefaultRegistry& scene, const std::wstring& name)
 		: m_name(name)
+		, m_actor(entt::DefaultActor(scene))
+		, transform(std::ref(AddComponent<Transform>()))
 	{
-		transform = std::ref(AddComponent<Transform>());
 	}
 
 public:
 	~GameObject() = default;
 
-	static ObjectHolder<GameObject> Create(const std::wstring& name = L"GameObject")
+	static ObjectHolder<GameObject> Create(entt::DefaultRegistry& scene, const std::wstring& name = L"GameObject")
 	{
-		return ObjectHolder<GameObject>::CreateFromUniqueSharedPtr(std::shared_ptr<GameObject>(new GameObject(name)));
+		return ObjectHolder<GameObject>::CreateFromUniqueSharedPtr(std::shared_ptr<GameObject>(new GameObject(scene, name)));
 	}
 
 	std::wstring GetName() const override { return m_name; }
@@ -195,7 +197,8 @@ public:
 	// ¶¬
 	void Initialize(GameContext& context)
 	{
-		for (auto& component : m_components)
+		auto& reg = m_actor.registry;
+		for (auto& component : m_actor.)
 			component->Initialize(context);
 	}
 
