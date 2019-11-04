@@ -60,7 +60,7 @@ std::list<ObjectField<GameObject>> Scene::FindAll(const std::wstring& key)
 
 ObjectField<GameObject> Scene::AddGameObject(const std::wstring& objname)
 {
-	return Add(GameObject::Create(objname));
+	return Add(GameObject::Create(m_registry, objname));
 }
 
 void Scene::Initialize(GameContext& context)
@@ -72,7 +72,7 @@ void Scene::Initialize(GameContext& context)
 	Register(*pxscene);
 
 	for (auto& object : m_gameObjects)
-		object->Initialize(*this);
+		object->Initialize(*this);m_registry.view
 }
 
 void Scene::Update(GameContext & context)

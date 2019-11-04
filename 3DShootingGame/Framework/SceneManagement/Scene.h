@@ -18,6 +18,8 @@ private:
 	std::list<ObjectHolder<GameObject>> m_addingObjects;
 	// ŒŸõ—p
 	std::unordered_multimap<std::wstring, ObjectField<GameObject>> m_objectMap;
+	// Scene
+	entt::DefaultRegistry m_registry;
 
 public:
 	// –¼‘O
