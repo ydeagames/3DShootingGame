@@ -10,7 +10,7 @@ PhysXScene::PhysXScene(PhysXManager& manager)
 {
 	auto physics = manager.GetPhysics();
 	auto sceneDesc = PxSceneDesc(physics->getTolerancesScale());
-	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
+	sceneDesc.gravity = PxVec3(0.0f, -9.81f * 2, 0.0f);
 	sceneDesc.cpuDispatcher = manager.GetDispatcher();
 	sceneDesc.filterShader = PxDefaultSimulationFilterShader;
 	m_scene = physics->createScene(sceneDesc);

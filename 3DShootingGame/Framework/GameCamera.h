@@ -13,6 +13,8 @@ public:
 public:
 	// 位置取得
 	DirectX::SimpleMath::Vector3 GetPosition() const;
+	// 回転取得
+	DirectX::SimpleMath::Quaternion GetRotation() const;
 
 	// スクリーン座標からRayに変換
 	DirectX::SimpleMath::Ray ScreenPointToRay(const DirectX::SimpleMath::Vector3& point) const;

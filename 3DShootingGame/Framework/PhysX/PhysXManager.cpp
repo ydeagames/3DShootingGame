@@ -28,7 +28,7 @@ void PhysXManager::Initialize(GameContext& context)
 
 	PxTolerancesScale toleranceScale;
 	toleranceScale.length = 1;
-	toleranceScale.speed = 9.8f;
+	toleranceScale.speed = 9.8f * 2;
 	assert(toleranceScale.isValid()); // make sure this value is always true
 	m_cooking = px_unique_ptr<PxCooking>(PxCreateCooking(PX_PHYSICS_VERSION, *m_foundation, PxCookingParams(toleranceScale)));
 

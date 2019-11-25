@@ -9,6 +9,14 @@ DirectX::SimpleMath::Vector3 GameCamera::GetPosition() const
 	return Vector3::Transform(Vector3::Zero, view.Invert());
 }
 
+DirectX::SimpleMath::Quaternion GameCamera::GetRotation() const
+{
+	Vector3 _s, _t;
+	Quaternion _r;
+	view.Invert().Decompose(_s, _r, _t);
+	return _r;
+}
+
 DirectX::SimpleMath::Ray GameCamera::ScreenPointToRay(const DirectX::SimpleMath::Vector3& point) const
 {
 	return ViewportPointToRay(ScreenToViewportPoint(point));

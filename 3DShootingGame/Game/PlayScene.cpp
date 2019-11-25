@@ -23,7 +23,6 @@ using namespace DirectX::SimpleMath;
 
 namespace
 {
-	float chargeForce = 0;
 	ObjectHolder<float> targetScale = ObjectHolder<float>::Create(.00175f);
 	ObjectHolder<float> targetY = ObjectHolder<float>::Create(.5f);
 }
@@ -59,7 +58,6 @@ void PlayScene::Build(GameContext& context)
 
 			ImGui::SetNextWindowPos(ImVec2(10, 10));
 			ImGui::Begin(u8"パラメータ", nullptr);
-			ImGui::Text(u8"強さ: %.2f", chargeForce);
 			ImGui::SliderFloat(u8"的サイズ", targetScale.GetWeakPtr().lock().get(), 0, .003f, u8"%.6f");
 			ImGui::SliderFloat(u8"Y", targetY.GetWeakPtr().lock().get(), 0, 6, u8"%.2f");
 			if (ImGui::Button(u8"リセットいがぐり"))
@@ -131,11 +129,12 @@ void PlayScene::Build(GameContext& context)
 
 		void Update(GameContext& context)
 		{
-			if (Input::GetMouseMode() == DirectX::Mouse::Mode::MODE_RELATIVE)
-			{
-				auto move = Input::GetMousePosition();
-				Move(float(move.x), float(move.y));
-			}
+			if (!Input::GetMouseButton(Input::Buttons::MouseRight))
+				if (Input::GetMouseMode() == DirectX::Mouse::Mode::MODE_RELATIVE)
+				{
+					auto move = Input::GetMousePosition();
+					Move(float(move.x), float(move.y));
+				}
 
 			m_xAngle = MathUtils::Clamp(m_xAngle, -XM_PIDIV2, XM_PIDIV2);
 
@@ -333,6 +332,8 @@ void PlayScene::Build(GameContext& context)
 	struct PlayerBehaviour : public Component
 	{
 		std::unique_ptr<Model> m_model;
+		bool charging = false;
+		Vector3 chargingOrigin = Vector3::Zero;
 
 		void Initialize(GameContext& context)
 		{
@@ -392,18 +393,55 @@ void PlayScene::Build(GameContext& context)
 
 			if (Input::GetMouseButtonDown(Input::Buttons::MouseRight))
 			{
-				chargeForce = 0;
+				charging = true;
+				chargingOrigin = Vector3::Zero;
 			}
 			if (Input::GetMouseButton(Input::Buttons::MouseRight))
 			{
-				chargeForce += float(context.GetTimer().GetElapsedSeconds() * 10);
+				chargingOrigin += Input::GetMousePosition();
 			}
 			if (Input::GetMouseButtonUp(Input::Buttons::MouseRight))
 			{
+				auto length = MathUtils::Clamp(0.f, 1.f, (chargingOrigin.y - Input::GetMousePosition().y) * .5f / 50.f);
+				//length = 1 - (1 - length) * (1 - length);
+				if (length > .1f)
+					length += .2f;
+				else
+					length = 0;
+				length *= 50.f;
 				auto ray = context.GetCamera().ViewportPointToRay(Vector3::Zero);
 				ray.direction.Normalize();
-				rigid->SetVelocity(ray.direction * chargeForce);
-				chargeForce = 0;
+				rigid->SetVelocity(ray.direction * length);
+				charging = false;
+			}
+		}
+
+		void Render(GameContext& context)
+		{
+			static auto model = GeometricPrimitive::CreateCone(context.GetDR().GetD3DDeviceContext());
+			if (charging)
+			{
+				auto length = MathUtils::Clamp(0.f, 1.f, (chargingOrigin.y - Input::GetMousePosition().y) * .5f / 50.f);
+				if (length > .1f)
+					length += .2f;
+				else
+					length = 0;
+				length *= 50.f;
+				auto ray = context.GetCamera().ViewportPointToRay(Vector3::Zero);
+				auto dir = ray.direction;
+				dir.Normalize();
+				auto pos = ray.position + dir;
+				auto world = Matrix::Identity
+					* Matrix::CreateScale(1, 1 + length, 1)
+					* Matrix::CreateFromQuaternion(Quaternion::CreateFromAxisAngle(Vector3::UnitX, -XM_PIDIV2))
+					* Matrix::CreateTranslation(Vector3::Forward * 3 + Vector3::Down * 2)
+					* Matrix::CreateFromQuaternion(context.GetCamera().GetRotation())
+					* Matrix::CreateTranslation(pos)
+					;
+				model->Draw(world, context.GetCamera().view, context.GetCamera().projection);
+				ImGui::Begin("Debug1");
+				ImGui::InputFloat3("Pos", &pos.x);
+				ImGui::End();
 			}
 		}
 	};
@@ -545,7 +583,7 @@ void PlayScene::Build(GameContext& context)
 			auto size = context.Get<WindowHandler>().GetSize();
 			m_plane->Draw(SimpleMath::Matrix::CreateScale(Vector3(size.x, size.y, 1.f)).Invert() * Matrix::CreateScale(64), Matrix::Identity, Matrix::Identity, Colors::White, m_texture.Get(), false, [&]() {
 				ctx->OMSetBlendState(m_blendState.Get(), m_blendFactor, 0xFFFFFFFF);
-			});
+				});
 		}
 	};
 	auto background = scene.AddGameObject();
