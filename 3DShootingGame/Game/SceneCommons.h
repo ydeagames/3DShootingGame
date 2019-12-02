@@ -1,4 +1,5 @@
 #pragma once
+/*
 #include <Framework/GameObject.h>
 #include <Framework/Component.h>
 #include <Framework/GameContext.h>
@@ -62,3 +63,4 @@ public:
 	inline void SetText(const std::wstring& text) { m_text = text; }
 	inline const std::wstring GetText() const { return m_text; }
 };
+*/

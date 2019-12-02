@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "Collider.h"
-#include <Framework/GameContext.h>
+#include <Framework/ECS/GameContext.h>
 #include <Framework/PhysX/PhysXManager.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-void SphereCollider::AddCollider(GameContext& context, physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
+void SphereCollider::AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
 {
 	auto& manager = context.GetPhysics();
 	auto mat = manager.CreateMaterial(material);
@@ -21,7 +21,7 @@ void SphereCollider::AddCollider(GameContext& context, physx::PxRigidActor* rigi
 	rigid->attachShape(*shape);
 }
 
-void BoxCollider::AddCollider(GameContext& context, physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
+void BoxCollider::AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
 {
 	auto& manager = context.GetPhysics();
 	auto mat = manager.CreateMaterial(material);
@@ -35,7 +35,7 @@ void BoxCollider::AddCollider(GameContext& context, physx::PxRigidActor* rigid, 
 	rigid->attachShape(*shape);
 }
 
-void CapsuleCollider::AddCollider(GameContext& context, physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
+void CapsuleCollider::AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
 {
 	auto& manager = context.GetPhysics();
 	auto mat = manager.CreateMaterial(material);

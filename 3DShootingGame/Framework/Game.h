@@ -6,21 +6,12 @@
 
 #include <Common/DeviceResources.h>
 #include <Common/StepTimer.h>
-
-#include <Mouse.h>
-#include <Keyboard.h>
-
-#include <SpriteBatch.h>
-#include <SimpleMath.h>
-
-#include "GameContext.h"
-
-#include <Framework/SceneManagement/Scene.h>
-#include <Framework/SceneManagement/SceneManager.h>
+#include "MyGame.h"
+#include <Framework/Components/Components.h>
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
-class Game : public DX::IDeviceNotify, public GameContext
+class Game final : public DX::IDeviceNotify
 {
 public:
 
@@ -61,10 +52,10 @@ private:
     // Device resources.
     DX::DeviceResources*					m_deviceResources;
 
-public:
-	// シーン
-	Scene& GetScene() { return GetSceneManager().GetActiveScene(); }
+    // Rendering loop timer.
+    DX::StepTimer                           m_timer;
 
-	// オブジェクト追加
-	GameContext& operator<<(ObjectHolder<GameObject>&& obj) { GetScene().Add(std::move(obj)); return *this; }
+	GameContext                             m_context;
+	std::unique_ptr<Camera>                 m_mainCamera;
+	std::unique_ptr<MyGame>                 m_myGame;
 };

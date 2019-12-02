@@ -1,8 +1,8 @@
 ﻿#include "pch.h"
 
 #include "InfinityGridFloor.h"
-#include <Framework/GameContext.h>
-#include <Framework/GameCamera.h>
+#include <Framework/ECS/GameContext.h>
+#include <Framework/Context/GameCamera.h>
 
 #include <algorithm>
 

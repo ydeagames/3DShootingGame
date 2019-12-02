@@ -1,11 +1,9 @@
 #pragma once
 
-#include <Framework/ISceneBuilder.h>
-
-class PlayScenePause : public ISceneBuilder
+class PlayScenePause
 {
 public:
-	std::wstring GetName() const override { return L"PlayScenePause"; }
-	void Build(GameContext& context) override;
+	std::wstring GetName() const { return L"PlayScenePause"; }
+	void Build(GameContext& context);
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "PhysXCommons.h"
-#include <Framework/Component.h>
+#include <Framework/ECS/Component.h>
 
 class GameContext;
 class PhysXScene;

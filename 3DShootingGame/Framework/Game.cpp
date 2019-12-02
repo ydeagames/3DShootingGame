@@ -4,18 +4,9 @@
 
 #include "pch.h"
 #include "Game.h"
-#include <Game/BuildSettings.h>
-#include <Utilities/Input.h>
-
-#include <WICTextureLoader.h>
-
 #include "ExitHandler.h"
-
-#include "GameObject.h"
-#include "GameContext.h"
+#include "ImGuiManager.h"
 #include "GameCamera.h"
-#include <Framework/SceneManagement/Scene.h>
-#include <Framework/SceneManagement/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/ImGui/ImGuiManager.h>
 #include "SaveHandler.h"
@@ -28,39 +19,24 @@ using namespace DirectX::SimpleMath;
 
 using Microsoft::WRL::ComPtr;
 
-// オブジェクトタイム
-float Object::objectTime = 0;
-
 Game::Game() noexcept(false)
 {
-	// StepTimer
-	Register(std::make_unique<DX::StepTimer>());
-	Object::objectTime = float(Get<DX::StepTimer>().GetTotalSeconds());
-
-	// デバイスリソース初期化
-	Register(std::make_unique<DX::DeviceResources>());
-	m_deviceResources = &Get<DX::DeviceResources>();
+	GameContext::Register<DX::DeviceResources>();
+    m_deviceResources = &GameContext::Get<DX::DeviceResources>();
     m_deviceResources->RegisterDeviceNotify(this);
-
-	// シーンマネージャー
-	Register(std::make_unique<SceneManager>());
 }
 
 // Initialize the Direct3D resources required to run.
 void Game::Initialize(HWND window, int width, int height)
 {
-	// マウスの作成
-	Register(std::make_unique<Mouse>());
-	Get<Mouse>().SetWindow(window);
-
-	// キーボードの作成
-	Register(std::make_unique<Keyboard>());
-
 	// 設定
     m_deviceResources->SetWindow(window, width, height);
 
     m_deviceResources->CreateDeviceResources();
     m_deviceResources->CreateWindowSizeDependentResources();
+
+	m_mainCamera = std::make_unique<Camera>();
+	m_myGame = std::make_unique<MyGame>();
 
 	{
 		// FPS
@@ -90,9 +66,6 @@ void Game::Initialize(HWND window, int width, int height)
 	CreateDeviceDependentResources();
     CreateWindowSizeDependentResources();
 
-	// 作成
-	GetSceneManager().Register<BuildSettings>();
-	GetSceneManager().LoadScene(L"BuildSettings");
 
     // TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
@@ -160,6 +133,7 @@ void Game::Update(DX::StepTimer const& timer)
 	GetSceneManager().ProcessScene(*this);
 	// 更新
 	GetSceneManager().GetSceneView().Update(*this);
+	m_myGame->Update();
 }
 #pragma endregion
 
@@ -201,6 +175,8 @@ void Game::Render()
 	fps.update();
 	if (fps.hasFPSChanged())
 		SetWindowTextW(Get<WindowHandler>().GetHandle(), (BuildSettings::GAME_TITLE + L" - FPS: " + std::to_wstring(static_cast<int>(fps.getFPS()))).c_str());
+
+	m_myGame->Render(*m_mainCamera);
 
 	// ここまで描画
     m_deviceResources->PIXEndEvent();
@@ -288,7 +264,12 @@ void Game::GetDefaultSize(int& width, int& height) const
 // These are the resources that depend on the device.
 void Game::CreateDeviceDependentResources()
 {
+    auto device = m_deviceResources->GetD3DDevice();
+
     // TODO: Initialize device dependent objects here (independent of window size).
+    device;
+
+	m_myGame->RenderInitialize();
 }
 
 // Allocate all memory resources that change on a window SizeChanged event.
@@ -303,14 +284,14 @@ void Game::CreateWindowSizeDependentResources()
 	// 画角を設定
 	float fovAngleY = XMConvertToRadians(70.0f);
 	// 射影行列を作成する
-	GetCamera().projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(
+	m_mainCamera->projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(
 		fovAngleY,
 		aspectRatio,
 		0.01f,
 		10000.0f
 	);
 	// ビューポート行列を作成する
-	GetCamera().viewport = 
+	m_mainCamera->viewport = 
 		SimpleMath::Matrix::CreateScale(Vector3(.5f, -.5f, 1.f)) *
 		SimpleMath::Matrix::CreateTranslation(Vector3(.5f, .5f, 0.f)) *
 		SimpleMath::Matrix::CreateScale(Vector3(size.x, size.y, 1.f));

@@ -62,31 +62,43 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\PhysXPropertySheet.props" />
     <Import Project="..\BasicPropertySheet.props" />
-    <Import Project="..\DirectXTKPropertySheet.props" />
-    <Import Project="..\ImGuiPropertySheet.props" />
+    <Import Project="..\ThirdParty\DirectXTKPropertySheet.props" />
+    <Import Project="..\ThirdParty\ImGuiPropertySheet.props" />
+    <Import Project="..\ThirdParty\PhysXPropertySheet.props" />
+    <Import Project="..\ThirdParty\CerealPropertySheet.props" />
+    <Import Project="..\ThirdParty\EnTTPropertySheet.props" />
+    <Import Project="..\ThirdParty\MiscPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\PhysXPropertySheet.props" />
     <Import Project="..\BasicPropertySheet.props" />
-    <Import Project="..\DirectXTKPropertySheet.props" />
-    <Import Project="..\ImGuiPropertySheet.props" />
+    <Import Project="..\ThirdParty\DirectXTKPropertySheet.props" />
+    <Import Project="..\ThirdParty\ImGuiPropertySheet.props" />
+    <Import Project="..\ThirdParty\PhysXPropertySheet.props" />
+    <Import Project="..\ThirdParty\CerealPropertySheet.props" />
+    <Import Project="..\ThirdParty\EnTTPropertySheet.props" />
+    <Import Project="..\ThirdParty\MiscPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\PhysXPropertySheet.props" />
     <Import Project="..\BasicPropertySheet.props" />
-    <Import Project="..\DirectXTKPropertySheet.props" />
-    <Import Project="..\ImGuiPropertySheet.props" />
+    <Import Project="..\ThirdParty\DirectXTKPropertySheet.props" />
+    <Import Project="..\ThirdParty\ImGuiPropertySheet.props" />
+    <Import Project="..\ThirdParty\PhysXPropertySheet.props" />
+    <Import Project="..\ThirdParty\CerealPropertySheet.props" />
+    <Import Project="..\ThirdParty\EnTTPropertySheet.props" />
+    <Import Project="..\ThirdParty\MiscPropertySheet.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\PhysXPropertySheet.props" />
     <Import Project="..\BasicPropertySheet.props" />
-    <Import Project="..\DirectXTKPropertySheet.props" />
-    <Import Project="..\ImGuiPropertySheet.props" />
+    <Import Project="..\ThirdParty\DirectXTKPropertySheet.props" />
+    <Import Project="..\ThirdParty\ImGuiPropertySheet.props" />
+    <Import Project="..\ThirdParty\PhysXPropertySheet.props" />
+    <Import Project="..\ThirdParty\CerealPropertySheet.props" />
+    <Import Project="..\ThirdParty\EnTTPropertySheet.props" />
+    <Import Project="..\ThirdParty\MiscPropertySheet.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -205,44 +217,86 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="Framework\Components\AllComponents.h" />
+    <ClInclude Include="Framework\Components\Components.h" />
+    <ClInclude Include="Framework\Context\GameCamera.h" />
+    <ClInclude Include="Framework\Context\PauseHandler.h" />
+    <ClInclude Include="Framework\Context\SaveHandler.h" />
+    <ClInclude Include="Framework\Context\WindowHandler.h" />
+    <ClInclude Include="Framework\ECS\Component.h" />
+    <ClInclude Include="Framework\ECS\ComponentManager.h" />
+    <ClInclude Include="Framework\ECS\EventBus.h" />
+    <ClInclude Include="Framework\ECS\Events.h" />
+    <ClInclude Include="Framework\ECS\GameContext.h" />
+    <ClInclude Include="Framework\ECS\GameObject.h" />
+    <ClInclude Include="Framework\ECS\Scene.h" />
+    <ClInclude Include="Framework\ECS\Serialize.h" />
+    <ClInclude Include="Framework\ImGui\Widgets.h" />
+    <ClInclude Include="Framework\MyGame.h" />
     <ClInclude Include="Framework\Physics\Collider.h" />
-    <ClInclude Include="Framework\Component.h" />
     <ClInclude Include="Framework\DebugTools\DebugCamera.h" />
     <ClInclude Include="Framework\DebugTools\DebugCameraWrapper.h" />
     <ClInclude Include="Framework\DebugTools\GridFloor.h" />
     <ClInclude Include="Framework\DebugTools\GridFloorWrapper.h" />
     <ClInclude Include="Framework\ExitHandler.h" />
     <ClInclude Include="Framework\Game.h" />
-    <ClInclude Include="Framework\GameCamera.h" />
-    <ClInclude Include="Framework\GameContext.h" />
-    <ClInclude Include="Framework\GameObject.h" />
     <ClInclude Include="Framework\ImGui\ImGuiManager.h" />
-    <ClInclude Include="Framework\ISceneBuilder.h" />
-    <ClInclude Include="Framework\Object.h" />
-    <ClInclude Include="Framework\ObjectField.h" />
-    <ClInclude Include="Framework\PauseHandler.h" />
     <ClInclude Include="Framework\PhysX\PhysXCommons.h" />
     <ClInclude Include="Framework\PhysX\PhysXManager.h" />
     <ClInclude Include="Framework\PhysX\PhysXRenderer.h" />
     <ClInclude Include="Framework\PhysX\PhysXScene.h" />
     <ClInclude Include="Framework\Physics\Rigidbody.h" />
-    <ClInclude Include="Framework\SaveHandler.h" />
-    <ClInclude Include="Framework\SceneManagement\Scene.h" />
-    <ClInclude Include="Framework\SceneManagement\SceneManager.h" />
     <ClInclude Include="Framework\SceneManagement\SceneTransition.h" />
     <ClInclude Include="Framework\SceneManagement\SceneTransitions.h" />
-    <ClInclude Include="Framework\SerializedField.h" />
-    <ClInclude Include="Framework\Transform.h" />
-    <ClInclude Include="Framework\WindowHandler.h" />
-    <ClInclude Include="Game\BaseScene.h" />
-    <ClInclude Include="Game\BuildSettings.h" />
+    <ClInclude Include="Game\BaseScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Game\BuildSettings.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Game\InfinityGridFloor.h" />
-    <ClInclude Include="Game\LogoScene.h" />
-    <ClInclude Include="Game\PlayScene.h" />
-    <ClInclude Include="Game\PlayScenePause.h" />
-    <ClInclude Include="Game\ResultScene.h" />
-    <ClInclude Include="Game\SceneCommons.h" />
-    <ClInclude Include="Game\TitleScene.h" />
+    <ClInclude Include="Game\LogoScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Game\PlayScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Game\PlayScenePause.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Game\ResultScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Game\SceneCommons.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Game\TitleScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Framework\ImGui\ImGuiStyles.h" />
     <ClInclude Include="Libraries\entt\config\config.h" />
     <ClInclude Include="Libraries\entt\core\algorithm.hpp" />
@@ -292,34 +346,77 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="Framework\Components\Components.cpp" />
+    <ClCompile Include="Framework\Context\GameCamera.cpp" />
+    <ClCompile Include="Framework\Context\PauseHandler.cpp" />
+    <ClCompile Include="Framework\Context\SaveHandler.cpp" />
+    <ClCompile Include="Framework\ECS\Component.cpp" />
+    <ClCompile Include="Framework\ECS\GameContext.cpp" />
+    <ClCompile Include="Framework\ECS\GameObject.cpp" />
+    <ClCompile Include="Framework\ECS\Scene.cpp" />
+    <ClCompile Include="Framework\ImGui\Widgets.cpp" />
+    <ClCompile Include="Framework\MyGame.cpp" />
     <ClCompile Include="Framework\Physics\Collider.cpp" />
     <ClCompile Include="Framework\DebugTools\DebugCamera.cpp" />
     <ClCompile Include="Framework\DebugTools\DebugCameraWrapper.cpp" />
     <ClCompile Include="Framework\DebugTools\GridFloor.cpp" />
     <ClCompile Include="Framework\DebugTools\GridFloorWrapper.cpp" />
     <ClCompile Include="Framework\Game.cpp" />
-    <ClCompile Include="Framework\GameCamera.cpp" />
     <ClCompile Include="Framework\ImGui\ImGuiManager.cpp" />
-    <ClCompile Include="Framework\PauseHandler.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXManager.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXRenderer.cpp" />
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />
     <ClCompile Include="Framework\Physics\Rigidbody.cpp" />
-    <ClCompile Include="Framework\SaveHandler.cpp" />
-    <ClCompile Include="Framework\SceneManagement\Scene.cpp" />
-    <ClCompile Include="Framework\SceneManagement\SceneManager.cpp" />
     <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp" />
-    <ClCompile Include="Framework\SerializedField.cpp" />
-    <ClCompile Include="Framework\Transform.cpp" />
-    <ClCompile Include="Game\BaseScene.cpp" />
-    <ClCompile Include="Game\BuildSettings.cpp" />
+    <ClCompile Include="Game\BaseScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Game\BuildSettings.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Game\InfinityGridFloor.cpp" />
-    <ClCompile Include="Game\LogoScene.cpp" />
-    <ClCompile Include="Game\PlayScene.cpp" />
-    <ClCompile Include="Game\PlayScenePause.cpp" />
-    <ClCompile Include="Game\ResultScene.cpp" />
-    <ClCompile Include="Game\SceneCommons.cpp" />
-    <ClCompile Include="Game\TitleScene.cpp" />
+    <ClCompile Include="Game\LogoScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Game\PlayScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Game\PlayScenePause.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Game\ResultScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Game\SceneCommons.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Game\TitleScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Framework\ImGui\ImGuiStyles.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
@@ -342,11 +439,6 @@
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="Resources\settings.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
-      <Project>{a2b7cadf-ee4d-4294-ad5b-6c8048fcd5f7}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Resources\Models\Assets\igaguri.fbx">

@@ -14,7 +14,7 @@
 
 // DirectX apps don't need GDI
 #define NODRAWTEXT
-#define NOGDI
+//#define NOGDI
 #define NOBITMAP
 
 // Include <mcx.h> if you need this
@@ -27,7 +27,7 @@
 #define NOHELP
 
 // Windows
-#define WIN32_LEAN_AND_MEAN
+//#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 // COM
@@ -57,6 +57,8 @@
 #include <sstream>
 #include <iomanip>
 
+#include <fstream>
+
 #include <algorithm>
 #include <random>
 
@@ -67,6 +69,10 @@
 #include <algorithm>
 #include <queue>
 #include <deque>
+
+#include <chrono>
+#include <locale> 
+#include <codecvt> 
 
 // DirectXTK
 #include <Keyboard.h>
@@ -93,16 +99,40 @@
 #include <dxgidebug.h>
 #endif
 
-// PhysX
-#include <PxPhysicsAPI.h>
+// EnTT
+#include <entt.hpp>
+namespace entt
+{
+	using registry = entt::DefaultRegistry;
+	using entity = registry::entity_type;
+	using component = registry::component_type;
+	template<entity Value>
+	using tag = std::integral_constant<entity, Value>;
+}
+
+// Cereal
+#include <cereal/cereal.hpp>
+#include <cereal/archives/json.hpp>
+#include <cereal/archives/binary.hpp>
+
+// Cereal Types
+#include <cereal/types/vector.hpp>
+
+// Cereal Optional
+#include <cereal/cereal_optional/optional_nvp.hpp>
+#include <cereal/cereal_optional/optional_json.hpp>
+#include <cereal/cereal_optional/optional_binary.hpp>
 
 // ImGui
 #include <imgui.h>
-#include <imgui_impl_win32.h>
 #include <imgui_impl_dx11.h>
+#include <imgui_impl_win32.h>
 
-// EnTT
-#include <Libraries/entt/entt.hpp>
+// ImGui + EnTT
+#include <imgui_entt_entity_editor.hpp>
+
+// PhysX
+#include <PxPhysicsAPI.h>
 
 namespace DX
 {

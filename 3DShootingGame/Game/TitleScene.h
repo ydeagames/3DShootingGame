@@ -1,11 +1,9 @@
 #pragma once
 
-#include <Framework/ISceneBuilder.h>
-
-class TitleScene : public ISceneBuilder
+class TitleScene
 {
 public:
-	std::wstring GetName() const override { return L"TitleScene"; }
-	void Build(GameContext& context) override;
+	std::wstring GetName() const { return L"TitleScene"; }
+	void Build(GameContext& context);
 };
 

@@ -1,10 +1,9 @@
 #pragma once
-#include <Framework/Component.h>
 
 class ISceneBuilder;
 class GameContext;
 
-class ImGuiManager : public Component
+class ImGuiManager
 {
 public:
 	ImGuiManager();
@@ -15,13 +14,10 @@ private:
 
 public:
 	// ê∂ê¨
-	void Initialize(GameContext& context);
-	// çXêV
-	void Update(GameContext& context);
+	void RenderInitialize();
 	// ï`âÊ
-	void BeforeRender(GameContext& context);
-	void Render(GameContext& context);
-	void AfterRender(GameContext& context);
+	void Begin();
+	void End();
 	// îjä¸
-	void Finalize(GameContext& context);
+	void RenderFinalize();
 };

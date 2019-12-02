@@ -1,5 +1,5 @@
 #pragma once
-#include <Framework/Component.h>
+#include <Framework/ECS/Component.h>
 
 // ƒV[ƒ“‘JˆÚ
 class SceneTransition : public Component

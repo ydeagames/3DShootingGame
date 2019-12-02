@@ -15,15 +15,15 @@ ImGuiManager::~ImGuiManager()
 {
 }
 
-void ImGuiManager::Initialize(GameContext& context)
+void ImGuiManager::RenderInitialize()
 {
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
-	auto wpath = context.GetSaveHandler().GetDir() + L"GuiSettings.ini";
-	m_settingFile = std::string(wpath.begin(), wpath.end());
-	io.IniFilename = m_settingFile.c_str();
+	//auto wpath = GameContext::Get<SaveHandler>().GetDir() + L"GuiSettings.ini";
+	//m_settingFile = std::string(wpath.begin(), wpath.end());
+	//io.IniFilename = m_settingFile.c_str();
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
@@ -38,8 +38,8 @@ void ImGuiManager::Initialize(GameContext& context)
 	}
 
 	// Setup Platform/Renderer bindings
-	ImGui_ImplWin32_Init(context.Get<WindowHandler>().GetHandle());
-	ImGui_ImplDX11_Init(context.GetDR().GetD3DDevice(), context.GetDR().GetD3DDeviceContext());
+	ImGui_ImplWin32_Init(GameContext::Get<WindowHandler>().GetHandle());
+	ImGui_ImplDX11_Init(GameContext::Get<DX::DeviceResources>().GetD3DDevice(), GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext());
 
 	// Load Fonts
 	// - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
@@ -52,16 +52,12 @@ void ImGuiManager::Initialize(GameContext& context)
 	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
 	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
 	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
-	ImFont* font = io.Fonts->AddFontFromFileTTF("Resources/Fonts/logofont.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
+	ImFont* font = io.Fonts->AddFontFromFileTTF("Resources/Fonts/logofont.ttf", 12.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
 	IM_ASSERT(font != NULL);
 	io.Fonts->AddFontDefault();
 }
 
-void ImGuiManager::Update(GameContext& context)
-{
-}
-
-void ImGuiManager::BeforeRender(GameContext& context)
+void ImGuiManager::Begin()
 {
 	// Start the Dear ImGui frame
 	{
@@ -76,11 +72,7 @@ void ImGuiManager::BeforeRender(GameContext& context)
 	}
 }
 
-void ImGuiManager::Render(GameContext& context)
-{
-}
-
-void ImGuiManager::AfterRender(GameContext& context)
+void ImGuiManager::End()
 {
 	// Rendering
 	{
@@ -89,7 +81,7 @@ void ImGuiManager::AfterRender(GameContext& context)
 	}
 }
 
-void ImGuiManager::Finalize(GameContext& context)
+void ImGuiManager::RenderFinalize()
 {
 	// Cleanup
 	ImGui_ImplDX11_Shutdown();

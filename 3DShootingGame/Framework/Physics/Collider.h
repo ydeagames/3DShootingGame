@@ -1,9 +1,8 @@
 #pragma once
-#include <Framework/Transform.h>
+#include <Framework/Components/Components.h>
 #include <Framework/PhysX/PhysXCommons.h>
-#include <Framework/ObjectField.h>
 
-class Collider
+class Collider : public Component
 {
 public:
 	Transform localTransform;
@@ -13,24 +12,24 @@ public:
 	virtual ~Collider() = default;
 
 public:
-	virtual void AddCollider(GameContext& context, physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const = 0;
+	virtual void AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const = 0;
 };
 
 class SphereCollider : public Collider
 {
 public:
-	void AddCollider(GameContext& context, physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const override;
+	void AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const override;
 };
 
 class BoxCollider : public Collider
 {
 public:
-	void AddCollider(GameContext& context, physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const override;
+	void AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const override;
 };
 
 class CapsuleCollider : public Collider
 {
 public:
-	void AddCollider(GameContext& context, physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const override;
+	void AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const override;
 };
 

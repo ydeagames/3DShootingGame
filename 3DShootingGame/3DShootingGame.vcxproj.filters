@@ -71,22 +71,22 @@
     <Filter Include="Assets\Shaders">
       <UniqueIdentifier>{a4e9b9d3-6215-4d78-a9b4-4d9590eec3bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\ECS">
+      <UniqueIdentifier>{095a5f1f-47f5-4e92-85bf-2e1a57cb2f04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Components">
+      <UniqueIdentifier>{2bdf8b6a-63de-47ce-8c20-2090feafb850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Context">
+      <UniqueIdentifier>{568cbd5a-439e-4b87-9c9b-6acae77ddc0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Archived">
+      <UniqueIdentifier>{1128a8f9-be18-44e0-a7f8-2d338c2ba1ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Framework\Game.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\GameContext.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\GameObject.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ISceneBuilder.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Transform.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Common\DeviceResources.h">
@@ -94,27 +94,6 @@
     </ClInclude>
     <ClInclude Include="Common\StepTimer.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\BaseScene.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\BuildSettings.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\LogoScene.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\PlayScene.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ResultScene.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\SceneCommons.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\TitleScene.h">
-      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Framework\DebugTools\GridFloor.h">
       <Filter>Framework\DebugTools</Filter>
@@ -127,12 +106,6 @@
     </ClInclude>
     <ClInclude Include="Framework\DebugTools\DebugCameraWrapper.h">
       <Filter>Framework\DebugTools</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Component.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\GameCamera.h">
-      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\MemoryLeakDetector.h">
       <Filter>Utilities</Filter>
@@ -164,12 +137,6 @@
     <ClInclude Include="Utilities\MathUtils.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Object.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SerializedField.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\Property.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -190,21 +157,6 @@
     </ClInclude>
     <ClInclude Include="Libraries\picojson.h">
       <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\PlayScenePause.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\PauseHandler.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SaveHandler.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\WindowHandler.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ObjectField.h">
-      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\ExitHandler.h">
       <Filter>Framework</Filter>
@@ -296,12 +248,6 @@
     <ClInclude Include="Libraries\entt\entt.hpp">
       <Filter>Libraries\entt</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\SceneManagement\Scene.h">
-      <Filter>Framework\SceneManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneManagement\SceneManager.h">
-      <Filter>Framework\SceneManagement</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\ImGui\ImGuiManager.h">
       <Filter>Framework\ImGui</Filter>
     </ClInclude>
@@ -326,6 +272,78 @@
     <ClInclude Include="Utilities\BinaryFile.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\ECS\GameObject.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\Scene.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\Serialize.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\EventBus.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\Events.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\GameContext.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Components.h">
+      <Filter>Framework\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\AllComponents.h">
+      <Filter>Framework\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Context\SaveHandler.h">
+      <Filter>Framework\Context</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Context\WindowHandler.h">
+      <Filter>Framework\Context</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Context\GameCamera.h">
+      <Filter>Framework\Context</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Context\PauseHandler.h">
+      <Filter>Framework\Context</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ImGui\Widgets.h">
+      <Filter>Framework\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\MyGame.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\BaseScene.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\BuildSettings.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\LogoScene.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayScene.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayScenePause.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ResultScene.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\SceneCommons.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TitleScene.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\ComponentManager.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\Component.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -335,27 +353,6 @@
     </ClCompile>
     <ClCompile Include="Common\DeviceResources.cpp">
       <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\BaseScene.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\BuildSettings.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\LogoScene.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\PlayScene.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\ResultScene.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\SceneCommons.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\TitleScene.cpp">
-      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Framework\DebugTools\GridFloorWrapper.cpp">
       <Filter>Framework\DebugTools</Filter>
@@ -369,9 +366,6 @@
     <ClCompile Include="Framework\DebugTools\GridFloor.cpp">
       <Filter>Framework\DebugTools</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\GameCamera.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Utilities\Random.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -384,9 +378,6 @@
     <ClCompile Include="Utilities\MathUtils.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\SerializedField.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\PhysX\PhysXManager.cpp">
       <Filter>Framework\PhysX</Filter>
     </ClCompile>
@@ -396,26 +387,8 @@
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp">
       <Filter>Framework\PhysX</Filter>
     </ClCompile>
-    <ClCompile Include="Game\PlayScenePause.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\PauseHandler.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SaveHandler.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Game\InfinityGridFloor.cpp">
       <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Transform.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneManagement\Scene.cpp">
-      <Filter>Framework\SceneManagement</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneManagement\SceneManager.cpp">
-      <Filter>Framework\SceneManagement</Filter>
     </ClCompile>
     <ClCompile Include="Framework\ImGui\ImGuiManager.cpp">
       <Filter>Framework\ImGui</Filter>
@@ -434,6 +407,60 @@
     </ClCompile>
     <ClCompile Include="Utilities\BinaryFile.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ECS\Scene.cpp">
+      <Filter>Framework\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ECS\GameContext.cpp">
+      <Filter>Framework\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ECS\GameObject.cpp">
+      <Filter>Framework\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Components.cpp">
+      <Filter>Framework\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Context\GameCamera.cpp">
+      <Filter>Framework\Context</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Context\PauseHandler.cpp">
+      <Filter>Framework\Context</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Context\SaveHandler.cpp">
+      <Filter>Framework\Context</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ImGui\Widgets.cpp">
+      <Filter>Framework\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\MyGame.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\BaseScene.cpp">
+      <Filter>Game\Archived</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\BuildSettings.cpp">
+      <Filter>Game\Archived</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\LogoScene.cpp">
+      <Filter>Game\Archived</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\PlayScene.cpp">
+      <Filter>Game\Archived</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\PlayScenePause.cpp">
+      <Filter>Game\Archived</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ResultScene.cpp">
+      <Filter>Game\Archived</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\SceneCommons.cpp">
+      <Filter>Game\Archived</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TitleScene.cpp">
+      <Filter>Game\Archived</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ECS\Component.cpp">
+      <Filter>Framework\ECS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

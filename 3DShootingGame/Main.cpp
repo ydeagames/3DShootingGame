@@ -4,11 +4,28 @@
 
 #include "pch.h"
 #include <Framework/Game.h>
-#include <Game/BuildSettings.h>
 
 // デバッグコンソール
 #include <io.h>
 #include <Fcntl.h>
+
+// デバッグコンソール
+static void CreateConsoleWindow() {
+//#ifdef _DEBUG
+	AllocConsole();
+	SetConsoleTitleA("Debug");
+	typedef struct { char* _ptr; int _cnt; char* _base; int _flag; int _file; int _charbuf; int _bufsiz; char* _tmpfname; } FILE_COMPLETE;
+	*(FILE_COMPLETE*)stdout = *(FILE_COMPLETE*)_fdopen(_open_osfhandle((intptr_t)GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT), "w");
+	*(FILE_COMPLETE*)stderr = *(FILE_COMPLETE*)_fdopen(_open_osfhandle((intptr_t)GetStdHandle(STD_ERROR_HANDLE), _O_TEXT), "w");
+	*(FILE_COMPLETE*)stdin = *(FILE_COMPLETE*)_fdopen(_open_osfhandle((intptr_t)GetStdHandle(STD_INPUT_HANDLE), _O_TEXT), "r");
+	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stderr, NULL, _IONBF, 0);
+	setvbuf(stdin, NULL, _IONBF, 0);
+//#endif
+}
+
+constexpr LPCWSTR GAME_WINDOW_CLASS = L"YdeaGamesWindowClass";
+constexpr LPCWSTR GAME_WINDOW_TITLE = L"スリングヒーローズ";
 
 using namespace DirectX;
 
@@ -24,21 +41,6 @@ extern "C"
 {
     __declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
     __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
-}
-
-// デバッグコンソール
-static void CreateConsoleWindow() {
-#ifdef _DEBUG
-	AllocConsole();
-	SetConsoleTitleA("Debug");
-	typedef struct { char* _ptr; int _cnt; char* _base; int _flag; int _file; int _charbuf; int _bufsiz; char* _tmpfname; } FILE_COMPLETE;
-	*(FILE_COMPLETE*)stdout = *(FILE_COMPLETE*)_fdopen(_open_osfhandle((intptr_t)GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT), "w");
-	*(FILE_COMPLETE*)stderr = *(FILE_COMPLETE*)_fdopen(_open_osfhandle((intptr_t)GetStdHandle(STD_ERROR_HANDLE), _O_TEXT), "w");
-	*(FILE_COMPLETE*)stdin = *(FILE_COMPLETE*)_fdopen(_open_osfhandle((intptr_t)GetStdHandle(STD_INPUT_HANDLE), _O_TEXT), "r");
-	setvbuf(stdout, NULL, _IONBF, 0);
-	setvbuf(stderr, NULL, _IONBF, 0);
-	setvbuf(stdin, NULL, _IONBF, 0);
-#endif
 }
 
 // Entry point
@@ -69,7 +71,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
         wcex.hIcon = LoadIconW(hInstance, L"IDI_ICON");
         wcex.hCursor = LoadCursorW(nullptr, IDC_ARROW);
         wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
-        wcex.lpszClassName = BuildSettings::GAME_TITLE_CLASS.c_str();
+        wcex.lpszClassName = GAME_WINDOW_CLASS;
         wcex.hIconSm = LoadIconW(wcex.hInstance, L"IDI_ICON");
         if (!RegisterClassExW(&wcex))
             return 1;
@@ -82,10 +84,10 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
         AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
-        HWND hwnd = CreateWindowExW(0, BuildSettings::GAME_TITLE_CLASS.c_str(), BuildSettings::GAME_TITLE.c_str(), WS_OVERLAPPEDWINDOW,
+        HWND hwnd = CreateWindowExW(0, GAME_WINDOW_CLASS, GAME_WINDOW_TITLE, WS_OVERLAPPEDWINDOW,
             CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance,
             nullptr);
-        // TODO: Change to CreateWindowExW(WS_EX_TOPMOST, L"SceneTransitionWindowClass", L"SceneTransition", WS_POPUP,
+        // TODO: Change to CreateWindowExW(WS_EX_TOPMOST, GAME_WINDOW_CLASS, GAME_WINDOW_TITLE, WS_POPUP,
         // to default to fullscreen.
 
         if (!hwnd)
@@ -227,6 +229,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 game->OnDeactivated();
             }
         }
+		Keyboard::ProcessMessage(message, wParam, lParam);
+		Mouse::ProcessMessage(message, wParam, lParam);
         break;
 
     case WM_POWERBROADCAST:
