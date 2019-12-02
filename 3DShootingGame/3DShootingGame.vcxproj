@@ -222,6 +222,7 @@
     <ClInclude Include="Framework\Context\GameCamera.h" />
     <ClInclude Include="Framework\Context\PauseHandler.h" />
     <ClInclude Include="Framework\Context\SaveHandler.h" />
+    <ClInclude Include="Framework\Context\SceneManager.h" />
     <ClInclude Include="Framework\Context\WindowHandler.h" />
     <ClInclude Include="Framework\ECS\Component.h" />
     <ClInclude Include="Framework\ECS\ComponentManager.h" />
@@ -255,10 +256,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Game\BuildSettings.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Game\InfinityGridFloor.h" />
     <ClInclude Include="Game\LogoScene.h">
@@ -350,6 +355,7 @@
     <ClCompile Include="Framework\Context\GameCamera.cpp" />
     <ClCompile Include="Framework\Context\PauseHandler.cpp" />
     <ClCompile Include="Framework\Context\SaveHandler.cpp" />
+    <ClCompile Include="Framework\Context\SceneManager.cpp" />
     <ClCompile Include="Framework\ECS\Component.cpp" />
     <ClCompile Include="Framework\ECS\GameContext.cpp" />
     <ClCompile Include="Framework\ECS\GameObject.cpp" />

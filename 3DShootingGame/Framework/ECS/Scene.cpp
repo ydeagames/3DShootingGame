@@ -22,7 +22,7 @@ Scene::~Scene()
 bool Scene::Load()
 {
 	registry.reset();
-	return Components::LoadScene(location, registry, [](auto& registry) {
+	return Components::LoadScene(info.location, registry, [](auto& registry) {
 		Components::InitializeDependency(registry);
 		Components::InitializeLifecycleEvents(registry);
 		});
@@ -30,5 +30,5 @@ bool Scene::Load()
 
 bool Scene::Save() const
 {
-	return Components::SaveScene(location, registry);
+	return Components::SaveScene(info.location, registry);
 }

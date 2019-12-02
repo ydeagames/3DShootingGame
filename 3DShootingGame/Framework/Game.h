@@ -53,7 +53,7 @@ private:
     DX::DeviceResources*					m_deviceResources;
 
     // Rendering loop timer.
-    DX::StepTimer                           m_timer;
+    DX::StepTimer*                          m_timer;
 
 	GameContext                             m_context;
 	std::unique_ptr<Camera>                 m_mainCamera;

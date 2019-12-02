@@ -4,6 +4,7 @@
 
 #include "pch.h"
 #include <Framework/Game.h>
+#include <Game/BuildSettings.h>
 
 // デバッグコンソール
 #include <io.h>
@@ -23,9 +24,6 @@ static void CreateConsoleWindow() {
 	setvbuf(stdin, NULL, _IONBF, 0);
 //#endif
 }
-
-constexpr LPCWSTR GAME_WINDOW_CLASS = L"YdeaGamesWindowClass";
-constexpr LPCWSTR GAME_WINDOW_TITLE = L"スリングヒーローズ";
 
 using namespace DirectX;
 
@@ -71,7 +69,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
         wcex.hIcon = LoadIconW(hInstance, L"IDI_ICON");
         wcex.hCursor = LoadCursorW(nullptr, IDC_ARROW);
         wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
-        wcex.lpszClassName = GAME_WINDOW_CLASS;
+        wcex.lpszClassName = BuildSettings::GAME_WINDOW_CLASS;
         wcex.hIconSm = LoadIconW(wcex.hInstance, L"IDI_ICON");
         if (!RegisterClassExW(&wcex))
             return 1;
@@ -84,7 +82,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
         AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
-        HWND hwnd = CreateWindowExW(0, GAME_WINDOW_CLASS, GAME_WINDOW_TITLE, WS_OVERLAPPEDWINDOW,
+        HWND hwnd = CreateWindowExW(0, BuildSettings::GAME_WINDOW_CLASS, BuildSettings::GAME_WINDOW_TITLE, WS_OVERLAPPEDWINDOW,
             CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance,
             nullptr);
         // TODO: Change to CreateWindowExW(WS_EX_TOPMOST, GAME_WINDOW_CLASS, GAME_WINDOW_TITLE, WS_POPUP,

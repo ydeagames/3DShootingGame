@@ -4,15 +4,16 @@
 
 #include "pch.h"
 #include "Game.h"
+#include <Game/BuildSettings.h>
 #include "ExitHandler.h"
-#include "ImGuiManager.h"
-#include "GameCamera.h"
+#include <Framework/ImGui/ImGuiManager.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/ImGui/ImGuiManager.h>
-#include "SaveHandler.h"
-#include "PauseHandler.h"
+#include <Framework/Context/SaveHandler.h>
+#include <Framework/Context/PauseHandler.h>
+#include <Framework/Context/WindowHandler.h>
 #include <Utilities/FPS.h>
-#include "WindowHandler.h"
+#include <Utilities/Input.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -21,8 +22,9 @@ using Microsoft::WRL::ComPtr;
 
 Game::Game() noexcept(false)
 {
-	GameContext::Register<DX::DeviceResources>();
-    m_deviceResources = &GameContext::Get<DX::DeviceResources>();
+	m_timer = &GameContext::Register<DX::StepTimer>();
+
+    m_deviceResources = &GameContext::Register<DX::DeviceResources>();
     m_deviceResources->RegisterDeviceNotify(this);
 }
 
@@ -40,27 +42,25 @@ void Game::Initialize(HWND window, int width, int height)
 
 	{
 		// FPS
-		Register(std::make_unique<FPS>(Get<DX::StepTimer>()));
+		GameContext::Register<FPS>(GameContext::Get<DX::StepTimer>());
 		// ウィンドウ
-		Register(std::make_unique<WindowHandler>(m_deviceResources, window));
-		// カメラ
-		Register(std::make_unique<GameCamera>());
+		GameContext::Register<WindowHandler>(m_deviceResources, window);
 		// コモンステートを作成する
-		Register(std::make_unique<CommonStates>(m_deviceResources->GetD3DDevice()));
+		GameContext::Register<CommonStates>(m_deviceResources->GetD3DDevice());
 		// EffectFactoryオブジェクトを生成する
-		Register(std::make_unique<EffectFactory>(m_deviceResources->GetD3DDevice()));
+		GameContext::Register<EffectFactory>(m_deviceResources->GetD3DDevice());
 		// テクスチャの読み込みパス指定
-		Get<EffectFactory>().SetDirectory(L"Resources/Models");
+		GameContext::Get<EffectFactory>().SetDirectory(L"Resources/Models");
 		// セーブ
-		Register(std::make_unique<SaveHandler>(L"Saves/"));
+		GameContext::Register<SaveHandler>(L"Saves/");
 		// ポーズ
-		Register(std::make_unique<PauseHandler>());
+		GameContext::Register<PauseHandler>();
 		// 物理
-		Register(std::make_unique<PhysXManager>());
-		Get<PhysXManager>().Initialize(*this);
+		GameContext::Register<PhysXManager>();
+		GameContext::Get<PhysXManager>().Initialize(m_context);
 		// GUI
-		Register(std::make_unique<ImGuiManager>());
-		Get<ImGuiManager>().Initialize(*this);
+		GameContext::Register<ImGuiManager>();
+		GameContext::Get<ImGuiManager>().RenderInitialize();
 	}
 
 	CreateDeviceDependentResources();
@@ -77,14 +77,11 @@ void Game::Initialize(HWND window, int width, int height)
 
 void Game::Finalize()
 {
-	// GUI
-	Get<ImGuiManager>().Finalize(*this);
-
 	// 物理
-	Get<PhysXManager>().Finalize(*this);
+	GameContext::Get<PhysXManager>().Finalize(m_context);
 
 	// 破棄
-	GetSceneManager().GetSceneView().Finalize(*this);
+	m_myGame = nullptr;
 }
 
 #pragma region Frame Update
@@ -92,11 +89,9 @@ void Game::Finalize()
 void Game::Tick()
 {
 	// 毎チック処理
-	auto& timer = Get<DX::StepTimer>();
-	Object::objectTime = float(timer.GetTotalSeconds());
-	timer.Tick([&]()
+	m_timer->Tick([&]()
     {
-        Update(timer);
+        Update(*m_timer);
     });
 
 	// 描画
@@ -117,7 +112,7 @@ void Game::Update(DX::StepTimer const& timer)
 	// PhysX描画モード
 	if (Input::GetKeyDown(Keyboard::Keys::F3))
 	{
-		auto& physics = Get<PhysXManager>();
+		auto& physics = GameContext::Get<PhysXManager>();
 		switch (physics.debugMode)
 		{
 		case PhysXManager::IngamePvdMode::Game:				physics.debugMode = PhysXManager::IngamePvdMode::GameCollision;	break;
@@ -126,13 +121,8 @@ void Game::Update(DX::StepTimer const& timer)
 		}
 	}
 	// 物理
-	Get<PhysXManager>().Update(*this);
-	// GUI
-	Get<ImGuiManager>().Update(*this);
-	// シーン処理
-	GetSceneManager().ProcessScene(*this);
+	GameContext::Get<PhysXManager>().Update(*this);
 	// 更新
-	GetSceneManager().GetSceneView().Update(*this);
 	m_myGame->Update();
 }
 #pragma endregion
@@ -142,7 +132,7 @@ void Game::Update(DX::StepTimer const& timer)
 void Game::Render()
 {
     // Don't try to render anything before the first Update.
-    if (Get<DX::StepTimer>().GetFrameCount() == 0)
+    if (m_timer->GetFrameCount() == 0)
     {
         return;
     }
@@ -154,27 +144,27 @@ void Game::Render()
     m_deviceResources->PIXBeginEvent(L"Render");
 
 	// GUI
-	Get<ImGuiManager>().BeforeRender(*this);
+	//GameContext::Get<ImGuiManager>().BeforeRender();
 
     // TODO: Add your rendering code here.
-	auto& physics = Get<PhysXManager>();
-	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
-	{
-		GetSceneManager().GetSceneView().Render(*this);
-	}
-	else
-	{
-		GetSceneManager().GetActiveScene().Find(L"SceneDirector")->Render(*this);
-	}
+	//auto& physics = Get<PhysXManager>();
+	//if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
+	//{
+	//	GetSceneManager().GetSceneView().Render(*this);
+	//}
+	//else
+	//{
+	//	GetSceneManager().GetActiveScene().Find(L"SceneDirector")->Render(*this);
+	//}
 
 	// GUI
-	Get<ImGuiManager>().AfterRender(*this);
+	//GameContext::Get<ImGuiManager>().AfterRender();
 
 	// FPS
-	auto& fps = Get<FPS>();
+	auto& fps = GameContext::Get<FPS>();
 	fps.update();
 	if (fps.hasFPSChanged())
-		SetWindowTextW(Get<WindowHandler>().GetHandle(), (BuildSettings::GAME_TITLE + L" - FPS: " + std::to_wstring(static_cast<int>(fps.getFPS()))).c_str());
+		SetWindowTextW(GameContext::Get<WindowHandler>().GetHandle(), (BuildSettings::GAME_WINDOW_TITLE + L" - FPS: " + std::to_wstring(static_cast<int>(fps.getFPS()))).c_str());
 
 	m_myGame->Render(*m_mainCamera);
 
@@ -213,14 +203,14 @@ void Game::OnActivated()
 {
     // TODO: Game is becoming active window.
 	Input::SetMouseMode(GetScene().mouseMode);
-	GetPauseHandler().SetPaused(*this, false);
+	GameContext::Get<PauseHandler>().SetPaused(false);
 }
 
 void Game::OnDeactivated()
 {
     // TODO: Game is becoming background window.
 	Input::SetMouseMode(DirectX::Mouse::Mode::MODE_ABSOLUTE);
-	GetPauseHandler().SetPaused(*this, true);
+	GameContext::Get<PauseHandler>().SetPaused(true);
 }
 
 void Game::OnSuspending()
@@ -230,7 +220,7 @@ void Game::OnSuspending()
 
 void Game::OnResuming()
 {
-	Get<DX::StepTimer>().ResetElapsedTime();
+	m_timer->ResetElapsedTime();
 
     // TODO: Game is being power-resumed (or returning from minimize).
 }
@@ -278,7 +268,7 @@ void Game::CreateWindowSizeDependentResources()
     // TODO: Initialize windows-size dependent objects here.
 
 	// ウインドウサイズからアスペクト比を算出する
-	auto& window = Get<WindowHandler>();
+	auto& window = GameContext::Get<WindowHandler>();
 	float aspectRatio = window.GetAspectRatio();
 	auto size = window.GetSize();
 	// 画角を設定

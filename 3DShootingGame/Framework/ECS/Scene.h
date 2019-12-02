@@ -2,11 +2,17 @@
 
 class GameObject;
 
-class Scene final
+class SceneInfo final
 {
 public:
 	std::string name;
 	std::string location;
+};
+
+class Scene final
+{
+public:
+	SceneInfo info;
 	entt::registry registry;
 
 public:

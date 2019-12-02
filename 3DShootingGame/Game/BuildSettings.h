@@ -1,14 +1,9 @@
 #pragma once
-#include <Framework/ISceneBuilder.h>
 
-class BuildSettings : public ISceneBuilder
+class BuildSettings
 {
 public:
-	const static std::wstring GAME_TITLE;
-	const static std::wstring GAME_TITLE_CLASS;
-	std::wstring GetName() const override { return L"BuildSettings"; }
-
-public:
-	void Build(GameContext& context) override;
+	static constexpr LPCWSTR GAME_WINDOW_CLASS = L"YdeaGamesWindowClass";
+	static constexpr LPCWSTR GAME_WINDOW_TITLE = L"スリングヒーローズ";
 };
 

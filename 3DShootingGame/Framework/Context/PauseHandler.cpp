@@ -16,7 +16,7 @@ namespace
 	}
 }
 
-void PauseHandler::SetPaused(GameContext& context, bool pause)
+void PauseHandler::SetPaused(bool pause)
 {
 	auto& manager = context.GetSceneManager();
 

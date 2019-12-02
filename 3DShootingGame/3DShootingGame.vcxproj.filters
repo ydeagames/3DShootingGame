@@ -344,6 +344,9 @@
     <ClInclude Include="Framework\ECS\Component.h">
       <Filter>Framework\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Context\SceneManager.h">
+      <Filter>Framework\Context</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -461,6 +464,9 @@
     </ClCompile>
     <ClCompile Include="Framework\ECS\Component.cpp">
       <Filter>Framework\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Context\SceneManager.cpp">
+      <Filter>Framework\Context</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
