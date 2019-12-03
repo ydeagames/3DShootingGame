@@ -85,7 +85,7 @@ public:
 	void Awake() { std::cout << "Awake" << gameObject.entity << std::endl; }
 	void OnDestroy() { std::cout << "OnDestroy" << gameObject.entity << std::endl; }
 	void RenderStart();
-	void Render(Camera& camera);
+	void Render(GameCamera& camera);
 
 public:
 	template<class Archive>
@@ -124,10 +124,10 @@ public:
 	}
 
 private:
-	Camera* cameraptr = nullptr;
+	GameCamera* cameraptr = nullptr;
 
 public:
-	void Render(Camera& camera);
+	void Render(GameCamera& camera);
 	void Update();
 
 public:

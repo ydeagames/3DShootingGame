@@ -7,6 +7,7 @@
 #include "SimpleMath.h"
 
 class GameContext;
+class GameCamera;
 
 // デバッググリッド床クラス
 class InfinityGridFloor
@@ -28,13 +29,13 @@ class InfinityGridFloor
 
 public:
 	// コンストラクタ
-	InfinityGridFloor(GameContext& context, float cellsize, const DirectX::SimpleMath::Vector2& size);
+	InfinityGridFloor(float cellsize, const DirectX::SimpleMath::Vector2& size);
 
 	// デストラクタ
 	~InfinityGridFloor();
 
 	// 描画
-	void draw(GameContext& context, DirectX::GXMVECTOR color = DirectX::Colors::Gray);
+	void draw(GameCamera& camera, DirectX::GXMVECTOR color = DirectX::Colors::Gray);
 };
 
 

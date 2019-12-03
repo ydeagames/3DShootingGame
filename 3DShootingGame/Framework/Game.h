@@ -7,7 +7,9 @@
 #include <Common/DeviceResources.h>
 #include <Common/StepTimer.h>
 #include "MyGame.h"
-#include <Framework/Components/Components.h>
+#include <Framework/ECS/GameContext.h>
+
+class GameCamera;
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
@@ -15,7 +17,8 @@ class Game final : public DX::IDeviceNotify
 {
 public:
 
-    Game() noexcept(false);
+	Game() noexcept(false);
+	~Game();
 
     // Initialization and management
     void Initialize(HWND window, int width, int height);
@@ -56,6 +59,6 @@ private:
     DX::StepTimer*                          m_timer;
 
 	GameContext                             m_context;
-	std::unique_ptr<Camera>                 m_mainCamera;
+	std::unique_ptr<GameCamera>             m_mainCamera;
 	std::unique_ptr<MyGame>                 m_myGame;
 };

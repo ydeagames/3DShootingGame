@@ -20,12 +20,12 @@ namespace
 }
 
 // コンストラクタ
-InfinityGridFloor::InfinityGridFloor(GameContext& ctx, float cellsize, const DirectX::SimpleMath::Vector2& size)
+InfinityGridFloor::InfinityGridFloor(float cellsize, const DirectX::SimpleMath::Vector2& size)
 	: m_cellsize(cellsize)
 	, m_size(size)
 {
-	auto device = ctx.GetDR().GetD3DDevice();
-	auto context = ctx.GetDR().GetD3DDeviceContext();
+	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
+	auto context = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 
 	// エフェクトの生成
 	m_basicEffect = std::make_unique<DirectX::BasicEffect>(device);
@@ -53,11 +53,11 @@ InfinityGridFloor::~InfinityGridFloor()
 }
 
 // 描画
-void InfinityGridFloor::draw(GameContext& ctx, DirectX::GXMVECTOR color)
+void InfinityGridFloor::draw(GameCamera& camera, DirectX::GXMVECTOR color)
 {
-	auto device = ctx.GetDR().GetD3DDevice();
-	auto context = ctx.GetDR().GetD3DDeviceContext();
-	auto& states = ctx.GetStates();
+	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
+	auto context = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
+	auto& states = GameContext::Get<DirectX::CommonStates>();
 
 	DirectX::SimpleMath::Matrix world;
 
@@ -65,16 +65,16 @@ void InfinityGridFloor::draw(GameContext& ctx, DirectX::GXMVECTOR color)
 	context->OMSetDepthStencilState(states.DepthDefault(), 0);
 
 	m_basicEffect->SetWorld(world);
-	m_basicEffect->SetView(ctx.GetCamera().view);
-	m_basicEffect->SetProjection(ctx.GetCamera().projection);
+	m_basicEffect->SetView(camera.view);
+	m_basicEffect->SetProjection(camera.projection);
 
 
 	m_basicEffect->Apply(context);
 	context->IASetInputLayout(m_pInputLayout.Get());
 
-	auto campos = ctx.GetCamera().GetPosition();
-	auto ray1 = ctx.GetCamera().ViewportPointToRay(DirectX::SimpleMath::Vector3(-1, -1, 0));
-	auto ray2 = ctx.GetCamera().ViewportPointToRay(DirectX::SimpleMath::Vector3(1, 1, 0));
+	auto campos = camera.GetPosition();
+	auto ray1 = camera.ViewportPointToRay(DirectX::SimpleMath::Vector3(-1, -1, 0));
+	auto ray2 = camera.ViewportPointToRay(DirectX::SimpleMath::Vector3(1, 1, 0));
 	DirectX::SimpleMath::Plane plane = DirectX::SimpleMath::Plane(DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::Up);
 
 	DirectX::SimpleMath::Vector3 q1 = campos + DirectX::SimpleMath::Vector3(m_size.x, 0, m_size.y) * .5f;

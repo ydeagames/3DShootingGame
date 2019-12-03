@@ -9,7 +9,7 @@ void PrimitiveRenderer::RenderStart()
 	m_model = GeometricPrimitive::CreateTeapot(GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext());
 }
 
-void PrimitiveRenderer::Render(Camera& camera)
+void PrimitiveRenderer::Render(GameCamera& camera)
 {
 	if (m_model)
 		m_model->Draw(gameObject.GetComponent<Transform>().GetMatrix(), camera.view, camera.projection);
@@ -30,7 +30,7 @@ void MoveDownUpdater::Update()
 	gameObject.GetComponent<Transform>().position.y -= .1f;
 }
 
-void CameraComponent::Render(Camera& camera)
+void CameraComponent::Render(GameCamera& camera)
 {
 	cameraptr = &camera;
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "EventBus.h"
 
-class Camera;
+class GameCamera;
 
 class Updatable
 {
@@ -49,14 +49,14 @@ private:
 	template<typename T, typename = decltype(&T::Render)>
 	static void Register0()
 	{
-		ECS::EventBus<Renderable, 1, Camera>::Register<T>(&T::Render);
+		ECS::EventBus<Renderable, 1, GameCamera>::Register<T>(&T::Render);
 	}
 
 	template<typename T> static void RegisterGui0(...) {}
 	template<typename T, typename = decltype(&T::RenderGui)>
 	static void RegisterGui0()
 	{
-		ECS::EventBus<Renderable, 2, Camera>::Register<T>(&T::RenderGui);
+		ECS::EventBus<Renderable, 2, GameCamera>::Register<T>(&T::RenderGui);
 	}
 
 public:
@@ -73,15 +73,15 @@ public:
 		ECS::EventBus<Renderable, 0>::Post(registry);
 	}
 
-	static void Render(Scene& registry, Camera&& camera)
+	static void Render(Scene& registry, GameCamera&& camera)
 	{
 		ECS::EventBus<Renderable, 0>::Post(registry);
-		ECS::EventBus<Renderable, 1, Camera>::Post(registry, std::forward<Camera>(camera));
+		ECS::EventBus<Renderable, 1, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
 	}
 
-	static void RenderGui(Scene& registry, Camera&& camera)
+	static void RenderGui(Scene& registry, GameCamera&& camera)
 	{
 		ECS::EventBus<Renderable, 0>::Post(registry);
-		ECS::EventBus<Renderable, 2, Camera>::Post(registry, std::forward<Camera>(camera));
+		ECS::EventBus<Renderable, 2, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
 	}
 };

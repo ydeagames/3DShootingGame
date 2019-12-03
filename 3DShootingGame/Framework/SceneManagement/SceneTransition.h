@@ -5,6 +5,6 @@
 class SceneTransition : public Component
 {
 public:
-	std::function<void(GameContext&)> unloadBefore;
-	std::function<void(GameContext&)> loadAfter;
+	std::function<void()> unloadBefore;
+	std::function<void()> loadAfter;
 };

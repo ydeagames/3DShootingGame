@@ -49,6 +49,9 @@ public:
 		return registry->get<Component>(entity);
 	}
 
+	static void Destroy(GameObject* gameObject);
+	static void Destroy(GameObject& gameObject);
+
 	entt::entity GetParent() const;
 	std::vector<entt::entity> GetChildren() const;
 };

@@ -13,7 +13,7 @@ public:
 	~MyGame();
 	void Update();
 	void RenderInitialize();
-	void Render(Camera& camera);
+	void Render(GameCamera& camera);
 
 	int Bench();
 };

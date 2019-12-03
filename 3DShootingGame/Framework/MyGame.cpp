@@ -5,6 +5,7 @@
 #include <Framework/ImGui/Widgets.h>
 #include <Framework/Components/Components.h>
 #include <Framework/Components/AllComponents.h>
+#include <Framework/Context/SceneManager.h>
 
 int MyGame::Bench()
 {
@@ -27,9 +28,10 @@ MyGame::MyGame()
 {
 	Components::InitializeEvents();
 
-	m_scene.name = "scene";
-	m_scene.location = m_scene.name + ".json";
+	GameContext::Register<SceneManager>(m_scene);
 
+	m_scene.info.name = "scene";
+	m_scene.info.location = m_scene.info.name + ".json";
 	m_scene.Load();
 
 	// Widgets
@@ -41,6 +43,7 @@ MyGame::MyGame()
 MyGame::~MyGame()
 {
 	GameContext::Remove<TransformResolver>();
+	GameContext::Remove<SceneManager>();
 }
 
 void MyGame::Update()
@@ -80,7 +83,7 @@ void MyGame::RenderInitialize()
 	Renderable::RenderInitialize(m_scene);
 }
 
-void MyGame::Render(Camera& camera)
+void MyGame::Render(GameCamera& camera)
 {
 	static int bench = Bench();
 
@@ -88,7 +91,7 @@ void MyGame::Render(Camera& camera)
 	GameContext::Get<TransformResolver>().ClearCache();
 
 	// 描画イベント
-	Renderable::Render(m_scene, std::forward<Camera>(camera));
+	Renderable::Render(m_scene, std::forward<GameCamera>(camera));
 
 	// ImGui
 	{
@@ -99,7 +102,7 @@ void MyGame::Render(Camera& camera)
 		imgui.Begin();
 
 		// GUI描画イベント
-		Renderable::RenderGui(m_scene, std::forward<Camera>(camera));
+		Renderable::RenderGui(m_scene, std::forward<GameCamera>(camera));
 
 		// Widgets
 		Widgets::AllWidgets::Render(m_scene);

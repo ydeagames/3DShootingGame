@@ -1,12 +1,7 @@
 #pragma once
 #include <Common/DeviceResources.h>
 
-class Camera
-{
-public:
-	DirectX::SimpleMath::Matrix view;
-	DirectX::SimpleMath::Matrix projection;
-};
+class GameCamera;
 
 class GameContext final
 {

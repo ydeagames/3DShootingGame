@@ -12,6 +12,7 @@
 #include <Framework/Context/SaveHandler.h>
 #include <Framework/Context/PauseHandler.h>
 #include <Framework/Context/WindowHandler.h>
+#include <Framework/Context/GameCamera.h>
 #include <Utilities/FPS.h>
 #include <Utilities/Input.h>
 
@@ -28,6 +29,10 @@ Game::Game() noexcept(false)
     m_deviceResources->RegisterDeviceNotify(this);
 }
 
+Game::~Game()
+{
+}
+
 // Initialize the Direct3D resources required to run.
 void Game::Initialize(HWND window, int width, int height)
 {
@@ -37,7 +42,7 @@ void Game::Initialize(HWND window, int width, int height)
     m_deviceResources->CreateDeviceResources();
     m_deviceResources->CreateWindowSizeDependentResources();
 
-	m_mainCamera = std::make_unique<Camera>();
+	m_mainCamera = std::make_unique<GameCamera>();
 	m_myGame = std::make_unique<MyGame>();
 
 	{

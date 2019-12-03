@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "SceneTransitions.h"
-#include <Framework/GameContext.h>
+#include <Framework/ECS/GameContext.h>
 #include <Utilities/BinaryFile.h>
+#include <Common/StepTimer.h>
+#include <Framework/Context/SceneManager.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -21,7 +23,7 @@ namespace SceneTransitions
 		std::unique_ptr<GeometricPrimitive> m_plane;
 		bool changed = false;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			std::vector<GeometricPrimitive::VertexType> vertices = {
 				{ Vector3(-0.5f, +0.5f, 0.0f), Vector3::Forward, Vector2(0.0f, 0.0f) },
@@ -32,20 +34,20 @@ namespace SceneTransitions
 			std::vector<uint16_t> indices = {
 				0, 1, 2, 0, 2, 3,
 			};
-			m_plane = GeometricPrimitive::CreateCustom(context.GetDR().GetD3DDeviceContext(), vertices, indices);
+			m_plane = GeometricPrimitive::CreateCustom(GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext(), vertices, indices);
 		}
 
-		void Update(GameContext& context)
+		void Update()
 		{
-			m_time += float(context.GetTimer().GetElapsedSeconds());
+			m_time += float(GameContext::Get<DX::StepTimer>().GetElapsedSeconds());
 			if (!changed && m_time >= m_totalTime / 2)
 			{
-				unloadBefore(context);
-				loadAfter(context);
+				unloadBefore();
+				loadAfter();
 				changed = true;
 			}
 			if (m_time > m_totalTime)
-				Destroy(*this);
+				GameObject::Destroy(gameObject);
 		}
 
 		void Render(GameContext& context)
@@ -106,10 +108,10 @@ namespace SceneTransitions
 		std::unique_ptr<GeometricPrimitive> m_plane;
 		bool changed = false;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
-			auto device = context.GetDR().GetD3DDevice();
-			auto ctx = context.GetDR().GetD3DDeviceContext();
+			auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
+			auto ctx = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 
 			// プリミティブオブジェクト生成
 			m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>>(ctx);
@@ -142,37 +144,38 @@ namespace SceneTransitions
 			DX::ThrowIfFailed(device->CreateBuffer(&bd, nullptr, &m_CBuffer));
 		}
 
-		void Update(GameContext& context)
+		void Update()
 		{
-			m_time += float(context.GetTimer().GetElapsedSeconds());
+			m_time += float(GameContext::Get<DX::StepTimer>().GetElapsedSeconds());
 			if (!changed && m_time >= m_totalTime / 2)
 			{
-				unloadBefore(context);
-				loadAfter(context);
+				unloadBefore();
+				loadAfter();
 				changed = true;
 			}
 			if (m_time > m_totalTime)
-				Destroy(*this);
+				GameObject::Destroy(gameObject);
 		}
 
 		void Render(GameContext& context)
 		{
 			float range = (m_time / m_totalTime) * 2;
 
-			auto ctx = context.GetDR().GetD3DDeviceContext();
+			auto ctx = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 
 			// オブジェ
 			auto Draw = [&](const Matrix& world, const Matrix& view, const Matrix& proj)
 			{
-				ID3D11BlendState* blendstate = context.GetStates().NonPremultiplied();
+				auto& state = GameContext::Get<CommonStates>();
+				ID3D11BlendState* blendstate = state.NonPremultiplied();
 				// 透明判定処理
 				ctx->OMSetBlendState(blendstate, nullptr, 0xFFFFFFFF);
 				// 深度バッファに書き込み参照する
-				ctx->OMSetDepthStencilState(context.GetStates().DepthRead(), 0);
+				ctx->OMSetDepthStencilState(state.DepthRead(), 0);
 				// カリングは右周り（時計回り）
-				ctx->RSSetState(context.GetStates().CullClockwise());
+				ctx->RSSetState(state.CullClockwise());
 
-				ID3D11SamplerState* sampler[1] = { context.GetStates().LinearClamp() };
+				ID3D11SamplerState* sampler[1] = { state.LinearClamp() };
 				ctx->PSSetSamplers(0, 1, sampler);
 
 				ctx->IASetInputLayout(m_inputLayout.Get());
@@ -183,7 +186,7 @@ namespace SceneTransitions
 				cbuff.matProj = proj.Transpose();
 				cbuff.matWorld = world.Transpose();
 				cbuff.Diffuse = Vector4(1, 1, 1, 1);
-				cbuff.time = float(context.GetTimer().GetTotalSeconds());
+				cbuff.time = float(GameContext::Get<DX::StepTimer>().GetTotalSeconds());
 				cbuff.range = std::min(2.f, std::max(0.f, range));
 
 				// 定数バッファの内容更新

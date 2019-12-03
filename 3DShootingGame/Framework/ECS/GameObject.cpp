@@ -2,6 +2,17 @@
 #include "GameObject.h"
 #include "Component.h"
 
+void GameObject::Destroy(GameObject* gameObject)
+{
+	if (gameObject)
+		Destroy(*gameObject);
+}
+
+void GameObject::Destroy(GameObject& gameObject)
+{
+	gameObject.registry->destroy(gameObject.entity);
+}
+
 entt::entity GameObject::GetParent() const
 {
 	if (registry->has<Transform>())
