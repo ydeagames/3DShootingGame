@@ -224,6 +224,7 @@
     <ClInclude Include="Framework\Context\SaveHandler.h" />
     <ClInclude Include="Framework\Context\SceneManager.h" />
     <ClInclude Include="Framework\Context\WindowHandler.h" />
+    <ClInclude Include="Framework\Components\Transform.h" />
     <ClInclude Include="Framework\ECS\Component.h" />
     <ClInclude Include="Framework\ECS\ComponentManager.h" />
     <ClInclude Include="Framework\ECS\EventBus.h" />
@@ -249,6 +250,8 @@
     <ClInclude Include="Framework\Physics\Rigidbody.h" />
     <ClInclude Include="Framework\SceneManagement\SceneTransition.h" />
     <ClInclude Include="Framework\SceneManagement\SceneTransitions.h" />
+    <ClInclude Include="Utilities\Math3DUtils.h" />
+    <ClInclude Include="Utilities\WindowsUtils.h" />
     <ClInclude Include="Game\BaseScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -356,7 +359,7 @@
     <ClCompile Include="Framework\Context\PauseHandler.cpp" />
     <ClCompile Include="Framework\Context\SaveHandler.cpp" />
     <ClCompile Include="Framework\Context\SceneManager.cpp" />
-    <ClCompile Include="Framework\ECS\Component.cpp" />
+    <ClCompile Include="Framework\Components\Transform.cpp" />
     <ClCompile Include="Framework\ECS\GameContext.cpp" />
     <ClCompile Include="Framework\ECS\GameObject.cpp" />
     <ClCompile Include="Framework\ECS\Scene.cpp" />
@@ -374,6 +377,8 @@
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />
     <ClCompile Include="Framework\Physics\Rigidbody.cpp" />
     <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp" />
+    <ClCompile Include="Utilities\Math3DUtils.cpp" />
+    <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\BaseScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

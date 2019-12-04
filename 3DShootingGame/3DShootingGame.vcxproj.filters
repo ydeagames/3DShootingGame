@@ -347,6 +347,15 @@
     <ClInclude Include="Framework\Context\SceneManager.h">
       <Filter>Framework\Context</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Components\Transform.h">
+      <Filter>Framework\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\WindowsUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Math3DUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -462,11 +471,17 @@
     <ClCompile Include="Game\TitleScene.cpp">
       <Filter>Game\Archived</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\ECS\Component.cpp">
-      <Filter>Framework\ECS</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Context\SceneManager.cpp">
       <Filter>Framework\Context</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Transform.cpp">
+      <Filter>Framework\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\WindowsUtils.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Math3DUtils.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

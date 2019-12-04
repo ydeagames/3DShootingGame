@@ -6,7 +6,7 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-void SphereCollider::AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
+void SphereCollider::AddCollider(physx::PxRigidActor* rigid, const Transform& transform) const
 {
 	auto& manager = context.GetPhysics();
 	auto mat = manager.CreateMaterial(material);
@@ -21,7 +21,7 @@ void SphereCollider::AddCollider(physx::PxRigidActor* rigid, const ObjectField<T
 	rigid->attachShape(*shape);
 }
 
-void BoxCollider::AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
+void BoxCollider::AddCollider(physx::PxRigidActor* rigid, const Transform& transform) const
 {
 	auto& manager = context.GetPhysics();
 	auto mat = manager.CreateMaterial(material);
@@ -35,7 +35,7 @@ void BoxCollider::AddCollider(physx::PxRigidActor* rigid, const ObjectField<Tran
 	rigid->attachShape(*shape);
 }
 
-void CapsuleCollider::AddCollider(physx::PxRigidActor* rigid, const ObjectField<Transform>& transform) const
+void CapsuleCollider::AddCollider(physx::PxRigidActor* rigid, const Transform& transform) const
 {
 	auto& manager = context.GetPhysics();
 	auto mat = manager.CreateMaterial(material);

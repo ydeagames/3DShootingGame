@@ -1,13 +1,13 @@
 #include "pch.h"
 #include "Transform.h"
 #include <Framework/ECS/GameContext.h>
+#include <Utilities/Math3DUtils.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 Transform::Transform()
-	: parent(nullptr)
-	, localPosition(Vector3::Zero)
+	: localPosition(Vector3::Zero)
 	, localRotation(Quaternion::Identity)
 	, localScale(Vector3::One)
 {
@@ -15,44 +15,49 @@ Transform::Transform()
 
 DirectX::SimpleMath::Vector3 Transform::GetPosition() const
 {
-	if (parent)
-		return Vector3::Transform(localPosition, parent->GetMatrix());
+	auto parent = gameObject.GetParent();
+	if (parent != entt::null)
+		return Vector3::Transform(localPosition, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)));
 	else
 		return localPosition;
 }
 
 void Transform::SetPosition(const DirectX::SimpleMath::Vector3& value)
 {
-	if (parent)
-		localPosition = Vector3::Transform(value, parent->GetMatrix().Invert());
+	auto parent = gameObject.GetParent();
+	if (parent != entt::null)
+		localPosition = Vector3::Transform(value, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)).Invert());
 	else
 		localPosition = value;
 }
 
 DirectX::SimpleMath::Quaternion Transform::GetRotation() const
 {
-	if (parent)
-		return localRotation * Quaternion::CreateFromRotationMatrix(parent->GetMatrix());
+	auto parent = gameObject.GetParent();
+	if (parent != entt::null)
+		return localRotation * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)));
 	else
 		return localRotation;
 }
 
 void Transform::SetRotation(const DirectX::SimpleMath::Quaternion& value)
 {
-	if (parent)
-		localRotation = value * Quaternion::CreateFromRotationMatrix(parent->GetMatrix().Invert());
+	auto parent = gameObject.GetParent();
+	if (parent != entt::null)
+		localRotation = value * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)).Invert());
 	else
 		localRotation = value;
 }
 
 DirectX::SimpleMath::Vector3 Transform::GetLossyScale() const
 {
-	if (parent)
+	auto parent = gameObject.GetParent();
+	if (parent != entt::null)
 	{
 		Vector3 parentPosition;
 		Quaternion parentRotation;
 		Vector3 parentScale;
-		parent->GetMatrix().Decompose(parentScale, parentRotation, parentPosition);
+		GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)).Decompose(parentScale, parentRotation, parentPosition);
 		auto mat = Matrix::CreateScale(parentScale) * Matrix::CreateFromQuaternion(parentRotation);
 		return Vector3::Transform(localScale, mat);
 	}
@@ -62,46 +67,18 @@ DirectX::SimpleMath::Vector3 Transform::GetLossyScale() const
 
 void Transform::SetLossyScale(const DirectX::SimpleMath::Vector3& value)
 {
-	if (parent)
+	auto parent = gameObject.GetParent();
+	if (parent != entt::null)
 	{
 		Vector3 parentPosition;
 		Quaternion parentRotation;
 		Vector3 parentScale;
-		parent->GetMatrix().Decompose(parentScale, parentRotation, parentPosition);
+		GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)).Decompose(parentScale, parentRotation, parentPosition);
 		auto mat = Matrix::CreateScale(parentScale) * Matrix::CreateFromQuaternion(parentRotation);
 		localScale = Vector3::Transform(value, mat.Invert());
 	}
 	else
 		localScale = value;
-}
-
-void Transform::SetParent(const Transform* value)
-{
-	Vector3 worldPosition = localPosition;
-	Quaternion worldRotation = localRotation;
-	Vector3 worldScale = lossyScale;
-	parent = value;
-	localPosition = worldPosition;
-	localRotation = worldRotation;
-	lossyScale = worldScale;
-}
-
-bool Transform::IsParentDestroyed() const
-{
-	if (gameObject && gameObject->IsDestroyed())
-		return true;
-	if (parent && parent->IsParentDestroyed())
-		return true;
-	return Object::IsDestroyed();
-}
-
-DirectX::SimpleMath::Matrix Transform::GetMatrix() const
-{
-	return
-		Matrix::CreateScale(localScale) *
-		Matrix::CreateFromQuaternion(localRotation) *
-		Matrix::CreateTranslation(localPosition) *
-		(parent != nullptr ? parent->GetMatrix() : Matrix::Identity);
 }
 
 DirectX::SimpleMath::Matrix Transform::GetLocalMatrix() const
@@ -151,14 +128,14 @@ void Transform::EditorGui()
 	ImGui::DragFloat3("Position##Transform", &t.localPosition.x, 0.1f);
 
 	{
-		auto euler = ToEulerAngles(DirectX::SimpleMath::Quaternion(t.localRotation.x, t.localRotation.y, t.localRotation.z, t.localRotation.w)) * (180.f / DirectX::XM_PI);
+		auto euler = Math3DUtils::ToEulerAngles(DirectX::SimpleMath::Quaternion(t.localRotation.x, t.localRotation.y, t.localRotation.z, t.localRotation.w)) * (180.f / DirectX::XM_PI);
 
 		float rot[] = { euler.x, euler.y, euler.z };
 
 		// the "##Transform" ensures that you can use the name "x" in multiple lables
 		ImGui::DragFloat3("Rotation##Transform", &rot[0], 0.1f);
 
-		auto quat = ToQuaternion(DirectX::SimpleMath::Vector3(rot[0], rot[1], rot[2]) * (DirectX::XM_PI / 180.f));
+		auto quat = Math3DUtils::ToQuaternion(DirectX::SimpleMath::Vector3(rot[0], rot[1], rot[2]) * (DirectX::XM_PI / 180.f));
 		t.localRotation.x = quat.x;
 		t.localRotation.y = quat.y;
 		t.localRotation.z = quat.z;
