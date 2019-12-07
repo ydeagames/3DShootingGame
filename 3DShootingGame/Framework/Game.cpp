@@ -36,6 +36,12 @@ Game::~Game()
 // Initialize the Direct3D resources required to run.
 void Game::Initialize(HWND window, int width, int height)
 {
+	// Mouse
+	m_mouse = std::make_unique<Mouse>();
+	m_mouse->SetWindow(window);
+	// Keyboard
+	m_keyboard = std::make_unique<Keyboard>();
+
 	// ê›íË
     m_deviceResources->SetWindow(window, width, height);
 
@@ -63,9 +69,6 @@ void Game::Initialize(HWND window, int width, int height)
 		// ï®óù
 		GameContext::Register<PhysXManager>();
 		GameContext::Get<PhysXManager>().Initialize();
-		// GUI
-		GameContext::Register<ImGuiManager>();
-		GameContext::Get<ImGuiManager>().RenderInitialize();
 	}
 
 	CreateDeviceDependentResources();

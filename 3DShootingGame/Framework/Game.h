@@ -20,45 +20,53 @@ public:
 	Game() noexcept(false);
 	~Game();
 
-    // Initialization and management
-    void Initialize(HWND window, int width, int height);
+	// Initialization and management
+	void Initialize(HWND window, int width, int height);
 	void Finalize();
 
-    // Basic game loop
-    void Tick();
+	// Basic game loop
+	void Tick();
 
-    // IDeviceNotify
-    virtual void OnDeviceLost() override;
-    virtual void OnDeviceRestored() override;
+	// IDeviceNotify
+	virtual void OnDeviceLost() override;
+	virtual void OnDeviceRestored() override;
 
-    // Messages
-    void OnActivated();
-    void OnDeactivated();
-    void OnSuspending();
-    void OnResuming();
-    void OnWindowMoved();
-    void OnWindowSizeChanged(int width, int height);
+	// Messages
+	void OnActivated();
+	void OnDeactivated();
+	void OnSuspending();
+	void OnResuming();
+	void OnWindowMoved();
+	void OnWindowSizeChanged(int width, int height);
 
-    // Properties
-    void GetDefaultSize( int& width, int& height ) const;
+	// Properties
+	void GetDefaultSize( int& width, int& height ) const;
 
 private:
 
-    void Update(DX::StepTimer const& timer);
-    void Render();
+	void Update(DX::StepTimer const& timer);
+	void Render();
 
-    void Clear();
+	void Clear();
 
-    void CreateDeviceDependentResources();
-    void CreateWindowSizeDependentResources();
+	void CreateDeviceDependentResources();
+	void CreateWindowSizeDependentResources();
 
-    // Device resources.
-    DX::DeviceResources*					m_deviceResources;
+	// Device resources.
+	DX::DeviceResources*					m_deviceResources;
 
-    // Rendering loop timer.
-    DX::StepTimer*                          m_timer;
+	// Rendering loop timer.
+	DX::StepTimer*							m_timer;
 
-	GameContext                             m_context;
-	std::unique_ptr<GameCamera>             m_mainCamera;
-	std::unique_ptr<MyGame>                 m_myGame;
+	// Mouse
+	std::unique_ptr<DirectX::Mouse>			m_mouse;
+	// Keyboard
+	std::unique_ptr<DirectX::Keyboard>		m_keyboard;
+
+	// Context
+	GameContext								m_context;
+	// Camera
+	std::unique_ptr<GameCamera>				m_mainCamera;
+	// Game
+	std::unique_ptr<MyGame>					m_myGame;
 };

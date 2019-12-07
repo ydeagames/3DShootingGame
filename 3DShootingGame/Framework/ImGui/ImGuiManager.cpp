@@ -20,11 +20,11 @@ void ImGuiManager::RenderInitialize()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
-	//auto wpath = GameContext::Get<SaveHandler>().GetDir() + L"GuiSettings.ini";
-	//m_settingFile = std::string(wpath.begin(), wpath.end());
-	//io.IniFilename = m_settingFile.c_str();
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	auto wpath = GameContext::Get<SaveHandler>().GetDir() + L"GuiSettings.ini";
+	m_settingFile = std::string(wpath.begin(), wpath.end());
+	io.IniFilename = m_settingFile.c_str();
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
 	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();

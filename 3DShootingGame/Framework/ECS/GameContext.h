@@ -43,6 +43,7 @@ private:
 		template<typename Component, typename... Args>
 		Component& Register(Args&& ... args)
 		{
+			assert(!Has<Component>() && "Already Registered");
 			const auto ctype = ctx_family::type<Component>();
 			if (!(ctype < pools.size()))
 				pools.resize(ctype + 1);
@@ -55,7 +56,7 @@ private:
 		bool Has() const
 		{
 			const auto ctype = ctx_family::type<Component>();
-			return ctype < pools.size() && pools[ctype] && pools[ctype]->data;
+			return ctype < pools.size() && pools[ctype] && holder<Component>().data;
 		}
 
 		template<typename Component>

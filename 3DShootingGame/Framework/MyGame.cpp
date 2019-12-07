@@ -57,7 +57,7 @@ public:
 	ImGuiPtr()
 	{
 		// ImGuiコンテキスト
-		auto imgui = GameContext::Register<ImGuiManager>();
+		auto& imgui = GameContext::Register<ImGuiManager>();
 
 		// ImGui初期化
 		imgui.RenderInitialize();

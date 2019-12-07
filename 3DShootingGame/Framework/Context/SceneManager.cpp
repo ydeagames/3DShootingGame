@@ -17,9 +17,8 @@ void SceneManager::Apply()
 	if (requested)
 	{
 		requested = false;
-		auto& scene = GameContext::Get<Scene>();
-		scene.info = nextScene;
-		scene.Load();
+		scene->info = nextScene;
+		scene->Load();
 	}
 }
 
