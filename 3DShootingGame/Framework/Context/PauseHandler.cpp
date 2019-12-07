@@ -28,12 +28,12 @@ void PauseHandler::SetPaused(bool pause)
 
 	if (paused)
 	{
-		SceneInfo info = { substring_before(scene.info.name, "Pause"), substring_before(scene.info.location, "Pause") };
+		SceneInfo info = { substring_before(scene.info.name, "Pause"), substring_before(substring_before(scene.info.location, ".scene.json"), "Pause") + ".scene.json" };
 		scene.Load();
 	}
 	else
 	{
-		SceneInfo info = { scene.info.name + "Pause", scene.info.location + "Pause" };
+		SceneInfo info = { scene.info.name + "Pause", substring_before(scene.info.location, ".scene.json") + "Pause" + ".scene.json" };
 		if (info.Valid())
 		{
 			scene.info = info;
