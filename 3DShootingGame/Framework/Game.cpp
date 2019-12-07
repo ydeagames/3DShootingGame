@@ -4,17 +4,10 @@
 
 #include "pch.h"
 #include "Game.h"
-#include <Game/BuildSettings.h>
 #include "ExitHandler.h"
-#include <Framework/ImGui/ImGuiManager.h>
-#include <Framework/PhysX/PhysXManager.h>
-#include <Framework/ImGui/ImGuiManager.h>
-#include <Framework/Context/SaveHandler.h>
-#include <Framework/Context/PauseHandler.h>
 #include <Framework/Context/WindowHandler.h>
+#include <Framework/Context/PauseHandler.h>
 #include <Framework/Context/GameCamera.h>
-#include <Utilities/FPS.h>
-#include <Utilities/Input.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -51,25 +44,10 @@ void Game::Initialize(HWND window, int width, int height)
 	m_mainCamera = std::make_unique<GameCamera>();
 	m_myGame = std::make_unique<MyGame>();
 
-	{
-		// FPS
-		GameContext::Register<FPS>(GameContext::Get<DX::StepTimer>());
-		// ウィンドウ
-		GameContext::Register<WindowHandler>(m_deviceResources, window);
-		// コモンステートを作成する
-		GameContext::Register<CommonStates>(m_deviceResources->GetD3DDevice());
-		// EffectFactoryオブジェクトを生成する
-		GameContext::Register<EffectFactory>(m_deviceResources->GetD3DDevice());
-		// テクスチャの読み込みパス指定
-		GameContext::Get<EffectFactory>().SetDirectory(L"Resources/Models");
-		// セーブ
-		GameContext::Register<SaveHandler>(L"Saves/");
-		// ポーズ
-		GameContext::Register<PauseHandler>();
-		// 物理
-		GameContext::Register<PhysXManager>();
-		GameContext::Get<PhysXManager>().Initialize();
-	}
+	// ウィンドウ
+	GameContext::Register<WindowHandler>(m_deviceResources, window);
+	// ポーズ
+	GameContext::Register<PauseHandler>();
 
 	CreateDeviceDependentResources();
     CreateWindowSizeDependentResources();
@@ -85,8 +63,8 @@ void Game::Initialize(HWND window, int width, int height)
 
 void Game::Finalize()
 {
-	// 物理
-	GameContext::Get<PhysXManager>().Finalize();
+	GameContext::Remove<PauseHandler>();
+	GameContext::Remove<WindowHandler>();
 
 	// 破棄
 	m_myGame = nullptr;
@@ -109,27 +87,6 @@ void Game::Tick()
 // Updates the world.
 void Game::Update(DX::StepTimer const& timer)
 {
-	// インプット更新
-	Input::Update();
-	auto& io = ImGui::GetIO();
-	if (io.WantCaptureMouse)
-		Input::GetMouseTracker().Reset();
-	if (io.WantCaptureKeyboard)
-		Input::GetKeyboardTracker().Reset();
-
-	// PhysX描画モード
-	if (Input::GetKeyDown(Keyboard::Keys::F3))
-	{
-		auto& physics = GameContext::Get<PhysXManager>();
-		switch (physics.debugMode)
-		{
-		case PhysXManager::IngamePvdMode::Game:				physics.debugMode = PhysXManager::IngamePvdMode::GameCollision;	break;
-		case PhysXManager::IngamePvdMode::GameCollision:	physics.debugMode = PhysXManager::IngamePvdMode::Collision;		break;
-		default:											physics.debugMode = PhysXManager::IngamePvdMode::Game;			break;
-		}
-	}
-	// 物理
-	GameContext::Get<PhysXManager>().Update();
 	// 更新
 	m_myGame->Update();
 }
@@ -151,32 +108,7 @@ void Game::Render()
 	// ここから描画
     m_deviceResources->PIXBeginEvent(L"Render");
 
-	// GUI
-	//GameContext::Get<ImGuiManager>().BeforeRender();
-
     // TODO: Add your rendering code here.
-	//auto& physics = Get<PhysXManager>();
-	//if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
-	//{
-	//	GetSceneManager().GetSceneView().Render(*this);
-	//}
-	//else
-	//{
-	//	GetSceneManager().GetActiveScene().Find(L"SceneDirector")->Render(*this);
-	//}
-
-	// GUI
-	//GameContext::Get<ImGuiManager>().AfterRender();
-
-	// FPS
-	auto& fps = GameContext::Get<FPS>();
-	fps.update();
-	if (fps.hasFPSChanged())
-	{
-		std::wstringstream sb;
-		sb << BuildSettings::GAME_WINDOW_TITLE << L" - FPS: " << static_cast<int>(fps.getFPS());
-		SetWindowTextW(GameContext::Get<WindowHandler>().GetHandle(), sb.str().c_str());
-	}
 
 	m_myGame->Render(*m_mainCamera);
 

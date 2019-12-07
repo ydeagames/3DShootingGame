@@ -5,7 +5,7 @@
 class GameContext;
 class PhysXScene;
 
-class PhysXManager : public Component
+class PhysXManager
 {
 public:
 	enum IngamePvdMode
@@ -61,14 +61,5 @@ public:
 		mat->setRestitutionCombineMode(material.bounceCombine);
 		return mat;
 	}
-
-	// ¶¬
-	void Initialize();
-	// XV
-	void Update();
-	// •`‰æ
-	void Render();
-	// ”jŠü
-	void Finalize();
 };
 

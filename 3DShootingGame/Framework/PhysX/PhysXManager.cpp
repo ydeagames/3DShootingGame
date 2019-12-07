@@ -9,14 +9,6 @@ using namespace physx;
 
 PhysXManager::PhysXManager()
 {
-}
-
-PhysXManager::~PhysXManager()
-{
-}
-
-void PhysXManager::Initialize()
-{
 	m_foundation = px_unique_ptr<PxFoundation>(PxCreateFoundation(PX_PHYSICS_VERSION, m_allocator, m_errorCallback));
 
 	m_pvd = px_unique_ptr<PxPvd>(PxCreatePvd(*m_foundation));
@@ -35,15 +27,7 @@ void PhysXManager::Initialize()
 	m_dispatcher = px_unique_ptr<PxDefaultCpuDispatcher>(PxDefaultCpuDispatcherCreate(2));
 }
 
-void PhysXManager::Update()
-{
-}
-
-void PhysXManager::Render()
-{
-}
-
-void PhysXManager::Finalize()
+PhysXManager::~PhysXManager()
 {
 	m_dispatcher.reset();
 	m_physics.reset();
