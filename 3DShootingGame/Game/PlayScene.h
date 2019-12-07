@@ -4,6 +4,6 @@ class PlayScene
 {
 public:
 	std::wstring GetName() const { return L"PlayScene"; }
-	void Build(GameContext& context);
+	void Build();
 };
 

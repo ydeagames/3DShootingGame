@@ -1,8 +1,8 @@
 #pragma once
 #include "Collider.h"
-#include <Framework/Component.h>
+#include <Framework/ECS/Component.h>
 #include <Framework/PhysX/PhysXCommons.h>
-#include <Framework/Transform.h>
+#include <Framework/Components/Transform.h>
 
 class GameContext;
 
@@ -12,16 +12,15 @@ private:
 	physx::PxRigidActor* rigid;
 	bool isStatic = false;
 	std::unordered_map<physx::PxRigidDynamicLockFlag::Enum, bool> lockFlags;
-	std::vector<std::shared_ptr<Collider>> colliders;
 
 private:
 	physx::PxVec3 preForce;
 	physx::PxVec3 preVelocity;
 
 public:
-	void Initialize(GameContext& context);
-	void Update(GameContext& context);
-	void Finalize(GameContext& context);
+	void Initialize();
+	void Update();
+	void Finalize();
 
 	void AddForce(DirectX::SimpleMath::Vector3 force)
 	{
@@ -40,12 +39,6 @@ public:
 	void SetLock(physx::PxRigidDynamicLockFlag::Enum flag, bool value)
 	{
 		lockFlags[flag] = value;
-	}
-
-	std::shared_ptr<Collider> Add(const std::shared_ptr<Collider>& collider)
-	{
-		colliders.push_back(collider);
-		return collider;
 	}
 
 	void SetStatic(bool staticFlag)

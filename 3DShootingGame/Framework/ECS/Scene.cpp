@@ -4,6 +4,12 @@
 #include "Serialize.h"
 #include <Framework/Components/AllComponents.h>
 
+bool SceneInfo::Valid()
+{
+	std::ifstream file(location);
+	return file.good();
+}
+
 GameObject Scene::Create()
 {
 	return GameObject{ &registry, registry.create() };

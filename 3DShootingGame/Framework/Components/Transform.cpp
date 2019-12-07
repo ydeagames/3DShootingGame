@@ -15,49 +15,49 @@ Transform::Transform()
 
 DirectX::SimpleMath::Vector3 Transform::GetPosition() const
 {
-	auto parent = gameObject.GetParent();
-	if (parent != entt::null)
-		return Vector3::Transform(localPosition, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)));
+	auto p = gameObject.GetParent();
+	if (p != entt::null)
+		return Vector3::Transform(localPosition, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)));
 	else
 		return localPosition;
 }
 
 void Transform::SetPosition(const DirectX::SimpleMath::Vector3& value)
 {
-	auto parent = gameObject.GetParent();
-	if (parent != entt::null)
-		localPosition = Vector3::Transform(value, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)).Invert());
+	auto p = gameObject.GetParent();
+	if (p != entt::null)
+		localPosition = Vector3::Transform(value, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Invert());
 	else
 		localPosition = value;
 }
 
 DirectX::SimpleMath::Quaternion Transform::GetRotation() const
 {
-	auto parent = gameObject.GetParent();
-	if (parent != entt::null)
-		return localRotation * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)));
+	auto p = gameObject.GetParent();
+	if (p != entt::null)
+		return localRotation * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)));
 	else
 		return localRotation;
 }
 
 void Transform::SetRotation(const DirectX::SimpleMath::Quaternion& value)
 {
-	auto parent = gameObject.GetParent();
-	if (parent != entt::null)
-		localRotation = value * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)).Invert());
+	auto p = gameObject.GetParent();
+	if (p != entt::null)
+		localRotation = value * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Invert());
 	else
 		localRotation = value;
 }
 
 DirectX::SimpleMath::Vector3 Transform::GetLossyScale() const
 {
-	auto parent = gameObject.GetParent();
-	if (parent != entt::null)
+	auto p = gameObject.GetParent();
+	if (p != entt::null)
 	{
 		Vector3 parentPosition;
 		Quaternion parentRotation;
 		Vector3 parentScale;
-		GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)).Decompose(parentScale, parentRotation, parentPosition);
+		GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Decompose(parentScale, parentRotation, parentPosition);
 		auto mat = Matrix::CreateScale(parentScale) * Matrix::CreateFromQuaternion(parentRotation);
 		return Vector3::Transform(localScale, mat);
 	}
@@ -67,13 +67,13 @@ DirectX::SimpleMath::Vector3 Transform::GetLossyScale() const
 
 void Transform::SetLossyScale(const DirectX::SimpleMath::Vector3& value)
 {
-	auto parent = gameObject.GetParent();
-	if (parent != entt::null)
+	auto p = gameObject.GetParent();
+	if (p != entt::null)
 	{
 		Vector3 parentPosition;
 		Quaternion parentRotation;
 		Vector3 parentScale;
-		GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(parent)).Decompose(parentScale, parentRotation, parentPosition);
+		GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Decompose(parentScale, parentRotation, parentPosition);
 		auto mat = Matrix::CreateScale(parentScale) * Matrix::CreateFromQuaternion(parentRotation);
 		localScale = Vector3::Transform(value, mat.Invert());
 	}

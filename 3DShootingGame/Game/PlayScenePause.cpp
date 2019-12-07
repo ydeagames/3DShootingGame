@@ -10,7 +10,7 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-void PlayScenePause::Build(GameContext& context)
+void PlayScenePause::Build()
 {
 	auto& scene = context.GetScene();
 	scene.renderBehind = true;
@@ -19,7 +19,7 @@ void PlayScenePause::Build(GameContext& context)
 	{
 		std::unique_ptr<GeometricPrimitive> m_plane;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			std::vector<GeometricPrimitive::VertexType> vertices = {
 				{ Vector3(-0.5f, +0.5f, 0.0f), Vector3::Forward, Vector2(0.0f, 0.0f) },
@@ -33,7 +33,7 @@ void PlayScenePause::Build(GameContext& context)
 			m_plane = GeometricPrimitive::CreateCustom(context.GetDR().GetD3DDeviceContext(), vertices, indices);
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			m_plane->Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity, Colors::Black * .4f);
 		}
@@ -43,20 +43,20 @@ void PlayScenePause::Build(GameContext& context)
 
 	struct Menu : public Component
 	{
-		void Update(GameContext& context)
+		void Update()
 		{
 			if (Input::GetKeyDown(Keyboard::Keys::Escape))
-				context.GetPauseHandler().SetPaused(context, false);
+				context.GetPauseHandler().SetPaused(false);
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			ImGui::SetNextWindowPosCenter();
 			ImGui::SetNextWindowSize(ImVec2(230, 230));
 			ImGui::Begin(u8"ゲームメニュー", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
 			if (ImGui::Button(u8"ゲーム続行", ImVec2(200, 50)))
 			{
-				context.GetPauseHandler().SetPaused(context, false);
+				context.GetPauseHandler().SetPaused(false);
 			}
 			if (ImGui::Button(u8"リスタート", ImVec2(200, 50)))
 			{

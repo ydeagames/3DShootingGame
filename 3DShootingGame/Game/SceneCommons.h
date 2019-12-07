@@ -11,7 +11,7 @@ class GeometricObject : public Component
 
 private:
 	// ジオメトリプリミティブ
-	std::function<std::unique_ptr<DirectX::GeometricPrimitive>(GameContext& context)> m_geometricPrimitiveGenerator;
+	std::function<std::unique_ptr<DirectX::GeometricPrimitive>()> m_geometricPrimitiveGenerator;
 	// ジオメトリプリミティブ
 	std::unique_ptr<DirectX::GeometricPrimitive> m_pGeometricPrimitive;
 	// 色
@@ -19,15 +19,15 @@ private:
 
 public:
 	// コンストラクタ
-	GeometricObject(const std::function<std::unique_ptr<DirectX::GeometricPrimitive>(GameContext& context)>& generator, DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(DirectX::Colors::Gray))
+	GeometricObject(const std::function<std::unique_ptr<DirectX::GeometricPrimitive>()>& generator, DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(DirectX::Colors::Gray))
 		: m_geometricPrimitiveGenerator(generator)
 		, m_color(color)
 	{
 	}
 	// 生成
-	void Initialize(GameContext& context);
+	void Initialize();
 	// 描画
-	void Render(GameContext& context);
+	void Render();
 };
 
 class FontObject : public Component
@@ -55,9 +55,9 @@ public:
 	{
 	}
 	// 生成
-	void Initialize(GameContext& context);
+	void Initialize();
 	// 描画
-	void Render(GameContext& context);
+	void Render();
 
 public:
 	inline void SetText(const std::wstring& text) { m_text = text; }

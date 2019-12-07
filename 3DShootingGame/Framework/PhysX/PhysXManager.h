@@ -63,12 +63,12 @@ public:
 	}
 
 	// ê∂ê¨
-	void Initialize(GameContext& context);
+	void Initialize();
 	// çXêV
-	void Update(GameContext& context);
+	void Update();
 	// ï`âÊ
-	void Render(GameContext& context);
+	void Render();
 	// îjä¸
-	void Finalize(GameContext& context);
+	void Finalize();
 };
 

@@ -50,14 +50,14 @@ namespace SceneTransitions
 				GameObject::Destroy(gameObject);
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			float alpha = std::abs((m_time / m_totalTime - .5f) * 2);
 			alpha = 1 - alpha * alpha;
 			m_plane->Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity, Colors::Black * alpha);
 		}
 
-		void Finalize(GameContext& context)
+		void Finalize()
 		{
 
 		}
@@ -157,7 +157,7 @@ namespace SceneTransitions
 				GameObject::Destroy(gameObject);
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			float range = (m_time / m_totalTime) * 2;
 
@@ -224,7 +224,7 @@ namespace SceneTransitions
 			Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity);
 		}
 
-		void Finalize(GameContext& context)
+		void Finalize()
 		{
 
 		}

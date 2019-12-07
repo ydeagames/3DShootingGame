@@ -27,7 +27,7 @@ namespace
 	ObjectHolder<float> targetY = ObjectHolder<float>::Create(.5f);
 }
 
-void PlayScene::Build(GameContext& context)
+void PlayScene::Build()
 {
 	auto& scene = context.GetScene();
 	scene.mouseMode = DirectX::Mouse::Mode::MODE_RELATIVE;
@@ -36,10 +36,10 @@ void PlayScene::Build(GameContext& context)
 
 	struct PauseBehaviour : public Component
 	{
-		void Update(GameContext& context)
+		void Update()
 		{
 			if (Input::GetKeyDown(Keyboard::Keys::Escape))
-				context.GetPauseHandler().SetPaused(context, true);
+				context.GetPauseHandler().SetPaused(true);
 		}
 	};
 	struct Menu : public Component
@@ -47,12 +47,12 @@ void PlayScene::Build(GameContext& context)
 		std::shared_ptr<ISceneBuilder> m_window;
 		float last;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			last = float(context.GetTimer().GetTotalSeconds());
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			auto& scene = context.GetScene();
 
@@ -96,13 +96,13 @@ void PlayScene::Build(GameContext& context)
 			ImGui::End();
 		}
 
-		void Update(GameContext& context)
+		void Update()
 		{
 			if (Input::GetKeyDown(Keyboard::Keys::Escape))
-				context.GetPauseHandler().SetPaused(context, false);
+				context.GetPauseHandler().SetPaused(false);
 		}
 
-		void Finalize(GameContext& context)
+		void Finalize()
 		{
 			Destroy(*m_window);
 		}
@@ -122,12 +122,12 @@ void PlayScene::Build(GameContext& context)
 		// 縦回転
 		float m_xAngleLast = m_xAngle;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			Input::SetMouseMode(Mouse::Mode::MODE_RELATIVE);
 		}
 
-		void Update(GameContext& context)
+		void Update()
 		{
 			if (!Input::GetMouseButton(Input::Buttons::MouseRight))
 				if (Input::GetMouseMode() == DirectX::Mouse::Mode::MODE_RELATIVE)
@@ -176,7 +176,7 @@ void PlayScene::Build(GameContext& context)
 	};
 	struct Plane : public Component
 	{
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			auto& manager = context.GetPhysics();
 			auto& scene = context.GetPhysicsScene();
@@ -190,7 +190,7 @@ void PlayScene::Build(GameContext& context)
 	{
 		std::unique_ptr<Model> m_model;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			auto& manager = context.GetPhysics();
 			auto& scene = context.GetPhysicsScene();
@@ -227,7 +227,7 @@ void PlayScene::Build(GameContext& context)
 			m_model = Model::CreateFromCMO(context.GetDR().GetD3DDevice(), L"Resources/Models/Terrain.cmo", context.GetEffectFactory());
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			m_model->Draw(context.GetDR().GetD3DDeviceContext(), context.GetStates(), gameObject->transform->GetMatrix() * Matrix::CreateRotationY(XM_PIDIV2), context.GetCamera().view, context.GetCamera().projection);
 		}
@@ -237,15 +237,15 @@ void PlayScene::Build(GameContext& context)
 		// グリッド床
 		std::unique_ptr<InfinityGridFloor> m_pGridFloor;
 		// 生成
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			// グリッド床作成
-			m_pGridFloor = std::make_unique<InfinityGridFloor>(context, 2.f, Vector2(200, 200));
+			m_pGridFloor = std::make_unique<InfinityGridFloor>(2.f, Vector2(200, 200));
 		}
 		// 描画
-		void Render(GameContext& context)
+		void Render()
 		{
-			m_pGridFloor->draw(context, Colors::White);
+			m_pGridFloor->draw(Colors::White);
 		}
 	};
 	auto terrain = scene.AddGameObject(L"Terrain");
@@ -265,7 +265,7 @@ void PlayScene::Build(GameContext& context)
 		std::unique_ptr<DirectX::BasicEffect> m_pBasicEffect;
 		Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			m_skydoom = GeometricPrimitive::CreateGeoSphere(context.GetDR().GetD3DDeviceContext(), 1.f, 3U, false);
 
@@ -288,7 +288,7 @@ void PlayScene::Build(GameContext& context)
 			m_skydoom->CreateInputLayout(m_pBasicEffect.get(), m_pInputLayout.ReleaseAndGetAddressOf());
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			auto ctx = context.GetDR().GetD3DDeviceContext();
 			// ワールド行列設定
@@ -323,7 +323,7 @@ void PlayScene::Build(GameContext& context)
 		Model* m_model;
 		ModelRenderer(Model* model) : m_model(model) {}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			m_model->Draw(context.GetDR().GetD3DDeviceContext(), context.GetStates(), gameObject->transform->GetMatrix(), context.GetCamera().view, context.GetCamera().projection);
 		}
@@ -335,12 +335,12 @@ void PlayScene::Build(GameContext& context)
 		bool charging = false;
 		Vector3 chargingOrigin = Vector3::Zero;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			m_model = Model::CreateFromCMO(context.GetDR().GetD3DDevice(), L"Resources/Models/igaguri.cmo", context.GetEffectFactory());
 		}
 
-		void Update(GameContext& context)
+		void Update()
 		{
 			auto input = Vector3::Zero;
 			if (Input::GetKey(Keyboard::Keys::A) || Input::GetKey(Keyboard::Keys::Left))
@@ -380,7 +380,7 @@ void PlayScene::Build(GameContext& context)
 				bulletModel->transform->parent = *bullet->transform;
 				bulletModel->transform->localScale = Vector3(.0175f);
 				//bullet->AddComponent<GeometricObject>(
-				//	[](GameContext& context) { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
+				//	[]() { return GeometricPrimitive::CreateSphere(context.GetDR().GetD3DDeviceContext()); },
 				//	Color(Colors::Yellow)
 				//	);
 				auto ray = context.GetCamera().ViewportPointToRay(Vector3::Zero);
@@ -416,7 +416,7 @@ void PlayScene::Build(GameContext& context)
 			}
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			static auto model = GeometricPrimitive::CreateCone(context.GetDR().GetD3DDeviceContext());
 			if (charging)
@@ -448,7 +448,7 @@ void PlayScene::Build(GameContext& context)
 	struct PlayerCamera : public Component
 	{
 		ObjectField<Transform> player;
-		void Update(GameContext& context)
+		void Update()
 		{
 			gameObject->transform->position = Vector3::Lerp(gameObject->transform->position, player->position, .25f);
 		}
@@ -457,7 +457,7 @@ void PlayScene::Build(GameContext& context)
 	{
 		auto player = scene.AddGameObject();
 		//player->AddComponent<GeometricObject>(
-		//	[](GameContext& context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
+		//	[]() { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
 		//	Color(Colors::Blue)
 		//	);
 		player->AddComponent<PlayerBehaviour>();
@@ -475,7 +475,7 @@ void PlayScene::Build(GameContext& context)
 		box->transform->localScale = Vector3(float(Random::Range(1, 10)), float(Random::Range(1, 5)), float(Random::Range(1, 10)));
 		box->transform->localPosition = Vector3(float(Random::Range(-50, 50)), float(Random::Range(3, 50)), float(Random::Range(-50, 50)));
 		box->AddComponent<GeometricObject>(
-			[](GameContext& context) { return GeometricPrimitive::CreateCube(context.GetDR().GetD3DDeviceContext()); },
+			[]() { return GeometricPrimitive::CreateCube(context.GetDR().GetD3DDeviceContext()); },
 			Color(Vector4(Random::Range(0.f, 1.f), Random::Range(0.f, 1.f), Random::Range(0.f, 1.f), 1.f))
 			);
 		auto rigid = box->AddComponent<Rigidbody>();
@@ -490,12 +490,12 @@ void PlayScene::Build(GameContext& context)
 
 		std::unique_ptr<Model> m_model;
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			m_model = Model::CreateFromCMO(context.GetDR().GetD3DDevice(), L"Resources/Models/target.cmo", context.GetEffectFactory());
 		}
 
-		void Update(GameContext& context)
+		void Update()
 		{
 			time += float(context.GetTimer().GetElapsedSeconds());
 			if (time > span)
@@ -508,7 +508,7 @@ void PlayScene::Build(GameContext& context)
 				targetModel->transform->localScale = Vector3(**targetScale);
 				struct A : public Component
 				{
-					void Render(GameContext& context)
+					void Render()
 					{
 						gameObject->transform->localScale = Vector3(**targetScale);
 					}
@@ -542,7 +542,7 @@ void PlayScene::Build(GameContext& context)
 		Microsoft::WRL::ComPtr<ID3D11BlendState> m_blendState;
 		float m_blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			auto device = context.GetDR().GetD3DDevice();
 
@@ -576,7 +576,7 @@ void PlayScene::Build(GameContext& context)
 			device->CreateBlendState(&BlendDesc, m_blendState.ReleaseAndGetAddressOf());
 		}
 
-		void Render(GameContext& context)
+		void Render()
 		{
 			auto ctx = context.GetDR().GetD3DDeviceContext();
 

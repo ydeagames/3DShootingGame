@@ -1,17 +1,17 @@
 #include "pch.h"
 #include "Rigidbody.h"
-#include <Framework/GameContext.h>
-#include <Framework/GameObject.h>
-#include <Framework/SceneManagement/Scene.h>
-#include <Framework/SceneManagement/SceneManager.h>
+#include <Framework/ECS/GameContext.h>
+#include <Framework/ECS/GameObject.h>
+#include <Framework/ECS/Scene.h>
+#include <Framework/Context/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/PhysX/PhysXScene.h>
 
-void Rigidbody::Initialize(GameContext& context)
+void Rigidbody::Initialize()
 {
-	auto& manager = context.GetPhysics();
-	auto& scene = context.GetPhysicsScene();
-	auto trans = physx::PxTransform(physx::toPhysX(gameObject->transform->position), physx::toPhysX(gameObject->transform->rotation));
+	auto& manager = GameContext::Get<PhysXManager>();
+	auto& scene = GameContext::Get<PhysXScene>();
+	auto trans = physx::PxTransform(physx::toPhysX(gameObject.GetComponent<Transform>().position), physx::toPhysX(gameObject.GetComponent<Transform>().rotation));
 	if (isStatic)
 		rigid = manager.GetPhysics()->createRigidStatic(trans);
 	else
@@ -22,8 +22,8 @@ void Rigidbody::Initialize(GameContext& context)
 		rigid = dynamic;
 	}
 
-	for (auto& collider : colliders)
-		collider->AddCollider(context, rigid, gameObject->transform);
+	//for (auto& collider : colliders)
+	//	collider->AddCollider(rigid, gameObject.GetComponent<Transform>());
 
 	scene.CreateObject(*rigid);
 
@@ -35,14 +35,14 @@ void Rigidbody::Initialize(GameContext& context)
 	}
 }
 
-void Rigidbody::Update(GameContext& context)
+void Rigidbody::Update()
 {
 	auto trans = rigid->getGlobalPose();
-	gameObject->transform->position = physx::fromPhysX(trans.p);
-	gameObject->transform->rotation = physx::fromPhysX(trans.q);
+	gameObject.GetComponent<Transform>().position = physx::fromPhysX(trans.p);
+	gameObject.GetComponent<Transform>().rotation = physx::fromPhysX(trans.q);
 }
 
-void Rigidbody::Finalize(GameContext& context)
+void Rigidbody::Finalize()
 {
 	auto scene = rigid->getScene();
 	if (scene)

@@ -7,7 +7,7 @@
 
 using namespace DirectX;
 
-void ResultScene::Build(GameContext& context)
+void ResultScene::Build()
 {
 	auto& scene = context.GetScene();
 
@@ -16,7 +16,7 @@ void ResultScene::Build(GameContext& context)
 
 	class D : public Component
 	{
-		void Update(GameContext& context)
+		void Update()
 		{
 			if (Input::GetKeyDown(Keyboard::Space))
 				context.GetSceneManager().LoadScene(L"TitleScene");

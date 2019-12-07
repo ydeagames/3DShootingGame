@@ -1,12 +1,14 @@
 ﻿#include <Framework/ECS/Component.h>
 #include "GridFloor.h"
 
+class GameCamera;
+
 class GridFloorWrapper : public Component
 {
 	// グリッド床
 	std::unique_ptr<GridFloor> m_pGridFloor;
 	// 生成
-	void Initialize(GameContext& context);
+	void RenderInitialize();
 	// 描画
-	void Render(GameContext& context);
+	void Render(GameCamera& camera);
 };

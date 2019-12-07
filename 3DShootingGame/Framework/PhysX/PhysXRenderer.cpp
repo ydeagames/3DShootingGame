@@ -130,12 +130,15 @@ namespace
 	}
 }
 
-void PhysXRenderer::RenderGeometry(GameContext& context, const PxGeometry& geom, const PxMat44& pxworld, const PxVec3& pxcolor, bool wireframe)
+void PhysXRenderer::RenderGeometry(const PxGeometry& geom, const PxMat44& pxworld, const PxVec3& pxcolor, bool wireframe)
 {
-	static auto cube = GeometricPrimitive::CreateCube(context.GetDR().GetD3DDeviceContext());
-	static auto sphere = CreateCircleSphere(context.GetDR().GetD3DDeviceContext(), false, .5f, 8U);
-	static auto spherehalf = CreateCircleSphere(context.GetDR().GetD3DDeviceContext(), true, .5f, 8U);
-	static auto cylinderside = CreateCylinderSide(context.GetDR().GetD3DDeviceContext(), true);
+	auto& dr = GameContext::Get<DX::DeviceResources>();
+	auto& camera = GameContext::Get<GameCamera>();
+
+	static auto cube = GeometricPrimitive::CreateCube(dr.GetD3DDeviceContext());
+	static auto sphere = CreateCircleSphere(dr.GetD3DDeviceContext(), false, .5f, 8U);
+	static auto spherehalf = CreateCircleSphere(dr.GetD3DDeviceContext(), true, .5f, 8U);
+	static auto cylinderside = CreateCylinderSide(dr.GetD3DDeviceContext(), true);
 
 	Matrix world = fromPhysX(pxworld);
 	Vector4 color = Vector4(pxcolor.x, pxcolor.y, pxcolor.z, .5f);
@@ -144,14 +147,14 @@ void PhysXRenderer::RenderGeometry(GameContext& context, const PxGeometry& geom,
 	case PxGeometryType::eBOX:
 	{
 		const PxBoxGeometry& boxGeom = static_cast<const PxBoxGeometry&>(geom);
-		cube->Draw(Matrix::CreateScale(fromPhysX(boxGeom.halfExtents) * 2) * world, context.GetCamera().view, context.GetCamera().projection, color, nullptr, wireframe);
+		cube->Draw(Matrix::CreateScale(fromPhysX(boxGeom.halfExtents) * 2) * world, camera.view, camera.projection, color, nullptr, wireframe);
 	}
 	break;
 
 	case PxGeometryType::eSPHERE:
 	{
 		const PxSphereGeometry& sphereGeom = static_cast<const PxSphereGeometry&>(geom);
-		sphere->Draw(Matrix::CreateScale(sphereGeom.radius * 2) * world, context.GetCamera().view, context.GetCamera().projection, color, nullptr, wireframe);
+		sphere->Draw(Matrix::CreateScale(sphereGeom.radius * 2) * world, camera.view, camera.projection, color, nullptr, wireframe);
 	}
 	break;
 
@@ -162,11 +165,11 @@ void PhysXRenderer::RenderGeometry(GameContext& context, const PxGeometry& geom,
 		const PxF32 halfHeight = capsuleGeom.halfHeight;
 
 		//Sphere
-		spherehalf->Draw(Matrix::CreateRotationZ(-XM_PIDIV2) * Matrix::CreateScale(radius) * Matrix::CreateTranslation(Vector3(halfHeight, 0.0f, 0.0f)) * world, context.GetCamera().view, context.GetCamera().projection, color, nullptr, wireframe);
-		spherehalf->Draw(Matrix::CreateRotationZ(-XM_PIDIV2) * Matrix::CreateScale(radius) * Matrix::CreateRotationZ(XM_PI) * Matrix::CreateTranslation(Vector3(-halfHeight, 0.0f, 0.0f)) * world, context.GetCamera().view, context.GetCamera().projection, color, nullptr, wireframe);
+		spherehalf->Draw(Matrix::CreateRotationZ(-XM_PIDIV2) * Matrix::CreateScale(radius) * Matrix::CreateTranslation(Vector3(halfHeight, 0.0f, 0.0f)) * world, camera.view, camera.projection, color, nullptr, wireframe);
+		spherehalf->Draw(Matrix::CreateRotationZ(-XM_PIDIV2) * Matrix::CreateScale(radius) * Matrix::CreateRotationZ(XM_PI) * Matrix::CreateTranslation(Vector3(-halfHeight, 0.0f, 0.0f)) * world, camera.view, camera.projection, color, nullptr, wireframe);
 
 		//Cylinder
-		cylinderside->Draw(Matrix::CreateRotationZ(XM_PIDIV2) * Matrix::CreateScale(Vector3(2.0f*halfHeight, radius, radius)) * world, context.GetCamera().view, context.GetCamera().projection, color, nullptr, wireframe);
+		cylinderside->Draw(Matrix::CreateRotationZ(XM_PIDIV2) * Matrix::CreateScale(Vector3(2.0f*halfHeight, radius, radius)) * world, camera.view, camera.projection, color, nullptr, wireframe);
 	}
 	break;
 
@@ -300,12 +303,12 @@ void PhysXRenderer::RenderGeometry(GameContext& context, const PxGeometry& geom,
 	}
 }
 
-void PhysXRenderer::RenderGeometryHolder(GameContext& context, const PxGeometryHolder& h, const PxMat44& world, const PxVec3& color, bool wireframe)
+void PhysXRenderer::RenderGeometryHolder(const PxGeometryHolder& h, const PxMat44& world, const PxVec3& color, bool wireframe)
 {
-	RenderGeometry(context, h.any(), world, color, wireframe);
+	RenderGeometry(h.any(), world, color, wireframe);
 }
 
-void PhysXRenderer::RenderActors(GameContext& context, std::vector<PxRigidActor*>& actors, bool shadows, const PxVec3& color)
+void PhysXRenderer::RenderActors(std::vector<PxRigidActor*>& actors, bool shadows, const PxVec3& color)
 {
 	const PxVec3 shadowDir(0.0f, -0.7071067f, -0.7071067f);
 	//const PxMat44 shadowMat = PxMat44
@@ -336,12 +339,12 @@ void PhysXRenderer::RenderActors(GameContext& context, std::vector<PxRigidActor*
 			if (sleeping)
 				col = color * 0.25f;
 
-			RenderGeometryHolder(context, h, shapePose, col, wireframe);
+			RenderGeometryHolder(h, shapePose, col, wireframe);
 
 			//if (shadows)
 			//{
 			//	//glDisable(GL_LIGHTING);
-			//	renderGeometryHolder(context, h, shadowMat * shapePose, PxVec3(0.1f, 0.2f, 0.3f), false);
+			//	renderGeometryHolder(h, shadowMat * shapePose, PxVec3(0.1f, 0.2f, 0.3f), false);
 			//	//glEnable(GL_LIGHTING);
 			//}
 		}

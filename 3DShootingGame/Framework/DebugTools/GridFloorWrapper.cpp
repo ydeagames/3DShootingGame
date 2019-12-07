@@ -1,15 +1,15 @@
 ﻿#include "pch.h"
 #include "GridFloorWrapper.h"
-#include <Framework/GameContext.h>
-#include <Framework/GameCamera.h>
+#include <Framework/ECS/GameContext.h>
+#include <Framework/Context/GameCamera.h>
 
-void GridFloorWrapper::Initialize(GameContext & context)
+void GridFloorWrapper::RenderInitialize()
 {
 	// グリッド床作成
-	m_pGridFloor = std::make_unique<GridFloor>(context.GetDR().GetD3DDevice(), context.GetDR().GetD3DDeviceContext(), &context.GetStates(), 10.0f, 10);
+	m_pGridFloor = std::make_unique<GridFloor>(GameContext::Get<DX::DeviceResources>().GetD3DDevice(), GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext(), &GameContext::Get<DirectX::CommonStates>(), 10.0f, 10);
 }
 
-void GridFloorWrapper::Render(GameContext & context)
+void GridFloorWrapper::Render(GameCamera& camera)
 {
-	m_pGridFloor->draw(context.GetDR().GetD3DDeviceContext(), context.GetCamera().view, context.GetCamera().projection);
+	m_pGridFloor->draw(GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext(), camera.view, camera.projection);
 }

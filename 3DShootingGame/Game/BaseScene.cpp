@@ -12,13 +12,13 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 // ê∂ê¨
-void BaseScene::Build(GameContext& context)
+void BaseScene::Build()
 {
 	/*
 	context.GetCamera().view = Matrix::CreateLookAt(Vector3(0, 5, 10), Vector3::Zero, Vector3::Up);
 
 	auto bit = std::make_shared<GeometricObject>(
-			[](GameContext& context) { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
+			[]() { return GeometricPrimitive::CreateTeapot(context.GetDR().GetD3DDeviceContext()); },
 			Color(Colors::Blue)
 		);
 	context << bit;

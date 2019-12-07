@@ -7,6 +7,9 @@ class SceneInfo final
 public:
 	std::string name;
 	std::string location;
+
+public:
+	bool Valid();
 };
 
 class Scene final

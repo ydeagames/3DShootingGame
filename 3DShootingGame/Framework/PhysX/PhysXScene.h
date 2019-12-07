@@ -1,6 +1,6 @@
 #pragma once
 #include "PhysXCommons.h"
-#include <Framework/Component.h>
+#include <Framework/ECS/Component.h>
 
 class PhysXManager;
 
@@ -22,12 +22,12 @@ public:
 	void CreateObject(physx::PxActor& obj);
 
 	// ê∂ê¨
-	void Initialize(GameContext& context);
+	void Initialize();
 	// çXêV
-	void Update(GameContext& context);
+	void Update();
 	// ï`âÊ
-	void Render(GameContext& context);
+	void Render();
 	// îjä¸
-	void Finalize(GameContext& context);
+	void Finalize();
 };
 

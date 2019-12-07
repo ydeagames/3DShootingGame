@@ -4,7 +4,7 @@
 #include <Framework/SceneManagement/Scene.h>
 #include <Framework/SceneManagement/SceneManager.h>
 
-void LogoScene::Build(GameContext& context)
+void LogoScene::Build()
 {
 	auto& scene = context.GetScene();
 
@@ -20,12 +20,12 @@ void LogoScene::Build(GameContext& context)
 		A(const ObjectField<FontObject>& text)
 			: m_text(text) {}
 
-		void Initialize(GameContext& context)
+		void Initialize()
 		{
 			lastTime = float(context.GetTimer().GetTotalSeconds());
 		}
 
-		void Update(GameContext& context)
+		void Update()
 		{
 			float time = float(context.GetTimer().GetTotalSeconds()) - lastTime;
 

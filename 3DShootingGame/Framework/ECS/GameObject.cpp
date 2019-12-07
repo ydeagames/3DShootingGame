@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "GameObject.h"
 #include "Component.h"
+#include <Framework/Components/Transform.h>
 
 void GameObject::Destroy(GameObject* gameObject)
 {

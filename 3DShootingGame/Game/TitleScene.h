@@ -4,6 +4,6 @@ class TitleScene
 {
 public:
 	std::wstring GetName() const { return L"TitleScene"; }
-	void Build(GameContext& context);
+	void Build();
 };
 

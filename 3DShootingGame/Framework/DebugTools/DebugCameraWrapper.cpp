@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "DebugCameraWrapper.h"
-#include <Framework/GameContext.h>
-#include <Framework/GameCamera.h>
+#include <Framework/ECS/GameContext.h>
+#include <Framework/Context/GameCamera.h>
 
 DebugCameraWrapper::DebugCameraWrapper()
 {
@@ -14,12 +14,18 @@ DebugCamera & DebugCameraWrapper::GetDebugCamera()
 	return *m_pDebugCamera;
 }
 
-void DebugCameraWrapper::Initialize(GameContext & context)
+void DebugCameraWrapper::Initialize()
 {
 }
 
-void DebugCameraWrapper::Update(GameContext & context)
+void DebugCameraWrapper::Render(GameCamera& camera)
+{
+	m_camera = &camera;
+}
+
+void DebugCameraWrapper::Update()
 {
 	m_pDebugCamera->update();
-	context.GetCamera().view = m_pDebugCamera->getViewMatrix();
+	if (m_camera)
+		m_camera->view = m_pDebugCamera->getViewMatrix();
 }

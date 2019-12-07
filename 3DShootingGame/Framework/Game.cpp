@@ -62,7 +62,7 @@ void Game::Initialize(HWND window, int width, int height)
 		GameContext::Register<PauseHandler>();
 		// ï®óù
 		GameContext::Register<PhysXManager>();
-		GameContext::Get<PhysXManager>().Initialize(m_context);
+		GameContext::Get<PhysXManager>().Initialize();
 		// GUI
 		GameContext::Register<ImGuiManager>();
 		GameContext::Get<ImGuiManager>().RenderInitialize();
@@ -83,7 +83,7 @@ void Game::Initialize(HWND window, int width, int height)
 void Game::Finalize()
 {
 	// ï®óù
-	GameContext::Get<PhysXManager>().Finalize(m_context);
+	GameContext::Get<PhysXManager>().Finalize();
 
 	// îjä¸
 	m_myGame = nullptr;
@@ -126,7 +126,7 @@ void Game::Update(DX::StepTimer const& timer)
 		}
 	}
 	// ï®óù
-	GameContext::Get<PhysXManager>().Update(*this);
+	GameContext::Get<PhysXManager>().Update();
 	// çXêV
 	m_myGame->Update();
 }
@@ -169,7 +169,11 @@ void Game::Render()
 	auto& fps = GameContext::Get<FPS>();
 	fps.update();
 	if (fps.hasFPSChanged())
-		SetWindowTextW(GameContext::Get<WindowHandler>().GetHandle(), (BuildSettings::GAME_WINDOW_TITLE + L" - FPS: " + std::to_wstring(static_cast<int>(fps.getFPS()))).c_str());
+	{
+		std::wstringstream sb;
+		sb << BuildSettings::GAME_WINDOW_TITLE << L" - FPS: " << static_cast<int>(fps.getFPS());
+		SetWindowTextW(GameContext::Get<WindowHandler>().GetHandle(), sb.str().c_str());
+	}
 
 	m_myGame->Render(*m_mainCamera);
 
@@ -207,14 +211,14 @@ void Game::Clear()
 void Game::OnActivated()
 {
     // TODO: Game is becoming active window.
-	Input::SetMouseMode(GetScene().mouseMode);
+	//Input::SetMouseMode(GetScene().mouseMode);
 	GameContext::Get<PauseHandler>().SetPaused(false);
 }
 
 void Game::OnDeactivated()
 {
     // TODO: Game is becoming background window.
-	Input::SetMouseMode(DirectX::Mouse::Mode::MODE_ABSOLUTE);
+	//Input::SetMouseMode(DirectX::Mouse::Mode::MODE_ABSOLUTE);
 	GameContext::Get<PauseHandler>().SetPaused(true);
 }
 

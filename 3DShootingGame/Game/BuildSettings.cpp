@@ -12,7 +12,7 @@
 const std::wstring BuildSettings::GAME_TITLE = L"スリングヒーローズ";
 const std::wstring BuildSettings::GAME_TITLE_CLASS = L"KatatousWindowClass";
 
-void BuildSettings::Build(GameContext& context)
+void BuildSettings::Build()
 {
 	context.GetSceneManager().Register<BaseScene>();
 	context.GetSceneManager().Register<LogoScene>();

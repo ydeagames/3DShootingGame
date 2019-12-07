@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Components.h"
+#include <Framework/Context/GameCamera.h>
+#include <Framework/Components/Transform.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -27,7 +29,9 @@ void MoveUpdater::Update()
 
 void MoveDownUpdater::Update()
 {
-	gameObject.GetComponent<Transform>().position.y -= .1f;
+	auto pos = gameObject.GetComponent<Transform>().position;
+	pos.y -= .1f;
+	gameObject.GetComponent<Transform>().position = pos;
 }
 
 void CameraComponent::Render(GameCamera& camera)

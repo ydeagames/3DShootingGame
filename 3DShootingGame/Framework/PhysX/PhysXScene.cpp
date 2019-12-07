@@ -41,12 +41,12 @@ void PhysXScene::CreateObject(physx::PxActor& obj)
 	m_scene->addActor(obj);
 }
 
-void PhysXScene::Initialize(GameContext& context)
+void PhysXScene::Initialize()
 {
 
 }
 
-void PhysXScene::Update(GameContext& context)
+void PhysXScene::Update()
 {
 	m_scene->simulate(1.0f / 60.0f);
 	//std::cout << float(context.GetTimer().GetElapsedSeconds()) << std::endl;
@@ -54,7 +54,7 @@ void PhysXScene::Update(GameContext& context)
 	m_scene->fetchResults(true);
 }
 
-void PhysXScene::Render(GameContext& context)
+void PhysXScene::Render()
 {
 	if (m_manager->debugMode & PhysXManager::IngamePvdMode::Collision)
 	{
@@ -63,11 +63,11 @@ void PhysXScene::Render(GameContext& context)
 		{
 			std::vector<PxRigidActor*> actors(nbActors);
 			m_scene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<PxActor * *>(&actors[0]), nbActors);
-			PhysXRenderer::RenderActors(context, actors, true, physx::PxVec3(0, 0, 1));
+			PhysXRenderer::RenderActors(actors, true, physx::PxVec3(0, 0, 1));
 		}
 	}
 }
 
-void PhysXScene::Finalize(GameContext& context)
+void PhysXScene::Finalize()
 {
 }

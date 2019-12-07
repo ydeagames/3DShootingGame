@@ -1,10 +1,9 @@
 #include "pch.h"
 #include "ImGuiManager.h"
 #include "ImGuiStyles.h"
-#include <Framework/GameContext.h>
-#include <Framework/ISceneBuilder.h>
-#include <Framework/SaveHandler.h>
-#include <Framework/WindowHandler.h>
+#include <Framework/ECS/GameContext.h>
+#include <Framework/Context/SaveHandler.h>
+#include <Framework/Context/WindowHandler.h>
 #include <Utilities/Input.h>
 
 ImGuiManager::ImGuiManager()

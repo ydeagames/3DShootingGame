@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "PhysXManager.h"
 #include "PhysXScene.h"
-#include <Framework/GameContext.h>
-#include <Framework/GameCamera.h>
+#include <Framework/ECS/GameContext.h>
+#include <Framework/Context/GameCamera.h>
 #include <Common/StepTimer.h>
 
 using namespace physx;
@@ -15,7 +15,7 @@ PhysXManager::~PhysXManager()
 {
 }
 
-void PhysXManager::Initialize(GameContext& context)
+void PhysXManager::Initialize()
 {
 	m_foundation = px_unique_ptr<PxFoundation>(PxCreateFoundation(PX_PHYSICS_VERSION, m_allocator, m_errorCallback));
 
@@ -35,15 +35,15 @@ void PhysXManager::Initialize(GameContext& context)
 	m_dispatcher = px_unique_ptr<PxDefaultCpuDispatcher>(PxDefaultCpuDispatcherCreate(2));
 }
 
-void PhysXManager::Update(GameContext& context)
+void PhysXManager::Update()
 {
 }
 
-void PhysXManager::Render(GameContext& context)
+void PhysXManager::Render()
 {
 }
 
-void PhysXManager::Finalize(GameContext& context)
+void PhysXManager::Finalize()
 {
 	m_dispatcher.reset();
 	m_physics.reset();

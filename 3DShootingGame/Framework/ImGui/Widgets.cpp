@@ -4,7 +4,7 @@
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Components/Components.h>
 #include <Framework/Components/AllComponents.h>
-#include <Framework/WindowsUtils.h>
+#include <Utilities/WindowsUtils.h>
 
 namespace Widgets
 {
@@ -78,7 +78,7 @@ namespace Widgets
 				nodes.get(node.parent).children.push_back(node.id);
 		}
 
-		std::string title = "Scene [" + scene.name + "]";
+		std::string title = "Scene [" + scene.info.name + "]";
 		ImGuiTreeNodeFlags node_flags = ((e == entt::null) ? ImGuiTreeNodeFlags_Selected : 0)
 			| (nodes.empty() ? ImGuiTreeNodeFlags_Leaf : 0)
 			| ImGuiTreeNodeFlags_OpenOnArrow
@@ -188,7 +188,7 @@ namespace Widgets
 
 	void SceneControl(Scene& scene)
 	{
-		ImGui::LabelText("Scene", scene.name.c_str());
+		ImGui::LabelText("Scene", scene.info.name.c_str());
 
 		if (ImGui::Button("Save Scene"))
 		{
@@ -204,8 +204,7 @@ namespace Widgets
 			std::string location;
 			if (WindowsUtils::SaveDialog("scene.json", "Scene Files", location))
 			{
-				scene.location = location;
-				scene.name = WindowsUtils::GetFileName(location, "scene.json");
+				scene.info = { location, WindowsUtils::GetFileName(location, "scene.json") };
 				scene.Save();
 			}
 		}
@@ -215,8 +214,7 @@ namespace Widgets
 			std::string location;
 			if (WindowsUtils::OpenDialog("scene.json", "Scene Files", location))
 			{
-				scene.location = location;
-				scene.name = WindowsUtils::GetFileName(location, "scene.json");
+				scene.info = { location, WindowsUtils::GetFileName(location, "scene.json") };
 				scene.Load();
 			}
 		}

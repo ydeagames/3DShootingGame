@@ -897,6 +897,40 @@ public:
         return std::tuple<Component &...>{get<Component>(entity)...};
     }
 
+    // Additional
+    /**
+     * @brief Returns a reference to the given component for an entity.
+     *
+     * In case the entity doesn't own the component, the parameters provided are
+     * used to construct it.<br/>
+     * Equivalent to the following snippet (pseudocode):
+     *
+     * @code{.cpp}
+     * auto &component = registry.has<Component>(entity) ? registry.get<Component>(entity) : registry.assign<Component>(entity, args...);
+     * @endcode
+     *
+     * @warning
+     * Attempting to use an invalid entity results in undefined behavior.<br/>
+     * An assertion will abort the execution at runtime in debug mode in case of
+     * invalid entity.
+     *
+     * @tparam Component Type of component to get.
+     * @tparam Args Types of arguments to use to construct the component.
+     * @param entity A valid entity identifier.
+     * @param args Parameters to use to initialize the component.
+     * @return Reference to the component owned by the entity.
+     */
+    template<typename Component, typename... Args>
+    Component& get_or_assign(const entity_type entity, Args&& ... args) {
+        assure<Component>();
+        auto &cpool = pool<Component>();
+
+        return cpool.has(entity)
+                ? cpool.get(entity)
+                : cpool.construct(entity, std::forward<Args>(args)...);
+    }
+    // End Additional
+
     /**
      * @brief Replaces the given tag.
      *
