@@ -4,7 +4,6 @@
 #include "Components.h"
 
 using Components = ECS::ComponentManager<
-	entt::registry,
 	std::tuple<
 		Transform,
 		MoveUpdater,

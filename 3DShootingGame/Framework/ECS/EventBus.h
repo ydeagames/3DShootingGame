@@ -91,17 +91,16 @@ namespace ECS
 		}
 	};
 
-	template<typename Registry>
 	class LifecycleEvents
 	{
 	private:
 		template<typename Component, typename = decltype(&Component::gameObject)>
-		static void Init0(int, Registry & registry)
+		static void Init0(int, entt::registry & registry)
 		{
 			class Creation
 			{
 			public:
-				void on(Registry& registry, typename Registry::entity_type entity)
+				void on(entt::registry& registry, entt::entity entity)
 				{
 					registry.get<Component>(entity).gameObject = GameObject{ &registry, entity };
 				}
@@ -111,17 +110,17 @@ namespace ECS
 		}
 
 		template<typename Component>
-		static void Init0(bool, Registry& reg)
+		static void Init0(bool, entt::registry& reg)
 		{
 		}
 
 		template<typename Component, typename = decltype(&Component::Awake)>
-		static void Awake0(int, Registry & registry)
+		static void Awake0(int, entt::registry & registry)
 		{
 			class Creation
 			{
 			public:
-				void on(Registry& registry, typename Registry::entity_type entity)
+				void on(entt::registry& registry, entt::entity entity)
 				{
 					registry.get<Component>(entity).Awake();
 				}
@@ -131,17 +130,17 @@ namespace ECS
 		}
 
 		template<typename Component>
-		static void Awake0(bool, Registry& reg)
+		static void Awake0(bool, entt::registry& reg)
 		{
 		}
 
 		template<typename Component, typename = decltype(&Component::OnDestroy)>
-		static void OnDestroy0(int, Registry & registry)
+		static void OnDestroy0(int, entt::registry & registry)
 		{
 			class Deletion
 			{
 			public:
-				void on(Registry& registry, typename Registry::entity_type entity)
+				void on(entt::registry& registry, entt::entity entity)
 				{
 					registry.get<Component>(entity).OnDestroy();
 				}
@@ -151,12 +150,12 @@ namespace ECS
 		}
 
 		template<typename Component>
-		static void OnDestroy0(bool, Registry& reg)
+		static void OnDestroy0(bool, entt::registry& reg)
 		{
 		}
 
 		template<typename Component>
-		static void Lifecycle0(Registry& reg)
+		static void Lifecycle0(entt::registry& reg)
 		{
 			Awake0<Component>(0, reg);
 			Init0<Component>(0, reg);
@@ -165,7 +164,7 @@ namespace ECS
 
 	public:
 		template<typename... Components>
-		static void Lifecycle(Registry& reg)
+		static void Lifecycle(entt::registry& reg)
 		{
 			using accumulator_type = int[];
 			accumulator_type accumulator = { 0, (Lifecycle0<Components>(reg), 0)... };

@@ -3,14 +3,14 @@
 
 namespace ECS
 {
-	template<typename Registry, typename Base>
+	template<typename Base>
 	class Dependency
 	{
 	private:
-		Registry& registry;
+		entt::registry& registry;
 
 	public:
-		Dependency(Registry& registry)
+		Dependency(entt::registry& registry)
 			: registry(registry)
 		{
 		}
@@ -20,7 +20,7 @@ namespace ECS
 		class Creation
 		{
 		public:
-			void on(Registry& registry, typename Registry::entity_type entity)
+			void on(entt::registry& registry, entt::entity entity)
 			{
 				registry.get_or_assign<T>(entity);
 			}
@@ -30,7 +30,7 @@ namespace ECS
 		class Deletion
 		{
 		public:
-			void on(Registry& registry, typename Registry::entity_type entity)
+			void on(entt::registry& registry, entt::entity entity)
 			{
 				registry.reset<T>(entity);
 			}
@@ -55,25 +55,24 @@ namespace ECS
 		}
 	};
 
-	template<typename Registry>
 	class ReferenceResolver
 	{
 	public:
-		using map_type = std::unordered_map<typename Registry::entity_type, typename Registry::entity_type>;
+		using map_type = std::unordered_map<entt::entity, entt::entity>;
 
 	private:
-		Registry& registry;
+		entt::registry& registry;
 		const map_type& map;
 
 	public:
-		ReferenceResolver(Registry& registry, const map_type& map)
+		ReferenceResolver(entt::registry& registry, const map_type& map)
 			: registry(registry)
 			, map(map)
 		{
 		}
 
 	public:
-		typename Registry::entity_type& operator()(typename Registry::entity_type& ref)
+		entt::entity& operator()(entt::entity& ref)
 		{
 			if (map.find(ref) != map.end())
 				ref = map.at(ref);
@@ -81,65 +80,62 @@ namespace ECS
 		}
 	};
 
-	template<typename Registry>
 	class ComponentDependency
 	{
 	private:
 		template<typename Component, typename = decltype(&Component::Dependency<Component>)>
-		static void DependsOn0(int, Registry & reg)
+		static void DependsOn0(int, entt::registry & reg)
 		{
-			Dependency<Registry, Component> dep(reg);
+			Dependency<Component> dep(reg);
 			Component::Dependency(dep);
 		}
 
 		template<typename Component>
-		static void DependsOn0(bool, Registry& reg)
+		static void DependsOn0(bool, entt::registry& reg)
 		{
 		}
 
 	public:
 		template<typename Component>
-		static void DependsOn(Registry& reg)
+		static void DependsOn(entt::registry& reg)
 		{
 			DependsOn0<Component>(0, reg);
 		}
 	};
 
-	template<typename Registry>
 	class ComponentReference
 	{
 	private:
 		template<typename Component, typename = decltype(&Component::Reference<Component>)>
-		static void Resolve0(int, Registry & reg, const std::vector<typename Registry::entity_type> & srcs, const std::vector<typename Registry::entity_type> & dsts)
+		static void Resolve0(int, entt::registry & reg, const std::vector<entt::entity> & srcs, const std::vector<entt::entity> & dsts)
 		{
-			ReferenceResolver<Registry>::map_type map;
+			ReferenceResolver::map_type map;
 			for (auto srcitr = srcs.begin(), dstitr = dsts.begin(); srcitr != srcs.end() && dstitr != dsts.end(); ++srcitr, ++dstitr)
 				map.insert(std::make_pair(*srcitr, *dstitr));
-			ReferenceResolver<Registry> ref(reg, map);
+			ReferenceResolver ref(reg, map);
 			for (auto& dst : dsts)
 				if (reg.has<Component>(dst))
 					reg.get<Component>(dst).Reference(ref);
 		}
 
 		template<typename Component>
-		static void Resolve0(bool, Registry& reg, const std::vector<typename Registry::entity_type>& srcs, const std::vector<typename Registry::entity_type>& dsts)
+		static void Resolve0(bool, entt::registry& reg, const std::vector<entt::entity>& srcs, const std::vector<entt::entity>& dsts)
 		{
 		}
 
 	public:
 		template<typename Component>
-		static void Resolve(Registry& reg, const std::vector<typename Registry::entity_type>& srcs, const std::vector<typename Registry::entity_type>& dsts)
+		static void Resolve(entt::registry& reg, const std::vector<entt::entity>& srcs, const std::vector<entt::entity>& dsts)
 		{
 			Resolve0<Component>(0, reg, srcs, dsts);
 		}
 	};
 
-	template<typename Registry>
 	class ComponentGui
 	{
 	private:
 		template<typename Component, typename = decltype(&Component::EditorGui)>
-		static void EditorWidget0(int, Registry & reg, MM::ImGuiEntityEditor<Registry> & editor)
+		static void EditorWidget0(int, entt::registry & reg, MM::ImGuiEntityEditor<entt::registry> & editor)
 		{
 			editor.registerComponentWidgetFn(
 				reg.type<Component>(),
@@ -149,24 +145,24 @@ namespace ECS
 		}
 
 		template<typename Component>
-		static void EditorWidget0(bool, Registry& reg, MM::ImGuiEntityEditor<Registry>& editor)
+		static void EditorWidget0(bool, entt::registry& reg, MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
 		}
 
 	public:
 		template<typename Component>
-		static void EditorWidget(Registry& reg, MM::ImGuiEntityEditor<Registry>& editor)
+		static void EditorWidget(entt::registry& reg, MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
 			EditorWidget0<Component>(0, reg, editor);
 		}
 	};
 
 	// Declaration of a template
-	template<typename Registry, typename Components, typename Tags, typename Events>
+	template<typename Components, typename Tags, typename Events>
 	class ComponentManager;
 
-	template<typename Registry, typename... Components, typename... Tags, typename... Events>
-	class ComponentManager<Registry, std::tuple<Components...>, std::tuple<Tags...>, std::tuple<Events...>>
+	template<typename... Components, typename... Tags, typename... Events>
+	class ComponentManager<std::tuple<Components...>, std::tuple<Tags...>, std::tuple<Events...>>
 	{
 	private:
 		template<typename Event>
@@ -177,23 +173,23 @@ namespace ECS
 			(void)accumulator;
 		}
 
-		template<typename Registry, typename Component>
-		static void InitializeEditorComponent(Registry& reg, MM::ImGuiEntityEditor<Registry>& editor)
+		template<typename Component>
+		static void InitializeEditorComponent(entt::registry& reg, MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
 			editor.registerTrivial<Component>(reg, ECS::IdentifierResolver::name<Component>());
-			ComponentGui<Registry>::EditorWidget<Component>(reg, editor);
+			ComponentGui::EditorWidget<Component>(reg, editor);
 		}
 
-		template<typename Registry, typename Component>
-		static void InitializeDependency(Registry& reg)
+		template<typename Component>
+		static void InitializeDependency(entt::registry& reg)
 		{
-			ComponentDependency<Registry>::DependsOn<Component>(reg);
+			ComponentDependency::DependsOn<Component>(reg);
 		}
 
-		template<typename Registry, typename Component>
-		static void UpdateReference(Registry& reg, const std::vector<typename Registry::entity_type>& srcs, const std::vector<typename Registry::entity_type>& dsts)
+		template<typename Component>
+		static void UpdateReference(entt::registry& reg, const std::vector<entt::entity>& srcs, const std::vector<entt::entity>& dsts)
 		{
-			ComponentReference<Registry>::Resolve<Component>(reg, srcs, dsts);
+			ComponentReference::Resolve<Component>(reg, srcs, dsts);
 		}
 
 	public:
@@ -204,60 +200,53 @@ namespace ECS
 			(void)accumulator;
 		}
 
-		template<typename Registry>
-		static void InitializeEditorComponents(Registry& reg, MM::ImGuiEntityEditor<Registry>& editor)
+		static void InitializeEditorComponents(entt::registry& reg, MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
 			using accumulator_type = int[];
-			accumulator_type accumulator = { 0, (InitializeEditorComponent<Registry, Components>(reg, editor), 0)... };
+			accumulator_type accumulator = { 0, (InitializeEditorComponent<Components>(reg, editor), 0)... };
 			(void)accumulator;
 		}
 
-		template<typename Registry>
-		static void InitializeDependency(Registry& reg)
+		static void InitializeDependency(entt::registry& reg)
 		{
 			using accumulator_type = int[];
-			accumulator_type accumulator = { 0, (InitializeDependency<Registry, Components>(reg), 0)... };
+			accumulator_type accumulator = { 0, (InitializeDependency<Components>(reg), 0)... };
 			(void)accumulator;
 		}
 
-		template<typename Registry>
-		static void InitializeLifecycleEvents(Registry& reg)
+		static void InitializeLifecycleEvents(entt::registry& reg)
 		{
-			ECS::LifecycleEvents<Registry>::Lifecycle<Components...>(reg);
+			ECS::LifecycleEvents::Lifecycle<Components...>(reg);
 		}
 
-		template<typename Registry>
-		static void UpdateReferences(Registry& reg, const std::vector<typename Registry::entity_type>& srcs, const std::vector<typename Registry::entity_type>& dsts)
+		static void UpdateReferences(entt::registry& reg, const std::vector<entt::entity>& srcs, const std::vector<entt::entity>& dsts)
 		{
 			using accumulator_type = int[];
-			accumulator_type accumulator = { 0, (UpdateReference<Registry, Components>(reg, srcs, dsts), 0)... };
+			accumulator_type accumulator = { 0, (UpdateReference<Components>(reg, srcs, dsts), 0)... };
 			(void)accumulator;
 		}
 
-		template<typename Registry>
-		static void CloneComponents(Registry& reg, const std::vector<typename Registry::entity_type>& srcs, std::vector<typename Registry::entity_type>& dsts)
+		static void CloneComponents(entt::registry& reg, const std::vector<entt::entity>& srcs, std::vector<entt::entity>& dsts)
 		{
-			ComponentClone<Registry>::Clone<Components...>(reg, srcs, dsts);
+			ComponentClone::Clone<Components...>(reg, srcs, dsts);
 		}
 
-		template<typename Registry, typename RegistryInitializer>
-		static bool LoadScene(const std::string& location, Registry& scene, RegistryInitializer initFunc)
+		template<typename RegistryInitializer>
+		static bool LoadScene(const std::string& location, entt::registry& scene, RegistryInitializer initFunc)
 		{
 			std::ifstream storage(location);
 			auto snap = scene.restore();
 			initFunc(scene);
-			return ObjectSerializer<Registry, std::tuple<Components...>, std::tuple<Tags...>>::Import(storage, snap);
+			return ObjectSerializer<std::tuple<Components...>, std::tuple<Tags...>>::Import(storage, snap);
 		}
 
-		template<typename Registry>
-		static bool SaveScene(const std::string& location, const Registry& scene)
+		static bool SaveScene(const std::string& location, const entt::registry& scene)
 		{
 			std::ofstream storage(location);
-			return ObjectSerializer<Registry, std::tuple<Components...>, std::tuple<Tags...>>::Export(storage, scene.snapshot());
+			return ObjectSerializer<std::tuple<Components...>, std::tuple<Tags...>>::Export(storage, scene.snapshot());
 		}
 
-		template<typename Registry>
-		static bool LoadEntity(const std::string& location, Registry& scene, std::vector<typename Registry::entity_type>& srcs, std::vector<typename Registry::entity_type>& dsts)
+		static bool LoadEntity(const std::string& location, entt::registry& scene, std::vector<entt::entity>& srcs, std::vector<entt::entity>& dsts)
 		{
 			std::ifstream storage(location);
 			if (storage)
@@ -265,7 +254,7 @@ namespace ECS
 				try
 				{
 					cereal::JSONInputArchive archive(storage);
-					EntityImporter<Registry> serializer(archive);
+					EntityImporter serializer(archive);
 					serializer.components<Components...>(scene, srcs, dsts);
 					return true;
 				}
@@ -277,8 +266,7 @@ namespace ECS
 			return false;
 		}
 
-		template<typename Registry>
-		static bool SaveEntity(const std::string& location, const Registry& scene, const std::vector<typename Registry::entity_type>& srcs)
+		static bool SaveEntity(const std::string& location, const entt::registry& scene, const std::vector<entt::entity>& srcs)
 		{
 			std::ofstream storage(location);
 			if (storage)
@@ -286,7 +274,7 @@ namespace ECS
 				try
 				{
 					cereal::JSONOutputArchive archive(storage);
-					EntityExporter<Registry> serializer(archive);
+					EntityExporter serializer(archive);
 					serializer.components<Components...>(scene, srcs);
 					return true;
 				}

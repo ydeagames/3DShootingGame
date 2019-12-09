@@ -367,25 +367,24 @@ namespace ECS
 		}
 	};
 
-	template<typename Registry, typename Components, typename Tags>
+	template<typename Components, typename Tags>
 	class ObjectSerializer;
 
-	template<typename Registry, typename... Components, typename... Tags>
-	class ObjectSerializer<Registry, std::tuple<Components...>, std::tuple<Tags...>>
+	template<typename... Components, typename... Tags>
+	class ObjectSerializer<std::tuple<Components...>, std::tuple<Tags...>>
 	{
 	public:
 		template<typename Snap>
 		static bool Import(std::istream& storage, Snap&& snap)
 		{
-			using entity_type = typename Registry::entity_type;
 			if (storage)
 			{
 				try
 				{
 					cereal::JSONInputArchive archive{ storage };
-					ObjectSnapshotLoader<entity_type> oarchive(archive);
-					ObjectTagSnapshotLoader<entity_type> tarchive(archive);
-					ObjectComponentSnapshotLoader<entity_type> carchive(archive);
+					ObjectSnapshotLoader<entt::entity> oarchive(archive);
+					ObjectTagSnapshotLoader<entt::entity> tarchive(archive);
+					ObjectComponentSnapshotLoader<entt::entity> carchive(archive);
 					{
 						{
 							archive.setNextName("entities");
@@ -432,16 +431,15 @@ namespace ECS
 		template<typename Snap>
 		static bool Export(std::ostream& storage, Snap&& snap)
 		{
-			using entity_type = typename Registry::entity_type;
 			if (storage)
 			{
 				try
 				{
 					// output finishes flushing its contents when it goes out of scope
 					cereal::JSONOutputArchive archive{ storage };
-					ObjectSnapshot<entity_type> oarchive(archive);
-					ObjectTagSnapshot<entity_type> tarchive(archive);
-					ObjectComponentSnapshot<entity_type> carchive(archive);
+					ObjectSnapshot<entt::entity> oarchive(archive);
+					ObjectTagSnapshot<entt::entity> tarchive(archive);
+					ObjectComponentSnapshot<entt::entity> carchive(archive);
 					{
 						{
 							archive.setNextName("entities");
@@ -487,16 +485,15 @@ namespace ECS
 		}
 
 		template<typename Snap>
-		static bool Export(std::ostream& storage, Snap&& snap, const std::vector<typename Registry::entity_type>& entities)
+		static bool Export(std::ostream& storage, Snap&& snap, const std::vector<entt::entity>& entities)
 		{
-			using entity_type = typename Registry::entity_type;
 			if (storage)
 			{
 				try
 				{
 					// output finishes flushing its contents when it goes out of scope
 					cereal::JSONOutputArchive archive{ storage };
-					ObjectComponentSnapshot<entity_type> carchive(archive);
+					ObjectComponentSnapshot<entt::entity> carchive(archive);
 					{
 						auto first = entities.begin();
 						auto last = entities.end();
@@ -542,7 +539,6 @@ namespace ECS
 		}
 	};
 
-	template <typename Registry>
 	class EntityExporter
 	{
 	private:
@@ -556,7 +552,7 @@ namespace ECS
 
 	private:
 		template<typename Component>
-		void component0(const Registry& reg, typename Registry::entity_type entity)
+		void component0(const entt::registry& reg, entt::entity entity)
 		{
 			archive.setNextName(IdentifierResolver::name<Component>());
 			if (reg.has<Component>(entity))
@@ -568,7 +564,7 @@ namespace ECS
 
 	public:
 		template<typename... Components>
-		void component(const Registry& reg, typename Registry::entity_type entity)
+		void component(const entt::registry& reg, entt::entity entity)
 		{
 			using accumulator_type = int[];
 			accumulator_type accumulator = { 0, (component0<Components>(reg, entity), 0)... };
@@ -576,7 +572,7 @@ namespace ECS
 		}
 
 		template<typename... Components>
-		void components(const Registry& reg, const std::vector<typename Registry::entity_type>& srcs)
+		void components(const entt::registry& reg, const std::vector<entt::entity>& srcs)
 		{
 			{
 				archive.setNextName("entities");
@@ -601,7 +597,6 @@ namespace ECS
 		}
 	};
 
-	template <typename Registry>
 	class EntityImporter
 	{
 	private:
@@ -615,7 +610,7 @@ namespace ECS
 
 	private:
 		template<typename Component>
-		void component0(Registry& reg, typename Registry::entity_type entity)
+		void component0(entt::registry& reg, entt::entity entity)
 		{
 			const char* name = IdentifierResolver::name<Component>();
 			if (archive.hasName(name))
@@ -628,7 +623,7 @@ namespace ECS
 
 	public:
 		template<typename... Components>
-		void component(Registry& reg, typename Registry::entity_type& entity)
+		void component(entt::registry& reg, entt::entity& entity)
 		{
 			entity = reg.create();
 			using accumulator_type = int[];
@@ -637,7 +632,7 @@ namespace ECS
 		}
 
 		template<typename... Components>
-		void components(Registry& reg, std::vector<typename Registry::entity_type>& srcs, std::vector<typename Registry::entity_type>& dsts)
+		void components(entt::registry& reg, std::vector<entt::entity>& srcs, std::vector<entt::entity>& dsts)
 		{
 			{
 				archive.setNextName("entities");
@@ -656,7 +651,7 @@ namespace ECS
 				for (cereal::size_type i = 0; i < size; i++)
 				{
 					archive.startNode();
-					typename Registry::entity_type entity;
+					entt::entity entity;
 					component<Components...>(reg, entity);
 					dsts.push_back(entity);
 					archive.finishNode();
@@ -666,40 +661,39 @@ namespace ECS
 		}
 	};
 
-	template<typename Registry>
 	class ComponentClone
 	{
 	public:
 		template<typename... Components>
-		static void Clone(Registry& reg, typename Registry::entity_type src, typename Registry::entity_type& dst)
+		static void Clone(entt::registry& reg, entt::entity src, entt::entity& dst)
 		{
 			std::stringstream buffer;
 			{
 				cereal::JSONOutputArchive archive(buffer);
-				EntityExporter<Registry> serializer(archive);
+				EntityExporter serializer(archive);
 				serializer.component<Components...>(reg, src);
 			}
 			{
 				cereal::JSONInputArchive archive(buffer);
-				EntityImporter<Registry> serializer(archive);
+				EntityImporter serializer(archive);
 				serializer.component<Components...>(reg, dst);
 			}
 		}
 
 		template<typename... Components>
-		static void Clone(Registry& reg, const std::vector<typename Registry::entity_type>& srcs, std::vector<typename Registry::entity_type>& dsts)
+		static void Clone(entt::registry& reg, const std::vector<entt::entity>& srcs, std::vector<entt::entity>& dsts)
 		{
-			std::vector<typename Registry::entity_type> srcsResult;
+			std::vector<entt::entity> srcsResult;
 			std::stringstream buffer;
 			{
 				cereal::JSONOutputArchive archive(buffer);
-				EntityExporter<Registry> serializer(archive);
+				EntityExporter serializer(archive);
 				serializer.components<Components...>(reg, srcs);
 			}
 			std::cout << buffer.str() << std::endl;
 			{
 				cereal::JSONInputArchive archive(buffer);
-				EntityImporter<Registry> serializer(archive);
+				EntityImporter serializer(archive);
 				serializer.components<Components...>(reg, srcsResult, dsts);
 			}
 		}
