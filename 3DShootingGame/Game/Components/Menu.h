@@ -3,10 +3,10 @@
 
 class GameCamera;
 
-class Menu : public Component
+class TitleMenu : public Component
 {
 public:
-	static constexpr const char* Identifier = "Menu";
+	static constexpr const char* Identifier = "TitleMenu";
 
 	template<typename Component>
 	static void Dependency(Component& component)
@@ -18,6 +18,26 @@ public:
 	bool showCredit = false;
 
 public:
+	void Update();
+	void RenderGui(GameCamera& camera);
+};
+
+class PlayMenu : public Component
+{
+public:
+	static constexpr const char* Identifier = "PlayMenu";
+
+	template<typename Component>
+	static void Dependency(Component& component)
+	{
+		component.DependsOn<Transform>();
+	}
+
+public:
+	float last;
+
+public:
+	void Start();
 	void Update();
 	void RenderGui(GameCamera& camera);
 };

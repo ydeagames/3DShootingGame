@@ -10,5 +10,6 @@ using Components = std::tuple<
 	UpdateRenderer,
 	CameraComponent,
 	Background,
-	Menu
+	TitleMenu,
+	PlayMenu
 >;

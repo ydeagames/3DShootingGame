@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Menu.h"
 #include <Common/DeviceResources.h>
+#include <Common/StepTimer.h>
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Context/PauseHandler.h>
 #include <Framework/Context/SceneManager.h>
@@ -10,13 +11,13 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-void Menu::Update()
+void TitleMenu::Update()
 {
 	if (Input::GetKeyDown(Keyboard::Keys::Escape))
 		GameContext::Get<PauseHandler>().SetPaused(false);
 }
 
-void Menu::RenderGui(GameCamera& camera)
+void TitleMenu::RenderGui(GameCamera& camera)
 {
 	ImGui::SetNextWindowPosCenter();
 	ImGui::SetNextWindowSize(ImVec2(230, 300));
@@ -53,4 +54,57 @@ void Menu::RenderGui(GameCamera& camera)
 		}
 		ImGui::End();
 	}
+}
+
+void PlayMenu::Start()
+{
+	last = float(GameContext::Get<DX::StepTimer>().GetTotalSeconds());
+}
+
+void PlayMenu::Update()
+{
+	if (Input::GetKeyDown(Keyboard::Keys::Escape))
+		GameContext::Get<PauseHandler>().SetPaused(false);
+}
+
+void PlayMenu::RenderGui(GameCamera& camera)
+{
+	ImGui::SetNextWindowPos(ImVec2(10, 10));
+	ImGui::Begin(u8"パラメータ", nullptr);
+	//ImGui::SliderFloat(u8"的サイズ", targetScale.GetWeakPtr().lock().get(), 0, .003f, u8"%.6f");
+	//ImGui::SliderFloat(u8"Y", targetY.GetWeakPtr().lock().get(), 0, 6, u8"%.2f");
+	if (ImGui::Button(u8"リセットいがぐり"))
+	{
+		//auto find = gameObject.registry.FindAll(L"Bullet");
+		//for (auto& f : find)
+		//	Destroy(**f);
+	}
+	if (ImGui::Button(u8"リセットターゲット"))
+	{
+		//auto find = scene.FindAll(L"Target");
+		//for (auto& f : find)
+		//	Destroy(**f);
+	}
+	ImGui::End();
+
+	ImGui::SetNextWindowPos(ImVec2(300, 10));
+	ImGui::Begin(u8"スコア", nullptr);
+	ImGui::Text(u8"スコア: 00000032435 (未実装)");
+	ImGui::End();
+
+	ImGui::SetNextWindowPos(ImVec2(10, 500));
+	ImGui::Begin(u8"タイム", nullptr);
+	ImGui::Text(u8"タイム: %.2f秒", float(GameContext::Get<DX::StepTimer>().GetTotalSeconds()) - last);
+	ImGui::End();
+
+	ImGui::SetNextWindowPos(ImVec2(10, 300));
+	ImGui::Begin(u8"目標", nullptr);
+	ImGui::Text(u8"一番てっぺんに登れ (仮)");
+	ImGui::End();
+
+	ImGui::SetNextWindowPos(ImVec2(10, 700));
+	ImGui::Begin(u8"操作説明", nullptr);
+	ImGui::Text(u8"1. 右クリック長押しで力をためる");
+	ImGui::Text(u8"2. 右クリックを離してスリングジャーンプ！");
+	ImGui::End();
 }

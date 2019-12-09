@@ -317,9 +317,6 @@
     <ClInclude Include="Game\BaseScene.h">
       <Filter>Game\Archived</Filter>
     </ClInclude>
-    <ClInclude Include="Game\BuildSettings.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
     <ClInclude Include="Game\LogoScene.h">
       <Filter>Game\Archived</Filter>
     </ClInclude>
@@ -370,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="Utilities\StringCast.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\BuildSettings.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
