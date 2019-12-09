@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "WindowsUtils.h"
+//#include "StringCast.h"
 
 // 保存ダイアログ
 bool WindowsUtils::SaveDialog(const std::string& extension, const std::string& extensionDesc, std::string& result)

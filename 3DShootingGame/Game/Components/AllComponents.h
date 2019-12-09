@@ -1,6 +1,7 @@
 #pragma once
 #include "Components.h"
 #include "Background.h"
+#include "Menu.h"
 
 using Components = std::tuple<
 	MoveUpdater,
@@ -8,5 +9,6 @@ using Components = std::tuple<
 	PrimitiveRenderer,
 	UpdateRenderer,
 	CameraComponent,
-	Background
+	Background,
+	Menu
 >;

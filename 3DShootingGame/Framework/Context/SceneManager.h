@@ -5,7 +5,7 @@ class SceneManager
 {
 private:
 	Scene* scene;
-	bool requested;
+	bool requested = false;
 	SceneInfo nextScene;
 
 public:

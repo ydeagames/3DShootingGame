@@ -2,7 +2,6 @@
 #include "Background.h"
 #include <Common/DeviceResources.h>
 #include <Framework/ECS/GameContext.h>
-#include <Utilities/WindowsUtils.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

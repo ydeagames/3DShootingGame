@@ -51,8 +51,7 @@ MyGame::MyGame()
 	GameContext::Register<PhysXManager>();
 	// シーン
 	GameContext::Register<SceneManager>(m_scene);
-	m_scene.info.name = "scene";
-	m_scene.info.location = m_scene.info.name + ".json";
+	m_scene.info = { "scene", "scene.scene.json" };
 	m_scene.Load();
 
 	// Widgets
@@ -97,6 +96,9 @@ void MyGame::Update()
 
 	// Updateイベント
 	Updatable::Update(m_scene);
+
+	// シーン遷移
+	GameContext::Get<SceneManager>().Apply();
 }
 
 void MyGame::RenderInitialize()

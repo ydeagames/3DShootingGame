@@ -203,7 +203,7 @@ namespace Widgets
 			std::string location;
 			if (WindowsUtils::SaveDialog("scene.json", "Scene Files", location))
 			{
-				scene.info = { location, WindowsUtils::GetFileName(location, "scene.json") };
+				scene.info = { WindowsUtils::GetFileName(location, "scene.json"), location };
 				scene.Save();
 			}
 		}
@@ -213,7 +213,7 @@ namespace Widgets
 			std::string location;
 			if (WindowsUtils::OpenDialog("scene.json", "Scene Files", location))
 			{
-				scene.info = { location, WindowsUtils::GetFileName(location, "scene.json") };
+				scene.info = { WindowsUtils::GetFileName(location, "scene.json"), location };
 				scene.Load();
 			}
 		}

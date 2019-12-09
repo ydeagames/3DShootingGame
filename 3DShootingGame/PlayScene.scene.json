@@ -1,0 +1,77 @@
+{
+    "entities": {
+        "created": [
+            1,
+            0
+        ],
+        "destroyed": []
+    },
+    "tags": {},
+    "components": {
+        "Transform": [
+            {
+                "id": 0,
+                "component": {
+                    "name": "",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1,
+                "component": {
+                    "name": "",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 5.099999904632568
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            }
+        ],
+        "MoveUpdater": [],
+        "MoveDownUpdater": [],
+        "PrimitiveRenderer": [
+            {
+                "id": 0,
+                "component": {}
+            }
+        ],
+        "UpdateRenderer": [],
+        "CameraComponent": [
+            {
+                "id": 1,
+                "component": {}
+            }
+        ],
+        "Background": [],
+        "Menu": []
+    }
+}

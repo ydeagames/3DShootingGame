@@ -14,4 +14,9 @@ public:
 	{
 		gameObject.registry->destroy<Component>(gameObject.entity);
 	}
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+	}
 };

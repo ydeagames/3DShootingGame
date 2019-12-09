@@ -252,7 +252,9 @@
     <ClInclude Include="Framework\SceneManagement\SceneTransition.h" />
     <ClInclude Include="Framework\SceneManagement\SceneTransitions.h" />
     <ClInclude Include="Game\Components\AllComponents.h" />
+    <ClInclude Include="Game\Components\Menu.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
+    <ClInclude Include="Utilities\StringCast.h" />
     <ClInclude Include="Utilities\WindowsUtils.h" />
     <ClInclude Include="Game\BaseScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -380,6 +382,7 @@
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />
     <ClCompile Include="Framework\Physics\Rigidbody.cpp" />
     <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp" />
+    <ClCompile Include="Game\Components\Menu.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\BaseScene.cpp">

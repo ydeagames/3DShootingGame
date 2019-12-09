@@ -365,6 +365,12 @@
     <ClInclude Include="Game\Components\Background.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\Menu.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\StringCast.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -493,6 +499,9 @@
       <Filter>Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\Background.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\Menu.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
