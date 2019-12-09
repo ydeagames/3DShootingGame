@@ -2,7 +2,6 @@
 #include "Widgets.h"
 #include <Framework/ECS/Scene.h>
 #include <Framework/ECS/GameContext.h>
-#include <Framework/Components/Components.h>
 #include <Framework/Components/AllComponents.h>
 #include <Utilities/WindowsUtils.h>
 
@@ -289,8 +288,8 @@ namespace Widgets
 				};
 				rec0(e, rec0);
 
-				Components::CloneComponents(reg, src, dst);
-				Components::UpdateReferences(reg, src, dst);
+				ECS::AllComponents::CloneComponents(reg, src, dst);
+				ECS::AllComponents::UpdateReferences(reg, src, dst);
 
 				auto& e0 = *dst.begin();
 				if (!ImGui::GetIO().KeyShift)
@@ -312,7 +311,7 @@ namespace Widgets
 				};
 				rec0(e, rec0);
 
-				Components::SaveEntity(location, reg, src);
+				ECS::AllComponents::SaveEntity(location, reg, src);
 			}
 		}
 		ImGui::SameLine();
@@ -324,8 +323,8 @@ namespace Widgets
 				std::vector<entt::entity> src;
 				std::vector<entt::entity> dst;
 
-				Components::LoadEntity(location, reg, src, dst);
-				Components::UpdateReferences(reg, src, dst);
+				ECS::AllComponents::LoadEntity(location, reg, src, dst);
+				ECS::AllComponents::UpdateReferences(reg, src, dst);
 
 				auto& e0 = *dst.begin();
 				if (!ImGui::GetIO().KeyShift)
@@ -341,7 +340,7 @@ namespace Widgets
 			auto& reg = scene.registry;
 			GameContext::Register<EntityEditorState>();
 			auto& editor = GameContext::Register<MM::ImGuiEntityEditor<entt::registry>>();
-			Components::InitializeEditorComponents(reg, editor);
+			ECS::AllComponents::InitializeEditorComponents(reg, editor);
 		}
 
 		void Render(Scene& scene)

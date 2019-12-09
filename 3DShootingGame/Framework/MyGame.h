@@ -1,5 +1,5 @@
 #pragma once
-#include <Framework/Components/Components.h>
+#include <Framework/Components/AllComponents.h>
 
 class MyGame
 {

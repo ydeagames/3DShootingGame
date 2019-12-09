@@ -3,7 +3,7 @@
 #include <Framework/ECS/Serialize.h>
 #include <Framework/ImGui/ImGuiManager.h>
 #include <Framework/ImGui/Widgets.h>
-#include <Framework/Components/Components.h>
+#include <Framework/ECS/Component.h>
 #include <Framework/Components/AllComponents.h>
 #include <Framework/Context/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
@@ -35,7 +35,7 @@ int MyGame::Bench()
 
 MyGame::MyGame()
 {
-	Components::InitializeEvents();
+	ECS::AllComponents::InitializeEvents();
 
 	// FPS
 	GameContext::Register<FPS>(GameContext::Get<DX::StepTimer>());

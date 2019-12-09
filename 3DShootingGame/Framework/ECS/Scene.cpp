@@ -17,7 +17,7 @@ GameObject Scene::Create()
 
 Scene::Scene()
 {
-	Components::InitializeDependency(registry);
+	ECS::AllComponents::InitializeDependency(registry);
 }
 
 Scene::~Scene()
@@ -28,13 +28,13 @@ Scene::~Scene()
 bool Scene::Load()
 {
 	registry.reset();
-	return Components::LoadScene(info.location, registry, [](auto& registry) {
-		Components::InitializeDependency(registry);
-		Components::InitializeLifecycleEvents(registry);
+	return ECS::AllComponents::LoadScene(info.location, registry, [](auto& registry) {
+		ECS::AllComponents::InitializeDependency(registry);
+		ECS::AllComponents::InitializeLifecycleEvents(registry);
 		});
 }
 
 bool Scene::Save() const
 {
-	return Components::SaveScene(info.location, registry);
+	return ECS::AllComponents::SaveScene(info.location, registry);
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include <Framework/Components/Components.h>
+#include <Framework/ECS/Component.h>
 #include <Framework/PhysX/PhysXCommons.h>
 
 class Collider : public Component

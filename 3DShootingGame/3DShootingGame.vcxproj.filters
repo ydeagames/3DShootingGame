@@ -83,6 +83,9 @@
     <Filter Include="Game\Archived">
       <UniqueIdentifier>{1128a8f9-be18-44e0-a7f8-2d338c2ba1ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components">
+      <UniqueIdentifier>{7cce0b91-7d67-4ecb-b8b6-84751ab46b95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -290,9 +293,6 @@
     <ClInclude Include="Framework\ECS\GameContext.h">
       <Filter>Framework\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Components\Components.h">
-      <Filter>Framework\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Components\AllComponents.h">
       <Filter>Framework\Components</Filter>
     </ClInclude>
@@ -355,6 +355,12 @@
     </ClInclude>
     <ClInclude Include="Utilities\Math3DUtils.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\AllComponents.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\Components.h">
+      <Filter>Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -429,9 +435,6 @@
     <ClCompile Include="Framework\ECS\GameObject.cpp">
       <Filter>Framework\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Components\Components.cpp">
-      <Filter>Framework\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Context\GameCamera.cpp">
       <Filter>Framework\Context</Filter>
     </ClCompile>
@@ -482,6 +485,12 @@
     </ClCompile>
     <ClCompile Include="Utilities\Math3DUtils.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\AllComponents.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\Components.cpp">
+      <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
