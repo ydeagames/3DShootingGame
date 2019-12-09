@@ -1,17 +1,14 @@
 #include "pch.h"
 #include "WindowsUtils.h"
-//#include "StringCast.h"
+#include "StringCast.h"
 
 // 保存ダイアログ
 bool WindowsUtils::SaveDialog(const std::string& extension, const std::string& extensionDesc, std::string& result)
 {
-	// wstring <-> string 変換クラス
-	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> cv;
-
 	// フィルター文字列定義
 	std::wstringstream filter;
-	std::wstring wextension = cv.from_bytes(extension);
-	filter << cv.from_bytes(extensionDesc) << L" (*." << wextension << L")" << std::ends;
+	std::wstring wextension = string_cast<std::wstring>(extension);
+	filter << string_cast<std::wstring>(extensionDesc) << L" (*." << wextension << L")" << std::ends;
 	filter << L"*." << wextension << std::ends;
 	filter << L"All Files" << L" (*." << L"*" << L")" << std::ends;
 	filter << L"*." << L"*" << std::ends;
@@ -33,20 +30,17 @@ bool WindowsUtils::SaveDialog(const std::string& extension, const std::string& e
 
 	// ダイアログ表示
 	bool b = (GetSaveFileNameW(&ofn) == TRUE);
-	result = cv.to_bytes(std::wstring(filename));
+	result = string_cast<std::string>(std::wstring(filename));
 	return b;
 }
 
 // 開くダイアログ
 bool WindowsUtils::OpenDialog(const std::string& extension, const std::string& extensionDesc, std::string& result)
 {
-	// wstring <-> string 変換クラス
-	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> cv;
-
 	// フィルター文字列定義
 	std::wstringstream filter;
-	std::wstring wextension = cv.from_bytes(extension);
-	filter << cv.from_bytes(extensionDesc) << L" (*." << wextension << L")" << std::ends;
+	std::wstring wextension = string_cast<std::wstring>(extension);
+	filter << string_cast<std::wstring>(extensionDesc) << L" (*." << wextension << L")" << std::ends;
 	filter << L"*." << wextension << std::ends;
 	filter << L"All Files" << L" (*." << L"*" << L")" << std::ends;
 	filter << L"*." << L"*" << std::ends;
@@ -68,7 +62,7 @@ bool WindowsUtils::OpenDialog(const std::string& extension, const std::string& e
 
 	// ダイアログ表示
 	bool b = (GetOpenFileNameW(&ofn) == TRUE);
-	result = cv.to_bytes(std::wstring(filename));
+	result = string_cast<std::string>(std::wstring(filename));
 	return b;
 }
 
