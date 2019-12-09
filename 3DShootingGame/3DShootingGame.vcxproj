@@ -218,6 +218,7 @@
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h" />
     <ClInclude Include="Framework\Components\AllComponents.h" />
+    <ClInclude Include="Game\Components\Background.h" />
     <ClInclude Include="Game\Components\Components.h" />
     <ClInclude Include="Framework\Context\GameCamera.h" />
     <ClInclude Include="Framework\Context\PauseHandler.h" />
@@ -355,6 +356,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="Game\Components\Background.cpp" />
     <ClCompile Include="Game\Components\Components.cpp" />
     <ClCompile Include="Framework\Context\GameCamera.cpp" />
     <ClCompile Include="Framework\Context\PauseHandler.cpp" />
@@ -378,7 +380,6 @@
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />
     <ClCompile Include="Framework\Physics\Rigidbody.cpp" />
     <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp" />
-    <ClCompile Include="Game\Components\AllComponents.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\BaseScene.cpp">

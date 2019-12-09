@@ -362,6 +362,9 @@
     <ClInclude Include="Game\Components\Components.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\Background.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -486,10 +489,10 @@
     <ClCompile Include="Utilities\Math3DUtils.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Components\AllComponents.cpp">
+    <ClCompile Include="Game\Components\Components.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Components\Components.cpp">
+    <ClCompile Include="Game\Components\Background.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
