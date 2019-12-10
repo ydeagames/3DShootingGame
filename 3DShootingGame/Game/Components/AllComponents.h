@@ -3,6 +3,7 @@
 #include "Background.h"
 #include "Menu.h"
 #include "FPSCamera.h"
+#include "InfinityGridFloor.h"
 
 using Components = std::tuple<
 	MoveUpdater,
@@ -13,5 +14,6 @@ using Components = std::tuple<
 	Background,
 	TitleMenu,
 	PlayMenu,
-	FPSCamera
+	FPSCamera,
+	InfinityGridFloor
 >;

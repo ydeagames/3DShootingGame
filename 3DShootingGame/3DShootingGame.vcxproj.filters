@@ -164,9 +164,6 @@
     <ClInclude Include="Framework\ExitHandler.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Game\InfinityGridFloor.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Libraries\entt\config\config.h">
       <Filter>Libraries\entt\config</Filter>
     </ClInclude>
@@ -374,6 +371,12 @@
     <ClInclude Include="Game\Components\FPSCamera.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\InfinityGridFloor.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\StandardSerialize.h">
+      <Filter>Framework\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -416,9 +419,6 @@
     </ClCompile>
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp">
       <Filter>Framework\PhysX</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\InfinityGridFloor.cpp">
-      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Framework\ImGui\ImGuiManager.cpp">
       <Filter>Framework\ImGui</Filter>
@@ -508,6 +508,9 @@
       <Filter>Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\FPSCamera.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\InfinityGridFloor.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

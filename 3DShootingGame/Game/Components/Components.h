@@ -4,22 +4,7 @@
 #include <Framework/ECS/Events.h>
 #include <Common/DeviceResources.h>
 #include <Framework/ECS/Component.h>
-
-namespace DirectX
-{
-	namespace SimpleMath
-	{
-		template<typename Archive>
-		void serialize(Archive& archive, Vector3& vector) {
-			archive(cereal::make_nvp("x", vector.x), cereal::make_nvp("y", vector.y), cereal::make_nvp("z", vector.z));
-		}
-
-		template<typename Archive>
-		void serialize(Archive& archive, Quaternion& quat) {
-			archive(cereal::make_nvp("x", quat.x), cereal::make_nvp("y", quat.y), cereal::make_nvp("z", quat.z), cereal::make_nvp("w", quat.w));
-		}
-	}
-}
+#include <Framework/Components/StandardSerialize.h>
 
 class MoveUpdater : public Component
 {

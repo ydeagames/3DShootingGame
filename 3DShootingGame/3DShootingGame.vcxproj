@@ -218,6 +218,7 @@
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h" />
     <ClInclude Include="Framework\Components\AllComponents.h" />
+    <ClInclude Include="Framework\Components\StandardSerialize.h" />
     <ClInclude Include="Game\Components\Background.h" />
     <ClInclude Include="Game\Components\Components.h" />
     <ClInclude Include="Framework\Context\GameCamera.h" />
@@ -273,7 +274,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Game\InfinityGridFloor.h" />
+    <ClInclude Include="Game\Components\InfinityGridFloor.h" />
     <ClInclude Include="Game\LogoScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -399,7 +400,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Game\InfinityGridFloor.cpp" />
+    <ClCompile Include="Game\Components\InfinityGridFloor.cpp" />
     <ClCompile Include="Game\LogoScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
