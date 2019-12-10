@@ -317,6 +317,9 @@
     <ClInclude Include="Game\BaseScene.h">
       <Filter>Game\Archived</Filter>
     </ClInclude>
+    <ClInclude Include="Game\BuildSettings.h">
+      <Filter>Game\Archived</Filter>
+    </ClInclude>
     <ClInclude Include="Game\LogoScene.h">
       <Filter>Game\Archived</Filter>
     </ClInclude>
@@ -368,8 +371,8 @@
     <ClInclude Include="Utilities\StringCast.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Game\BuildSettings.h">
-      <Filter>Game</Filter>
+    <ClInclude Include="Game\Components\FPSCamera.h">
+      <Filter>Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -502,6 +505,9 @@
       <Filter>Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\Menu.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\FPSCamera.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

@@ -45,11 +45,13 @@
                 }
             }
         ],
-        "Menu": [
+        "TitleMenu": [
             {
                 "id": 0,
                 "component": {}
             }
-        ]
+        ],
+        "PlayMenu": [],
+        "FPSCamera": []
     }
 }

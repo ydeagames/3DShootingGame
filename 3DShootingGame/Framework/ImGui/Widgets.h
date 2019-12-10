@@ -10,6 +10,8 @@ namespace Widgets
 	public:
 		entt::entity prev = entt::null;
 		entt::entity current = entt::null;
+		bool hierarchyEnabled = false;
+		bool inspectorEnabled = false;
 	};
 
 	void Hierarchy(Scene& scene);

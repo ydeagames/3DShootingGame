@@ -123,7 +123,7 @@ public:
 		component.DependsOn<Transform>();
 	}
 
-private:
+protected:
 	GameCamera* cameraptr = nullptr;
 
 public:

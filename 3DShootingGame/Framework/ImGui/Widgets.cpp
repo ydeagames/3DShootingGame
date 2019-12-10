@@ -182,7 +182,9 @@ namespace Widgets
 		auto& reg = scene.registry;
 		auto& editor = GameContext::Get<MM::ImGuiEntityEditor<entt::registry>>();
 		auto& editorState = GameContext::Get<EntityEditorState>();
+		editor.show_window = editorState.inspectorEnabled;
 		editor.renderImGui(reg, editorState.current);
+		editorState.inspectorEnabled = editor.show_window;
 	}
 
 	void SceneControl(Scene& scene)
@@ -347,18 +349,23 @@ namespace Widgets
 		{
 			Widgets::Inspector(scene);
 
-			if (ImGui::Begin("Hierarchy"))
+			auto& editorState = GameContext::Get<EntityEditorState>();
+
+			if (editorState.hierarchyEnabled)
 			{
-				Widgets::SceneControl(scene);
+				if (ImGui::Begin("Hierarchy", &editorState.hierarchyEnabled))
+				{
+					Widgets::SceneControl(scene);
 
-				ImGui::Separator();
+					ImGui::Separator();
 
-				Widgets::EntityControl(scene);
+					Widgets::EntityControl(scene);
 
-				ImGui::Separator();
+					ImGui::Separator();
 
-				Widgets::Hierarchy(scene);
+					Widgets::Hierarchy(scene);
 
+				}
 				ImGui::End();
 			}
 		}

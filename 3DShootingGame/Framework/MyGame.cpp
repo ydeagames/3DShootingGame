@@ -94,6 +94,20 @@ void MyGame::Update()
 		}
 	}
 
+	auto& editorState = GameContext::Get<Widgets::EntityEditorState>();
+
+	// ヒエラルキー
+	if (Input::GetKeyDown(Keyboard::Keys::F4))
+		editorState.hierarchyEnabled = !editorState.hierarchyEnabled;
+
+	// インスペクター
+	if (Input::GetKeyDown(Keyboard::Keys::F5))
+		editorState.inspectorEnabled = !editorState.inspectorEnabled;
+
+	// マウス相対座標切り替え
+	if (Input::GetKeyDown(Keyboard::Keys::F6))
+		Mouse::Get().SetMode(Mouse::Get().GetState().positionMode == Mouse::Mode::MODE_ABSOLUTE ? Mouse::Mode::MODE_RELATIVE : Mouse::Mode::MODE_ABSOLUTE);
+
 	// Updateイベント
 	Updatable::Update(m_scene);
 
