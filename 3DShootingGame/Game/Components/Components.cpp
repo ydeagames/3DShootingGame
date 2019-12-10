@@ -6,17 +6,6 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-void PrimitiveRenderer::RenderStart()
-{
-	m_model = GeometricPrimitive::CreateTeapot(GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext());
-}
-
-void PrimitiveRenderer::Render(GameCamera& camera)
-{
-	if (m_model)
-		m_model->Draw(gameObject.GetComponent<Transform>().GetMatrix(), camera.view, camera.projection);
-}
-
 void MoveUpdater::Start()
 {
 	vel += Vector3::Right * .1f;

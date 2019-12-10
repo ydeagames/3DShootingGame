@@ -1,0 +1,123 @@
+{
+    "entities": {
+        "created": [
+            2,
+            1,
+            0
+        ],
+        "destroyed": []
+    },
+    "tags": {},
+    "components": {
+        "Transform": [
+            {
+                "id": 0,
+                "component": {
+                    "name": "",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1,
+                "component": {
+                    "name": "",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 6.599999904632568,
+                        "z": 5.099999904632568
+                    },
+                    "localRotation": {
+                        "x": -0.34119996428489687,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 0.939990758895874
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "component": {
+                    "name": "",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            }
+        ],
+        "MoveUpdater": [],
+        "MoveDownUpdater": [],
+        "PrimitiveRenderer": [
+            {
+                "id": 0,
+                "component": {
+                    "texture": "Resources/Textures/Title/Background.png"
+                }
+            }
+        ],
+        "UpdateRenderer": [],
+        "CameraComponent": [
+            {
+                "id": 1,
+                "component": {}
+            }
+        ],
+        "Background": [],
+        "TitleMenu": [],
+        "PlayMenu": [],
+        "FPSCamera": [],
+        "InfinityGridFloor": [
+            {
+                "id": 2,
+                "component": {
+                    "cellsize": 2.0,
+                    "size": {
+                        "x": 200.0,
+                        "y": 200.0
+                    },
+                    "color": {
+                        "x": 0.3294072151184082,
+                        "y": 0.8704663515090942,
+                        "z": 0.10824452340602875,
+                        "w": 1.0
+                    }
+                }
+            }
+        ]
+    }
+}

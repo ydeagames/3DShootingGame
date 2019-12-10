@@ -255,6 +255,7 @@
     <ClInclude Include="Game\Components\AllComponents.h" />
     <ClInclude Include="Game\Components\FPSCamera.h" />
     <ClInclude Include="Game\Components\Menu.h" />
+    <ClInclude Include="Game\Components\PrimitiveRenderer.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
     <ClInclude Include="Utilities\StringCast.h" />
     <ClInclude Include="Utilities\WindowsUtils.h" />
@@ -386,6 +387,7 @@
     <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp" />
     <ClCompile Include="Game\Components\FPSCamera.cpp" />
     <ClCompile Include="Game\Components\Menu.cpp" />
+    <ClCompile Include="Game\Components\PrimitiveRenderer.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\BaseScene.cpp">

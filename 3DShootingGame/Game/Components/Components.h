@@ -52,33 +52,6 @@ public:
 	}
 };
 
-class PrimitiveRenderer : public Component
-{
-public:
-	static constexpr const char* Identifier = "PrimitiveRenderer";
-
-	template<typename Component>
-	static void Dependency(Component& component)
-	{
-		component.DependsOn<Transform>();
-	}
-
-public:
-	std::unique_ptr<DirectX::GeometricPrimitive> m_model;
-
-public:
-	void Awake() { std::cout << "Awake" << gameObject.entity << std::endl; }
-	void OnDestroy() { std::cout << "OnDestroy" << gameObject.entity << std::endl; }
-	void RenderStart();
-	void Render(GameCamera& camera);
-
-public:
-	template<class Archive>
-	void serialize(Archive& archive)
-	{
-	}
-};
-
 class UpdateRenderer : public MoveUpdater
 {
 public:

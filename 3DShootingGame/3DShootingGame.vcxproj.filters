@@ -377,6 +377,9 @@
     <ClInclude Include="Framework\Components\StandardSerialize.h">
       <Filter>Framework\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\PrimitiveRenderer.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -511,6 +514,9 @@
       <Filter>Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\InfinityGridFloor.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\PrimitiveRenderer.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

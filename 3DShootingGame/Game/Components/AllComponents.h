@@ -3,6 +3,7 @@
 #include "Background.h"
 #include "Menu.h"
 #include "FPSCamera.h"
+#include "PrimitiveRenderer.h"
 #include "InfinityGridFloor.h"
 
 using Components = std::tuple<
