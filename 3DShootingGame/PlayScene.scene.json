@@ -12,7 +12,7 @@
             {
                 "id": 0,
                 "component": {
-                    "name": "",
+                    "name": "Teapot",
                     "parent": 4294967295,
                     "localPosition": {
                         "x": 0.0,
@@ -35,7 +35,7 @@
             {
                 "id": 1,
                 "component": {
-                    "name": "",
+                    "name": "Camera",
                     "parent": 4294967295,
                     "localPosition": {
                         "x": 0.0,
@@ -61,7 +61,11 @@
         "PrimitiveRenderer": [
             {
                 "id": 0,
-                "component": {}
+                "component": {
+                    "model": "Teapot",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "cullfront": false
+                }
             }
         ],
         "UpdateRenderer": [],
@@ -72,6 +76,9 @@
             }
         ],
         "Background": [],
-        "Menu": []
+        "TitleMenu": [],
+        "PlayMenu": [],
+        "FPSCamera": [],
+        "InfinityGridFloor": []
     }
 }

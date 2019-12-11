@@ -15,14 +15,53 @@ public:
 	}
 
 public:
+	class PrimitiveModel
+	{
+	public:
+		using generator_type = std::function<std::unique_ptr<DirectX::GeometricPrimitive>(ID3D11DeviceContext* device)>;
+
+	private:
+		generator_type gen;
+		generator_type invgen;
+		std::unique_ptr<DirectX::GeometricPrimitive> model;
+		std::unique_ptr<DirectX::GeometricPrimitive> invmodel;
+
+	public:
+		PrimitiveModel(const generator_type& gen, const generator_type& invgen)
+			: gen(gen)
+			, invgen(invgen)
+		{
+		}
+
+	public:
+		DirectX::GeometricPrimitive* GetOrCreate(ID3D11DeviceContext* device)
+		{
+			if (!model)
+				model = gen(device);
+			return model.get();
+		}
+
+		DirectX::GeometricPrimitive* GetOrCreateInverted(ID3D11DeviceContext* device)
+		{
+			if (!invmodel)
+				invmodel = invgen(device);
+			return invmodel.get();
+		}
+	};
+
+	std::unordered_map<std::string, PrimitiveModel>& primitiveModels();
+
+public:
+	std::string model = "Teapot";
 	std::string texture = "Resources/Textures/Title/Background.png";
+	bool cullfront;
 
 private:
 	// エフェクト
 	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
 
 	// モデル
-	std::unique_ptr<DirectX::GeometricPrimitive> m_model;
+	DirectX::GeometricPrimitive* m_model = nullptr;
 
 	// インプットレイアウト
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
@@ -38,7 +77,7 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(CEREAL_OPTIONAL_NVP(texture));
+		archive(CEREAL_OPTIONAL_NVP(model), CEREAL_OPTIONAL_NVP(texture), CEREAL_OPTIONAL_NVP(cullfront));
 	}
 
 	void EditorGui();
