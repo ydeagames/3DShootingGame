@@ -83,7 +83,7 @@ namespace ECS
 	class ComponentDependency
 	{
 	private:
-		template<typename Component, typename = decltype(&Component::Dependency<Component>)>
+		template<typename Component, typename = decltype(&Component::template Dependency<Component>)>
 		static void DependsOn0(int, entt::registry & reg)
 		{
 			Dependency<Component> dep(reg);
@@ -106,7 +106,7 @@ namespace ECS
 	class ComponentReference
 	{
 	private:
-		template<typename Component, typename = decltype(&Component::Reference<Component>)>
+		template<typename Component, typename = decltype(&Component::template Reference<Component>)>
 		static void Resolve0(int, entt::registry & reg, const std::vector<entt::entity> & srcs, const std::vector<entt::entity> & dsts)
 		{
 			ReferenceResolver::map_type map;
