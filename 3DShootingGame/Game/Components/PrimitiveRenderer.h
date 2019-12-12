@@ -54,7 +54,8 @@ public:
 public:
 	std::string model = "Teapot";
 	std::string texture = "Resources/Textures/Title/Background.png";
-	bool cullfront;
+	bool cullfront = false;
+	bool textureEnabled = true;
 
 private:
 	// エフェクト
@@ -77,7 +78,7 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(CEREAL_OPTIONAL_NVP(model), CEREAL_OPTIONAL_NVP(texture), CEREAL_OPTIONAL_NVP(cullfront));
+		archive(CEREAL_OPTIONAL_NVP(model), CEREAL_OPTIONAL_NVP(texture), CEREAL_OPTIONAL_NVP(cullfront), CEREAL_OPTIONAL_NVP(textureEnabled));
 	}
 
 	void EditorGui();

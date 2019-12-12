@@ -1,6 +1,9 @@
 {
     "entities": {
         "created": [
+            4,
+            3,
+            2,
             1,
             0
         ],
@@ -13,6 +16,75 @@
                 "id": 0,
                 "component": {
                     "name": "Teapot",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 9.0,
+                        "y": 1.899999976158142,
+                        "z": -8.100000381469727
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 3.0,
+                        "y": 3.0,
+                        "z": 3.0
+                    }
+                }
+            },
+            {
+                "id": 1,
+                "component": {
+                    "name": "Camera",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 7.199999809265137,
+                        "z": 11.699999809265137
+                    },
+                    "localRotation": {
+                        "x": -0.20278723537921906,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 0.97922283411026
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "component": {
+                    "name": "Igaguri",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 3.0,
+                        "z": -26.100000381469728
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 0.10000000149011612,
+                        "y": 0.10000000149011612,
+                        "z": 0.10000000149011612
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "component": {
+                    "name": "Floor",
                     "parent": 4294967295,
                     "localPosition": {
                         "x": 0.0,
@@ -33,14 +105,14 @@
                 }
             },
             {
-                "id": 1,
+                "id": 4,
                 "component": {
-                    "name": "Camera",
+                    "name": "Skydome",
                     "parent": 4294967295,
                     "localPosition": {
                         "x": 0.0,
                         "y": 0.0,
-                        "z": 5.099999904632568
+                        "z": 0.0
                     },
                     "localRotation": {
                         "x": 0.0,
@@ -49,9 +121,9 @@
                         "w": 1.0
                     },
                     "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
+                        "x": 512.0,
+                        "y": 512.0,
+                        "z": 512.0
                     }
                 }
             }
@@ -62,9 +134,29 @@
             {
                 "id": 0,
                 "component": {
-                    "model": "Teapot",
+                    "model": "Dodecahedron",
                     "texture": "Resources/Textures/Title/Background.png",
-                    "cullfront": false
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 4,
+                "component": {
+                    "model": "GeoSphere",
+                    "texture": "Resources/Textures/Play/Skydoom.jpg",
+                    "cullfront": true,
+                    "textureEnabled": true
+                }
+            }
+        ],
+        "ModelRenderer": [
+            {
+                "id": 2,
+                "component": {
+                    "model": "Resources/Models/igaguri.cmo",
+                    "cullfront": false,
+                    "wireframe": false
                 }
             }
         ],
@@ -79,6 +171,23 @@
         "TitleMenu": [],
         "PlayMenu": [],
         "FPSCamera": [],
-        "InfinityGridFloor": []
+        "InfinityGridFloor": [
+            {
+                "id": 3,
+                "component": {
+                    "cellsize": 2.0,
+                    "size": {
+                        "x": 200.0,
+                        "y": 200.0
+                    },
+                    "color": {
+                        "x": 0.501960813999176,
+                        "y": 0.501960813999176,
+                        "z": 0.501960813999176,
+                        "w": 1.0
+                    }
+                }
+            }
+        ]
     }
 }
