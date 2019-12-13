@@ -2,28 +2,34 @@
 #include "SceneManager.h"
 #include <Framework/ECS/GameContext.h>
 
-SceneManager::SceneManager(Scene& scene)
-	: scene(&scene)
+SceneManager::SceneManager()
 {
+	scenes.emplace_back(std::make_unique<Scene>());
 }
 
-Scene& SceneManager::GetActiveScene()
+Scene& SceneManager::GetActiveScene() const
 {
-	return *scene;
+	return *scenes.front();
 }
 
 void SceneManager::Apply()
 {
-	if (requested)
+	while (!m_loadQueue.empty())
 	{
-		requested = false;
-		scene->info = nextScene;
-		scene->Load();
+		auto& task = m_loadQueue.front();
+		{
+			if (task.mode == LoadSceneMode::Single && !scenes.empty())
+				scenes.pop_front();
+			scenes.push_front(std::make_unique<Scene>(task.scene));
+			scenes.front()->Load();
+		}
+		m_loadQueue.pop();
 	}
+
+	scenes.erase(std::remove_if(scenes.begin(), scenes.end(), [](auto& scene)->bool { return scene->destroyed; }), scenes.end());
 }
 
-void SceneManager::LoadScene(const SceneInfo& info)
+void SceneManager::LoadScene(const SceneInfo& info, LoadSceneMode mode)
 {
-	nextScene = info;
-	requested = true;
+	m_loadQueue.push(LoadSceneInfo{ info, mode });
 }

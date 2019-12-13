@@ -8,7 +8,7 @@ class GridFloorWrapper : public Component
 	// グリッド床
 	std::unique_ptr<GridFloor> m_pGridFloor;
 	// 生成
-	void RenderInitialize();
+	void RenderStart();
 	// 描画
 	void Render(GameCamera& camera);
 };

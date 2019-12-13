@@ -3,6 +3,23 @@
 #include "GameObject.h"
 #include "Serialize.h"
 #include <Framework/Components/AllComponents.h>
+#include <Utilities/WindowsUtils.h>
+
+SceneInfo::SceneInfo(const std::string& name, const std::string& location)
+	: name(name)
+	, location(location)
+{
+}
+
+SceneInfo SceneInfo::CreateFromLocation(const std::string& location)
+{
+	return SceneInfo(WindowsUtils::GetFileName(location, SceneExtension), location);
+}
+
+SceneInfo SceneInfo::CreateFromName(const std::string& name)
+{
+	return SceneInfo(name, name + "." + SceneExtension);
+}
 
 bool SceneInfo::Valid()
 {
@@ -22,7 +39,7 @@ Scene::Scene(const SceneInfo& info)
 }
 
 Scene::Scene()
-	: Scene(SceneInfo())
+	: Scene(SceneInfo::CreateFromName("Untitled"))
 {
 }
 
@@ -43,4 +60,15 @@ bool Scene::Load()
 bool Scene::Save() const
 {
 	return ECS::AllComponents::SaveScene(info.location, registry);
+}
+
+void Scene::Destroy(Scene* scene)
+{
+	if (scene)
+		Destroy(*scene);
+}
+
+void Scene::Destroy(Scene& scene)
+{
+	scene.destroyed = true;
 }

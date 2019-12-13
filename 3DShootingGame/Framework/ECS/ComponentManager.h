@@ -135,25 +135,25 @@ namespace ECS
 	{
 	private:
 		template<typename Component, typename = decltype(&Component::EditorGui)>
-		static void EditorWidget0(int, entt::registry & reg, MM::ImGuiEntityEditor<entt::registry> & editor)
+		static void EditorWidget0(int, MM::ImGuiEntityEditor<entt::registry> & editor)
 		{
 			editor.registerComponentWidgetFn(
-				reg.type<Component>(),
+				entt::registry::type<Component>(),
 				[](auto& registry, auto entity) {
 					registry.get<Component>(entity).EditorGui();
 				});
 		}
 
 		template<typename Component>
-		static void EditorWidget0(bool, entt::registry& reg, MM::ImGuiEntityEditor<entt::registry>& editor)
+		static void EditorWidget0(bool, MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
 		}
 
 	public:
 		template<typename Component>
-		static void EditorWidget(entt::registry& reg, MM::ImGuiEntityEditor<entt::registry>& editor)
+		static void EditorWidget(MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
-			EditorWidget0<Component>(0, reg, editor);
+			EditorWidget0<Component>(0, editor);
 		}
 	};
 
@@ -174,10 +174,10 @@ namespace ECS
 		}
 
 		template<typename Component>
-		static void InitializeEditorComponent(entt::registry& reg, MM::ImGuiEntityEditor<entt::registry>& editor)
+		static void InitializeEditorComponent(MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
-			editor.registerTrivial<Component>(reg, ECS::IdentifierResolver::name<Component>());
-			ComponentGui::EditorWidget<Component>(reg, editor);
+			editor.registerTrivial<Component>(ECS::IdentifierResolver::name<Component>());
+			ComponentGui::EditorWidget<Component>(editor);
 		}
 
 		template<typename Component>
@@ -200,10 +200,10 @@ namespace ECS
 			(void)accumulator;
 		}
 
-		static void InitializeEditorComponents(entt::registry& reg, MM::ImGuiEntityEditor<entt::registry>& editor)
+		static void InitializeEditorComponents(MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
 			using accumulator_type = int[];
-			accumulator_type accumulator = { 0, (InitializeEditorComponent<Components>(reg, editor), 0)... };
+			accumulator_type accumulator = { 0, (InitializeEditorComponent<Components>(editor), 0)... };
 			(void)accumulator;
 		}
 

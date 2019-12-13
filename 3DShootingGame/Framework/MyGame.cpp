@@ -37,7 +37,12 @@ int MyGame::Bench()
 
 MyGame::MyGame()
 {
+	// Events
 	ECS::AllComponents::InitializeEvents();
+	// Widgets
+	GameContext::Register<Widgets::EntityEditorState>();
+	GameContext::Register<MM::ImGuiEntityEditor<entt::registry>>();
+	ECS::AllComponents::InitializeEditorComponents(GameContext::Get<MM::ImGuiEntityEditor<entt::registry>>());
 
 	// FPS
 	GameContext::Register<FPS>(GameContext::Get<DX::StepTimer>());
@@ -52,12 +57,7 @@ MyGame::MyGame()
 	// 物理
 	GameContext::Register<PhysXManager>();
 	// シーン
-	GameContext::Register<SceneManager>(m_scene);
-	m_scene.info = { "scene", "scene.scene.json" };
-	m_scene.Load();
-
-	// Widgets
-	Widgets::AllWidgets::Initialize(m_scene);
+	GameContext::Register<SceneManager>().LoadScene(SceneInfo::CreateFromName("scene"));
 
 	// Transform
 	GameContext::Register<TransformResolver>();
@@ -72,6 +72,8 @@ MyGame::~MyGame()
 	GameContext::Remove<EffectFactory>();
 	GameContext::Remove<CommonStates>();
 	GameContext::Remove<FPS>();
+	GameContext::Remove<MM::ImGuiEntityEditor<entt::registry>>();
+	GameContext::Remove<Widgets::EntityEditorState>();
 }
 
 void MyGame::Update()
@@ -111,17 +113,17 @@ void MyGame::Update()
 		Mouse::Get().SetMode(Mouse::Get().GetState().positionMode == Mouse::Mode::MODE_ABSOLUTE ? Mouse::Mode::MODE_RELATIVE : Mouse::Mode::MODE_ABSOLUTE);
 
 	// Updateイベント
-	Updatable::Update(m_scene.registry);
+	GameContext::Get<SceneManager>().ForEachScenes([](auto& scene) { Updatable::Update(scene.registry); });
 
 	// シーン遷移
 	GameContext::Get<SceneManager>().Apply();
 }
 
-void MyGame::RenderInitialize()
+void MyGame::RenderStart()
 {
 	m_imgui = std::make_unique<ImGuiPtr>();
 
-	Renderable::RenderInitialize(m_scene.registry);
+	GameContext::Get<SceneManager>().ForEachScenes([](auto& scene) { Renderable::RenderStart(scene.registry); });
 }
 
 void MyGame::Render(GameCamera& camera)
@@ -132,8 +134,8 @@ void MyGame::Render(GameCamera& camera)
 	GameContext::Get<TransformResolver>().ClearCache();
 
 	// 描画イベント
-	Renderable::Render(m_scene.registry, std::forward<GameCamera>(camera));
-
+	GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::Render(scene.registry, std::forward<GameCamera>(camera)); });
+	
 	//auto& physics = Get<PhysXManager>();
 	//if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
 	//{
@@ -153,10 +155,10 @@ void MyGame::Render(GameCamera& camera)
 		imgui.Begin();
 
 		// GUI描画イベント
-		Renderable::RenderGui(m_scene.registry, std::forward<GameCamera>(camera));
+		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::RenderGui(scene.registry, std::forward<GameCamera>(camera)); });
 
 		// Widgets
-		Widgets::AllWidgets::Render(m_scene);
+		Widgets::AllWidgets::Render(GameContext::Get<SceneManager>().GetActiveScene());
 
 		// ImGui描画終了
 		imgui.End();
@@ -182,7 +184,7 @@ public:
 		auto& imgui = GameContext::Register<ImGuiManager>();
 
 		// ImGui初期化
-		imgui.RenderInitialize();
+		imgui.RenderStart();
 	}
 
 	~ImGuiPtr()

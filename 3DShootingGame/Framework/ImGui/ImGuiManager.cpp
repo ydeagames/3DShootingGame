@@ -14,7 +14,7 @@ ImGuiManager::~ImGuiManager()
 {
 }
 
-void ImGuiManager::RenderInitialize()
+void ImGuiManager::RenderStart()
 {
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();

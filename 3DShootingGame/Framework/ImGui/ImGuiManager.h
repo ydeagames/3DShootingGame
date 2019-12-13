@@ -14,7 +14,7 @@ private:
 
 public:
 	// ê∂ê¨
-	void RenderInitialize();
+	void RenderStart();
 	// ï`âÊ
 	void Begin();
 	void End();

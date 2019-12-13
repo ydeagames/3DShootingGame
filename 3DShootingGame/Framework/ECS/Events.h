@@ -68,7 +68,7 @@ public:
 		RegisterGui0<T>();
 	}
 
-	static void RenderInitialize(entt::registry& registry)
+	static void RenderStart(entt::registry& registry)
 	{
 		ECS::EventBus<Renderable, 0>::Post(registry);
 	}

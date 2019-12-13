@@ -1,18 +1,49 @@
 #pragma once
 #include <Framework/ECS/Scene.h>
 
+// シーンオプション
+enum class LoadSceneMode
+{
+	Single,
+	Additive,
+};
+
+// シーンマネージャー
 class SceneManager
 {
 private:
-	Scene* scene;
-	bool requested = false;
-	SceneInfo nextScene;
+	// シーンロードタスク
+	class LoadSceneInfo
+	{
+	public:
+		SceneInfo scene;
+		LoadSceneMode mode;
+	};
+
+private:
+	std::queue<LoadSceneInfo> m_loadQueue;
+	std::deque<std::unique_ptr<Scene>> scenes;
 
 public:
-	SceneManager(Scene& scene);
+	SceneManager();
 
 public:
-	Scene& GetActiveScene();
+	Scene& GetActiveScene() const;
+
+	template <typename Func>
+	void ForEachScenes(Func func) const
+	{
+		for (auto& scene : scenes)
+			func(*scene);
+	}
+
+	template <typename Func>
+	void ForEachScenesInverted(Func func) const
+	{
+		for (auto itr = scenes.rbegin(); itr != scenes.rend(); ++itr)
+			func(*(*itr));
+	}
+
 	void Apply();
-	void LoadScene(const SceneInfo& info);
+	void LoadScene(const SceneInfo& info, LoadSceneMode mode = LoadSceneMode::Single);
 };

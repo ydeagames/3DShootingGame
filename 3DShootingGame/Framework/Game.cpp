@@ -203,7 +203,7 @@ void Game::CreateDeviceDependentResources()
     // TODO: Initialize device dependent objects here (independent of window size).
     device;
 
-	m_myGame->RenderInitialize();
+	m_myGame->RenderStart();
 }
 
 // Allocate all memory resources that change on a window SizeChanged event.

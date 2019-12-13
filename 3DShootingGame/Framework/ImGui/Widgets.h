@@ -21,7 +21,6 @@ namespace Widgets
 
 	namespace AllWidgets
 	{
-		void Initialize(Scene& scene);
 		void Render(Scene& scene);
 	}
 };
