@@ -28,6 +28,7 @@ public:
 	SceneManager();
 
 public:
+	int GetSceneCount();
 	Scene& GetActiveScene() const;
 
 	template <typename Func>

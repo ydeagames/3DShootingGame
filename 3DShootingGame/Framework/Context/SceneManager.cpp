@@ -7,6 +7,11 @@ SceneManager::SceneManager()
 	scenes.emplace_back(std::make_unique<Scene>());
 }
 
+int SceneManager::GetSceneCount()
+{
+	return scenes.size();
+}
+
 Scene& SceneManager::GetActiveScene() const
 {
 	return *scenes.front();

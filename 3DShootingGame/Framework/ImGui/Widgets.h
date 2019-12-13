@@ -8,16 +8,16 @@ namespace Widgets
 	class EntityEditorState
 	{
 	public:
+		Scene* scene = nullptr;
 		entt::entity prev = entt::null;
 		entt::entity current = entt::null;
-		bool hierarchyEnabled = false;
-		bool inspectorEnabled = false;
+		bool editorEnabled = false;
 	};
 
-	void Hierarchy(Scene& scene);
-	void Inspector(Scene& scene);
+	void Hierarchy(Scene& scene, entt::entity& e, entt::entity& e0);
+	void Inspector(Scene& scene, entt::entity& e);
 	void SceneControl(Scene& scene);
-	void EntityControl(Scene& scene);
+	void EntityControl(Scene& scene, entt::entity& e);
 
 	namespace AllWidgets
 	{

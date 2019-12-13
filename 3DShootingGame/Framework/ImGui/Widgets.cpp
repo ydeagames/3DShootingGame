@@ -4,10 +4,11 @@
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Components/AllComponents.h>
 #include <Utilities/WindowsUtils.h>
+#include <Framework/Context/SceneManager.h>
 
 namespace Widgets
 {
-	void Hierarchy(Scene& scene)
+	void Hierarchy(Scene& scene, entt::entity& e, entt::entity& e0)
 	{
 		class Node
 		{
@@ -27,9 +28,6 @@ namespace Widgets
 		};
 
 		auto& reg = scene.registry;
-		auto& editorState = GameContext::Get<EntityEditorState>();
-		auto& e0 = editorState.prev;
-		auto& e = editorState.current;
 
 		//std::unordered_set<entt::entity> checknodes;
 		entt::SparseSet<entt::entity, Node> nodes;
@@ -177,12 +175,10 @@ namespace Widgets
 		}
 	}
 
-	void Inspector(Scene& scene)
+	void Inspector(Scene& scene, entt::entity& e)
 	{
-		auto& reg = scene.registry;
 		auto& editor = GameContext::Get<MM::ImGuiEntityEditor<entt::registry>>();
-		auto& editorState = GameContext::Get<EntityEditorState>();
-		editor.renderImGui(reg, editorState.current);
+		editor.renderImGui(scene.registry, e);
 	}
 
 	void SceneControl(Scene& scene)
@@ -197,6 +193,16 @@ namespace Widgets
 		if (ImGui::Button("Reset"))
 		{
 			scene.Load();
+		}
+		if (ImGui::Button("Scene Additive"))
+		{
+			GameContext::Get<SceneManager>().LoadScene(SceneInfo::CreateFromName("Untitled"), LoadSceneMode::Additive);
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Remove Scene"))
+		{
+			if (GameContext::Get<SceneManager>().GetSceneCount() > 1)
+				Scene::Destroy(scene);
 		}
 		if (ImGui::Button("Save Scene As"))
 		{
@@ -219,11 +225,10 @@ namespace Widgets
 		}
 	}
 
-	void EntityControl(Scene& scene)
+	void EntityControl(Scene& scene, entt::entity& e)
 	{
 		auto& reg = scene.registry;
-		auto& editorState = GameContext::Get<EntityEditorState>();
-		auto& e = editorState.current;
+
 		{
 			int iid = (e == entt::null) ? -1 : int(reg.entity(e));
 			ImGui::InputInt("ID", &iid);
@@ -339,29 +344,52 @@ namespace Widgets
 		{
 			auto& editorState = GameContext::Get<EntityEditorState>();
 
-			if (editorState.inspectorEnabled)
+			if (editorState.editorEnabled)
 			{
-				if (ImGui::Begin("Entity Editor", &editorState.inspectorEnabled))
+				if (editorState.scene)
 				{
-					Widgets::Inspector(scene);
+					if (ImGui::Begin("Entity Editor", &editorState.editorEnabled))
+					{
+						ImGui::Text("Scene (%s)", editorState.scene->info.name.c_str());
+
+						Widgets::Inspector(*editorState.scene, editorState.current);
+					}
+					ImGui::End();
 				}
-				ImGui::End();
-			}
 
-			if (editorState.hierarchyEnabled)
-			{
-				if (ImGui::Begin("Hierarchy", &editorState.hierarchyEnabled))
+				if (ImGui::Begin("Hierarchy", &editorState.editorEnabled))
 				{
-					Widgets::SceneControl(scene);
+					GameContext::Get<SceneManager>().ForEachScenes([&](Scene& hScene)
+						{
+							ImGui::PushID(ImGuiID(&hScene));
 
-					ImGui::Separator();
+							entt::entity e = (editorState.scene == &hScene) ? editorState.current : entt::null;
+							entt::entity e0 = (editorState.scene == &hScene) ? editorState.prev : entt::null;
 
-					Widgets::EntityControl(scene);
+							std::stringstream sb;
+							sb << "Scene" << " (" << hScene.info.name << ")";
+							if (ImGui::CollapsingHeader(sb.str().c_str()))
+							{
+								Widgets::SceneControl(hScene);
 
-					ImGui::Separator();
+								ImGui::Separator();
 
-					Widgets::Hierarchy(scene);
+								Widgets::EntityControl(hScene, e);
 
+								ImGui::Separator();
+
+								Widgets::Hierarchy(hScene, e, e0);
+
+							}
+							if (ImGui::IsItemActive())
+							{
+								editorState.scene = &hScene;
+								editorState.current = e;
+								editorState.prev = e0;
+							}
+
+							ImGui::PopID();
+						});
 				}
 				ImGui::End();
 			}

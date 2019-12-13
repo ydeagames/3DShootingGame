@@ -100,13 +100,9 @@ void MyGame::Update()
 
 	auto& editorState = GameContext::Get<Widgets::EntityEditorState>();
 
-	// ヒエラルキー
+	// エディター
 	if (Input::GetKeyDown(Keyboard::Keys::F4))
-		editorState.hierarchyEnabled = !editorState.hierarchyEnabled;
-
-	// インスペクター
-	if (Input::GetKeyDown(Keyboard::Keys::F5))
-		editorState.inspectorEnabled = !editorState.inspectorEnabled;
+		editorState.editorEnabled = !editorState.editorEnabled;
 
 	// マウス相対座標切り替え
 	if (Input::GetKeyDown(Keyboard::Keys::F6))
