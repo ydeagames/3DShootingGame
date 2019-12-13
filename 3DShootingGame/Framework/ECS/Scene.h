@@ -20,6 +20,7 @@ public:
 
 public:
 	GameObject Create();
+	Scene(const SceneInfo& info);
 	Scene();
 	~Scene();
 	bool Load();

@@ -1,5 +1,4 @@
 #pragma once
-#include "Scene.h"
 #include "GameObject.h"
 
 class GameContext;
@@ -13,7 +12,7 @@ namespace ECS
 		template<typename T>
 		struct started_t {};
 
-		using Func = void(Scene& registry, Args&& ... args);
+		using Func = void(entt::registry& registry, Args&& ... args);
 		static std::vector<std::function<Func>>& handlers()
 		{
 			static std::vector<std::function<Func>> value;
@@ -23,9 +22,9 @@ namespace ECS
 		template<typename T, typename F>
 		static void RegisterCustomOnce(F f)
 		{
-			handlers().push_back([f](Scene& registry, auto&& ... args) {
-				registry.registry.view<T>().each([f, &registry, &args](auto& entity, T& comp) {
-					f(registry.registry, entity, comp, std::forward<Args>(args)...);
+			handlers().push_back([f](entt::registry& registry, auto&& ... args) {
+				registry.view<T>().each([f, &registry, &args](auto& entity, T& comp) {
+					f(registry, entity, comp, std::forward<Args>(args)...);
 					});
 				});
 		}
@@ -65,7 +64,7 @@ namespace ECS
 		}
 
 	public:
-		static void Post(Scene& registry, Args&& ... args)
+		static void Post(entt::registry& registry, Args&& ... args)
 		{
 			for (auto& func : handlers())
 				func(registry, std::forward<Args>(args)...);

@@ -15,9 +15,15 @@ GameObject Scene::Create()
 	return GameObject{ &registry, registry.create() };
 }
 
-Scene::Scene()
+Scene::Scene(const SceneInfo& info)
+	: info(info)
 {
 	ECS::AllComponents::InitializeDependency(registry);
+}
+
+Scene::Scene()
+	: Scene(SceneInfo())
+{
 }
 
 Scene::~Scene()

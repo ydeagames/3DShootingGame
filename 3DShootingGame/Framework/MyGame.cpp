@@ -4,6 +4,8 @@
 #include <Framework/ImGui/ImGuiManager.h>
 #include <Framework/ImGui/Widgets.h>
 #include <Framework/ECS/Component.h>
+#include <Framework/ECS/Events.h>
+#include <Framework/ECS/Scene.h>
 #include <Framework/Components/AllComponents.h>
 #include <Framework/Context/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
@@ -109,7 +111,7 @@ void MyGame::Update()
 		Mouse::Get().SetMode(Mouse::Get().GetState().positionMode == Mouse::Mode::MODE_ABSOLUTE ? Mouse::Mode::MODE_RELATIVE : Mouse::Mode::MODE_ABSOLUTE);
 
 	// Updateイベント
-	Updatable::Update(m_scene);
+	Updatable::Update(m_scene.registry);
 
 	// シーン遷移
 	GameContext::Get<SceneManager>().Apply();
@@ -119,7 +121,7 @@ void MyGame::RenderInitialize()
 {
 	m_imgui = std::make_unique<ImGuiPtr>();
 
-	Renderable::RenderInitialize(m_scene);
+	Renderable::RenderInitialize(m_scene.registry);
 }
 
 void MyGame::Render(GameCamera& camera)
@@ -130,7 +132,7 @@ void MyGame::Render(GameCamera& camera)
 	GameContext::Get<TransformResolver>().ClearCache();
 
 	// 描画イベント
-	Renderable::Render(m_scene, std::forward<GameCamera>(camera));
+	Renderable::Render(m_scene.registry, std::forward<GameCamera>(camera));
 
 	//auto& physics = Get<PhysXManager>();
 	//if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
@@ -151,7 +153,7 @@ void MyGame::Render(GameCamera& camera)
 		imgui.Begin();
 
 		// GUI描画イベント
-		Renderable::RenderGui(m_scene, std::forward<GameCamera>(camera));
+		Renderable::RenderGui(m_scene.registry, std::forward<GameCamera>(camera));
 
 		// Widgets
 		Widgets::AllWidgets::Render(m_scene);

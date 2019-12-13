@@ -28,7 +28,7 @@ public:
 		RegisterTick<T>();
 	}
 
-	static void Update(Scene& registry)
+	static void Update(entt::registry& registry)
 	{
 		ECS::EventBus<Updatable, 0>::Post(registry);
 		ECS::EventBus<Updatable, 1>::Post(registry);
@@ -68,18 +68,18 @@ public:
 		RegisterGui0<T>();
 	}
 
-	static void RenderInitialize(Scene& registry)
+	static void RenderInitialize(entt::registry& registry)
 	{
 		ECS::EventBus<Renderable, 0>::Post(registry);
 	}
 
-	static void Render(Scene& registry, GameCamera&& camera)
+	static void Render(entt::registry& registry, GameCamera&& camera)
 	{
 		ECS::EventBus<Renderable, 0>::Post(registry);
 		ECS::EventBus<Renderable, 1, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
 	}
 
-	static void RenderGui(Scene& registry, GameCamera&& camera)
+	static void RenderGui(entt::registry& registry, GameCamera&& camera)
 	{
 		ECS::EventBus<Renderable, 0>::Post(registry);
 		ECS::EventBus<Renderable, 2, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
