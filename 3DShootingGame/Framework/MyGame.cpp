@@ -154,7 +154,7 @@ void MyGame::Render(GameCamera& camera)
 		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::RenderGui(scene.registry, std::forward<GameCamera>(camera)); });
 
 		// Widgets
-		Widgets::AllWidgets::Render(GameContext::Get<SceneManager>().GetActiveScene());
+		Widgets::AllWidgets::Render();
 
 		// ImGui•`‰æI—¹
 		imgui.End();

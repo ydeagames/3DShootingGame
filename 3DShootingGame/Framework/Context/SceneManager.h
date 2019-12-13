@@ -29,6 +29,7 @@ public:
 
 public:
 	int GetSceneCount();
+	Scene* GetSceneOrNull(void* sceneptr);
 	Scene& GetActiveScene() const;
 
 	template <typename Func>

@@ -8,7 +8,7 @@ namespace Widgets
 	class EntityEditorState
 	{
 	public:
-		Scene* scene = nullptr;
+		void* scene = nullptr;
 		entt::entity prev = entt::null;
 		entt::entity current = entt::null;
 		bool editorEnabled = false;
@@ -21,6 +21,6 @@ namespace Widgets
 
 	namespace AllWidgets
 	{
-		void Render(Scene& scene);
+		void Render();
 	}
 };

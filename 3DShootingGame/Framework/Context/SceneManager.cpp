@@ -12,6 +12,14 @@ int SceneManager::GetSceneCount()
 	return scenes.size();
 }
 
+Scene* SceneManager::GetSceneOrNull(void* sceneptr)
+{
+	auto itr = std::find_if(scenes.begin(), scenes.end(), [&](auto& scene) { return scene.get() == sceneptr; });
+	if (itr == scenes.end())
+		return nullptr;
+	return (*itr).get();
+}
+
 Scene& SceneManager::GetActiveScene() const
 {
 	return *scenes.front();

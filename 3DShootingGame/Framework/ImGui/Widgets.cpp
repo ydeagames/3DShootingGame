@@ -340,19 +340,21 @@ namespace Widgets
 
 	namespace AllWidgets
 	{
-		void Render(Scene& scene)
+		void Render()
 		{
 			auto& editorState = GameContext::Get<EntityEditorState>();
 
 			if (editorState.editorEnabled)
 			{
-				if (editorState.scene)
+				auto scene = GameContext::Get<SceneManager>().GetSceneOrNull(editorState.scene);
+
+				if (scene)
 				{
 					if (ImGui::Begin("Entity Editor", &editorState.editorEnabled))
 					{
-						ImGui::Text("Scene (%s)", editorState.scene->info.name.c_str());
+						ImGui::Text("Scene (%s)", scene->info.name.c_str());
 
-						Widgets::Inspector(*editorState.scene, editorState.current);
+						Widgets::Inspector(*scene, editorState.current);
 					}
 					ImGui::End();
 				}
