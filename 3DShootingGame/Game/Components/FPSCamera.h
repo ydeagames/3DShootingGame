@@ -1,6 +1,6 @@
 #pragma once
 #include <Framework/ECS/Component.h>
-#include "Components.h"
+#include "CameraComponent.h"
 
 class GameCamera;
 

@@ -1,27 +1,10 @@
 #include "pch.h"
-#include "Components.h"
+#include "CameraComponent.h"
 #include <Framework/Context/GameCamera.h>
 #include <Framework/Components/Transform.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
-
-void MoveUpdater::Start()
-{
-	vel += Vector3::Right * .1f;
-}
-
-void MoveUpdater::Update()
-{
-	gameObject.GetComponent<Transform>().position += vel;
-}
-
-void MoveDownUpdater::Update()
-{
-	auto pos = gameObject.GetComponent<Transform>().position;
-	pos.y -= .1f;
-	gameObject.GetComponent<Transform>().position = pos;
-}
 
 void CameraComponent::Render(GameCamera& camera)
 {

@@ -2,16 +2,16 @@
 #include "PhysXCommons.h"
 #include <Framework/ECS/Component.h>
 
+class GameCamera;
 class PhysXManager;
 
 class PhysXScene : public Component
 {
 private:
-	PhysXManager* m_manager;
 	physx::PxScene* m_scene;
 
 public:
-	PhysXScene(PhysXManager& manager);
+	PhysXScene();
 	~PhysXScene();
 
 	// シーン取得
@@ -22,12 +22,10 @@ public:
 	void CreateObject(physx::PxActor& obj);
 
 	// 生成
-	void Initialize();
+	void Awake();
 	// 更新
 	void Update();
 	// 描画
-	void Render();
-	// 破棄
-	void Finalize();
+	void Render(GameCamera& camera);
 };
 

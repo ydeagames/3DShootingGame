@@ -2,9 +2,10 @@
 #include "Widgets.h"
 #include <Framework/ECS/Scene.h>
 #include <Framework/ECS/GameContext.h>
-#include <Framework/Components/AllComponents.h>
+#include <Framework/Components/Transform.h>
 #include <Utilities/WindowsUtils.h>
 #include <Framework/Context/SceneManager.h>
+#include <Framework/ECS/Project.h>
 
 namespace Widgets
 {

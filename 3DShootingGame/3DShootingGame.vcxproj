@@ -217,11 +217,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h" />
-    <ClInclude Include="Framework\Components\AllComponents.h" />
+    <ClInclude Include="Framework\ECS\Project.h" />
     <ClInclude Include="Framework\Components\StandardSerialize.h" />
     <ClInclude Include="Framework\ECS\Context.h" />
+    <ClInclude Include="Framework\Events\Renderable.h" />
+    <ClInclude Include="Framework\Events\Updatable.h" />
+    <ClInclude Include="Framework\StandardBuildSettings.h" />
     <ClInclude Include="Game\Components\Background.h" />
-    <ClInclude Include="Game\Components\Components.h" />
+    <ClInclude Include="Game\Components\CameraComponent.h" />
     <ClInclude Include="Framework\Context\GameCamera.h" />
     <ClInclude Include="Framework\Context\PauseHandler.h" />
     <ClInclude Include="Framework\Context\SaveHandler.h" />
@@ -231,7 +234,6 @@
     <ClInclude Include="Framework\ECS\Component.h" />
     <ClInclude Include="Framework\ECS\ComponentManager.h" />
     <ClInclude Include="Framework\ECS\EventBus.h" />
-    <ClInclude Include="Framework\ECS\Events.h" />
     <ClInclude Include="Framework\ECS\GameContext.h" />
     <ClInclude Include="Framework\ECS\GameObject.h" />
     <ClInclude Include="Framework\ECS\Scene.h" />
@@ -258,6 +260,7 @@
     <ClInclude Include="Game\Components\Menu.h" />
     <ClInclude Include="Game\Components\ModelRenderer.h" />
     <ClInclude Include="Game\Components\PrimitiveRenderer.h" />
+    <ClInclude Include="Game\Events\AllEvents.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
     <ClInclude Include="Utilities\StringCast.h" />
     <ClInclude Include="Utilities\WindowsUtils.h" />
@@ -364,7 +367,7 @@
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Game\Components\Background.cpp" />
-    <ClCompile Include="Game\Components\Components.cpp" />
+    <ClCompile Include="Game\Components\CameraComponent.cpp" />
     <ClCompile Include="Framework\Context\GameCamera.cpp" />
     <ClCompile Include="Framework\Context\PauseHandler.cpp" />
     <ClCompile Include="Framework\Context\SaveHandler.cpp" />

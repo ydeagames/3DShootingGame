@@ -4,9 +4,9 @@
 #include <Framework/ImGui/ImGuiManager.h>
 #include <Framework/ImGui/Widgets.h>
 #include <Framework/ECS/Component.h>
-#include <Framework/ECS/Events.h>
 #include <Framework/ECS/Scene.h>
-#include <Framework/Components/AllComponents.h>
+#include <Framework/ECS/GameContext.h>
+#include <Framework/ECS/Project.h>
 #include <Framework/Context/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/Context/SaveHandler.h>
@@ -14,6 +14,7 @@
 #include <Utilities/FPS.h>
 #include <Utilities/Input.h>
 #include <Game/BuildSettings.h>
+#include <Framework/ECS/Project.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

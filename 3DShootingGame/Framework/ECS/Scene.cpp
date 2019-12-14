@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "Serialize.h"
-#include <Framework/Components/AllComponents.h>
+#include "Project.h"
 #include <Utilities/WindowsUtils.h>
 
 SceneInfo::SceneInfo(const std::string& name, const std::string& location)
@@ -25,11 +25,6 @@ bool SceneInfo::Valid()
 {
 	std::ifstream file(location);
 	return file.good();
-}
-
-GameObject Scene::Create()
-{
-	return GameObject{ &registry, registry.create() };
 }
 
 Scene::Scene(const SceneInfo& info)

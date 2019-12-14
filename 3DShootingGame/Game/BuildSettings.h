@@ -1,9 +1,13 @@
 #pragma once
+#include <Game/Components/AllComponents.h>
+#include <Game/Events/AllEvents.h>
 
-class BuildSettings
+namespace BuildSettings
 {
-public:
 	static constexpr LPCWSTR GAME_WINDOW_CLASS = L"YdeaGamesWindowClass";
 	static constexpr LPCWSTR GAME_WINDOW_TITLE = L"スリングヒーローズ";
+
+	using Tags = std::tuple<
+	>;
 };
 

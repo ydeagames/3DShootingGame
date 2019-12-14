@@ -3,6 +3,26 @@
 #include "Component.h"
 #include <Framework/Components/Transform.h>
 
+GameObject GameObject::Wrap(entt::entity e) const
+{
+	return GameObject(registry, e);
+}
+
+GameObject GameObject::Create(entt::entity parent)
+{
+	auto obj = Wrap(registry->create());
+	obj.AddComponent<Transform>().parent = parent;
+	return obj;
+}
+
+Optional<GameObject> GameObject::Find(const std::string& name) const
+{
+	for (auto& transform : registry->view<Transform>(entt::raw_t{}))
+		if (transform.name == name)
+			return transform.gameObject;
+	return nullptr;
+}
+
 void GameObject::Destroy(GameObject* gameObject)
 {
 	if (gameObject)

@@ -86,6 +86,12 @@
     <Filter Include="Game\Components">
       <UniqueIdentifier>{7cce0b91-7d67-4ecb-b8b6-84751ab46b95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Events">
+      <UniqueIdentifier>{c5b4d880-481b-4546-8d75-27e33970246b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Events">
+      <UniqueIdentifier>{3c75dc0f-9d59-4f3c-b0b1-94a1e4c65f6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -284,14 +290,8 @@
     <ClInclude Include="Framework\ECS\EventBus.h">
       <Filter>Framework\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\ECS\Events.h">
-      <Filter>Framework\ECS</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\ECS\GameContext.h">
       <Filter>Framework\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Components\AllComponents.h">
-      <Filter>Framework\Components</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Context\SaveHandler.h">
       <Filter>Framework\Context</Filter>
@@ -312,9 +312,6 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Game\BaseScene.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\BuildSettings.h">
       <Filter>Game\Archived</Filter>
     </ClInclude>
     <ClInclude Include="Game\LogoScene.h">
@@ -356,9 +353,6 @@
     <ClInclude Include="Game\Components\AllComponents.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Components\Components.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Components\Background.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
@@ -385,6 +379,27 @@
     </ClInclude>
     <ClInclude Include="Framework\ECS\Context.h">
       <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\BuildSettings.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Events\AllEvents.h">
+      <Filter>Game\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\StandardBuildSettings.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\Project.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Events\Updatable.h">
+      <Filter>Framework\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Events\Renderable.h">
+      <Filter>Framework\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\CameraComponent.h">
+      <Filter>Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -507,9 +522,6 @@
     <ClCompile Include="Utilities\Math3DUtils.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Components\Components.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Components\Background.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
@@ -526,6 +538,9 @@
       <Filter>Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\ModelRenderer.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\CameraComponent.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

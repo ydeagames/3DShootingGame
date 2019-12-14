@@ -2,18 +2,12 @@
 #include "PhysXScene.h"
 #include "PhysXManager.h"
 #include "PhysXRenderer.h"
+#include <Framework/ECS/GameContext.h>
 
 using namespace physx;
 
-PhysXScene::PhysXScene(PhysXManager& manager)
-	: m_manager(&manager)
+PhysXScene::PhysXScene()
 {
-	auto physics = manager.GetPhysics();
-	auto sceneDesc = PxSceneDesc(physics->getTolerancesScale());
-	sceneDesc.gravity = PxVec3(0.0f, -9.81f * 2, 0.0f);
-	sceneDesc.cpuDispatcher = manager.GetDispatcher();
-	sceneDesc.filterShader = PxDefaultSimulationFilterShader;
-	m_scene = physics->createScene(sceneDesc);
 }
 
 PhysXScene::~PhysXScene()
@@ -41,9 +35,14 @@ void PhysXScene::CreateObject(physx::PxActor& obj)
 	m_scene->addActor(obj);
 }
 
-void PhysXScene::Initialize()
+void PhysXScene::Awake()
 {
-
+	auto physics = GameContext::Get<PhysXManager>().GetPhysics();
+	auto sceneDesc = PxSceneDesc(physics->getTolerancesScale());
+	sceneDesc.gravity = PxVec3(0.0f, -9.81f * 2, 0.0f);
+	sceneDesc.cpuDispatcher = GameContext::Get<PhysXManager>().GetDispatcher();
+	sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+	m_scene = physics->createScene(sceneDesc);
 }
 
 void PhysXScene::Update()
@@ -54,9 +53,9 @@ void PhysXScene::Update()
 	m_scene->fetchResults(true);
 }
 
-void PhysXScene::Render()
+void PhysXScene::Render(GameCamera& camera)
 {
-	if (m_manager->debugMode & PhysXManager::IngamePvdMode::Collision)
+	if (GameContext::Get<PhysXManager>().debugMode & PhysXManager::IngamePvdMode::Collision)
 	{
 		PxU32 nbActors = m_scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC);
 		if (nbActors)
@@ -66,8 +65,4 @@ void PhysXScene::Render()
 			PhysXRenderer::RenderActors(actors, true, physx::PxVec3(0, 0, 1));
 		}
 	}
-}
-
-void PhysXScene::Finalize()
-{
 }

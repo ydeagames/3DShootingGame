@@ -1,5 +1,5 @@
 #pragma once
-#include "Components.h"
+#include "CameraComponent.h"
 #include "Background.h"
 #include "Menu.h"
 #include "FPSCamera.h"
@@ -7,16 +7,16 @@
 #include "ModelRenderer.h"
 #include "InfinityGridFloor.h"
 
-using Components = std::tuple<
-	MoveUpdater,
-	MoveDownUpdater,
-	PrimitiveRenderer,
-	ModelRenderer,
-	UpdateRenderer,
-	CameraComponent,
-	Background,
-	TitleMenu,
-	PlayMenu,
-	FPSCamera,
-	InfinityGridFloor
->;
+namespace BuildSettings
+{
+	using Components = std::tuple<
+		PrimitiveRenderer,
+		ModelRenderer,
+		CameraComponent,
+		Background,
+		TitleMenu,
+		PlayMenu,
+		FPSCamera,
+		InfinityGridFloor
+	>;
+}
