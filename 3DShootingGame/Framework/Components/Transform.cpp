@@ -15,7 +15,7 @@ Transform::Transform()
 
 DirectX::SimpleMath::Vector3 Transform::GetPosition() const
 {
-	auto p = gameObject.GetParent();
+	auto p = gameObject.GetParentEntity();
 	if (p != entt::null)
 		return Vector3::Transform(localPosition, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)));
 	else
@@ -24,7 +24,7 @@ DirectX::SimpleMath::Vector3 Transform::GetPosition() const
 
 void Transform::SetPosition(const DirectX::SimpleMath::Vector3& value)
 {
-	auto p = gameObject.GetParent();
+	auto p = gameObject.GetParentEntity();
 	if (p != entt::null)
 		localPosition = Vector3::Transform(value, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Invert());
 	else
@@ -33,7 +33,7 @@ void Transform::SetPosition(const DirectX::SimpleMath::Vector3& value)
 
 DirectX::SimpleMath::Quaternion Transform::GetRotation() const
 {
-	auto p = gameObject.GetParent();
+	auto p = gameObject.GetParentEntity();
 	if (p != entt::null)
 		return localRotation * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)));
 	else
@@ -42,7 +42,7 @@ DirectX::SimpleMath::Quaternion Transform::GetRotation() const
 
 void Transform::SetRotation(const DirectX::SimpleMath::Quaternion& value)
 {
-	auto p = gameObject.GetParent();
+	auto p = gameObject.GetParentEntity();
 	if (p != entt::null)
 		localRotation = value * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Invert());
 	else
@@ -51,7 +51,7 @@ void Transform::SetRotation(const DirectX::SimpleMath::Quaternion& value)
 
 DirectX::SimpleMath::Vector3 Transform::GetLossyScale() const
 {
-	auto p = gameObject.GetParent();
+	auto p = gameObject.GetParentEntity();
 	if (p != entt::null)
 	{
 		Vector3 parentPosition;
@@ -67,7 +67,7 @@ DirectX::SimpleMath::Vector3 Transform::GetLossyScale() const
 
 void Transform::SetLossyScale(const DirectX::SimpleMath::Vector3& value)
 {
-	auto p = gameObject.GetParent();
+	auto p = gameObject.GetParentEntity();
 	if (p != entt::null)
 	{
 		Vector3 parentPosition;

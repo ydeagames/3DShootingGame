@@ -81,7 +81,8 @@ public:
 	static void Destroy(GameObject* gameObject);
 	static void Destroy(GameObject& gameObject);
 
-	// TODO to GameObject
-	entt::entity GetParent() const;
-	std::vector<entt::entity> GetChildren() const;
+	entt::entity GetParentEntity() const;
+	std::vector<entt::entity> GetChildrenEntity() const;
+	Optional<GameObject> GetParent() const;
+	std::vector<GameObject> GetChildren() const;
 };

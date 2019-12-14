@@ -43,19 +43,36 @@ void GameObject::Destroy(GameObject& gameObject)
 	gameObject.registry->destroy(gameObject.entity);
 }
 
-entt::entity GameObject::GetParent() const
+entt::entity GameObject::GetParentEntity() const
 {
 	if (registry->has<Transform>())
 		return registry->get<Transform>().parent;
 	return entt::null;
 }
 
-std::vector<entt::entity> GameObject::GetChildren() const
+std::vector<entt::entity> GameObject::GetChildrenEntity() const
 {
 	std::vector<entt::entity> children;
 	registry->view<Transform>().each([&](auto e, Transform& transform) {
 		if (transform.parent == entity)
 			children.push_back(e);
+		});
+	return children;
+}
+
+Optional<GameObject> GameObject::GetParent() const
+{
+	if (registry->has<Transform>())
+		return Wrap(registry->get<Transform>().parent);
+	return nullptr;
+}
+
+std::vector<GameObject> GameObject::GetChildren() const
+{
+	std::vector<GameObject> children;
+	registry->view<Transform>(entt::raw_t{}).each([&](Transform& transform) {
+		if (transform.parent == entity)
+			children.push_back(transform.gameObject);
 		});
 	return children;
 }
