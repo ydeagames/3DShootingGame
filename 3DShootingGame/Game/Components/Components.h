@@ -2,7 +2,6 @@
 #include <Framework/ECS/GameContext.h>
 #include <Framework/ECS/GameObject.h>
 #include <Framework/ECS/Events.h>
-#include <Common/DeviceResources.h>
 #include <Framework/ECS/Component.h>
 #include <Framework/Components/StandardSerialize.h>
 

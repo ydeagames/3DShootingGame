@@ -99,6 +99,10 @@
 #include <dxgidebug.h>
 #endif
 
+// DX
+#include <Common/DeviceResources.h>
+#include <Common/StepTimer.h>
+
 // EnTT
 #include <entt.hpp>
 namespace entt

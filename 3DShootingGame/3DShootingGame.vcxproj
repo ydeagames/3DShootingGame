@@ -219,6 +219,7 @@
     <ClInclude Include="Common\DeviceResources.h" />
     <ClInclude Include="Framework\Components\AllComponents.h" />
     <ClInclude Include="Framework\Components\StandardSerialize.h" />
+    <ClInclude Include="Framework\ECS\Context.h" />
     <ClInclude Include="Game\Components\Background.h" />
     <ClInclude Include="Game\Components\Components.h" />
     <ClInclude Include="Framework\Context\GameCamera.h" />

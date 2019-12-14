@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "ModelRenderer.h"
-#include <Common/DeviceResources.h>
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Components/Transform.h>
 #include <Framework/Context/GameCamera.h>

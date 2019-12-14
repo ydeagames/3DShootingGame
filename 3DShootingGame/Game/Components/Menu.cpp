@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "Menu.h"
-#include <Common/DeviceResources.h>
-#include <Common/StepTimer.h>
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Context/PauseHandler.h>
 #include <Framework/Context/SceneManager.h>

@@ -383,6 +383,9 @@
     <ClInclude Include="Game\Components\ModelRenderer.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\ECS\Context.h">
+      <Filter>Framework\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />

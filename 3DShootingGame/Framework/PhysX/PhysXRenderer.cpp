@@ -3,7 +3,6 @@
 #include "PhysXCommons.h"
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Context/GameCamera.h>
-#include <Common/StepTimer.h>
 
 using namespace physx;
 using namespace DirectX;

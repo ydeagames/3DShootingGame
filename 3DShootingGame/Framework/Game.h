@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <Common/DeviceResources.h>
-#include <Common/StepTimer.h>
 #include "MyGame.h"
 #include <Framework/ECS/GameContext.h>
 

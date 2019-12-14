@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Background.h"
-#include <Common/DeviceResources.h>
 #include <Framework/ECS/GameContext.h>
 
 using namespace DirectX;

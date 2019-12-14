@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "FPSCamera.h"
-#include <Common/DeviceResources.h>
 #include <Framework/ECS/GameContext.h>
 #include <Utilities/Input.h>
 #include <Utilities/MathUtils.h>

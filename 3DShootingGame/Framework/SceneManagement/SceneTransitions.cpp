@@ -2,7 +2,6 @@
 #include "SceneTransitions.h"
 #include <Framework/ECS/GameContext.h>
 #include <Utilities/BinaryFile.h>
-#include <Common/StepTimer.h>
 #include <Framework/Context/SceneManager.h>
 
 using namespace DirectX;
