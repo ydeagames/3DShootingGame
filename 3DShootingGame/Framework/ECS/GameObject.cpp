@@ -23,6 +23,15 @@ Optional<GameObject> GameObject::Find(const std::string& name) const
 	return nullptr;
 }
 
+std::vector<GameObject> GameObject::FindAll(const std::string& name) const
+{
+	std::vector<GameObject> objects;
+	for (auto& transform : registry->view<Transform>(entt::raw_t{}))
+		if (transform.name == name)
+			objects.push_back(transform.gameObject);
+	return objects;
+}
+
 void GameObject::Destroy(GameObject* gameObject)
 {
 	if (gameObject)
