@@ -1,81 +1,13 @@
 #pragma once
-#include <Common/DeviceResources.h>
-
-class GameCamera;
+#include "Context.h"
 
 class GameContext final
 {
 private:
-	class GameContextImpl
-	{
-	private:
-		class IHolder
-		{
-		public:
-			virtual ~IHolder() = default;
-		};
-
-		template<typename T>
-		class Holder : public IHolder
-		{
-		public:
-			std::unique_ptr<T> data;
-		};
-
-		using ctx_family = entt::Family<struct InternalContextFamily>;
-		std::vector<std::unique_ptr<IHolder>> pools;
-
-		template<typename Component>
-		inline Holder<Component>& holder()
-		{
-			const auto ctype = ctx_family::type<Component>();
-			return static_cast<Holder<Component>&>(*pools[ctype]);
-		}
-
-		template<typename Component>
-		inline const Holder<Component>& holder() const
-		{
-			const auto ctype = ctx_family::type<Component>();
-			return static_cast<const Holder<Component>&>(*pools.at(ctype));
-		}
-
-	public:
-		template<typename Component, typename... Args>
-		Component& Register(Args&& ... args)
-		{
-			assert(!Has<Component>() && "Already Registered");
-			const auto ctype = ctx_family::type<Component>();
-			if (!(ctype < pools.size()))
-				pools.resize(ctype + 1);
-			if (!pools[ctype])
-				pools[ctype] = std::make_unique<Holder<Component>>();
-			return *(holder<Component>().data = std::make_unique<Component>(std::forward<Args>(args)...));
-		}
-
-		template<typename Component>
-		bool Has() const
-		{
-			const auto ctype = ctx_family::type<Component>();
-			return ctype < pools.size() && pools[ctype] && holder<Component>().data;
-		}
-
-		template<typename Component>
-		void Remove()
-		{
-			holder<Component>().data = nullptr;
-		}
-
-		template<typename Component>
-		inline Component& Get()
-		{
-			return *holder<Component>().data;
-		}
-	};
-
 	class Impl
 	{
 	public:
-		GameContextImpl context;
+		Context context;
 
 	public:
 		static Impl* s_impl;

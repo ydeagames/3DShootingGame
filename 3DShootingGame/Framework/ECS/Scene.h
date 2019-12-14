@@ -1,4 +1,5 @@
 #pragma once
+#include "Context.h"
 
 class GameObject;
 
@@ -25,6 +26,7 @@ class Scene final
 public:
 	SceneInfo info;
 	entt::registry registry;
+	Context context;
 	bool destroyed = false;
 
 public:

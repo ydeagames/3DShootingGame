@@ -46,11 +46,13 @@ Scene::Scene()
 Scene::~Scene()
 {
 	registry.reset();
+	context = {};
 }
 
 bool Scene::Load()
 {
 	registry.reset();
+	context = {};
 	return ECS::AllComponents::LoadScene(info.location, registry, [](auto& registry) {
 		ECS::AllComponents::InitializeDependency(registry);
 		ECS::AllComponents::InitializeLifecycleEvents(registry);
