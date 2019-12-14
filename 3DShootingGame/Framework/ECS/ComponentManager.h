@@ -226,9 +226,9 @@ namespace ECS
 			(void)accumulator;
 		}
 
-		static void CloneComponents(entt::registry& reg, const std::vector<entt::entity>& srcs, std::vector<entt::entity>& dsts)
+		static void CloneComponents(entt::registry& srcreg, const std::vector<entt::entity>& srcs, entt::registry& dstreg, std::vector<entt::entity>& dsts)
 		{
-			ComponentClone::Clone<Components...>(reg, srcs, dsts);
+			ComponentClone::Clone<Components...>(srcreg, srcs, dstreg, dsts);
 		}
 
 		template<typename RegistryInitializer>

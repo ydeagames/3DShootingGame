@@ -1,6 +1,7 @@
 {
     "entities": {
         "created": [
+            3,
             2,
             1,
             0
@@ -13,7 +14,7 @@
             {
                 "id": 0,
                 "component": {
-                    "name": "",
+                    "name": "Teapot",
                     "parent": 4294967295,
                     "localPosition": {
                         "x": 0.0,
@@ -36,7 +37,7 @@
             {
                 "id": 1,
                 "component": {
-                    "name": "",
+                    "name": "Camera",
                     "parent": 4294967295,
                     "localPosition": {
                         "x": 0.0,
@@ -59,7 +60,7 @@
             {
                 "id": 2,
                 "component": {
-                    "name": "",
+                    "name": "GridFloor",
                     "parent": 4294967295,
                     "localPosition": {
                         "x": 0.0,
@@ -78,6 +79,29 @@
                         "z": 1.0
                     }
                 }
+            },
+            {
+                "id": 3,
+                "component": {
+                    "name": "Skydome",
+                    "parent": 4294967295,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 32.0,
+                        "y": 32.0,
+                        "z": 32.0
+                    }
+                }
             }
         ],
         "MoveUpdater": [],
@@ -86,7 +110,17 @@
             {
                 "id": 0,
                 "component": {
-                    "texture": "Resources/Textures/Title/Background.png"
+                    "model": "Teapot",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "cullfront": false
+                }
+            },
+            {
+                "id": 3,
+                "component": {
+                    "model": "GeoSphere",
+                    "texture": "Resources/Textures/Play/Skydoom.jpg",
+                    "cullfront": true
                 }
             }
         ],

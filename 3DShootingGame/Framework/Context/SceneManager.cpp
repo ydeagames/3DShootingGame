@@ -20,6 +20,14 @@ Scene* SceneManager::GetSceneOrNull(void* sceneptr)
 	return (*itr).get();
 }
 
+Scene* SceneManager::GetSceneOrNullRegistry(void* regptr)
+{
+	auto itr = std::find_if(scenes.begin(), scenes.end(), [&](auto& scene) { return &scene->registry == regptr; });
+	if (itr == scenes.end())
+		return nullptr;
+	return (*itr).get();
+}
+
 Scene& SceneManager::GetActiveScene() const
 {
 	return *scenes.front();

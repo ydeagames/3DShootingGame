@@ -665,36 +665,36 @@ namespace ECS
 	{
 	public:
 		template<typename... Components>
-		static void Clone(entt::registry& reg, entt::entity src, entt::entity& dst)
+		static void Clone(entt::registry& srcreg, entt::entity src, entt::registry& dstreg, entt::entity& dst)
 		{
 			std::stringstream buffer;
 			{
 				cereal::JSONOutputArchive archive(buffer);
 				EntityExporter serializer(archive);
-				serializer.component<Components...>(reg, src);
+				serializer.component<Components...>(srcreg, src);
 			}
 			{
 				cereal::JSONInputArchive archive(buffer);
 				EntityImporter serializer(archive);
-				serializer.component<Components...>(reg, dst);
+				serializer.component<Components...>(dstreg, dst);
 			}
 		}
 
 		template<typename... Components>
-		static void Clone(entt::registry& reg, const std::vector<entt::entity>& srcs, std::vector<entt::entity>& dsts)
+		static void Clone(entt::registry& srcreg, const std::vector<entt::entity>& srcs, entt::registry& dstreg, std::vector<entt::entity>& dsts)
 		{
 			std::vector<entt::entity> srcsResult;
 			std::stringstream buffer;
 			{
 				cereal::JSONOutputArchive archive(buffer);
 				EntityExporter serializer(archive);
-				serializer.components<Components...>(reg, srcs);
+				serializer.components<Components...>(srcreg, srcs);
 			}
 			std::cout << buffer.str() << std::endl;
 			{
 				cereal::JSONInputArchive archive(buffer);
 				EntityImporter serializer(archive);
-				serializer.components<Components...>(reg, srcsResult, dsts);
+				serializer.components<Components...>(dstreg, srcsResult, dsts);
 			}
 		}
 	};
