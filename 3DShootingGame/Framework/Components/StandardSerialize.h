@@ -23,6 +23,11 @@ namespace DirectX
 		void serialize(Archive& archive, Quaternion& quat) {
 			archive(cereal::make_nvp("x", quat.x), cereal::make_nvp("y", quat.y), cereal::make_nvp("z", quat.z), cereal::make_nvp("w", quat.w));
 		}
+
+		template<typename Archive>
+		void serialize(Archive& archive, Color& color) {
+			archive(cereal::make_nvp("r", color.x), cereal::make_nvp("g", color.y), cereal::make_nvp("b", color.z), cereal::make_nvp("a", color.w));
+		}
 	}
 }
 
