@@ -11,7 +11,6 @@ public:
 	static void Dependency(Component& component)
 	{
 		component.DependsOn<Transform>();
-		component.DependsOn<Rigidbody>();
 	}
 };
 
@@ -37,6 +36,15 @@ class CapsuleCollider : public Collider
 {
 public:
 	static constexpr const char* Identifier = "CapsuleCollider";
+
+public:
+	void AddCollider(physx::PxRigidActor& rigid) const;
+};
+
+class PlaneCollider : public Collider
+{
+public:
+	static constexpr const char* Identifier = "PlaneCollider";
 
 public:
 	void AddCollider(physx::PxRigidActor& rigid) const;

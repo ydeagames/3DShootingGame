@@ -1,6 +1,8 @@
 {
     "entities": {
         "created": [
+            8,
+            7,
             6,
             5,
             4,
@@ -50,7 +52,7 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": 0.0,
+                        "x": 4.0,
                         "y": 7.199999809265137,
                         "z": 11.699999809265137
                     },
@@ -146,9 +148,9 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": -4.699999809265137,
-                        "y": 3.9000000953674318,
-                        "z": -43.400001525878909
+                        "x": -6.419419946723792e-7,
+                        "y": 7.499999523162842,
+                        "z": -44.5
                     },
                     "localRotation": {
                         "x": -9.367038842356124e-7,
@@ -186,6 +188,54 @@
                         "z": 1.0
                     }
                 }
+            },
+            {
+                "id": 7,
+                "component": {
+                    "name": "FloorCollider",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 8,
+                "component": {
+                    "name": "IgaguriCollider",
+                    "parent": 5,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 15.0,
+                        "y": 15.0,
+                        "z": 15.0
+                    }
+                }
             }
         ],
         "PhysXScene": [
@@ -196,6 +246,14 @@
         ],
         "Rigidbody": [
             {
+                "id": 7,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
                 "id": 5,
                 "component": {
                     "lockFlags": {
@@ -204,9 +262,20 @@
                 }
             }
         ],
-        "SphereCollider": [],
+        "SphereCollider": [
+            {
+                "id": 8,
+                "component": {}
+            }
+        ],
         "BoxCollider": [],
         "CapsuleCollider": [],
+        "PlaneCollider": [
+            {
+                "id": 7,
+                "component": {}
+            }
+        ],
         "PrimitiveRenderer": [
             {
                 "id": 0,

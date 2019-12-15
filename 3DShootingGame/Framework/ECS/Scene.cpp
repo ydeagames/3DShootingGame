@@ -59,6 +59,11 @@ bool Scene::Save() const
 	return ECS::AllComponents::SaveScene(info.location, registry);
 }
 
+GameObject Scene::NullGameObject()
+{
+	return GameObject(&registry, entt::null);
+}
+
 void Scene::Destroy(Scene* scene)
 {
 	if (scene)

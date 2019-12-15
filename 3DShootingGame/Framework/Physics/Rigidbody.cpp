@@ -38,7 +38,7 @@ void Rigidbody::Start()
 				};
 				rec0(e, rec0);
 
-				Collidable::AddCollider(reg, src.begin(), src.end(), std::forward<physx::PxRigidActor>(*rigid));
+				Collidable::AddCollider(reg, src, std::forward<physx::PxRigidActor>(*rigid));
 
 				obj.GetComponent<PhysXScene>().CreateObject(*rigid);
 
@@ -115,6 +115,13 @@ void Rigidbody::EditorGui()
 	{
 		uint32_t flags = lockFlags;
 		ImGui::CheckboxFlags("Kinematic", &flags, physx::PxRigidBodyFlag::eKINEMATIC);
+		ImGui::CheckboxFlags("Use Kinematic Target for Scene Queries", &flags, physx::PxRigidBodyFlag::eUSE_KINEMATIC_TARGET_FOR_SCENE_QUERIES);
+		ImGui::CheckboxFlags("Enable CCD", &flags, physx::PxRigidBodyFlag::eENABLE_CCD);
+		ImGui::CheckboxFlags("Enable CCD Friction", &flags, physx::PxRigidBodyFlag::eENABLE_CCD_FRICTION);
+		ImGui::CheckboxFlags("Enable Pose Integration Preview", &flags, physx::PxRigidBodyFlag::eENABLE_POSE_INTEGRATION_PREVIEW);
+		ImGui::CheckboxFlags("Enable Speculative CCD", &flags, physx::PxRigidBodyFlag::eENABLE_SPECULATIVE_CCD);
+		ImGui::CheckboxFlags("Enable CCD Max Contact Impulse", &flags, physx::PxRigidBodyFlag::eENABLE_CCD_MAX_CONTACT_IMPULSE);
+		ImGui::CheckboxFlags("Return Accelerations", &flags, physx::PxRigidBodyFlag::eRETAIN_ACCELERATIONS);
 		lockFlags = physx::PxRigidBodyFlags(physx::PxU8(flags));
 	}
 }

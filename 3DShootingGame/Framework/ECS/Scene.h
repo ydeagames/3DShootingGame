@@ -35,6 +35,7 @@ public:
 	~Scene();
 	bool Load();
 	bool Save() const;
+	GameObject NullGameObject();
 
 public:
 	static void Destroy(Scene* scene);

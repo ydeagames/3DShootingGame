@@ -17,7 +17,8 @@ namespace StandardBuildSettings
 		Rigidbody,
 		SphereCollider,
 		BoxCollider,
-		CapsuleCollider
+		CapsuleCollider,
+		PlaneCollider
 	>;
 
 	using Tags = std::tuple<

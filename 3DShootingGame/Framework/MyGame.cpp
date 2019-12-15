@@ -133,18 +133,24 @@ void MyGame::Render(GameCamera& camera)
 	// トランスフォームのキャッシュをクリア
 	GameContext::Get<TransformResolver>().ClearCache();
 
-	// 描画イベント
-	GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::Render(scene.registry, std::forward<GameCamera>(camera)); });
-	
-	//auto& physics = Get<PhysXManager>();
-	//if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
-	//{
-	//	GetSceneManager().GetSceneView().Render(*this);
-	//}
-	//else
-	//{
-	//	GetSceneManager().GetActiveScene().Find(L"SceneDirector")->Render(*this);
-	//}
+	auto& physics = GameContext::Get<PhysXManager>();
+	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
+	{
+		// 描画イベント
+		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::Render(scene.registry, std::forward<GameCamera>(camera)); });
+	}
+	else
+	{
+		// PhysXScene
+		GameContext::Get<SceneManager>().ForEachScenesInverted([&](Scene& scene)
+			{
+				scene.NullGameObject().FindGameObjectWithTag<Tag::PhysXSceneTag>().ifPresent([&](GameObject& obj)
+					{
+						if (obj.HasComponent<PhysXScene>())
+							obj.GetComponent<PhysXScene>().Render(camera);
+					});
+			});
+	}
 
 	// ImGui
 	{

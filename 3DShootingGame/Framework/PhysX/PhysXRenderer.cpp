@@ -129,10 +129,9 @@ namespace
 	}
 }
 
-void PhysXRenderer::RenderGeometry(const PxGeometry& geom, const PxMat44& pxworld, const PxVec3& pxcolor, bool wireframe)
+void PhysXRenderer::RenderGeometry(GameCamera& camera, const PxGeometry& geom, const PxMat44& pxworld, const PxVec3& pxcolor, bool wireframe)
 {
 	auto& dr = GameContext::Get<DX::DeviceResources>();
-	auto& camera = GameContext::Get<GameCamera>();
 
 	static auto cube = GeometricPrimitive::CreateCube(dr.GetD3DDeviceContext());
 	static auto sphere = CreateCircleSphere(dr.GetD3DDeviceContext(), false, .5f, 8U);
@@ -302,12 +301,12 @@ void PhysXRenderer::RenderGeometry(const PxGeometry& geom, const PxMat44& pxworl
 	}
 }
 
-void PhysXRenderer::RenderGeometryHolder(const PxGeometryHolder& h, const PxMat44& world, const PxVec3& color, bool wireframe)
+void PhysXRenderer::RenderGeometryHolder(GameCamera& camera, const PxGeometryHolder& h, const PxMat44& world, const PxVec3& color, bool wireframe)
 {
-	RenderGeometry(h.any(), world, color, wireframe);
+	RenderGeometry(camera, h.any(), world, color, wireframe);
 }
 
-void PhysXRenderer::RenderActors(std::vector<PxRigidActor*>& actors, bool shadows, const PxVec3& color)
+void PhysXRenderer::RenderActors(GameCamera& camera, std::vector<PxRigidActor*>& actors, bool shadows, const PxVec3& color)
 {
 	const PxVec3 shadowDir(0.0f, -0.7071067f, -0.7071067f);
 	//const PxMat44 shadowMat = PxMat44
@@ -338,7 +337,7 @@ void PhysXRenderer::RenderActors(std::vector<PxRigidActor*>& actors, bool shadow
 			if (sleeping)
 				col = color * 0.25f;
 
-			RenderGeometryHolder(h, shapePose, col, wireframe);
+			RenderGeometryHolder(camera, h, shapePose, col, wireframe);
 
 			//if (shadows)
 			//{

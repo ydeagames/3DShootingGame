@@ -62,7 +62,7 @@ void PhysXScene::Render(GameCamera& camera)
 		{
 			std::vector<PxRigidActor*> actors(nbActors);
 			m_scene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<PxActor * *>(&actors[0]), nbActors);
-			PhysXRenderer::RenderActors(actors, true, physx::PxVec3(0, 0, 1));
+			PhysXRenderer::RenderActors(camera, actors, true, physx::PxVec3(0, 0, 1));
 		}
 	}
 }
