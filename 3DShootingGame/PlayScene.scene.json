@@ -1,6 +1,7 @@
 {
     "entities": {
         "created": [
+            6,
             5,
             4,
             3,
@@ -10,7 +11,12 @@
         ],
         "destroyed": []
     },
-    "tags": {},
+    "tags": {
+        "PhysXSceneTag": {
+            "id": 6,
+            "tag": {}
+        }
+    },
     "components": {
         "Transform": [
             {
@@ -18,6 +24,7 @@
                 "component": {
                     "name": "Teapot",
                     "parent": 4294967295,
+                    "isStatic": false,
                     "localPosition": {
                         "x": 9.0,
                         "y": 2.4000000953674318,
@@ -41,6 +48,7 @@
                 "component": {
                     "name": "Camera",
                     "parent": 4294967295,
+                    "isStatic": false,
                     "localPosition": {
                         "x": 0.0,
                         "y": 7.199999809265137,
@@ -64,6 +72,7 @@
                 "component": {
                     "name": "Target",
                     "parent": 4294967295,
+                    "isStatic": false,
                     "localPosition": {
                         "x": -4.699999809265137,
                         "y": -3.9000000953674318,
@@ -87,6 +96,7 @@
                 "component": {
                     "name": "Floor",
                     "parent": 4294967295,
+                    "isStatic": false,
                     "localPosition": {
                         "x": 0.0,
                         "y": 0.0,
@@ -110,6 +120,7 @@
                 "component": {
                     "name": "Skydome",
                     "parent": 4294967295,
+                    "isStatic": false,
                     "localPosition": {
                         "x": 0.0,
                         "y": 0.0,
@@ -133,6 +144,7 @@
                 "component": {
                     "name": "Igaguri",
                     "parent": 4294967295,
+                    "isStatic": false,
                     "localPosition": {
                         "x": -4.699999809265137,
                         "y": 3.9000000953674318,
@@ -150,10 +162,51 @@
                         "z": 0.25
                     }
                 }
+            },
+            {
+                "id": 6,
+                "component": {
+                    "name": "PhysXScene",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
             }
         ],
-        "MoveUpdater": [],
-        "MoveDownUpdater": [],
+        "PhysXScene": [
+            {
+                "id": 6,
+                "component": {}
+            }
+        ],
+        "Rigidbody": [
+            {
+                "id": 5,
+                "component": {
+                    "lockFlags": {
+                        "flags": 0
+                    }
+                }
+            }
+        ],
+        "SphereCollider": [],
+        "BoxCollider": [],
+        "CapsuleCollider": [],
         "PrimitiveRenderer": [
             {
                 "id": 0,
@@ -192,7 +245,6 @@
                 }
             }
         ],
-        "UpdateRenderer": [],
         "CameraComponent": [
             {
                 "id": 1,

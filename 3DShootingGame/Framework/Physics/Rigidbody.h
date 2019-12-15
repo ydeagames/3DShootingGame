@@ -8,58 +8,43 @@ class GameContext;
 
 class Rigidbody : public Component
 {
+public:
+	static constexpr const char* Identifier = "Rigidbody";
+
+	template<typename Component>
+	static void Dependency(Component& component)
+	{
+		component.DependsOn<Transform>();
+	}
+
 private:
-	physx::PxRigidActor* rigid;
-	bool isStatic = false;
-	std::unordered_map<physx::PxRigidDynamicLockFlag::Enum, bool> lockFlags;
+	physx::PxRigidActor* rigid = nullptr;
+
+public:
+	physx::PxRigidBodyFlags lockFlags;
 
 private:
 	physx::PxVec3 preForce;
 	physx::PxVec3 preVelocity;
 
 public:
-	void Awake();
+	void Start();
 	void Update();
 	void OnDestroy();
 
-	void AddForce(DirectX::SimpleMath::Vector3 force)
-	{
-		preForce = physx::toPhysX(force);
-		if (rigid && rigid->is<physx::PxRigidBody>())
-			rigid->is<physx::PxRigidBody>()->addForce(physx::toPhysX(force));
-	}
+	void AddForce(DirectX::SimpleMath::Vector3 force);
+	void SetVelocity(DirectX::SimpleMath::Vector3 velocity);
 
-	void SetVelocity(DirectX::SimpleMath::Vector3 velocity)
-	{
-		preVelocity = physx::toPhysX(velocity);
-		if (rigid && rigid->is<physx::PxRigidBody>())
-			rigid->is<physx::PxRigidBody>()->setLinearVelocity(physx::toPhysX(velocity));
-	}
-
-	void SetLock(physx::PxRigidDynamicLockFlag::Enum flag, bool value)
-	{
-		lockFlags[flag] = value;
-	}
-
-	void SetStatic(bool staticFlag)
-	{
-		isStatic = staticFlag;
-	}
-
-	Transform GetTransform()
-	{
-		Transform t;
-		auto trans = rigid->getGlobalPose();
-		t.position = physx::fromPhysX(trans.p);
-		t.rotation = physx::fromPhysX(trans.q);
-		return t;
-	}
-	void SetTransform(const Transform& value)
-	{
-		physx::PxTransform trans;
-		trans.p = physx::toPhysX(value.position);
-		trans.q = physx::toPhysX(value.rotation);
-		rigid->setGlobalPose(trans);
-	}
+	Transform GetTransform();
+	void SetTransform(const Transform& value);
 	__declspec(property(get = GetTransform, put = SetTransform)) Transform transform;
+
+public:
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(CEREAL_OPTIONAL_NVP(lockFlags));
+	}
+
+	void EditorGui();
 };

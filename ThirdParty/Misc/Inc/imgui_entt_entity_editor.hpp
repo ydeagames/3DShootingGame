@@ -237,7 +237,7 @@ namespace MM {
 	template<typename Registry>
 	class ImGuiEntityTagEditor {
 	public:
-		using editor_type = typename ImGuiEntityEditor<Registry, typename Registry::component_type>;
+		using editor_type = typename ImGuiEntityEditor<Registry, typename Registry::tag_type>;
 		editor_type editor;
 
 	private:

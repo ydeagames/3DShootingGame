@@ -3,5 +3,5 @@
 
 namespace Tag
 {
-	DEFINE_TAG(PhysXScene);
+	DEFINE_TAG(PhysXSceneTag);
 }

@@ -5,7 +5,6 @@
 class Component
 {
 public:
-	static constexpr const char* Identifier = "Component";
 	GameObject gameObject;
 
 public:

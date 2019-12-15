@@ -75,7 +75,7 @@ public:
 	{
 		if (registry->has<Tag>())
 			return Wrap(registry->attachee<Tag>());
-		return null;
+		return nullptr;
 	}
 
 	static void Destroy(GameObject* gameObject);

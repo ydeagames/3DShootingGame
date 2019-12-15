@@ -7,6 +7,9 @@ class PhysXManager;
 
 class PhysXScene : public Component
 {
+public:
+	static constexpr const char* Identifier = "PhysXScene";
+
 private:
 	physx::PxScene* m_scene;
 

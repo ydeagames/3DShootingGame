@@ -6,12 +6,9 @@ class GameContext;
 namespace ECS
 {
 	template<typename Events, uint64_t meta = 0, typename... Args>
-	class EventBus
+	class EventBusImplAll
 	{
-	private:
-		template<typename T>
-		struct started_t {};
-
+	public:
 		using Func = void(entt::registry& registry, Args&& ... args);
 		static std::vector<std::function<Func>>& handlers()
 		{
@@ -28,11 +25,44 @@ namespace ECS
 					});
 				});
 		}
+	};
+
+	template<typename It, typename Events, uint64_t meta = 0, typename... Args>
+	class EventBusImplRanged
+	{
+	public:
+		using Func = void(entt::registry& registry, It first, It last, Args&& ... args);
+		static std::vector<std::function<Func>>& handlers()
+		{
+			static std::vector<std::function<Func>> value;
+			return value;
+		}
+
+		template<typename T, typename F>
+		static void RegisterCustomOnce(F f)
+		{
+			handlers().push_back([f](entt::registry& registry, It first, It last, auto&& ... args) {
+				for (auto itr = first; itr != last; ++itr)
+				{
+					auto& entity = *itr;
+					if (registry.has<T>(entity))
+						f(registry, entity, registry.get<T>(entity), std::forward<Args>(args)...);
+				}
+				});
+		}
+	};
+
+	template<typename Impl, typename Events, uint64_t meta = 0, typename... Args>
+	class EventBusBase
+	{
+	private:
+		template<typename T>
+		struct started_t {};
 
 		template<typename T, typename... F>
 		static void RegisterOnce(F&& ... f)
 		{
-			RegisterCustomOnce<T>([f...](auto& registry, auto& entity, T& comp, auto&& ... args) {
+			Impl::RegisterCustomOnce<T>([f...](auto& registry, auto& entity, T& comp, auto&& ... args) {
 				using accumulator_type = int[];
 				accumulator_type accumulator = { 0, ((comp.*f)(args...), 0)... };
 				(void)accumulator;
@@ -42,7 +72,7 @@ namespace ECS
 		template<typename T, typename... F>
 		static void RegisterFirstOnce(F&& ... f)
 		{
-			RegisterCustomOnce<T>([f...](auto& registry, auto& entity, T& comp, auto&& ... args) {
+			Impl::RegisterCustomOnce<T>([f...](auto& registry, auto& entity, T& comp, auto&& ... args) {
 				if (!registry.has<started_t<T>>(entity))
 				{
 					struct Listener
@@ -66,8 +96,15 @@ namespace ECS
 	public:
 		static void Post(entt::registry& registry, Args&& ... args)
 		{
-			for (auto& func : handlers())
+			for (auto& func : Impl::handlers())
 				func(registry, std::forward<Args>(args)...);
+		}
+
+		template<typename It>
+		static void Post(entt::registry& registry, It first, It last, Args&& ... args)
+		{
+			for (auto& func : Impl::handlers())
+				func(registry, first, last, std::forward<Args>(args)...);
 		}
 
 	public:
@@ -78,17 +115,17 @@ namespace ECS
 		}
 
 		template<typename T, typename F>
-		static void RegisterCustom(F f)
-		{
-			static int once = (RegisterCustomOnce<T>(f), 0);
-		}
-
-		template<typename T, typename F>
 		static void RegisterFirst(F f)
 		{
 			static int once = (RegisterFirstOnce<T>(f), 0);
 		}
 	};
+
+	template<typename Events, uint64_t meta = 0, typename... Args>
+	using EventBus = EventBusBase<EventBusImplAll<Events, meta, Args...>, Events, meta, Args...>;
+
+	template<typename It, typename Events, uint64_t meta = 0, typename... Args>
+	using EventBusRanged = EventBusBase<EventBusImplRanged<It, Events, meta, Args...>, Events, meta, Args...>;
 
 	class LifecycleEvents
 	{

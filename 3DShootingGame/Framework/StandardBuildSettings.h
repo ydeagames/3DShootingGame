@@ -15,11 +15,13 @@ namespace StandardBuildSettings
 		Transform,
 		PhysXScene,
 		Rigidbody,
-		Collider
+		SphereCollider,
+		BoxCollider,
+		CapsuleCollider
 	>;
 
 	using Tags = std::tuple<
-		Tag::PhysXScene
+		Tag::PhysXSceneTag
 	>;
 
 	using Events = std::tuple<

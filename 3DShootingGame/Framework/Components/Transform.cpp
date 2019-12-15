@@ -124,6 +124,8 @@ void Transform::EditorGui()
 		}
 	}
 
+	ImGui::Checkbox("Static##Transform", &isStatic);
+
 	// the "##Transform" ensures that you can use the name "x" in multiple lables
 	ImGui::DragFloat3("Position##Transform", &t.localPosition.x, 0.1f);
 

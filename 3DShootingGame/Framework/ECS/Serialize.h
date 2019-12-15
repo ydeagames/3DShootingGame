@@ -406,7 +406,7 @@ namespace ECS
 						{
 							archive.setNextName("tags");
 							archive.startNode();
-							tarchive.tag<Components...>(snap);
+							tarchive.tag<Tags...>(snap);
 							archive.finishNode();
 						}
 						{

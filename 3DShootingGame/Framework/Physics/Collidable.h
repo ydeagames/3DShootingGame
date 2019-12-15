@@ -8,7 +8,7 @@ private:
 	template<typename T, typename = decltype(&T::AddCollider)>
 	static void Register0()
 	{
-		ECS::EventBus<Collidable, 0, physx::PxRigidActor>::Register<T>(&T::Update);
+		ECS::EventBus<Collidable, 0, physx::PxRigidActor>::Register<T>(&T::AddCollider);
 	}
 
 public:
@@ -18,8 +18,9 @@ public:
 		Register0<T>();
 	}
 
-	static void AddCollider(entt::registry& registry, physx::PxRigidActor&& rigid)
+	template<typename It>
+	static void AddCollider(entt::registry& registry, It first, It last, physx::PxRigidActor&& rigid)
 	{
-		ECS::EventBus<Collidable, 0, physx::PxRigidActor>::Post(registry, std::forward<physx::PxRigidActor>(rigid));
+		ECS::EventBusRanged<It, Collidable, 0, physx::PxRigidActor>::Post(registry, first, last, std::forward<physx::PxRigidActor>(rigid));
 	}
 };

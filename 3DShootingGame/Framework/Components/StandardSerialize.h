@@ -32,3 +32,13 @@ void serialize(Archive& archive, __m128& vector) {
 	DirectX::SimpleMath::serialize(archive, smath);
 	vector = smath;
 }
+
+namespace physx
+{
+	template<typename Archive>
+	void serialize(Archive& archive, PxRigidBodyFlags& flags) {
+		uint32_t flag = flags;
+		archive(cereal::make_nvp("flags", flag));
+		flags = PxRigidBodyFlags(PxU8(flag));
+	}
+}

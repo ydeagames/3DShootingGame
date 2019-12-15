@@ -1,51 +1,120 @@
 #include "pch.h"
 #include "Rigidbody.h"
+#include "Collidable.h"
 #include <Framework/ECS/GameContext.h>
 #include <Framework/ECS/GameObject.h>
 #include <Framework/ECS/Scene.h>
 #include <Framework/Context/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/PhysX/PhysXScene.h>
+#include <Framework/Tags/Tags.h>
 
-void Rigidbody::Awake()
+void Rigidbody::Start()
 {
-	auto& manager = GameContext::Get<PhysXManager>();
-	auto& scene = GameContext::Get<PhysXScene>();
-	auto trans = physx::PxTransform(physx::toPhysX(gameObject.GetComponent<Transform>().position), physx::toPhysX(gameObject.GetComponent<Transform>().rotation));
-	if (isStatic)
-		rigid = manager.GetPhysics()->createRigidStatic(trans);
-	else
-	{
-		auto dynamic = manager.GetPhysics()->createRigidDynamic(trans);
-		for (auto& flagSet : lockFlags)
-			dynamic->setRigidDynamicLockFlag(flagSet.first, flagSet.second);
-		rigid = dynamic;
-	}
+	gameObject.FindGameObjectWithTag<Tag::PhysXSceneTag>().ifPresent([&](GameObject& obj)
+		{
+			if (obj.HasComponent<PhysXScene>())
+			{
+				auto& manager = GameContext::Get<PhysXManager>();
+				auto trans = physx::PxTransform(physx::toPhysX(gameObject.GetComponent<Transform>().position), physx::toPhysX(gameObject.GetComponent<Transform>().rotation));
+				if (gameObject.GetComponent<Transform>().isStatic)
+					rigid = manager.GetPhysics()->createRigidStatic(trans);
+				else
+				{
+					auto dynamic = manager.GetPhysics()->createRigidDynamic(trans);
+					dynamic->setRigidBodyFlags(lockFlags);
+					rigid = dynamic;
+				}
 
-	//for (auto& collider : colliders)
-	//	collider->AddCollider(rigid, gameObject.GetComponent<Transform>());
+				auto& reg = *gameObject.registry;
+				auto& e = gameObject.entity;
+				std::vector<entt::entity> src;
+				auto rec0 = [&](auto& e, auto& rec) mutable -> void {
+					src.push_back(e);
+					reg.view<Transform>().each([&](auto entity, Transform& component) {
+						if (component.parent == e)
+							rec(entity, rec);
+						});
+				};
+				rec0(e, rec0);
 
-	scene.CreateObject(*rigid);
+				Collidable::AddCollider(reg, src.begin(), src.end(), std::forward<physx::PxRigidActor>(*rigid));
 
-	if (rigid && rigid->is<physx::PxRigidBody>())
-	{
-		auto dynamic = rigid->is<physx::PxRigidBody>();
-		dynamic->setLinearVelocity(preVelocity);
-		dynamic->addForce(preForce);
-	}
+				obj.GetComponent<PhysXScene>().CreateObject(*rigid);
+
+				if (rigid && rigid->is<physx::PxRigidBody>())
+				{
+					auto dynamic = rigid->is<physx::PxRigidBody>();
+					dynamic->setLinearVelocity(preVelocity);
+					dynamic->addForce(preForce);
+				}
+			}
+		});
 }
 
 void Rigidbody::Update()
 {
-	auto trans = rigid->getGlobalPose();
-	gameObject.GetComponent<Transform>().position = physx::fromPhysX(trans.p);
-	gameObject.GetComponent<Transform>().rotation = physx::fromPhysX(trans.q);
+	if (rigid)
+	{
+		auto trans = rigid->getGlobalPose();
+		gameObject.GetComponent<Transform>().position = physx::fromPhysX(trans.p);
+		gameObject.GetComponent<Transform>().rotation = physx::fromPhysX(trans.q);
+	}
 }
 
 void Rigidbody::OnDestroy()
 {
-	auto scene = rigid->getScene();
-	if (scene)
-		scene->removeActor(*rigid);
-	px_release(rigid);
+	if (rigid)
+	{
+		auto scene = rigid->getScene();
+		if (scene)
+			scene->removeActor(*rigid);
+		px_release(rigid);
+	}
+}
+
+void Rigidbody::AddForce(DirectX::SimpleMath::Vector3 force)
+{
+	preForce = physx::toPhysX(force);
+	if (rigid && rigid->is<physx::PxRigidBody>())
+		rigid->is<physx::PxRigidBody>()->addForce(physx::toPhysX(force));
+}
+
+void Rigidbody::SetVelocity(DirectX::SimpleMath::Vector3 velocity)
+{
+	preVelocity = physx::toPhysX(velocity);
+	if (rigid && rigid->is<physx::PxRigidBody>())
+		rigid->is<physx::PxRigidBody>()->setLinearVelocity(physx::toPhysX(velocity));
+}
+
+Transform Rigidbody::GetTransform()
+{
+	Transform t;
+	if (rigid)
+	{
+		auto trans = rigid->getGlobalPose();
+		t.position = physx::fromPhysX(trans.p);
+		t.rotation = physx::fromPhysX(trans.q);
+	}
+	return t;
+}
+
+void Rigidbody::SetTransform(const Transform& value)
+{
+	if (rigid)
+	{
+		physx::PxTransform trans;
+		trans.p = physx::toPhysX(value.position);
+		trans.q = physx::toPhysX(value.rotation);
+		rigid->setGlobalPose(trans);
+	}
+}
+
+void Rigidbody::EditorGui()
+{
+	{
+		uint32_t flags = lockFlags;
+		ImGui::CheckboxFlags("Kinematic", &flags, physx::PxRigidBodyFlag::eKINEMATIC);
+		lockFlags = physx::PxRigidBodyFlags(physx::PxU8(flags));
+	}
 }
