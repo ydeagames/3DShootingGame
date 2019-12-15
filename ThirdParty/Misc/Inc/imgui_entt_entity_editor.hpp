@@ -71,6 +71,7 @@ namespace MM {
 				std::vector<component_type> has_not;
 				for (auto ct : _component_types) {
 					if (entity_has_component(ecs, e, ct)) {
+						ImGui::PushID(ImGuiID(ct));
 
 						// delete component button
 						if (_component_destroy.has(ct)) {
@@ -108,6 +109,8 @@ namespace MM {
 
 							ImGui::Unindent(30.f);
 						}
+
+						ImGui::PopID();
 					}
 					else {
 						has_not.push_back(ct);
@@ -178,7 +181,7 @@ namespace MM {
 
 		// registers the component_type, name, create and destroy for rather trivial types
 		template<typename T>
-		void registerTrivial(const std::string& name) {
+		void registerComponentTrivial(const std::string& name) {
 			registerComponentType(Registry::type<T>());
 			registerComponentName(Registry::type<T>(), name);
 			registerComponentCreateFn(Registry::type<T>(),
@@ -197,6 +200,7 @@ namespace MM {
 // MIT License
 
 // Copyright (c) 2019 Erik Scholz
+// Edited by 2019 YdeaGames
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

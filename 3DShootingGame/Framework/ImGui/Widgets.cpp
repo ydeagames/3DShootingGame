@@ -429,6 +429,8 @@ namespace Widgets
 							sb << "Scene" << " (" << hScene.info.name << ")";
 							if (ImGui::CollapsingHeader(sb.str().c_str()))
 							{
+								ImGui::BeginGroup();
+
 								Widgets::SceneControl(hScene);
 
 								ImGui::Separator();
@@ -439,12 +441,14 @@ namespace Widgets
 
 								Widgets::Hierarchy(hScene, e, e0);
 
-							}
-							if (ImGui::IsItemActive())
-							{
-								editorState.scene = &hScene;
-								editorState.current = e;
-								editorState.prev = e0;
+								ImGui::EndGroup();
+
+								if (ImGui::IsItemActive())
+								{
+									editorState.scene = &hScene;
+									editorState.current = e;
+									editorState.prev = e0;
+								}
 							}
 
 							ImGui::PopID();

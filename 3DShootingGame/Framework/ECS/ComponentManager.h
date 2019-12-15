@@ -176,7 +176,7 @@ namespace ECS
 		template<typename Component>
 		static void InitializeEditorComponent(MM::ImGuiEntityEditor<entt::registry>& editor)
 		{
-			editor.registerTrivial<Component>(ECS::IdentifierResolver::name<Component>());
+			editor.registerComponentTrivial<Component>(ECS::IdentifierResolver::name<Component>());
 			ComponentGui::EditorWidget<Component>(editor);
 		}
 
