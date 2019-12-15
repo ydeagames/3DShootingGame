@@ -6,29 +6,23 @@ class Collider : public Component
 {
 public:
 	PhysicsMaterial material;
-
-public:
-	virtual ~Collider() = default;
-
-public:
-	virtual void AddCollider(physx::PxRigidActor* rigid) const = 0;
 };
 
 class SphereCollider : public Collider
 {
 public:
-	void AddCollider(physx::PxRigidActor* rigid) const override;
+	void AddCollider(physx::PxRigidActor& rigid) const;
 };
 
 class BoxCollider : public Collider
 {
 public:
-	void AddCollider(physx::PxRigidActor* rigid) const override;
+	void AddCollider(physx::PxRigidActor& rigid) const;
 };
 
 class CapsuleCollider : public Collider
 {
 public:
-	void AddCollider(physx::PxRigidActor* rigid) const override;
+	void AddCollider(physx::PxRigidActor& rigid) const;
 };
 

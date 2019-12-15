@@ -18,9 +18,9 @@ private:
 	physx::PxVec3 preVelocity;
 
 public:
-	void Initialize();
+	void Awake();
 	void Update();
-	void Finalize();
+	void OnDestroy();
 
 	void AddForce(DirectX::SimpleMath::Vector3 force)
 	{

@@ -95,6 +95,9 @@
     <Filter Include="Game\Tags">
       <UniqueIdentifier>{a3de3cb6-9d24-40a6-b60d-b9d7943b6e17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Tags">
+      <UniqueIdentifier>{e3a98d2a-83b3-44b3-890a-a42f0b76ed3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -409,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="Framework\ECS\Tag.h">
       <Filter>Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Tags\Tags.h">
+      <Filter>Framework\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Physics\Collidable.h">
+      <Filter>Framework\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

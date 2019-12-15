@@ -223,7 +223,9 @@
     <ClInclude Include="Framework\ECS\Tag.h" />
     <ClInclude Include="Framework\Events\Renderable.h" />
     <ClInclude Include="Framework\Events\Updatable.h" />
+    <ClInclude Include="Framework\Physics\Collidable.h" />
     <ClInclude Include="Framework\StandardBuildSettings.h" />
+    <ClInclude Include="Framework\Tags\Tags.h" />
     <ClInclude Include="Game\Components\Background.h" />
     <ClInclude Include="Game\Components\CameraComponent.h" />
     <ClInclude Include="Framework\Context\GameCamera.h" />

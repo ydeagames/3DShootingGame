@@ -7,7 +7,7 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-void SphereCollider::AddCollider(physx::PxRigidActor* rigid) const
+void SphereCollider::AddCollider(physx::PxRigidActor& rigid) const
 {
 	auto& manager = GameContext::Get<PhysXManager>();
 	auto mat = manager.CreateMaterial(material);
@@ -18,10 +18,10 @@ void SphereCollider::AddCollider(physx::PxRigidActor* rigid) const
 	auto geo = physx::PxSphereGeometry(diameter / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
 	shape->setLocalPose(physx::PxTransform(physx::toPhysX(transform.position), physx::toPhysX(transform.rotation)));
-	rigid->attachShape(*shape);
+	rigid.attachShape(*shape);
 }
 
-void BoxCollider::AddCollider(physx::PxRigidActor* rigid) const
+void BoxCollider::AddCollider(physx::PxRigidActor& rigid) const
 {
 	auto& manager = GameContext::Get<PhysXManager>();
 	auto mat = manager.CreateMaterial(material);
@@ -31,10 +31,10 @@ void BoxCollider::AddCollider(physx::PxRigidActor* rigid) const
 	auto geo = physx::PxBoxGeometry(physx::toPhysX(size) / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
 	shape->setLocalPose(physx::PxTransform(physx::toPhysX(transform.position), physx::toPhysX(transform.rotation)));
-	rigid->attachShape(*shape);
+	rigid.attachShape(*shape);
 }
 
-void CapsuleCollider::AddCollider(physx::PxRigidActor* rigid) const
+void CapsuleCollider::AddCollider(physx::PxRigidActor& rigid) const
 {
 	auto& manager = GameContext::Get<PhysXManager>();
 	auto mat = manager.CreateMaterial(material);
@@ -45,5 +45,5 @@ void CapsuleCollider::AddCollider(physx::PxRigidActor* rigid) const
 	auto geo = physx::PxCapsuleGeometry(diameter / 2, size.y / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
 	shape->setLocalPose(physx::PxTransform(physx::toPhysX(transform.position), physx::toPhysX(transform.rotation)));
-	rigid->attachShape(*shape);
+	rigid.attachShape(*shape);
 }

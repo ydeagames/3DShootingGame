@@ -7,7 +7,7 @@
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/PhysX/PhysXScene.h>
 
-void Rigidbody::Initialize()
+void Rigidbody::Awake()
 {
 	auto& manager = GameContext::Get<PhysXManager>();
 	auto& scene = GameContext::Get<PhysXScene>();
@@ -42,7 +42,7 @@ void Rigidbody::Update()
 	gameObject.GetComponent<Transform>().rotation = physx::fromPhysX(trans.q);
 }
 
-void Rigidbody::Finalize()
+void Rigidbody::OnDestroy()
 {
 	auto scene = rigid->getScene();
 	if (scene)

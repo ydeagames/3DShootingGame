@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <Framework/ECS/Component.h>
-#include <Framework/Components/StandardSerialize.h>
 
 class GameContext;
 class GameCamera;
