@@ -2,6 +2,7 @@
 #include <Framework/ECS/GameContext.h>
 #include "ApplicationHandler.h"
 #include "SceneManager.h"
+#include <Utilities/WindowsUtils.h>
 
 bool ApplicationHandler::IsPlaying() const
 {
@@ -14,11 +15,23 @@ void ApplicationHandler::SetPlaying(bool playing)
 	{
 		if (playing)
 		{
-			GameContext::Get<SceneManager>().ForEachScenes([](Scene& scene) { scene.Save(); });
+			GameContext::Get<SceneManager>().ForEachScenes([](Scene& scene)
+				{
+					scene.info.location = WindowsUtils::GetDirPath(scene.info.location)
+						+ WindowsUtils::GetFileName(scene.info.location, SceneInfo::SceneExtension)
+						+ ".playing." + SceneInfo::SceneExtension;
+					scene.Save();
+				});
 		}
 		else
 		{
-			GameContext::Get<SceneManager>().ForEachScenes([](Scene& scene) { scene.Load(); });
+			GameContext::Get<SceneManager>().ForEachScenes([](Scene& scene)
+				{
+					scene.Load();
+					scene.info.location = WindowsUtils::GetDirPath(scene.info.location)
+						+ WindowsUtils::GetFileName(WindowsUtils::GetFileName(scene.info.location, SceneInfo::SceneExtension), "playing")
+						+ "." + SceneInfo::SceneExtension;
+				});
 		}
 
 		isPlaying = playing;
