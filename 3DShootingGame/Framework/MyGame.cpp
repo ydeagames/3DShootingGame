@@ -11,6 +11,7 @@
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/Context/SaveHandler.h>
 #include <Framework/Context/WindowHandler.h>
+#include <Framework/Context/ApplicationHandler.h>
 #include <Utilities/FPS.h>
 #include <Utilities/Input.h>
 #include <Game/BuildSettings.h>
@@ -102,18 +103,22 @@ void MyGame::Update()
 		}
 	}
 
-	auto& editorState = GameContext::Get<Widgets::EntityEditorState>();
-
 	// エディター
 	if (Input::GetKeyDown(Keyboard::Keys::F4))
+	{
+		auto& editorState = GameContext::Get<Widgets::EntityEditorState>();
 		editorState.editorEnabled = !editorState.editorEnabled;
+		if (editorState.editorEnabled)
+			GameContext::Get<ApplicationHandler>().SetPlaying(false);
+	}
 
 	// マウス相対座標切り替え
 	if (Input::GetKeyDown(Keyboard::Keys::F6))
 		Mouse::Get().SetMode(Mouse::Get().GetState().positionMode == Mouse::Mode::MODE_ABSOLUTE ? Mouse::Mode::MODE_RELATIVE : Mouse::Mode::MODE_ABSOLUTE);
 
 	// Updateイベント
-	GameContext::Get<SceneManager>().ForEachScenes([](auto& scene) { Updatable::Update(scene.registry); });
+	if (GameContext::Get<ApplicationHandler>().IsPlaying())
+		GameContext::Get<SceneManager>().ForEachScenes([](auto& scene) { Updatable::Update(scene.registry); });
 
 	// シーン遷移
 	GameContext::Get<SceneManager>().Apply();

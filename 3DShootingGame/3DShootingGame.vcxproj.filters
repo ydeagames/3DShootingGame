@@ -173,9 +173,6 @@
     <ClInclude Include="Libraries\picojson.h">
       <Filter>Libraries</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\ExitHandler.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Libraries\entt\config\config.h">
       <Filter>Libraries\entt\config</Filter>
     </ClInclude>
@@ -419,6 +416,9 @@
     <ClInclude Include="Framework\Physics\Collidable.h">
       <Filter>Framework\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Context\ApplicationHandler.h">
+      <Filter>Framework\Context</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -560,6 +560,9 @@
     </ClCompile>
     <ClCompile Include="Game\Components\CameraComponent.cpp">
       <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Context\ApplicationHandler.cpp">
+      <Filter>Framework\Context</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

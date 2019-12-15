@@ -217,6 +217,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="Framework\Context\ApplicationHandler.h" />
     <ClInclude Include="Framework\ECS\Project.h" />
     <ClInclude Include="Framework\Components\StandardSerialize.h" />
     <ClInclude Include="Framework\ECS\Context.h" />
@@ -248,7 +249,6 @@
     <ClInclude Include="Framework\DebugTools\DebugCameraWrapper.h" />
     <ClInclude Include="Framework\DebugTools\GridFloor.h" />
     <ClInclude Include="Framework\DebugTools\GridFloorWrapper.h" />
-    <ClInclude Include="Framework\ExitHandler.h" />
     <ClInclude Include="Framework\Game.h" />
     <ClInclude Include="Framework\ImGui\ImGuiManager.h" />
     <ClInclude Include="Framework\PhysX\PhysXCommons.h" />
@@ -370,6 +370,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="Framework\Context\ApplicationHandler.cpp" />
     <ClCompile Include="Game\Components\Background.cpp" />
     <ClCompile Include="Game\Components\CameraComponent.cpp" />
     <ClCompile Include="Framework\Context\GameCamera.cpp" />

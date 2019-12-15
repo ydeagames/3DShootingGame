@@ -44,19 +44,29 @@ Scene::~Scene()
 	context = {};
 }
 
-bool Scene::Load()
+bool Scene::Load(const std::string& location)
 {
 	registry.reset();
 	context = {};
-	return ECS::AllComponents::LoadScene(info.location, registry, [](auto& registry) {
+	return ECS::AllComponents::LoadScene(location, registry, [](auto& registry) {
 		ECS::AllComponents::InitializeDependency(registry);
 		ECS::AllComponents::InitializeLifecycleEvents(registry);
 		});
 }
 
+bool Scene::Load()
+{
+	return Load(info.location);
+}
+
+bool Scene::Save(const std::string& location) const
+{
+	return ECS::AllComponents::SaveScene(location, registry);
+}
+
 bool Scene::Save() const
 {
-	return ECS::AllComponents::SaveScene(info.location, registry);
+	return Save(info.location);
 }
 
 GameObject Scene::NullGameObject()

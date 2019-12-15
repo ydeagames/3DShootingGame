@@ -28,7 +28,7 @@ public:
 public:
 	void Start();
 	void OnDestroy();
-	void Update();
+	void OnPreRender(GameCamera& camera);
 	void Move(float dx, float dy);
 
 public:

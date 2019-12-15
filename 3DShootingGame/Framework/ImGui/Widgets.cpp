@@ -5,6 +5,7 @@
 #include <Framework/Components/Transform.h>
 #include <Utilities/WindowsUtils.h>
 #include <Framework/Context/SceneManager.h>
+#include <Framework/Context/ApplicationHandler.h>
 #include <Framework/ECS/Project.h>
 
 namespace Widgets
@@ -427,6 +428,10 @@ namespace Widgets
 
 				if (ImGui::Begin("Hierarchy", &editorState.editorEnabled))
 				{
+					bool playing = GameContext::Get<ApplicationHandler>().IsPlaying();
+					if (ImGui::Checkbox("Is Playing", &playing))
+						GameContext::Get<ApplicationHandler>().SetPlaying(playing);
+
 					GameContext::Get<SceneManager>().ForEachScenes([&](Scene& hScene)
 						{
 							ImGui::PushID(ImGuiID(&hScene));

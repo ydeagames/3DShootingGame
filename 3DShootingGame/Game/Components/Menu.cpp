@@ -4,7 +4,7 @@
 #include <Framework/Context/PauseHandler.h>
 #include <Framework/Context/SceneManager.h>
 #include <Utilities/Input.h>
-#include <Framework/ExitHandler.h>
+#include <Framework/Context/ApplicationHandler.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -34,7 +34,7 @@ void TitleMenu::RenderGui(GameCamera& camera)
 	}
 	if (ImGui::Button(u8"èIóπ", ImVec2(200, 50)))
 	{
-		ExitGame();
+		ApplicationHandler::ExitGame();
 	}
 	ImGui::End();
 

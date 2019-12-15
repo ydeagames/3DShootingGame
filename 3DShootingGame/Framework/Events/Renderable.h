@@ -13,6 +13,13 @@ private:
 		ECS::EventBus<Renderable, 0>::RegisterFirst<T>(&T::RenderStart);
 	}
 
+	template<typename T> static void RegisterPre0(...) {}
+	template<typename T, typename = decltype(&T::OnPreRender)>
+	static void RegisterPre0()
+	{
+		ECS::EventBus<Renderable, 3, GameCamera>::Register<T>(&T::OnPreRender);
+	}
+
 	template<typename T> static void Register0(...) {}
 	template<typename T, typename = decltype(&T::Render)>
 	static void Register0()
@@ -32,6 +39,7 @@ public:
 	static void Register()
 	{
 		RegisterFirst0<T>();
+		RegisterPre0<T>();
 		Register0<T>();
 		RegisterGui0<T>();
 	}
@@ -44,6 +52,7 @@ public:
 	static void Render(entt::registry& registry, GameCamera&& camera)
 	{
 		ECS::EventBus<Renderable, 0>::Post(registry);
+		ECS::EventBus<Renderable, 3, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
 		ECS::EventBus<Renderable, 1, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
 	}
 

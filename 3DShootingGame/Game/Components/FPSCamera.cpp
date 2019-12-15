@@ -19,7 +19,7 @@ void FPSCamera::OnDestroy()
 	//Input::SetMouseMode(Mouse::Mode::MODE_ABSOLUTE);
 }
 
-void FPSCamera::Update()
+void FPSCamera::OnPreRender(GameCamera& camera)
 {
 	if (!Input::GetMouseButton(Input::Buttons::MouseRight))
 		if (Input::GetMouseMode() == DirectX::Mouse::Mode::MODE_RELATIVE)
@@ -38,12 +38,9 @@ void FPSCamera::Update()
 	Quaternion rotY = Quaternion::CreateFromAxisAngle(Vector3::UnitY, -m_yAngleLast);
 	Quaternion rot = -rotX * rotY;
 
-	if (cameraptr)
-	{
-		gameObject.GetComponent<Transform>().localRotation = rot;
-	}
+	gameObject.GetComponent<Transform>().localRotation = rot;
 
-	CameraComponent::Update();
+	CameraComponent::OnPreRender(camera);
 }
 
 void FPSCamera::Move(float dx, float dy)

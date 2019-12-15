@@ -26,6 +26,11 @@ public:
 		RegisterTick<T>();
 	}
 
+	static void Start(entt::registry& registry)
+	{
+		ECS::EventBus<Updatable, 0>::Post(registry);
+	}
+
 	static void Update(entt::registry& registry)
 	{
 		ECS::EventBus<Updatable, 0>::Post(registry);

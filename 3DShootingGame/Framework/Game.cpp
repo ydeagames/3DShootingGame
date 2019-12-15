@@ -4,7 +4,7 @@
 
 #include "pch.h"
 #include "Game.h"
-#include "ExitHandler.h"
+#include <Framework/Context/ApplicationHandler.h>
 #include <Framework/Context/WindowHandler.h>
 #include <Framework/Context/PauseHandler.h>
 #include <Framework/Context/GameCamera.h>
@@ -44,6 +44,8 @@ void Game::Initialize(HWND window, int width, int height)
 	m_mainCamera = std::make_unique<GameCamera>();
 	m_myGame = std::make_unique<MyGame>();
 
+	// アプリケーション
+	GameContext::Register<ApplicationHandler>();
 	// ウィンドウ
 	GameContext::Register<WindowHandler>(m_deviceResources, window);
 	// ポーズ
@@ -65,6 +67,7 @@ void Game::Finalize()
 {
 	GameContext::Remove<PauseHandler>();
 	GameContext::Remove<WindowHandler>();
+	GameContext::Remove<ApplicationHandler>();
 
 	// 破棄
 	m_myGame = nullptr;

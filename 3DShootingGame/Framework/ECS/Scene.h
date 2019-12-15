@@ -33,7 +33,9 @@ public:
 	Scene(const SceneInfo& info);
 	Scene();
 	~Scene();
+	bool Load(const std::string& location);
 	bool Load();
+	bool Save(const std::string& location) const;
 	bool Save() const;
 	GameObject NullGameObject();
 

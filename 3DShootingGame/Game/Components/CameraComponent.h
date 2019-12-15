@@ -14,12 +14,8 @@ public:
 		component.DependsOn<Transform>();
 	}
 
-protected:
-	GameCamera* cameraptr = nullptr;
-
 public:
-	void Render(GameCamera& camera);
-	void Update();
+	void OnPreRender(GameCamera& camera);
 
 public:
 	template<class Archive>
