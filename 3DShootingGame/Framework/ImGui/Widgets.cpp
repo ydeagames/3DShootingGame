@@ -234,8 +234,17 @@ namespace Widgets
 
 	void Inspector(Scene& scene, entt::entity& e)
 	{
-		auto& editor = GameContext::Get<MM::ImGuiEntityEditor<entt::registry>>();
-		editor.renderImGui(scene.registry, e);
+		MM::renderImGui(scene.registry, e);
+
+		ImGui::Separator();
+
+		auto& editorTag = GameContext::Get<MM::ImGuiEntityTagEditor<entt::registry>>();
+		editorTag.renderImGui(scene.registry, e);
+
+		ImGui::Separator();
+
+		auto& editorComponent = GameContext::Get<MM::ImGuiEntityComponentEditor<entt::registry>>();
+		editorComponent.renderImGui(scene.registry, e);
 	}
 
 	void SceneControl(Scene& scene)

@@ -56,6 +56,7 @@ public:
 	template<typename Component>
 	void Remove()
 	{
+		assert(Has<Component>() && "Not Registered");
 		holder<Component>().data = nullptr;
 	}
 

@@ -92,6 +92,9 @@
     <Filter Include="Framework\Events">
       <UniqueIdentifier>{3c75dc0f-9d59-4f3c-b0b1-94a1e4c65f6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Tags">
+      <UniqueIdentifier>{a3de3cb6-9d24-40a6-b60d-b9d7943b6e17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -400,6 +403,12 @@
     </ClInclude>
     <ClInclude Include="Game\Components\CameraComponent.h">
       <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Tags\AllTags.h">
+      <Filter>Game\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ECS\Tag.h">
+      <Filter>Framework\ECS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

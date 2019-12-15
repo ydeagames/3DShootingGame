@@ -220,6 +220,7 @@
     <ClInclude Include="Framework\ECS\Project.h" />
     <ClInclude Include="Framework\Components\StandardSerialize.h" />
     <ClInclude Include="Framework\ECS\Context.h" />
+    <ClInclude Include="Framework\ECS\Tag.h" />
     <ClInclude Include="Framework\Events\Renderable.h" />
     <ClInclude Include="Framework\Events\Updatable.h" />
     <ClInclude Include="Framework\StandardBuildSettings.h" />
@@ -261,6 +262,7 @@
     <ClInclude Include="Game\Components\ModelRenderer.h" />
     <ClInclude Include="Game\Components\PrimitiveRenderer.h" />
     <ClInclude Include="Game\Events\AllEvents.h" />
+    <ClInclude Include="Game\Tags\AllTags.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
     <ClInclude Include="Utilities\StringCast.h" />
     <ClInclude Include="Utilities\WindowsUtils.h" />

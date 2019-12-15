@@ -134,8 +134,8 @@ namespace ECS
 	class ComponentGui
 	{
 	private:
-		template<typename Component, typename = decltype(&Component::EditorGui)>
-		static void EditorWidget0(int, MM::ImGuiEntityEditor<entt::registry> & editor)
+		template<typename Component, typename Editor, typename = decltype(&Component::EditorGui)>
+		static void EditorComponentWidget0(int, Editor & editor)
 		{
 			editor.registerComponentWidgetFn(
 				entt::registry::type<Component>(),
@@ -144,16 +144,38 @@ namespace ECS
 				});
 		}
 
-		template<typename Component>
-		static void EditorWidget0(bool, MM::ImGuiEntityEditor<entt::registry>& editor)
+		template<typename Component, typename Editor>
+		static void EditorComponentWidget0(bool, Editor& editor)
+		{
+		}
+
+	private:
+		template<typename Tag, typename Editor, typename = decltype(&Tag::EditorGui)>
+		static void EditorTagWidget0(int, Editor & editor)
+		{
+			editor.registerComponentWidgetFn(
+				entt::registry::type<Tag>(entt::tag_t{}),
+				[](auto& registry, auto entity) {
+					registry.get<Tag>().EditorGui();
+				});
+		}
+
+		template<typename Tag, typename Editor>
+		static void EditorTagWidget0(bool, Editor& editor)
 		{
 		}
 
 	public:
-		template<typename Component>
-		static void EditorWidget(MM::ImGuiEntityEditor<entt::registry>& editor)
+		template<typename Component, typename Editor>
+		static void EditorComponentWidget(Editor& editor)
 		{
-			EditorWidget0<Component>(0, editor);
+			EditorComponentWidget0<Component>(0, editor);
+		}
+
+		template<typename Tag, typename Editor>
+		static void EditorTagWidget(Editor& editor)
+		{
+			EditorTagWidget0<Tag>(0, editor);
 		}
 	};
 
@@ -174,10 +196,17 @@ namespace ECS
 		}
 
 		template<typename Component>
-		static void InitializeEditorComponent(MM::ImGuiEntityEditor<entt::registry>& editor)
+		static void InitializeEditorComponent(MM::ImGuiEntityEditor<entt::registry, entt::registry::component_type>& editor)
 		{
 			editor.registerComponentTrivial<Component>(ECS::IdentifierResolver::name<Component>());
-			ComponentGui::EditorWidget<Component>(editor);
+			ComponentGui::EditorComponentWidget<Component>(editor);
+		}
+
+		template<typename Tag>
+		static void InitializeEditorTag(MM::ImGuiEntityEditor<entt::registry, entt::registry::tag_type>& editor)
+		{
+			editor.registerTagTrivial<Tag>(ECS::IdentifierResolver::name<Tag>());
+			ComponentGui::EditorTagWidget<Tag>(editor);
 		}
 
 		template<typename Component>
@@ -200,10 +229,17 @@ namespace ECS
 			(void)accumulator;
 		}
 
-		static void InitializeEditorComponents(MM::ImGuiEntityEditor<entt::registry>& editor)
+		static void InitializeEditorComponents(MM::ImGuiEntityEditor<entt::registry, entt::registry::component_type>& editor)
 		{
 			using accumulator_type = int[];
 			accumulator_type accumulator = { 0, (InitializeEditorComponent<Components>(editor), 0)... };
+			(void)accumulator;
+		}
+
+		static void InitializeEditorTags(MM::ImGuiEntityEditor<entt::registry, entt::registry::tag_type>& editor)
+		{
+			using accumulator_type = int[];
+			accumulator_type accumulator = { 0, (InitializeEditorTag<Tags>(editor), 0)... };
 			(void)accumulator;
 		}
 

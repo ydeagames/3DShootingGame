@@ -14,144 +14,36 @@
 namespace MM {
 
 	template<typename Registry>
-	class ImGuiEntityEditor {
-	private:
-		using component_type = typename Registry::component_type;
-		using component_event = std::function<void(Registry&, typename Registry::entity_type)>;
+	void renderImGui(Registry& ecs, typename Registry::entity_type& e) {
+		ImGui::TextUnformatted("editing:");
+		ImGui::SameLine();
 
+		//ImGuiWidgets::Entity(e, ecs, true);
+		if (ecs.valid(e)) {
+			ImGui::Text("id: %d, v: %d", ecs.entity(e), ecs.version(e));
+		}
+		else {
+			ImGui::Text("INVALID ENTITY");
+		}
+	}
+
+	template<typename Registry, typename Type>
+	class ImGuiEntityEditor {
+	public:
+		using component_type = Type;
+		using component_event = std::function<void(Registry&, typename Registry::entity_type)>;
+		using component_predicate = std::function<bool(Registry&, typename Registry::entity_type)>;
+
+	public:
 		entt::SparseSet<component_type> _component_types;
 		entt::SparseSet<component_type, std::string> _component_names;
 		entt::SparseSet<component_type, component_event> _component_widget;
 		entt::SparseSet<component_type, component_event> _component_create;
 		entt::SparseSet<component_type, component_event> _component_destroy;
-
-	private:
-		inline bool entity_has_component(Registry& ecs, typename Registry::entity_type& e, component_type ct) {
-			component_type type[] = { ct };
-			auto rv = ecs.view(std::cbegin(type), std::cend(type));
-			return rv.contains(e);
-		}
+		entt::SparseSet<component_type, component_predicate> _component_has;
+		entt::SparseSet<component_type, component_predicate> _component_candidate;
 
 	public:
-		// calls all the ImGui functions
-		// call this every frame
-		void renderImGui(Registry& ecs, typename Registry::entity_type& e) {
-			ImGui::TextUnformatted("editing:");
-			ImGui::SameLine();
-
-			//ImGuiWidgets::Entity(e, ecs, true);
-			if (ecs.valid(e)) {
-				ImGui::Text("id: %d, v: %d", ecs.entity(e), ecs.version(e));
-			}
-			else {
-				ImGui::Text("INVALID ENTITY");
-			}
-			// TODO: investigate
-
-			// TODO: implemnt cloning by ether forking entt or implementing function lists...
-			//ImGui::SameLine();
-			//ImGui::TextUnformatted(ICON_II_ARCHIVE " drop to clone Entity");
-			//if (ImGui::BeginDragDropTarget()) {
-				//if (auto* payload = ImGui::AcceptDragDropPayload(IMGUI_PAYLOAD_TYPE_MM_ENTITY)) {
-					//auto clone_e = *(MM::FrameworkConfig::Entity*)payload->Data;
-					//e = ecs.clone(clone_e);
-				//}
-				//ImGui::EndDragDropTarget();
-			//}
-
-			ImGui::Separator();
-
-			// TODO: needed?
-			//if (!ecs.valid(e)) {
-			//	e = entt::null;
-			//}
-
-			//if (e != entt::null) {
-			if (e != entt::null && ecs.valid(e)) {
-				std::vector<component_type> has_not;
-				for (auto ct : _component_types) {
-					if (entity_has_component(ecs, e, ct)) {
-						ImGui::PushID(ImGuiID(ct));
-
-						// delete component button
-						if (_component_destroy.has(ct)) {
-							std::string button_label = ESS_IMGUI_ENTT_E_E_DELETE_COMP_STR "##";
-							button_label += std::to_string(ct);
-
-							if (ImGui::Button(button_label.c_str())) {
-								_component_destroy.get(ct)(ecs, e);
-								continue; // early out to prevent access to deleted data
-							}
-							else {
-								ImGui::SameLine();
-							}
-						}
-
-						std::string label;
-						if (_component_names.has(ct)) {
-							label = _component_names.get(ct);
-						}
-						else {
-							label = "unnamed component (";
-							label += std::to_string(ct);
-							label += ")";
-						}
-
-						if (ImGui::CollapsingHeader(label.c_str())) {
-							ImGui::Indent(30.f);
-
-							if (_component_widget.has(ct)) {
-								_component_widget.get(ct)(ecs, e);
-							}
-							else {
-								ImGui::TextDisabled("missing widget to display component!");
-							}
-
-							ImGui::Unindent(30.f);
-						}
-
-						ImGui::PopID();
-					}
-					else {
-						has_not.push_back(ct);
-					}
-				}
-
-				if (!has_not.empty()) {
-					if (ImGui::Button("+ Add Component")) {
-						ImGui::OpenPopup("add component");
-					}
-
-					if (ImGui::BeginPopup("add component")) {
-						ImGui::TextUnformatted("available:");
-						ImGui::Separator();
-
-						for (auto ct : has_not) {
-							if (_component_create.has(ct)) {
-								std::string label;
-								if (_component_names.has(ct)) {
-									label = _component_names.get(ct);
-								}
-								else {
-									label = "unnamed component (";
-									label += std::to_string(ct);
-									label += ")";
-								}
-
-								label += "##"; label += std::to_string(ct); // better but optional
-
-								if (ImGui::Selectable(label.c_str())) {
-									_component_create.get(ct)(ecs, e);
-								}
-							}
-						}
-
-						ImGui::EndPopup();
-					}
-				}
-			}
-		}
-
 		// call this (or registerTrivial) before any of the other register functions
 		void registerComponentType(component_type ct) {
 			if (!_component_types.has(ct)) {
@@ -179,6 +71,16 @@ namespace MM {
 			_component_destroy.construct(ct, std::forward<component_event>(fn));
 		}
 
+		// register a predicate to show
+		void registerComponentHasFn(component_type ct, component_predicate&& fn) {
+			_component_has.construct(ct, std::forward<component_predicate>(fn));
+		}
+
+		// register a predicate to show
+		void registerComponentCandidateFn(component_type ct, component_predicate&& fn) {
+			_component_candidate.construct(ct, std::forward<component_predicate>(fn));
+		}
+
 		// registers the component_type, name, create and destroy for rather trivial types
 		template<typename T>
 		void registerComponentTrivial(const std::string& name) {
@@ -192,9 +94,247 @@ namespace MM {
 				[](Registry& ecs, typename Registry::entity_type e) {
 					ecs.template remove<T>(e);
 				});
+			registerComponentHasFn(Registry::type<T>(),
+				[](Registry& ecs, typename Registry::entity_type e) {
+					return ecs.template has<T>(e);
+				});
+			registerComponentCandidateFn(Registry::type<T>(),
+				[](Registry& ecs, typename Registry::entity_type e) {
+					return !ecs.template has<T>(e);
+				});
+		}
+
+		// registers the component_type, name, create and destroy for rather trivial types
+		template<typename T>
+		void registerTagTrivial(const std::string& name) {
+			registerComponentType(Registry::type<T>(entt::tag_t{}));
+			registerComponentName(Registry::type<T>(entt::tag_t{}), name);
+			registerComponentCreateFn(Registry::type<T>(entt::tag_t{}),
+				[](Registry& ecs, typename Registry::entity_type e) {
+					ecs.template assign<T>(entt::tag_t{}, e);
+				});
+			registerComponentDestroyFn(Registry::type<T>(entt::tag_t{}),
+				[](Registry& ecs, typename Registry::entity_type e) {
+					ecs.template remove<T>();
+				});
+			registerComponentHasFn(Registry::type<T>(entt::tag_t{}),
+				[](Registry& ecs, typename Registry::entity_type e) {
+					return ecs.template has<T>(entt::tag_t{}, e);
+				});
+			registerComponentCandidateFn(Registry::type<T>(entt::tag_t{}),
+				[](Registry& ecs, typename Registry::entity_type e) {
+					return !ecs.template has<T>();
+				});
 		}
 	};
 
+	template<typename Registry>
+	class ImGuiEntityComponentEditor {
+	public:
+		using editor_type = typename ImGuiEntityEditor<Registry, typename Registry::component_type>;
+		editor_type editor;
+
+	private:
+		using component_type = typename editor_type::component_type;
+
+	public:
+		// calls all the ImGui functions
+		// call this every frame
+		void renderImGui(Registry& ecs, typename Registry::entity_type& e) {
+			ImGui::Text("Components");
+			if (e != entt::null && ecs.valid(e)) {
+				ImGui::PushID(this);
+
+				std::vector<component_type> has_not;
+				for (auto ct : editor._component_types) {
+					if (editor._component_has.has(ct) && editor._component_has.get(ct)(ecs, e)) {
+						ImGui::PushID(ImGuiID(ct));
+
+						// delete component button
+						if (editor._component_destroy.has(ct)) {
+							std::string button_label = ESS_IMGUI_ENTT_E_E_DELETE_COMP_STR "##";
+							button_label += std::to_string(ct);
+
+							if (ImGui::Button(button_label.c_str())) {
+								editor._component_destroy.get(ct)(ecs, e);
+
+								ImGui::PopID();
+								continue; // early out to prevent access to deleted data
+							}
+							else {
+								ImGui::SameLine();
+							}
+						}
+
+						std::string label;
+						if (editor._component_names.has(ct)) {
+							label = editor._component_names.get(ct);
+						}
+						else {
+							label = "unnamed component (";
+							label += std::to_string(ct);
+							label += ")";
+						}
+
+						if (ImGui::CollapsingHeader(label.c_str())) {
+							ImGui::Indent(30.f);
+
+							if (editor._component_widget.has(ct)) {
+								editor._component_widget.get(ct)(ecs, e);
+							}
+							else {
+								ImGui::TextDisabled("missing widget to display component!");
+							}
+
+							ImGui::Unindent(30.f);
+						}
+
+						ImGui::PopID();
+					}
+					if (editor._component_candidate.has(ct) && editor._component_candidate.get(ct)(ecs, e)) {
+						has_not.push_back(ct);
+					}
+				}
+
+				if (!has_not.empty()) {
+					if (ImGui::Button("+ Add Component")) {
+						ImGui::OpenPopup("add component");
+					}
+
+					if (ImGui::BeginPopup("add component")) {
+						ImGui::TextUnformatted("available:");
+						ImGui::Separator();
+
+						for (auto ct : has_not) {
+							if (editor._component_create.has(ct)) {
+								std::string label;
+								if (editor._component_names.has(ct)) {
+									label = editor._component_names.get(ct);
+								}
+								else {
+									label = "unnamed component (";
+									label += std::to_string(ct);
+									label += ")";
+								}
+
+								label += "##"; label += std::to_string(ct); // better but optional
+
+								if (ImGui::Selectable(label.c_str())) {
+									editor._component_create.get(ct)(ecs, e);
+								}
+							}
+						}
+
+						ImGui::EndPopup();
+					}
+				}
+
+				ImGui::PopID();
+			}
+		}
+	};
+
+	template<typename Registry>
+	class ImGuiEntityTagEditor {
+	public:
+		using editor_type = typename ImGuiEntityEditor<Registry, typename Registry::component_type>;
+		editor_type editor;
+
+	private:
+		using component_type = typename editor_type::component_type;
+
+	public:
+		// calls all the ImGui functions
+		// call this every frame
+		void renderImGui(Registry& ecs, typename Registry::entity_type& e) {
+			ImGui::Text("Tags");
+			if (e != entt::null && ecs.valid(e)) {
+				std::vector<component_type> has_not;
+				for (auto ct : editor._component_types) {
+					if (editor._component_has.has(ct) && editor._component_has.get(ct)(ecs, e)) {
+						ImGui::PushID(ImGuiID(ct));
+
+						// delete component button
+						if (editor._component_destroy.has(ct)) {
+							std::string button_label = ESS_IMGUI_ENTT_E_E_DELETE_COMP_STR "##";
+							button_label += std::to_string(ct);
+
+							if (ImGui::Button(button_label.c_str())) {
+								editor._component_destroy.get(ct)(ecs, e);
+
+								ImGui::PopID();
+								continue; // early out to prevent access to deleted data
+							}
+							else {
+								ImGui::SameLine();
+							}
+						}
+
+						std::string label;
+						if (editor._component_names.has(ct)) {
+							label = editor._component_names.get(ct);
+						}
+						else {
+							label = "unnamed tag (";
+							label += std::to_string(ct);
+							label += ")";
+						}
+
+						if (ImGui::CollapsingHeader(label.c_str())) {
+							ImGui::Indent(30.f);
+
+							if (editor._component_widget.has(ct)) {
+								editor._component_widget.get(ct)(ecs, e);
+							}
+							else {
+								ImGui::TextDisabled("missing widget to display tag!");
+							}
+
+							ImGui::Unindent(30.f);
+						}
+
+						ImGui::PopID();
+					}
+					if (editor._component_candidate.has(ct) && editor._component_candidate.get(ct)(ecs, e)) {
+						has_not.push_back(ct);
+					}
+				}
+
+				if (!has_not.empty()) {
+					if (ImGui::Button("+ Add Tag")) {
+						ImGui::OpenPopup("add tag");
+					}
+
+					if (ImGui::BeginPopup("add tag")) {
+						ImGui::TextUnformatted("available:");
+						ImGui::Separator();
+
+						for (auto ct : has_not) {
+							if (editor._component_create.has(ct)) {
+								std::string label;
+								if (editor._component_names.has(ct)) {
+									label = editor._component_names.get(ct);
+								}
+								else {
+									label = "unnamed tag (";
+									label += std::to_string(ct);
+									label += ")";
+								}
+
+								label += "##"; label += std::to_string(ct); // better but optional
+
+								if (ImGui::Selectable(label.c_str())) {
+									editor._component_create.get(ct)(ecs, e);
+								}
+							}
+						}
+
+						ImGui::EndPopup();
+					}
+				}
+			}
+		}
+	};
 } // MM
 
 // MIT License

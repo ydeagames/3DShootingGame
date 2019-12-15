@@ -109,9 +109,6 @@ namespace entt
 {
 	using registry = entt::DefaultRegistry;
 	using entity = registry::entity_type;
-	using component = registry::component_type;
-	template<entity Value>
-	using tag = std::integral_constant<entity, Value>;
 }
 
 // Cereal

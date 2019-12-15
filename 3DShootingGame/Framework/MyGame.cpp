@@ -42,8 +42,10 @@ MyGame::MyGame()
 	ECS::AllComponents::InitializeEvents();
 	// Widgets
 	GameContext::Register<Widgets::EntityEditorState>();
-	GameContext::Register<MM::ImGuiEntityEditor<entt::registry>>();
-	ECS::AllComponents::InitializeEditorComponents(GameContext::Get<MM::ImGuiEntityEditor<entt::registry>>());
+	auto& editorComponent = GameContext::Register<MM::ImGuiEntityComponentEditor<entt::registry>>();
+	ECS::AllComponents::InitializeEditorComponents(editorComponent.editor);
+	auto& editorTag = GameContext::Register<MM::ImGuiEntityTagEditor<entt::registry>>();
+	ECS::AllComponents::InitializeEditorTags(editorTag.editor);
 
 	// FPS
 	GameContext::Register<FPS>(GameContext::Get<DX::StepTimer>());
@@ -73,7 +75,8 @@ MyGame::~MyGame()
 	GameContext::Remove<EffectFactory>();
 	GameContext::Remove<CommonStates>();
 	GameContext::Remove<FPS>();
-	GameContext::Remove<MM::ImGuiEntityEditor<entt::registry>>();
+	GameContext::Remove<MM::ImGuiEntityTagEditor<entt::registry>>();
+	GameContext::Remove<MM::ImGuiEntityComponentEditor<entt::registry>>();
 	GameContext::Remove<Widgets::EntityEditorState>();
 }
 
