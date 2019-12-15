@@ -44,24 +44,18 @@ void ModelRenderer::EditorGui()
 	{
 		std::string tmpname = model;
 		tmpname.resize(128);
-		ImGui::InputText("Model##ModelRenderer", &tmpname[0], tmpname.size());
-		auto tmpname2 = std::string(tmpname.c_str());
-		if (model != tmpname2)
+		if (ImGui::InputText("Model", &tmpname[0], tmpname.size()))
 		{
-			model = tmpname2;
+			model = std::string(tmpname.c_str());
 			RenderStart();
 		}
 	}
 	{
-		bool cf = cullfront;
-		ImGui::Checkbox("Cull Front##ModelRenderer", &cullfront);
-		if (cf != cullfront)
+		if (ImGui::Checkbox("Cull Front", &cullfront))
 			RenderStart();
 	}
 	{
-		bool cf = wireframe;
-		ImGui::Checkbox("Wireframe##ModelRenderer", &wireframe);
-		if (cf != wireframe)
+		if (ImGui::Checkbox("Wireframe", &wireframe))
 			RenderStart();
 	}
 }

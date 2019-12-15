@@ -141,24 +141,18 @@ void PrimitiveRenderer::EditorGui()
 	{
 		std::string tmpname = texture;
 		tmpname.resize(128);
-		ImGui::InputText("Texture##PrimitiveRenderer", &tmpname[0], tmpname.size());
-		auto tmpname2 = std::string(tmpname.c_str());
-		if (texture != tmpname2)
+		if (ImGui::InputText("Texture", &tmpname[0], tmpname.size()))
 		{
-			texture = tmpname2;
+			texture = std::string(tmpname.c_str());
 			RenderStart();
 		}
 	}
 	{
-		bool cf = cullfront;
-		ImGui::Checkbox("Cull Front##PrimitiveRenderer", &cullfront);
-		if (cf != cullfront)
+		if (ImGui::Checkbox("Cull Front", &cullfront))
 			RenderStart();
 	}
 	{
-		bool tex = textureEnabled;
-		ImGui::Checkbox("Texture Enabled##PrimitiveRenderer", &textureEnabled);
-		if (tex != textureEnabled)
+		if (ImGui::Checkbox("Texture Enabled", &textureEnabled))
 			RenderStart();
 	}
 }

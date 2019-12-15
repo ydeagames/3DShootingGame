@@ -108,8 +108,7 @@ void MyGame::Update()
 	{
 		auto& editorState = GameContext::Get<Widgets::EntityEditorState>();
 		editorState.editorEnabled = !editorState.editorEnabled;
-		if (editorState.editorEnabled)
-			GameContext::Get<ApplicationHandler>().SetPlaying(false);
+		GameContext::Get<ApplicationHandler>().SetPlaying(!editorState.editorEnabled);
 	}
 
 	// マウス相対座標切り替え

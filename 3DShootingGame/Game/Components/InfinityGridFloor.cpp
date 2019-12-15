@@ -80,8 +80,8 @@ void InfinityGridFloor::Render(GameCamera& camera)
 
 void InfinityGridFloor::EditorGui()
 {
-	ImGui::DragFloat("Cell Size##InfinityGridFloor", &cellsize);
-	ImGui::DragFloat2("Size##InfinityGridFloor", &size.x);
-	ImGui::ColorEdit4("Color##InfinityGridFloor", color.m128_f32);
+	ImGui::DragFloat("Cell Size", &cellsize);
+	ImGui::DragFloat2("Size", &size.x);
+	ImGui::ColorEdit4("Color", color.m128_f32);
 }
 

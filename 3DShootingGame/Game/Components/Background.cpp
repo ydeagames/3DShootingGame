@@ -38,11 +38,9 @@ void Background::EditorGui()
 {
 	std::string tmpname = texture;
 	tmpname.resize(128);
-	ImGui::InputText("Texture##Background", &tmpname[0], tmpname.size());
-	auto tmpname2 = std::string(tmpname.c_str());
-	if (texture != tmpname2)
+	if (ImGui::InputText("Texture", &tmpname[0], tmpname.size()))
 	{
-		texture = tmpname2;
+		texture = std::string(tmpname.c_str());
 		RenderStart();
 	}
 }

@@ -59,8 +59,8 @@ void FPSCamera::Move(float dx, float dy)
 
 void FPSCamera::EditorGui()
 {
-	ImGui::InputFloat("yAngle#FPSCamera", &m_yAngle);
-	ImGui::InputFloat("xAngle#FPSCamera", &m_yAngle);
-	ImGui::InputFloat("yAngleLast#FPSCamera", &m_yAngleLast);
-	ImGui::InputFloat("xAngleLast#FPSCamera", &m_yAngleLast);
+	ImGui::InputFloat("yAngle", &m_yAngle);
+	ImGui::InputFloat("xAngle", &m_yAngle);
+	ImGui::InputFloat("yAngleLast", &m_yAngleLast);
+	ImGui::InputFloat("xAngleLast", &m_yAngleLast);
 }

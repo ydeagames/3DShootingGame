@@ -298,14 +298,14 @@ namespace Widgets
 
 		{
 			int iid = (e == entt::null) ? -1 : int(reg.entity(e));
-			ImGui::InputInt("ID", &iid);
-			if (iid < 0)
-				e = entt::null;
-			else
-			{
-				auto id = entt::entity(iid);
-				e = id < reg.size() ? (id | reg.current(id) << entt::entt_traits<entt::entity>::entity_shift) : id;
-			}
+			if (ImGui::InputInt("ID", &iid))
+				if (iid < 0)
+					e = entt::null;
+				else
+				{
+					auto id = entt::entity(iid);
+					e = id < reg.size() ? (id | reg.current(id) << entt::entt_traits<entt::entity>::entity_shift) : id;
+				}
 		}
 
 		if (ImGui::Button("New"))
