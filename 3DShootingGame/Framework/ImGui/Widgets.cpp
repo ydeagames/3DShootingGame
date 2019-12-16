@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Widgets.h"
+#include "WidgetDND.h"
 #include <Framework/ECS/Scene.h>
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Components/Transform.h>
@@ -10,79 +11,6 @@
 
 namespace Widgets
 {
-	class WidgetsDND
-	{
-	public:
-		void* regptr;
-		entt::entity entity;
-
-	public:
-		WidgetsDND(entt::registry& reg, entt::entity entity)
-			: regptr(&reg)
-			, entity(entity)
-		{
-		}
-
-		WidgetsDND()
-			: regptr(nullptr)
-			, entity(entt::null)
-		{
-		}
-
-	public:
-		void SetDragDropPayload()
-		{
-			ImGui::SetDragDropPayload("DND_Hierarchy", this, sizeof(WidgetsDND));
-		}
-
-		static const WidgetsDND* AcceptDragDropPayload()
-		{
-			if (const ImGuiPayload * payload = ImGui::AcceptDragDropPayload("DND_Hierarchy"))
-				return static_cast<const WidgetsDND*>(payload->Data);
-			return nullptr;
-		}
-
-		static void DragDropTarget(entt::registry& reg, entt::entity parent)
-		{
-			if (ImGui::BeginDragDropTarget())
-			{
-				if (const WidgetsDND * data = AcceptDragDropPayload())
-				{
-					if (data->regptr == &reg)
-					{
-						if (data->entity != parent)
-							reg.get<Transform>(data->entity).parent = parent;
-					}
-					else
-					{
-						if (auto scenefrom = GameContext::Get<SceneManager>().GetSceneOrNullRegistry(data->regptr))
-						{
-							auto& reg0 = scenefrom->registry;
-
-							std::vector<entt::entity> src;
-							std::vector<entt::entity> dst;
-							auto rec0 = [&](auto& e, auto& rec) mutable -> void {
-								src.push_back(e);
-								reg0.view<Transform>().each([&](auto entity, Transform& component) {
-									if (component.parent == e)
-										rec(entity, rec);
-									});
-							};
-							rec0(data->entity, rec0);
-
-							ECS::AllComponents::CloneComponents(reg0, src, reg, dst);
-							ECS::AllComponents::UpdateReferences(reg, src, dst);
-
-							if (!dst.empty())
-								reg.get<Transform>(dst.front()).parent = parent;
-						}
-					}
-				}
-				ImGui::EndDragDropTarget();
-			}
-		}
-	};
-
 	void Hierarchy(Scene& scene, entt::entity& e, entt::entity& e0)
 	{
 		class Node
@@ -161,7 +89,7 @@ namespace Widgets
 		if (ImGui::IsItemClicked())
 			e = entt::null;
 
-		WidgetsDND::DragDropTarget(reg, entt::null);
+		WidgetDND::DragDropTarget(reg, entt::null);
 
 		if (opened)
 		{
@@ -197,12 +125,12 @@ namespace Widgets
 							if (ImGui::BeginDragDropSource())
 							{
 								e = e0;
-								WidgetsDND(reg, node.id).SetDragDropPayload();
+								WidgetDND(reg, node.id).SetDragDropPayload();
 								ImGui::Text(node.name.c_str());
 								ImGui::EndDragDropSource();
 							}
 
-							WidgetsDND::DragDropTarget(reg, node.id);
+							WidgetDND::DragDropTarget(reg, node.id);
 
 							if (node.parent != entt::null && (node.hasloop || !node.hasparent))
 							{

@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include <Framework/ECS/GameContext.h>
 #include <Utilities/Math3DUtils.h>
+#include <Framework/ImGui/WidgetDND.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -117,8 +118,11 @@ void Transform::EditorGui()
 
 		if (ImGui::BeginDragDropTarget())
 		{
-			if (const ImGuiPayload * payload = ImGui::AcceptDragDropPayload("DND_Hierarchy"))
-				e = *(static_cast<const entt::entity*>(payload->Data));
+			if (const auto* data = Widgets::WidgetDND::AcceptDragDropPayload())
+			{
+				if (data->regptr == &reg)
+					e = data->entity;
+			}
 			ImGui::EndDragDropTarget();
 		}
 	}

@@ -1,10 +1,9 @@
 #pragma once
 #include <Framework/ECS/Component.h>
-#include "CameraComponent.h"
 
 class GameCamera;
 
-class FPSCamera : public CameraComponent
+class FPSCamera : public Component
 {
 public:
 	static constexpr const char* Identifier = "FPSCamera";

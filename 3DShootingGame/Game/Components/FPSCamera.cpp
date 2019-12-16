@@ -39,8 +39,6 @@ void FPSCamera::OnPreRender(GameCamera& camera)
 	Quaternion rot = -rotX * rotY;
 
 	gameObject.GetComponent<Transform>().localRotation = rot;
-
-	CameraComponent::OnPreRender(camera);
 }
 
 void FPSCamera::Move(float dx, float dy)

@@ -422,6 +422,12 @@
     <ClInclude Include="Game\Components\PlayerController.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\PlayerCamera.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ImGui\WidgetDND.h">
+      <Filter>Framework\ImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -569,6 +575,12 @@
     </ClCompile>
     <ClCompile Include="Game\Components\PlayerController.cpp">
       <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\PlayerCamera.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ImGui\WidgetDND.cpp">
+      <Filter>Framework\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
