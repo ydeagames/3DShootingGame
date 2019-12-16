@@ -23,6 +23,7 @@ namespace BuildSettings
 		InfinityGridFloor,
 		FontRenderer,
 		PlayerController,
-		TranslateFollower
+		TranslateFollower,
+		RotateFollower
 	>;
 }

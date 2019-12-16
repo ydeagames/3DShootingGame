@@ -1,7 +1,6 @@
 {
     "entities": {
         "created": [
-            10,
             9,
             8,
             7,
@@ -262,30 +261,6 @@
                         "z": 1.0
                     }
                 }
-            },
-            {
-                "id": 10,
-                "component": {
-                    "name": "HogeHoge",
-                    "parent": 4294967295,
-                    "isStatic": false,
-                    "localPosition": {
-                        "x": 9.0,
-                        "y": 6.599999904632568,
-                        "z": -26.100000381469728
-                    },
-                    "localRotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
-                    }
-                }
             }
         ],
         "PhysXScene": [
@@ -318,14 +293,6 @@
                         "flags": 0
                     }
                 }
-            },
-            {
-                "id": 10,
-                "component": {
-                    "lockFlags": {
-                        "flags": 0
-                    }
-                }
             }
         ],
         "SphereCollider": [
@@ -335,10 +302,6 @@
             },
             {
                 "id": 0,
-                "component": {}
-            },
-            {
-                "id": 10,
                 "component": {}
             }
         ],
@@ -368,15 +331,6 @@
                     "cullfront": true,
                     "textureEnabled": true
                 }
-            },
-            {
-                "id": 10,
-                "component": {
-                    "model": "Dodecahedron",
-                    "texture": "Resources/Textures/Play/Skydoom2.jpg",
-                    "cullfront": false,
-                    "textureEnabled": true
-                }
             }
         ],
         "ModelRenderer": [
@@ -393,7 +347,7 @@
                 "component": {
                     "model": "Resources/Models/igaguri.cmo",
                     "cullfront": false,
-                    "wireframe": false
+                    "wireframe": true
                 }
             }
         ],
@@ -425,6 +379,7 @@
                 }
             }
         ],
+        "FontRenderer": [],
         "PlayerController": [
             {
                 "id": 0,
@@ -438,7 +393,16 @@
             {
                 "id": 9,
                 "component": {
-                    "movePercent": 0.5,
+                    "movePercent": 0.019999999552965165,
+                    "target": 0
+                }
+            }
+        ],
+        "RotateFollower": [
+            {
+                "id": 9,
+                "component": {
+                    "movePercent": 0.019999999552965165,
                     "target": 0
                 }
             }
