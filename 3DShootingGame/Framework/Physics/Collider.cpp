@@ -14,7 +14,7 @@ void SphereCollider::AddCollider(physx::PxRigidActor& rigid) const
 	auto& transform = gameObject.GetComponent<Transform>();
 	auto size = transform.lossyScale;
 
-	auto diameter = (size.x + size.y + size.z) / 3;
+	auto diameter = (std::abs(size.x) + std::abs(size.y) + std::abs(size.z)) / 3;
 	auto geo = physx::PxSphereGeometry(diameter / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
 	//shape->setLocalPose(physx::PxTransform(physx::toPhysX(transform.position), physx::toPhysX(transform.rotation)));
@@ -41,8 +41,8 @@ void CapsuleCollider::AddCollider(physx::PxRigidActor& rigid) const
 	auto& transform = gameObject.GetComponent<Transform>();
 	auto size = transform.lossyScale;
 
-	auto diameter = (size.x + size.z) / 2;
-	auto geo = physx::PxCapsuleGeometry(diameter / 2, size.y / 2);
+	auto diameter = (std::abs(size.x) + std::abs(size.z)) / 2;
+	auto geo = physx::PxCapsuleGeometry(diameter / 2, std::abs(size.y) / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
 	//shape->setLocalPose(physx::PxTransform(physx::toPhysX(transform.position), physx::toPhysX(transform.rotation)));
 	rigid.attachShape(*shape);
@@ -58,4 +58,8 @@ void PlaneCollider::AddCollider(physx::PxRigidActor& rigid) const
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
 	shape->setLocalPose(physx::PxTransform(physx::toPhysX(Vector3::Zero), physx::toPhysX(Quaternion::CreateFromAxisAngle(Vector3::UnitZ, XMConvertToRadians(90)))));
 	rigid.attachShape(*shape);
+}
+
+void Collider::EditorGui()
+{
 }

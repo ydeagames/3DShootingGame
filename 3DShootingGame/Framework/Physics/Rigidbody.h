@@ -35,9 +35,8 @@ public:
 	void AddForce(DirectX::SimpleMath::Vector3 force);
 	void SetVelocity(DirectX::SimpleMath::Vector3 velocity);
 
-	Transform GetTransform();
-	void SetTransform(const Transform& value);
-	__declspec(property(get = GetTransform, put = SetTransform)) Transform transform;
+	Transform& Fetch();
+	void Apply();
 
 public:
 	template<class Archive>

@@ -419,6 +419,9 @@
     <ClInclude Include="Framework\Context\ApplicationHandler.h">
       <Filter>Framework\Context</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\PlayerController.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -563,6 +566,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Context\ApplicationHandler.cpp">
       <Filter>Framework\Context</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\PlayerController.cpp">
+      <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

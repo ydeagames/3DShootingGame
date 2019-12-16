@@ -45,8 +45,8 @@ void GameObject::Destroy(GameObject& gameObject)
 
 entt::entity GameObject::GetParentEntity() const
 {
-	if (registry->has<Transform>())
-		return registry->get<Transform>().parent;
+	if (registry->has<Transform>(entity))
+		return registry->get<Transform>(entity).parent;
 	return entt::null;
 }
 

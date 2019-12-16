@@ -5,13 +5,15 @@
 class Collider : public Component
 {
 public:
-	PhysicsMaterial material;
+	PhysicsMaterial material = PhysicsMaterials::Wood;
 
 	template<typename Component>
 	static void Dependency(Component& component)
 	{
 		component.DependsOn<Transform>();
 	}
+
+	void EditorGui();
 };
 
 class SphereCollider : public Collider

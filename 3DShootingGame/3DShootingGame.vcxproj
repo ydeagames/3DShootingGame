@@ -262,6 +262,7 @@
     <ClInclude Include="Game\Components\FPSCamera.h" />
     <ClInclude Include="Game\Components\Menu.h" />
     <ClInclude Include="Game\Components\ModelRenderer.h" />
+    <ClInclude Include="Game\Components\PlayerController.h" />
     <ClInclude Include="Game\Components\PrimitiveRenderer.h" />
     <ClInclude Include="Game\Events\AllEvents.h" />
     <ClInclude Include="Game\Tags\AllTags.h" />
@@ -398,6 +399,7 @@
     <ClCompile Include="Game\Components\FPSCamera.cpp" />
     <ClCompile Include="Game\Components\Menu.cpp" />
     <ClCompile Include="Game\Components\ModelRenderer.cpp" />
+    <ClCompile Include="Game\Components\PlayerController.cpp" />
     <ClCompile Include="Game\Components\PrimitiveRenderer.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />

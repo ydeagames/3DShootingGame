@@ -6,6 +6,7 @@
 #include "PrimitiveRenderer.h"
 #include "ModelRenderer.h"
 #include "InfinityGridFloor.h"
+#include "PlayerController.h"
 
 namespace BuildSettings
 {
@@ -17,6 +18,7 @@ namespace BuildSettings
 		TitleMenu,
 		PlayMenu,
 		FPSCamera,
-		InfinityGridFloor
+		InfinityGridFloor,
+		PlayerController
 	>;
 }

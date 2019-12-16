@@ -3,19 +3,13 @@
 
 namespace Tag
 {
-	DEFINE_TAG(TagA);
-	DEFINE_TAG(TagB);
-	DEFINE_TAG(TagC);
-	DEFINE_TAG(TagD);
+	DEFINE_TAG(PlayerTag);
 }
 
 namespace BuildSettings
 {
 	using namespace Tag;
 	using Tags = std::tuple<
-		TagA,
-		TagB,
-		TagC,
-		TagD
+		PlayerTag
 	>;
 }

@@ -87,9 +87,9 @@ void Rigidbody::SetVelocity(DirectX::SimpleMath::Vector3 velocity)
 		rigid->is<physx::PxRigidBody>()->setLinearVelocity(physx::toPhysX(velocity));
 }
 
-Transform Rigidbody::GetTransform()
+Transform& Rigidbody::Fetch()
 {
-	Transform t;
+	auto& t = gameObject.GetComponent<Transform>();
 	if (rigid)
 	{
 		auto trans = rigid->getGlobalPose();
@@ -99,13 +99,14 @@ Transform Rigidbody::GetTransform()
 	return t;
 }
 
-void Rigidbody::SetTransform(const Transform& value)
+void Rigidbody::Apply()
 {
 	if (rigid)
 	{
+		auto& t = gameObject.GetComponent<Transform>();
 		physx::PxTransform trans;
-		trans.p = physx::toPhysX(value.position);
-		trans.q = physx::toPhysX(value.rotation);
+		trans.p = physx::toPhysX(t.position);
+		trans.q = physx::toPhysX(t.rotation);
 		rigid->setGlobalPose(trans);
 	}
 }
