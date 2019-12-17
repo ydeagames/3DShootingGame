@@ -2,26 +2,12 @@
 #include "PlayerCamera.h"
 #include <Framework/Components/Transform.h>
 #include <Framework/ImGui/WidgetDND.h>
+#include <Utilities/Math3DUtils.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-void TranslateFollower::Update()
-{
-	if (gameObject.registry->valid(target))
-	{
-		auto obj = gameObject.Wrap(target);
-		if (obj.HasComponent<Transform>())
-		{
-			auto& transformDst = obj.GetComponent<Transform>();
-
-			auto& transformSrc = gameObject.GetComponent<Transform>();
-			transformSrc.position = Vector3::Lerp(transformSrc.position, transformDst.position, movePercent);
-		}
-	}
-}
-
-void TranslateFollower::EditorGui()
+void AbstractFollower::EditorGui()
 {
 	ImGui::DragFloat("Move Lerp Percent", &movePercent);
 
@@ -46,6 +32,21 @@ void TranslateFollower::EditorGui()
 					e = data->entity;
 			}
 			ImGui::EndDragDropTarget();
+		}
+	}
+}
+
+void TranslateFollower::Update()
+{
+	if (gameObject.registry->valid(target))
+	{
+		auto obj = gameObject.Wrap(target);
+		if (obj.HasComponent<Transform>())
+		{
+			auto& transformDst = obj.GetComponent<Transform>();
+			auto& transformSrc = gameObject.GetComponent<Transform>();
+
+			transformSrc.position = Vector3::Lerp(transformSrc.position, transformDst.position, movePercent);
 		}
 	}
 }
@@ -58,38 +59,33 @@ void RotateFollower::Update()
 		if (obj.HasComponent<Transform>())
 		{
 			auto& transformDst = obj.GetComponent<Transform>();
-
 			auto& transformSrc = gameObject.GetComponent<Transform>();
+
 			transformSrc.rotation = Quaternion::Lerp(transformSrc.rotation, transformDst.rotation, movePercent);
 		}
 	}
 }
 
-void RotateFollower::EditorGui()
+void TrackingFollower::Update()
 {
-	ImGui::DragFloat("Move Lerp Percent", &movePercent);
-
+	if (gameObject.registry->valid(target))
 	{
-		auto& reg = *gameObject.registry;
-		auto& e = target;
-		int iid = (e == entt::null) ? -1 : int(reg.entity(e));
-		if (ImGui::InputInt("Target", &iid))
-			if (iid < 0)
-				e = entt::null;
-			else
-			{
-				auto id = entt::entity(iid);
-				e = id < reg.size() ? (id | reg.current(id) << entt::entt_traits<entt::entity>::entity_shift) : id;
-			}
-
-		if (ImGui::BeginDragDropTarget())
+		auto obj = gameObject.Wrap(target);
+		if (obj.HasComponent<Transform>())
 		{
-			if (const auto * data = Widgets::WidgetDND::AcceptDragDropPayload())
-			{
-				if (data->regptr == &reg)
-					e = data->entity;
-			}
-			ImGui::EndDragDropTarget();
+			auto& transformDst = obj.GetComponent<Transform>();
+			auto& transformSrc = gameObject.GetComponent<Transform>();
+
+			auto pos = transformSrc.position;
+			auto posTarget = transformDst.position;
+			auto delta = posTarget - pos;
+
+			// yŽ²‰ñ“]‚Ì‚Ý
+			delta.y = 0;
+
+			transformSrc.rotation = Math3DUtils::LookAt(delta);
+
+			transformSrc.rotation = Quaternion::Lerp(transformSrc.rotation, transformDst.rotation, movePercent);
 		}
 	}
 }

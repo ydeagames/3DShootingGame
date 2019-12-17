@@ -398,14 +398,6 @@
                 }
             }
         ],
-        "RotateFollower": [
-            {
-                "id": 9,
-                "component": {
-                    "movePercent": 0.019999999552965165,
-                    "target": 0
-                }
-            }
-        ]
+        "RotateFollower": []
     }
 }

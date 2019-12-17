@@ -24,6 +24,7 @@ namespace BuildSettings
 		FontRenderer,
 		PlayerController,
 		TranslateFollower,
-		RotateFollower
+		RotateFollower,
+		TrackingFollower
 	>;
 }
