@@ -84,8 +84,14 @@ void TrackingFollower::Update()
 			delta.y = 0;
 
 			transformSrc.rotation = Math3DUtils::LookAt(delta);
-
-			transformSrc.rotation = Quaternion::Lerp(transformSrc.rotation, transformDst.rotation, movePercent);
+			transformSrc.position = posTarget - ((delta.LengthSquared() < radius * radius) ? delta : Math3DUtils::Normalized(delta) * radius);
 		}
 	}
+}
+
+void TrackingFollower::EditorGui()
+{
+	AbstractFollower::EditorGui();
+
+	ImGui::DragFloat("Radius", &radius);
 }

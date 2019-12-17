@@ -73,4 +73,11 @@ namespace Math3DUtils
 	{
 		return LookAt(to - from);
 	}
+
+	DirectX::SimpleMath::Vector3 Normalized(const DirectX::SimpleMath::Vector3& vec)
+	{
+		auto v = vec;
+		v.Normalize();
+		return v;
+	}
 }

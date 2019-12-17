@@ -57,6 +57,17 @@ class TrackingFollower : public AbstractFollower
 public:
 	static constexpr const char* Identifier = "TrackingFollower";
 
+	float radius = 5;
+
 public:
 	void Update();
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		AbstractFollower::serialize(archive);
+		archive(CEREAL_OPTIONAL_NVP(radius));
+	}
+
+	void EditorGui();
 };

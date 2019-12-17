@@ -6,4 +6,5 @@ namespace Math3DUtils
 	DirectX::SimpleMath::Vector3 ToEulerAngles(const DirectX::SimpleMath::Quaternion& q);
 	DirectX::SimpleMath::Quaternion LookAt(const DirectX::SimpleMath::Vector3& delta);
 	DirectX::SimpleMath::Quaternion LookAt(const DirectX::SimpleMath::Vector3& from, const DirectX::SimpleMath::Vector3& to);
+	DirectX::SimpleMath::Vector3 Normalized(const DirectX::SimpleMath::Vector3& vec);
 }
