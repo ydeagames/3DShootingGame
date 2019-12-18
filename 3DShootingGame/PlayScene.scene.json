@@ -397,6 +397,18 @@
                     "target": 0
                 }
             }
+        ],
+        "RotateFollower": [],
+        "TrackingFollower": [
+            {
+                "id": 1,
+                "component": {
+                    "movePercent": 0.5,
+                    "target": 0,
+                    "radius": 5.0,
+                    "rotateObject": 9
+                }
+            }
         ]
     }
 }
