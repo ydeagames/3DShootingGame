@@ -164,9 +164,6 @@
     <ClInclude Include="Framework\PhysX\PhysXRenderer.h">
       <Filter>Framework\PhysX</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\PhysX\PhysXScene.h">
-      <Filter>Framework\PhysX</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\FPS.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -434,6 +431,12 @@
     <ClInclude Include="Game\Components\RainbowEffect.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\Goal.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\PhysX\PhysXScene.h">
+      <Filter>Framework\SceneManagement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -592,6 +595,9 @@
       <Filter>Framework\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\RainbowEffect.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\Goal.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

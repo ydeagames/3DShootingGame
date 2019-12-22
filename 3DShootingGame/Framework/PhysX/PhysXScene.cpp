@@ -43,6 +43,7 @@ void PhysXScene::Awake()
 	sceneDesc.cpuDispatcher = GameContext::Get<PhysXManager>().GetDispatcher();
 	sceneDesc.filterShader = PxDefaultSimulationFilterShader;
 	m_scene = physics->createScene(sceneDesc);
+	m_scene->setContactModifyCallback(this);
 }
 
 void PhysXScene::Update()
@@ -65,4 +66,12 @@ void PhysXScene::Render(GameCamera& camera)
 			PhysXRenderer::RenderActors(camera, actors, true, physx::PxVec3(0, 0, 1));
 		}
 	}
+}
+
+void PhysXScene::onContactModify(physx::PxContactModifyPair* const pairs, physx::PxU32 count)
+{
+}
+
+void PhysXScene::onCCDContactModify(physx::PxContactModifyPair* const pairs, physx::PxU32 count)
+{
 }

@@ -42,3 +42,19 @@ public:
 	void RenderGui(GameCamera& camera);
 };
 
+class ResultMenu : public Component
+{
+public:
+	static constexpr const char* Identifier = "ResultMenu";
+
+	template<typename Component>
+	static void Dependency(Component& component)
+	{
+		component.DependsOn<Transform>();
+	}
+
+public:
+	void Update();
+	void RenderGui(GameCamera& camera);
+};
+

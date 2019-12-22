@@ -22,7 +22,7 @@ void TitleMenu::RenderGui(GameCamera& camera)
 	ImGui::Begin(u8"スリングヒーローズ", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
 	if (ImGui::Button(u8"ゲームスタート", ImVec2(200, 50)))
 	{
-		GameContext::Get<SceneManager>().LoadScene(SceneInfo{ "PlayScene", "PlayScene.scene.json" }); // LoadSceneWithTransition(L"PlayScene", SceneTransitions::CreateRuleTransition(3));
+		GameContext::Get<SceneManager>().LoadScene(SceneInfo::CreateFromName("PlayScene")); // LoadSceneWithTransition(L"PlayScene", SceneTransitions::CreateRuleTransition(3));
 	}
 	if (ImGui::Button(u8"オプション", ImVec2(200, 50)))
 	{
@@ -104,5 +104,27 @@ void PlayMenu::RenderGui(GameCamera& camera)
 	ImGui::Begin(u8"操作説明", nullptr);
 	ImGui::Text(u8"1. 右クリック長押しで力をためる");
 	ImGui::Text(u8"2. 右クリックを離してスリングジャーンプ！");
+	ImGui::End();
+}
+
+void ResultMenu::Update()
+{
+	if (Input::GetKeyDown(Keyboard::Keys::Escape))
+		GameContext::Get<PauseHandler>().SetPaused(false);
+}
+
+void ResultMenu::RenderGui(GameCamera& camera)
+{
+	ImGui::SetNextWindowPosCenter();
+	ImGui::SetNextWindowSize(ImVec2(230, 300));
+	ImGui::Begin(u8"ゲームクリア", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
+	if (ImGui::Button(u8"タイトルへ", ImVec2(200, 50)))
+	{
+		GameContext::Get<SceneManager>().LoadScene(SceneInfo::CreateFromName("TitleScene")); // LoadSceneWithTransition(L"PlayScene", SceneTransitions::CreateRuleTransition(3));
+	}
+	if (ImGui::Button(u8"終了", ImVec2(200, 50)))
+	{
+		ApplicationHandler::ExitGame();
+	}
 	ImGui::End();
 }

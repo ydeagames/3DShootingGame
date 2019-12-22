@@ -262,6 +262,7 @@
     <ClInclude Include="Game\Components\AllComponents.h" />
     <ClInclude Include="Game\Components\FontRenderer.h" />
     <ClInclude Include="Game\Components\FPSCamera.h" />
+    <ClInclude Include="Game\Components\Goal.h" />
     <ClInclude Include="Game\Components\Menu.h" />
     <ClInclude Include="Game\Components\ModelRenderer.h" />
     <ClInclude Include="Game\Components\PlayerCamera.h" />
@@ -403,6 +404,7 @@
     <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp" />
     <ClCompile Include="Game\Components\FontRenderer.cpp" />
     <ClCompile Include="Game\Components\FPSCamera.cpp" />
+    <ClCompile Include="Game\Components\Goal.cpp" />
     <ClCompile Include="Game\Components\Menu.cpp" />
     <ClCompile Include="Game\Components\ModelRenderer.cpp" />
     <ClCompile Include="Game\Components\PlayerCamera.cpp" />

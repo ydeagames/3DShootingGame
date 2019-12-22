@@ -10,6 +10,7 @@
 #include "PlayerController.h"
 #include "PlayerCamera.h"
 #include "RainbowEffect.h"
+#include "Goal.h"
 
 namespace BuildSettings
 {
@@ -20,6 +21,7 @@ namespace BuildSettings
 		Background,
 		TitleMenu,
 		PlayMenu,
+		ResultMenu,
 		FPSCamera,
 		InfinityGridFloor,
 		FontRenderer,
@@ -27,6 +29,7 @@ namespace BuildSettings
 		TranslateFollower,
 		RotateFollower,
 		TrackingFollower,
-		RainbowEffect
+		RainbowEffect,
+		Goal
 	>;
 }

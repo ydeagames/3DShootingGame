@@ -1,0 +1,110 @@
+{
+    "entities": {
+        "created": [
+            1,
+            0
+        ],
+        "destroyed": []
+    },
+    "tags": {},
+    "components": {
+        "Transform": [
+            {
+                "id": 0,
+                "component": {
+                    "name": "Background",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1,
+                "component": {
+                    "name": "Text1",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 823.5,
+                        "y": 185.5,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            }
+        ],
+        "PhysXScene": [],
+        "Rigidbody": [],
+        "SphereCollider": [],
+        "BoxCollider": [],
+        "CapsuleCollider": [],
+        "PlaneCollider": [],
+        "PrimitiveRenderer": [],
+        "ModelRenderer": [],
+        "CameraComponent": [],
+        "Background": [
+            {
+                "id": 0,
+                "component": {
+                    "texture": "Resources/Textures/Title/Background.png"
+                }
+            }
+        ],
+        "TitleMenu": [],
+        "PlayMenu": [],
+        "ResultMenu": [
+            {
+                "id": 0,
+                "component": {}
+            }
+        ],
+        "FPSCamera": [],
+        "InfinityGridFloor": [],
+        "FontRenderer": [
+            {
+                "id": 1,
+                "component": {
+                    "fontName": "Resources/Fonts/logofont.spritefont",
+                    "text": "Game Clear",
+                    "color": {
+                        "r": 0.33061283826828005,
+                        "g": 1.0,
+                        "b": 0.05699479579925537,
+                        "a": 1.0
+                    }
+                }
+            }
+        ],
+        "PlayerController": [],
+        "TranslateFollower": [],
+        "RotateFollower": [],
+        "TrackingFollower": [],
+        "RainbowEffect": [],
+        "Goal": []
+    }
+}

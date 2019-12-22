@@ -1,6 +1,11 @@
 {
     "entities": {
         "created": [
+            13,
+            12,
+            11,
+            10,
+            1048585,
             8,
             7,
             6,
@@ -11,9 +16,7 @@
             1,
             0
         ],
-        "destroyed": [
-            1048585
-        ]
+        "destroyed": []
     },
     "tags": {
         "PhysXSceneTag": {
@@ -30,15 +33,15 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": 9.0,
-                        "y": 2.4000000953674318,
-                        "z": -8.100000381469727
+                        "x": -7.400000095367432,
+                        "y": 1.5,
+                        "z": -0.20000000298023225
                     },
                     "localRotation": {
-                        "x": 0.0,
-                        "y": 0.42419135570526125,
-                        "z": 0.0,
-                        "w": 0.9055725932121277
+                        "x": -7.811194109308417e-7,
+                        "y": 0.7064894437789917,
+                        "z": -7.811194109308417e-7,
+                        "w": -0.7077235579490662
                     },
                     "localScale": {
                         "x": 3.0,
@@ -54,15 +57,15 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": 0.0,
-                        "y": 7.199999809265137,
-                        "z": 11.699999809265137
+                        "x": -19.399999618530275,
+                        "y": 5.900000095367432,
+                        "z": 2.4000000953674318
                     },
                     "localRotation": {
-                        "x": -0.20278723537921906,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 0.97922283411026
+                        "x": -0.1812438815832138,
+                        "y": -0.43921980261802676,
+                        "z": -0.09095808863639832,
+                        "w": 0.8751932382583618
                     },
                     "localScale": {
                         "x": 1.0,
@@ -238,6 +241,126 @@
                         "z": 15.0
                     }
                 }
+            },
+            {
+                "id": 1048585,
+                "component": {
+                    "name": "Goal",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 18.899999618530275,
+                        "y": 10.100000381469727,
+                        "z": -14.199999809265137
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 10,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 23.200000762939454,
+                        "y": 6.599999904632568,
+                        "z": 2.299999952316284
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.5,
+                        "y": 6.199999809265137,
+                        "z": 11.399999618530274
+                    }
+                }
+            },
+            {
+                "id": 11,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 7.800000190734863,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 9.699999809265137,
+                        "y": 3.200000047683716,
+                        "z": 14.699999809265137
+                    }
+                }
+            },
+            {
+                "id": 12,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 18.600000381469728,
+                        "y": 6.599999904632568,
+                        "z": -14.699999809265137
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 9.199999809265137,
+                        "y": 2.5999999046325685,
+                        "z": 9.0
+                    }
+                }
+            },
+            {
+                "id": 13,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 17.600000381469728,
+                        "y": 3.9000000953674318,
+                        "z": 2.799999952316284
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 10.199999809265137,
+                        "y": 1.0,
+                        "z": 11.399999618530274
+                    }
+                }
             }
         ],
         "PhysXScene": [
@@ -270,6 +393,46 @@
                         "flags": 0
                     }
                 }
+            },
+            {
+                "id": 1048585,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 10,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 11,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 12,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 13,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
             }
         ],
         "SphereCollider": [
@@ -282,7 +445,24 @@
                 "component": {}
             }
         ],
-        "BoxCollider": [],
+        "BoxCollider": [
+            {
+                "id": 10,
+                "component": {}
+            },
+            {
+                "id": 11,
+                "component": {}
+            },
+            {
+                "id": 12,
+                "component": {}
+            },
+            {
+                "id": 13,
+                "component": {}
+            }
+        ],
         "CapsuleCollider": [],
         "PlaneCollider": [
             {
@@ -307,6 +487,51 @@
                     "texture": "Resources/Textures/Play/Skydoom.jpg",
                     "cullfront": true,
                     "textureEnabled": true
+                }
+            },
+            {
+                "id": 1048585,
+                "component": {
+                    "model": "Sphere",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 10,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 11,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 12,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 13,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "cullfront": false,
+                    "textureEnabled": false
                 }
             }
         ],
@@ -337,6 +562,7 @@
         "Background": [],
         "TitleMenu": [],
         "PlayMenu": [],
+        "ResultMenu": [],
         "FPSCamera": [],
         "InfinityGridFloor": [
             {
@@ -361,7 +587,7 @@
             {
                 "id": 0,
                 "component": {
-                    "power": 1758.0,
+                    "power": 1380.0,
                     "sensitivity": 0.009999999776482582
                 }
             }
@@ -375,10 +601,32 @@
                     "movePercent": 0.5,
                     "target": 0,
                     "radius": 10.0,
-                    "height": 9.0
+                    "height": 5.0
                 }
             }
         ],
-        "RainbowEffect": []
+        "RainbowEffect": [
+            {
+                "id": 1048585,
+                "component": {
+                    "seed": 0,
+                    "isColorful": true,
+                    "color": {
+                        "x": 0.501960813999176,
+                        "y": 0.501960813999176,
+                        "z": 0.501960813999176,
+                        "w": 1.0
+                    }
+                }
+            }
+        ],
+        "Goal": [
+            {
+                "id": 1048585,
+                "component": {
+                    "target": 0
+                }
+            }
+        ]
     }
 }

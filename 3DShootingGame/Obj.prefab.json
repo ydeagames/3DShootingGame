@@ -1,0 +1,44 @@
+{
+    "entities": {
+        "created": [
+            10
+        ]
+    },
+    "objects": [
+        {
+            "Transform": {
+                "name": "Obj",
+                "parent": 4294967295,
+                "isStatic": true,
+                "localPosition": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "localRotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "localScale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            },
+            "Rigidbody": {
+                "lockFlags": {
+                    "flags": 1
+                }
+            },
+            "BoxCollider": {},
+            "PrimitiveRenderer": {
+                "model": "Cube",
+                "texture": "Resources/Textures/Title/Background.png",
+                "cullfront": false,
+                "textureEnabled": false
+            }
+        }
+    ]
+}
