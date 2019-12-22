@@ -59,8 +59,8 @@ public:
 
 	// 半径
 	float radius = 5;
-	// 追尾ターゲット
-	entt::entity rotateObject = entt::null;
+	// 高さ
+	float height = 4;
 
 public:
 	void Update();
@@ -69,7 +69,7 @@ public:
 	void serialize(Archive& archive)
 	{
 		AbstractFollower::serialize(archive);
-		archive(CEREAL_OPTIONAL_NVP(radius), CEREAL_OPTIONAL_NVP(rotateObject));
+		archive(CEREAL_OPTIONAL_NVP(radius), CEREAL_OPTIONAL_NVP(height));
 	}
 
 	void EditorGui();

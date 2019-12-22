@@ -48,30 +48,15 @@ namespace Math3DUtils
 		return angles;
 	}
 
-	DirectX::SimpleMath::Quaternion LookAt(const DirectX::SimpleMath::Vector3& delta)
+	DirectX::SimpleMath::Quaternion LookAt(const DirectX::SimpleMath::Vector3& from, const DirectX::SimpleMath::Vector3& to)
 	{
-		auto z = delta;
-		z.Normalize();
-		auto x = Vector3::Up.Cross(z);
-		x.Normalize();
-		auto y = z.Cross(x);
-		y.Normalize();
-
-		Matrix m = Matrix::Identity;
-		m(0, 0) = x.x; m(0, 1) = y.x; m(0, 2) = z.x;
-		m(1, 0) = x.y; m(1, 1) = y.y; m(1, 2) = z.y;
-		m(2, 0) = x.z; m(2, 1) = y.z; m(2, 2) = z.z;
+		Matrix m = Matrix::CreateLookAt(from, to, Vector3::Up).Invert();
 
 		Vector3 s, t;
 		Quaternion r;
 		m.Decompose(s, r, t);
 
 		return r;
-	}
-
-	DirectX::SimpleMath::Quaternion LookAt(const DirectX::SimpleMath::Vector3& from, const DirectX::SimpleMath::Vector3& to)
-	{
-		return LookAt(to - from);
 	}
 
 	DirectX::SimpleMath::Vector3 Normalized(const DirectX::SimpleMath::Vector3& vec)

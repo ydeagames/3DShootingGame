@@ -1,7 +1,6 @@
 {
     "entities": {
         "created": [
-            9,
             8,
             7,
             6,
@@ -12,7 +11,9 @@
             1,
             0
         ],
-        "destroyed": []
+        "destroyed": [
+            1048585
+        ]
     },
     "tags": {
         "PhysXSceneTag": {
@@ -50,7 +51,7 @@
                 "id": 1,
                 "component": {
                     "name": "Camera",
-                    "parent": 9,
+                    "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
                         "x": 0.0,
@@ -237,30 +238,6 @@
                         "z": 15.0
                     }
                 }
-            },
-            {
-                "id": 9,
-                "component": {
-                    "name": "PlayerCamera",
-                    "parent": 4294967295,
-                    "isStatic": false,
-                    "localPosition": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0
-                    },
-                    "localRotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
-                    }
-                }
             }
         ],
         "PhysXScene": [
@@ -389,15 +366,7 @@
                 }
             }
         ],
-        "TranslateFollower": [
-            {
-                "id": 9,
-                "component": {
-                    "movePercent": 0.019999999552965165,
-                    "target": 0
-                }
-            }
-        ],
+        "TranslateFollower": [],
         "RotateFollower": [],
         "TrackingFollower": [
             {
@@ -405,10 +374,11 @@
                 "component": {
                     "movePercent": 0.5,
                     "target": 0,
-                    "radius": 5.0,
-                    "rotateObject": 9
+                    "radius": 10.0,
+                    "height": 9.0
                 }
             }
-        ]
+        ],
+        "RainbowEffect": []
     }
 }
