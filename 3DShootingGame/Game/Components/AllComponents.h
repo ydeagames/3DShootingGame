@@ -9,6 +9,7 @@
 #include "FontRenderer.h"
 #include "PlayerController.h"
 #include "PlayerCamera.h"
+#include "RainbowEffect.h"
 
 namespace BuildSettings
 {
@@ -25,6 +26,7 @@ namespace BuildSettings
 		PlayerController,
 		TranslateFollower,
 		RotateFollower,
-		TrackingFollower
+		TrackingFollower,
+		RainbowEffect
 	>;
 }
