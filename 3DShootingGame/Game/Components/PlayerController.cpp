@@ -5,30 +5,60 @@
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Context/GameCamera.h>
 #include <Framework/Physics/Rigidbody.h>
+#include <Utilities/Math3DUtils.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 void PlayerController::Start()
 {
-
+	auto& rigid = gameObject.GetComponent<Rigidbody>();
+	if (auto dynamic = rigid.rigid->is<physx::PxRigidDynamic>())
+	{
+		dynamic->setAngularDamping(2);
+	}
 }
 
 void PlayerController::Update()
 {
-	if (Input::GetMouseMode() != DirectX::Mouse::Mode::MODE_RELATIVE)
-		return;
+	if (m_camera)
+	{
+		auto& rigid = gameObject.GetComponent<Rigidbody>();
+		auto& transform = rigid.Fetch();
 
-	auto mouse = Input::GetMousePosition();
-	auto& rigid = gameObject.GetComponent<Rigidbody>();
+		if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
+		{
+			m_beginDrag = Input::GetMousePosition();
+		}
+		if (Input::GetMouseButton(Input::Buttons::MouseLeft))
+		{
+			m_endDrag = Input::GetMousePosition();
 
-	auto& transform = rigid.Fetch();
-	transform.localRotation *= Quaternion::CreateFromAxisAngle(Vector3::UnitY, mouse.x * sensitivity);
-	transform.localRotation *= Quaternion::CreateFromAxisAngle(Vector3::UnitX, mouse.y * sensitivity);
-	rigid.Apply();
+			auto getpos = [&](Vector3 pos)
+			{
+				float dist;
+				auto ray = m_camera->ScreenPointToRay(pos);
+				Plane plane(transform.position, Vector3::Up);
+				if (ray.Intersects(plane, dist))
+				{
+					return ray.position + ray.direction * dist;
+				}
+				return Vector3::Zero;
+			};
 
-	if (Input::GetMouseButtonDown(Input::Buttons::MouseRight))
-		rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power);
+			auto begin = getpos(m_beginDrag);
+			auto end = getpos(m_endDrag);
+
+			if (m_beginDrag != m_endDrag)
+				transform.rotation = Math3DUtils::LookAt(end, begin + Vector3::Up);
+			rigid.Apply();
+		}
+		if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
+		{
+			rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power);
+			rigid.Apply();
+		}
+	}
 }
 
 void PlayerController::RenderStart()
@@ -54,6 +84,8 @@ void PlayerController::RenderStart()
 
 void PlayerController::Render(GameCamera& camera)
 {
+	m_camera = &camera;
+
 	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
 	auto context = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 	auto& states = GameContext::Get<DirectX::CommonStates>();

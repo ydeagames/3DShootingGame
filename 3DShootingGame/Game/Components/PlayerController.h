@@ -30,6 +30,14 @@ private:
 	// インプットレイアウト
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
 
+	// カメラ
+	GameCamera* m_camera = nullptr;
+
+	// 始点
+	DirectX::SimpleMath::Vector3 m_beginDrag;
+	// 終点
+	DirectX::SimpleMath::Vector3 m_endDrag;
+
 public:
 	void Start();
 	void Update();

@@ -17,7 +17,7 @@ public:
 		component.DependsOn<Transform>();
 	}
 
-private:
+public:
 	physx::PxRigidActor* rigid = nullptr;
 
 public:
