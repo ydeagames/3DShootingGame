@@ -12,7 +12,7 @@ using namespace DirectX::SimpleMath;
 void TitleMenu::Update()
 {
 	if (Input::GetKeyDown(Keyboard::Keys::Escape))
-		GameContext::Get<PauseHandler>().SetPaused(false);
+		GameContext::Get<PauseHandler>().SetPaused(true);
 }
 
 void TitleMenu::RenderGui(GameCamera& camera)
@@ -62,7 +62,7 @@ void PlayMenu::Start()
 void PlayMenu::Update()
 {
 	if (Input::GetKeyDown(Keyboard::Keys::Escape))
-		GameContext::Get<PauseHandler>().SetPaused(false);
+		GameContext::Get<PauseHandler>().SetPaused(true);
 }
 
 void PlayMenu::RenderGui(GameCamera& camera)
@@ -110,7 +110,7 @@ void PlayMenu::RenderGui(GameCamera& camera)
 void ResultMenu::Update()
 {
 	if (Input::GetKeyDown(Keyboard::Keys::Escape))
-		GameContext::Get<PauseHandler>().SetPaused(false);
+		GameContext::Get<PauseHandler>().SetPaused(true);
 }
 
 void ResultMenu::RenderGui(GameCamera& camera)
@@ -118,6 +118,32 @@ void ResultMenu::RenderGui(GameCamera& camera)
 	ImGui::SetNextWindowPosCenter();
 	ImGui::SetNextWindowSize(ImVec2(230, 300));
 	ImGui::Begin(u8"ゲームクリア", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
+	if (ImGui::Button(u8"タイトルへ", ImVec2(200, 50)))
+	{
+		GameContext::Get<SceneManager>().LoadScene(SceneInfo::CreateFromName("TitleScene")); // LoadSceneWithTransition(L"PlayScene", SceneTransitions::CreateRuleTransition(3));
+	}
+	if (ImGui::Button(u8"終了", ImVec2(200, 50)))
+	{
+		ApplicationHandler::ExitGame();
+	}
+	ImGui::End();
+}
+
+void PauseMenu::Update()
+{
+	if (Input::GetKeyDown(Keyboard::Keys::Escape))
+		GameContext::Get<PauseHandler>().SetPaused(false);
+}
+
+void PauseMenu::RenderGui(GameCamera& camera)
+{
+	ImGui::SetNextWindowPosCenter();
+	ImGui::SetNextWindowSize(ImVec2(230, 300));
+	ImGui::Begin(u8"ポーズ", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
+	if (ImGui::Button(u8"続ける", ImVec2(200, 50)))
+	{
+		GameContext::Get<PauseHandler>().SetPaused(false);
+	}
 	if (ImGui::Button(u8"タイトルへ", ImVec2(200, 50)))
 	{
 		GameContext::Get<SceneManager>().LoadScene(SceneInfo::CreateFromName("TitleScene")); // LoadSceneWithTransition(L"PlayScene", SceneTransitions::CreateRuleTransition(3));

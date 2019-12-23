@@ -1,6 +1,7 @@
 {
     "entities": {
         "created": [
+            14,
             13,
             12,
             11,
@@ -361,6 +362,30 @@
                         "z": 11.399999618530274
                     }
                 }
+            },
+            {
+                "id": 14,
+                "component": {
+                    "name": "UI",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
             }
         ],
         "PhysXScene": [
@@ -568,7 +593,12 @@
         ],
         "Background": [],
         "TitleMenu": [],
-        "PlayMenu": [],
+        "PlayMenu": [
+            {
+                "id": 14,
+                "component": {}
+            }
+        ],
         "ResultMenu": [],
         "FPSCamera": [],
         "InfinityGridFloor": [

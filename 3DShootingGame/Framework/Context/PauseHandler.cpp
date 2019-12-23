@@ -15,6 +15,14 @@ namespace
 	{
 		return s.substr(0, s.find(suffix));
 	}
+
+	std::string substring_after(const std::string& s, const std::string& suffix)
+	{
+		auto pos = s.find(suffix);
+		if (pos != std::string::npos)
+			return s.substr(pos + suffix.size());
+		return s;
+	}
 }
 
 void PauseHandler::SetPaused(bool pause)
@@ -28,16 +36,16 @@ void PauseHandler::SetPaused(bool pause)
 
 	if (paused)
 	{
-		SceneInfo info = { substring_before(scene.info.name, "Pause"), substring_before(substring_before(scene.info.location, ".scene.json"), "Pause") + ".scene.json" };
-		scene.Load();
+		SceneInfo info = { substring_before(scene.info.name, "Pause"), substring_before(substring_before(scene.info.location, "."), "Pause") + substring_after(scene.info.location, ".") };
+		if (manager.GetSceneCount() > 1)
+			Scene::Destroy(manager.GetActiveScene());
 	}
 	else
 	{
-		SceneInfo info = { scene.info.name + "Pause", substring_before(scene.info.location, ".scene.json") + "Pause" + ".scene.json" };
+		SceneInfo info = { scene.info.name + "Pause", substring_before(scene.info.location, ".") + "Pause." + substring_after(substring_after(scene.info.location, ".playing"), ".") };
 		if (info.Valid())
 		{
-			scene.info = info;
-			scene.Load();
+			manager.LoadScene(info, LoadSceneMode::Additive);
 		}
 	}
 

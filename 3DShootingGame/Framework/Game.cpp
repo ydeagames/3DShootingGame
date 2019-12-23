@@ -150,7 +150,7 @@ void Game::OnActivated()
 {
     // TODO: Game is becoming active window.
 	//Input::SetMouseMode(GetScene().mouseMode);
-	GameContext::Get<PauseHandler>().SetPaused(false);
+	//GameContext::Get<PauseHandler>().SetPaused(false);
 }
 
 void Game::OnDeactivated()

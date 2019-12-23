@@ -22,6 +22,7 @@ namespace BuildSettings
 		TitleMenu,
 		PlayMenu,
 		ResultMenu,
+		PauseMenu,
 		FPSCamera,
 		InfinityGridFloor,
 		FontRenderer,

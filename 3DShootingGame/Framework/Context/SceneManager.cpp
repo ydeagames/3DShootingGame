@@ -40,7 +40,7 @@ void SceneManager::Apply()
 		auto& task = m_loadQueue.front();
 		{
 			if (task.mode == LoadSceneMode::Single && !scenes.empty())
-				scenes.pop_front();
+				scenes.clear();
 			scenes.push_front(std::make_unique<Scene>(task.scene));
 			scenes.front()->Load();
 		}

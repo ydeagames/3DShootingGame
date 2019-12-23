@@ -58,3 +58,19 @@ public:
 	void RenderGui(GameCamera& camera);
 };
 
+class PauseMenu : public Component
+{
+public:
+	static constexpr const char* Identifier = "PauseMenu";
+
+	template<typename Component>
+	static void Dependency(Component& component)
+	{
+		component.DependsOn<Transform>();
+	}
+
+public:
+	void Update();
+	void RenderGui(GameCamera& camera);
+};
+
