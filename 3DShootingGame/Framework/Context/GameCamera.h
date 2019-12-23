@@ -1,5 +1,6 @@
 #pragma once
 
+// ƒJƒƒ‰
 class GameCamera
 {
 public:

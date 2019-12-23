@@ -35,7 +35,7 @@
                     "isStatic": false,
                     "localPosition": {
                         "x": -7.400000095367432,
-                        "y": 1.5,
+                        "y": 7.199999809265137,
                         "z": -0.20000000298023225
                     },
                     "localRotation": {
@@ -499,11 +499,11 @@
             {
                 "id": 0,
                 "component": {
-                    "model": "Teapot",
+                    "model": "Cube",
                     "texture": "Resources/Textures/Title/Background.png",
-                    "lighting": true,
+                    "lighting": false,
                     "cullfront": false,
-                    "textureEnabled": true
+                    "textureEnabled": false
                 }
             },
             {

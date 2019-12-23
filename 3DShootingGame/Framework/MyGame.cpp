@@ -64,12 +64,12 @@ MyGame::MyGame()
 	GameContext::Register<SceneManager>().LoadScene(SceneInfo::CreateFromName("scene"));
 
 	// Transform
-	GameContext::Register<TransformResolver>();
+	GameContext::Register<TransformResolverContext>();
 }
 
 MyGame::~MyGame()
 {
-	GameContext::Remove<TransformResolver>();
+	GameContext::Remove<TransformResolverContext>();
 	GameContext::Remove<SceneManager>();
 	GameContext::Remove<PhysXManager>();
 	GameContext::Remove<SaveHandler>();
@@ -135,7 +135,7 @@ void MyGame::Render(GameCamera& camera)
 	static int bench = Bench();
 
 	// トランスフォームのキャッシュをクリア
-	GameContext::Get<TransformResolver>().ClearCache();
+	GameContext::Get<TransformResolverContext>().ClearCache();
 
 	auto& physics = GameContext::Get<PhysXManager>();
 	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)

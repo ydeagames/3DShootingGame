@@ -14,11 +14,16 @@ Transform::Transform()
 {
 }
 
+void Transform::Awake()
+{
+	transformResolver = &GameContext::Get<TransformResolverContext>().GetResolver(*gameObject.registry);
+}
+
 DirectX::SimpleMath::Vector3 Transform::GetPosition() const
 {
 	auto p = gameObject.GetParentEntity();
-	if (p != entt::null)
-		return Vector3::Transform(localPosition, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)));
+	if (p != entt::null && transformResolver)
+		return Vector3::Transform(localPosition, transformResolver->Resolve(gameObject.Wrap(p)));
 	else
 		return localPosition;
 }
@@ -26,8 +31,8 @@ DirectX::SimpleMath::Vector3 Transform::GetPosition() const
 void Transform::SetPosition(const DirectX::SimpleMath::Vector3& value)
 {
 	auto p = gameObject.GetParentEntity();
-	if (p != entt::null)
-		localPosition = Vector3::Transform(value, GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Invert());
+	if (p != entt::null && transformResolver)
+		localPosition = Vector3::Transform(value, transformResolver->Resolve(gameObject.Wrap(p)).Invert());
 	else
 		localPosition = value;
 }
@@ -35,8 +40,8 @@ void Transform::SetPosition(const DirectX::SimpleMath::Vector3& value)
 DirectX::SimpleMath::Quaternion Transform::GetRotation() const
 {
 	auto p = gameObject.GetParentEntity();
-	if (p != entt::null)
-		return localRotation * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)));
+	if (p != entt::null && transformResolver)
+		return localRotation * Quaternion::CreateFromRotationMatrix(transformResolver->Resolve(gameObject.Wrap(p)));
 	else
 		return localRotation;
 }
@@ -44,8 +49,8 @@ DirectX::SimpleMath::Quaternion Transform::GetRotation() const
 void Transform::SetRotation(const DirectX::SimpleMath::Quaternion& value)
 {
 	auto p = gameObject.GetParentEntity();
-	if (p != entt::null)
-		localRotation = value * Quaternion::CreateFromRotationMatrix(GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Invert());
+	if (p != entt::null && transformResolver)
+		localRotation = value * Quaternion::CreateFromRotationMatrix(transformResolver->Resolve(gameObject.Wrap(p)).Invert());
 	else
 		localRotation = value;
 }
@@ -53,12 +58,12 @@ void Transform::SetRotation(const DirectX::SimpleMath::Quaternion& value)
 DirectX::SimpleMath::Vector3 Transform::GetLossyScale() const
 {
 	auto p = gameObject.GetParentEntity();
-	if (p != entt::null)
+	if (p != entt::null && transformResolver)
 	{
 		Vector3 parentPosition;
 		Quaternion parentRotation;
 		Vector3 parentScale;
-		GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Decompose(parentScale, parentRotation, parentPosition);
+		transformResolver->Resolve(gameObject.Wrap(p)).Decompose(parentScale, parentRotation, parentPosition);
 		auto mat = Matrix::CreateScale(parentScale) * Matrix::CreateFromQuaternion(parentRotation);
 		return Vector3::Transform(localScale, mat);
 	}
@@ -69,12 +74,12 @@ DirectX::SimpleMath::Vector3 Transform::GetLossyScale() const
 void Transform::SetLossyScale(const DirectX::SimpleMath::Vector3& value)
 {
 	auto p = gameObject.GetParentEntity();
-	if (p != entt::null)
+	if (p != entt::null && transformResolver)
 	{
 		Vector3 parentPosition;
 		Quaternion parentRotation;
 		Vector3 parentScale;
-		GameContext::Get<TransformResolver>().Resolve(gameObject.Wrap(p)).Decompose(parentScale, parentRotation, parentPosition);
+		transformResolver->Resolve(gameObject.Wrap(p)).Decompose(parentScale, parentRotation, parentPosition);
 		auto mat = Matrix::CreateScale(parentScale) * Matrix::CreateFromQuaternion(parentRotation);
 		localScale = Vector3::Transform(value, mat.Invert());
 	}
@@ -91,7 +96,9 @@ DirectX::SimpleMath::Matrix Transform::GetLocalMatrix() const
 
 DirectX::SimpleMath::Matrix Transform::GetMatrix() const
 {
-	return GameContext::Get<TransformResolver>().Resolve(gameObject);
+	if (transformResolver)
+		return transformResolver->Resolve(gameObject);
+	return GetLocalMatrix();
 }
 
 void Transform::EditorGui()
@@ -118,7 +125,7 @@ void Transform::EditorGui()
 
 		if (ImGui::BeginDragDropTarget())
 		{
-			if (const auto* data = Widgets::WidgetDND::AcceptDragDropPayload())
+			if (const auto * data = Widgets::WidgetDND::AcceptDragDropPayload())
 			{
 				if (data->regptr == &reg)
 					e = data->entity;
@@ -176,4 +183,15 @@ DirectX::SimpleMath::Matrix TransformResolver::Resolve(const GameObject& gameObj
 		matrixMap.construct(gameObject.entity, matrix);
 		return matrix;
 	}
+}
+
+void TransformResolverContext::ClearCache()
+{
+	for (auto& resolver : resolvers)
+		resolver.second.ClearCache();
+}
+
+TransformResolver& TransformResolverContext::GetResolver(entt::registry& registry)
+{
+	return resolvers[&registry];
 }
