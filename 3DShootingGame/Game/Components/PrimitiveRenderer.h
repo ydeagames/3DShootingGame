@@ -54,6 +54,7 @@ public:
 public:
 	std::string model = "Teapot";
 	std::string texture = "Resources/Textures/Title/Background.png";
+	bool lighting = true;
 	bool cullfront = false;
 	bool textureEnabled = true;
 
@@ -78,7 +79,8 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(CEREAL_OPTIONAL_NVP(model), CEREAL_OPTIONAL_NVP(texture), CEREAL_OPTIONAL_NVP(cullfront), CEREAL_OPTIONAL_NVP(textureEnabled));
+		archive(CEREAL_OPTIONAL_NVP(model), CEREAL_OPTIONAL_NVP(texture),
+			CEREAL_OPTIONAL_NVP(lighting), CEREAL_OPTIONAL_NVP(cullfront), CEREAL_OPTIONAL_NVP(textureEnabled));
 	}
 
 	void EditorGui();

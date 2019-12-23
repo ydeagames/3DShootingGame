@@ -104,6 +104,6 @@ void RainbowEffect::EditorGui()
 {
 	ImGui::DragInt("Seed", &seed);
 	ImGui::Checkbox("Is Colorful", &isColorful);
-	ImGui::ColorEdit4("Color", color.m128_f32);
+	ImGui::ColorEdit4("Color", &color.x);
 }
 

@@ -33,7 +33,7 @@ public:
 	bool isColorful = true;
 
 	// 色
-	DirectX::XMVECTOR color = DirectX::Colors::Gray;
+	DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(DirectX::Colors::Gray);
 
 public:
 	// 描画初期化

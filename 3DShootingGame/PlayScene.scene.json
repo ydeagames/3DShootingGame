@@ -476,6 +476,7 @@
                 "component": {
                     "model": "Teapot",
                     "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
                     "cullfront": false,
                     "textureEnabled": true
                 }
@@ -485,6 +486,7 @@
                 "component": {
                     "model": "GeoSphere",
                     "texture": "Resources/Textures/Play/Skydoom.jpg",
+                    "lighting": false,
                     "cullfront": true,
                     "textureEnabled": true
                 }
@@ -494,6 +496,7 @@
                 "component": {
                     "model": "Sphere",
                     "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
                     "cullfront": false,
                     "textureEnabled": false
                 }
@@ -503,6 +506,7 @@
                 "component": {
                     "model": "Cube",
                     "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
                     "cullfront": false,
                     "textureEnabled": false
                 }
@@ -512,6 +516,7 @@
                 "component": {
                     "model": "Cube",
                     "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
                     "cullfront": false,
                     "textureEnabled": false
                 }
@@ -521,6 +526,7 @@
                 "component": {
                     "model": "Cube",
                     "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
                     "cullfront": false,
                     "textureEnabled": false
                 }
@@ -530,6 +536,7 @@
                 "component": {
                     "model": "Cube",
                     "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
                     "cullfront": false,
                     "textureEnabled": false
                 }
@@ -612,10 +619,10 @@
                     "seed": 0,
                     "isColorful": true,
                     "color": {
-                        "x": 0.501960813999176,
-                        "y": 0.501960813999176,
-                        "z": 0.501960813999176,
-                        "w": 1.0
+                        "r": 0.501960813999176,
+                        "g": 0.501960813999176,
+                        "b": 0.501960813999176,
+                        "a": 1.0
                     }
                 }
             }

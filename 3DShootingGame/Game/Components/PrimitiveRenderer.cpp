@@ -57,7 +57,7 @@ void PrimitiveRenderer::RenderStart()
 				m_basicEffect->SetTextureEnabled(true);
 
 				// ライト有効
-				m_basicEffect->SetLightingEnabled(true);
+				m_basicEffect->SetLightingEnabled(lighting);
 				// 環境光の色を設定
 				m_basicEffect->SetAmbientLightColor(SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
 				// 拡散反射光の素材色を設定
@@ -74,7 +74,7 @@ void PrimitiveRenderer::RenderStart()
 			m_basicEffect->SetTextureEnabled(false);
 
 			// ライト有効
-			m_basicEffect->SetLightingEnabled(true);
+			m_basicEffect->SetLightingEnabled(lighting);
 			// 環境光の色を設定
 			m_basicEffect->SetAmbientLightColor(SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
 			// 拡散反射光の素材色を設定
@@ -146,6 +146,10 @@ void PrimitiveRenderer::EditorGui()
 			texture = std::string(tmpname.c_str());
 			RenderStart();
 		}
+	}
+	{
+		if (ImGui::Checkbox("Lighting", &lighting))
+			RenderStart();
 	}
 	{
 		if (ImGui::Checkbox("Cull Front", &cullfront))
