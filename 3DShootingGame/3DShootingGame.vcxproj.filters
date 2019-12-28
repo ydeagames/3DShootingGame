@@ -80,9 +80,6 @@
     <Filter Include="Framework\Context">
       <UniqueIdentifier>{568cbd5a-439e-4b87-9c9b-6acae77ddc0b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Archived">
-      <UniqueIdentifier>{1128a8f9-be18-44e0-a7f8-2d338c2ba1ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Components">
       <UniqueIdentifier>{7cce0b91-7d67-4ecb-b8b6-84751ab46b95}</UniqueIdentifier>
     </Filter>
@@ -311,27 +308,6 @@
     <ClInclude Include="Framework\MyGame.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Game\BaseScene.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\LogoScene.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\PlayScene.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\PlayScenePause.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ResultScene.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\SceneCommons.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\TitleScene.h">
-      <Filter>Game\Archived</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\ECS\ComponentManager.h">
       <Filter>Framework\ECS</Filter>
     </ClInclude>
@@ -521,30 +497,6 @@
     </ClCompile>
     <ClCompile Include="Framework\MyGame.cpp">
       <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\BaseScene.cpp">
-      <Filter>Game\Archived</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\BuildSettings.cpp">
-      <Filter>Game\Archived</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\LogoScene.cpp">
-      <Filter>Game\Archived</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\PlayScene.cpp">
-      <Filter>Game\Archived</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\PlayScenePause.cpp">
-      <Filter>Game\Archived</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\ResultScene.cpp">
-      <Filter>Game\Archived</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\SceneCommons.cpp">
-      <Filter>Game\Archived</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\TitleScene.cpp">
-      <Filter>Game\Archived</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Context\SceneManager.cpp">
       <Filter>Framework\Context</Filter>

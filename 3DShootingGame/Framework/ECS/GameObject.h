@@ -67,7 +67,7 @@ public:
 	{
 		if (registry->has<Tag>())
 			registry->remove<Tag>();
-		return registry->assign<Tag>(entt::tag_t{}, entity, std::forward<Component>(args)...);
+		return registry->assign<Tag>(entt::tag_t{}, entity, std::forward<Args>(args)...);
 	}
 
 	template<typename Tag>
