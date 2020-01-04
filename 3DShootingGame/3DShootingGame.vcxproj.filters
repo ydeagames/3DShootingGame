@@ -356,9 +356,6 @@
     <ClInclude Include="Framework\ECS\Context.h">
       <Filter>Framework\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Game\BuildSettings.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Events\AllEvents.h">
       <Filter>Game\Events</Filter>
     </ClInclude>
@@ -412,6 +409,9 @@
     </ClInclude>
     <ClInclude Include="Framework\PhysX\PhysXScene.h">
       <Filter>Framework\SceneManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\BuildSettings.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
