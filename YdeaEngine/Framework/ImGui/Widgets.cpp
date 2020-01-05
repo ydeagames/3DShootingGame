@@ -7,7 +7,7 @@
 #include <Utilities/WindowsUtils.h>
 #include <Framework/Context/SceneManager.h>
 #include <Framework/Context/ApplicationHandler.h>
-#include <Framework/ECS/Project.h>
+#include <Framework/MyProject.h>
 
 namespace Widgets
 {

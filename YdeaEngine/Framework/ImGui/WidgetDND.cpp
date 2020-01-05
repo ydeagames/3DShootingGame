@@ -3,7 +3,7 @@
 #include <Framework/Components/Transform.h>
 #include <Framework/Context/SceneManager.h>
 #include <Framework/ECS/GameContext.h>
-#include <Framework/ECS/Project.h>
+#include <Framework/MyProject.h>
 
 namespace Widgets
 {

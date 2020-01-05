@@ -6,7 +6,6 @@
 #include <Framework/ECS/Component.h>
 #include <Framework/ECS/Scene.h>
 #include <Framework/ECS/GameContext.h>
-#include <Framework/ECS/Project.h>
 #include <Framework/Context/SceneManager.h>
 #include <Framework/PhysX/PhysXManager.h>
 #include <Framework/Context/SaveHandler.h>
@@ -14,8 +13,13 @@
 #include <Framework/Context/ApplicationHandler.h>
 #include <Utilities/FPS.h>
 #include <Utilities/Input.h>
-#include <Game/BuildSettings.h>
-#include <Framework/ECS/Project.h>
+#include <Framework/Tags/Tags.h>
+#include <Framework/Components/Transform.h>
+#include <Framework/PhysX/PhysXScene.h>
+#include <Framework/MyProject.h>
+#include <Framework/Events/Updatable.h>
+#include <Framework/Events/Renderable.h>
+//#include <Game/BuildSettings.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -175,14 +179,14 @@ void MyGame::Render(GameCamera& camera)
 	}
 
 	// FPS
-	auto& fps = GameContext::Get<FPS>();
-	fps.update();
-	if (fps.hasFPSChanged())
-	{
-		std::wstringstream sb;
-		sb << BuildSettings::GAME_WINDOW_TITLE << L" - FPS: " << static_cast<int>(fps.getFPS());
-		SetWindowTextW(GameContext::Get<WindowHandler>().GetHandle(), sb.str().c_str());
-	}
+	//auto& fps = GameContext::Get<FPS>();
+	//fps.update();
+	//if (fps.hasFPSChanged())
+	//{
+	//	std::wstringstream sb;
+	//	sb << BuildSettings::GAME_WINDOW_TITLE << L" - FPS: " << static_cast<int>(fps.getFPS());
+	//	SetWindowTextW(GameContext::Get<WindowHandler>().GetHandle(), sb.str().c_str());
+	//}
 }
 
 class MyGame::ImGuiPtr

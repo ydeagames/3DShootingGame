@@ -267,8 +267,7 @@ namespace ECS
 			ComponentClone::Clone<Components...>(srcreg, srcs, dstreg, dsts);
 		}
 
-		template<typename RegistryInitializer>
-		static bool LoadScene(const std::string& location, entt::registry& scene, RegistryInitializer initFunc)
+		static bool LoadScene(const std::string& location, entt::registry& scene, std::function<void(entt::registry&)> initFunc)
 		{
 			std::ifstream storage(location);
 			auto snap = scene.restore();

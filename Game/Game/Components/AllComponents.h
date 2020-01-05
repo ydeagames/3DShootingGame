@@ -15,22 +15,22 @@
 namespace BuildSettings
 {
 	using Components = std::tuple<
-		PrimitiveRenderer,
-		ModelRenderer,
-		CameraComponent,
-		Background,
-		TitleMenu,
-		PlayMenu,
-		ResultMenu,
-		PauseMenu,
-		FPSCamera,
-		InfinityGridFloor,
-		FontRenderer,
-		PlayerController,
-		TranslateFollower,
-		RotateFollower,
-		TrackingFollower,
-		RainbowEffect,
-		Goal
+		//PrimitiveRenderer,
+		//ModelRenderer,
+		//CameraComponent,
+		//Background,
+		//TitleMenu,
+		//PlayMenu,
+		//ResultMenu,
+		//PauseMenu,
+		//FPSCamera,
+		//InfinityGridFloor,
+		//FontRenderer,
+		//PlayerController,
+		//TranslateFollower,
+		//RotateFollower,
+		//TrackingFollower,
+		//RainbowEffect,
+		//Goal
 	>;
 }

@@ -19,28 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <RootNamespace>3DShootingGame</RootNamespace>
+    <RootNamespace>YdeaEngine</RootNamespace>
     <ProjectGuid>{fefa6499-5df1-4263-b229-5eab06c949c1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
@@ -48,7 +48,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
@@ -63,6 +63,7 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\BasicPropertySheet.props" />
+    <Import Project="..\RuntimeLibraryPropertySheet.props" />
     <Import Project="..\ThirdParty\DirectXTKPropertySheet.props" />
     <Import Project="..\ThirdParty\ImGuiPropertySheet.props" />
     <Import Project="..\ThirdParty\PhysXPropertySheet.props" />
@@ -73,6 +74,7 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\BasicPropertySheet.props" />
+    <Import Project="..\RuntimeLibraryPropertySheet.props" />
     <Import Project="..\ThirdParty\DirectXTKPropertySheet.props" />
     <Import Project="..\ThirdParty\ImGuiPropertySheet.props" />
     <Import Project="..\ThirdParty\PhysXPropertySheet.props" />
@@ -83,6 +85,7 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\BasicPropertySheet.props" />
+    <Import Project="..\RuntimeLibraryPropertySheet.props" />
     <Import Project="..\ThirdParty\DirectXTKPropertySheet.props" />
     <Import Project="..\ThirdParty\ImGuiPropertySheet.props" />
     <Import Project="..\ThirdParty\PhysXPropertySheet.props" />
@@ -93,6 +96,7 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\BasicPropertySheet.props" />
+    <Import Project="..\RuntimeLibraryPropertySheet.props" />
     <Import Project="..\ThirdParty\DirectXTKPropertySheet.props" />
     <Import Project="..\ThirdParty\ImGuiPropertySheet.props" />
     <Import Project="..\ThirdParty\PhysXPropertySheet.props" />
@@ -551,9 +555,9 @@
     <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleWheels.h" />
     <ClInclude Include="Common\DeviceResources.h" />
     <ClInclude Include="Framework\Context\ApplicationHandler.h" />
-    <ClInclude Include="Framework\ECS\Project.h" />
     <ClInclude Include="Framework\Components\StandardSerialize.h" />
     <ClInclude Include="Framework\ECS\Context.h" />
+    <ClInclude Include="Framework\MyProject.h" />
     <ClInclude Include="Framework\ECS\Tag.h" />
     <ClInclude Include="Framework\Events\Renderable.h" />
     <ClInclude Include="Framework\Events\Updatable.h" />
@@ -561,8 +565,6 @@
     <ClInclude Include="Framework\Physics\Collidable.h" />
     <ClInclude Include="Framework\StandardBuildSettings.h" />
     <ClInclude Include="Framework\Tags\Tags.h" />
-    <ClInclude Include="Game\Components\Background.h" />
-    <ClInclude Include="Game\Components\CameraComponent.h" />
     <ClInclude Include="Framework\Context\GameCamera.h" />
     <ClInclude Include="Framework\Context\PauseHandler.h" />
     <ClInclude Include="Framework\Context\SaveHandler.h" />
@@ -592,32 +594,10 @@
     <ClInclude Include="Framework\Physics\Rigidbody.h" />
     <ClInclude Include="Framework\SceneManagement\SceneTransition.h" />
     <ClInclude Include="Framework\SceneManagement\SceneTransitions.h" />
-    <ClInclude Include="Game\Components\AllComponents.h" />
-    <ClInclude Include="Game\Components\FontRenderer.h" />
-    <ClInclude Include="Game\Components\FPSCamera.h" />
-    <ClInclude Include="Game\Components\Goal.h" />
-    <ClInclude Include="Game\Components\Menu.h" />
-    <ClInclude Include="Game\Components\ModelRenderer.h" />
-    <ClInclude Include="Game\Components\PlayerCamera.h" />
-    <ClInclude Include="Game\Components\PlayerController.h" />
-    <ClInclude Include="Game\Components\PrimitiveRenderer.h" />
-    <ClInclude Include="Game\Components\RainbowEffect.h" />
-    <ClInclude Include="Game\Events\AllEvents.h" />
-    <ClInclude Include="Game\Tags\AllTags.h" />
+    <ClInclude Include="Project.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
     <ClInclude Include="Utilities\StringCast.h" />
     <ClInclude Include="Utilities\WindowsUtils.h" />
-    <ClInclude Include="Game\BuildSettings.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="Game\Components\InfinityGridFloor.h" />
     <ClInclude Include="Framework\ImGui\ImGuiStyles.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Common\StepTimer.h" />
@@ -639,9 +619,9 @@
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Framework\Context\ApplicationHandler.cpp" />
+    <ClCompile Include="Framework\ECS\DllMain.cpp" />
+    <ClCompile Include="Framework\ECS\Project.cpp" />
     <ClCompile Include="Framework\ImGui\WidgetDND.cpp" />
-    <ClCompile Include="Game\Components\Background.cpp" />
-    <ClCompile Include="Game\Components\CameraComponent.cpp" />
     <ClCompile Include="Framework\Context\GameCamera.cpp" />
     <ClCompile Include="Framework\Context\PauseHandler.cpp" />
     <ClCompile Include="Framework\Context\SaveHandler.cpp" />
@@ -664,20 +644,9 @@
     <ClCompile Include="Framework\PhysX\PhysXScene.cpp" />
     <ClCompile Include="Framework\Physics\Rigidbody.cpp" />
     <ClCompile Include="Framework\SceneManagement\SceneTransitions.cpp" />
-    <ClCompile Include="Game\Components\FontRenderer.cpp" />
-    <ClCompile Include="Game\Components\FPSCamera.cpp" />
-    <ClCompile Include="Game\Components\Goal.cpp" />
-    <ClCompile Include="Game\Components\Menu.cpp" />
-    <ClCompile Include="Game\Components\ModelRenderer.cpp" />
-    <ClCompile Include="Game\Components\PlayerCamera.cpp" />
-    <ClCompile Include="Game\Components\PlayerController.cpp" />
-    <ClCompile Include="Game\Components\PrimitiveRenderer.cpp" />
-    <ClCompile Include="Game\Components\RainbowEffect.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
-    <ClCompile Include="Game\Components\InfinityGridFloor.cpp" />
     <ClCompile Include="Framework\ImGui\ImGuiStyles.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -691,45 +660,8 @@
     <ClCompile Include="Utilities\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resources\resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="directx.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="Resources\settings.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <MeshContentTask Include="Resources\Models\Assets\igaguri.fbx">
-      <FileType>Document</FileType>
-    </MeshContentTask>
-    <MeshContentTask Include="Resources\Models\Assets\target.fbx">
-      <FileType>Document</FileType>
-    </MeshContentTask>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\manual.html" />
     <None Include="..\ThirdParty\DirectXTK\Inc\SimpleMath.inl" />
-    <None Include="Resources\Shaders\Assets\RuleTransition.hlsli" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Resources\Shaders\Assets\RuleTransitionPS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\Assets\RuleTransitionVS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <MeshContentTask Include="Resources\Models\Assets\Terrain.obj">
-      <FileType>Document</FileType>
-    </MeshContentTask>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

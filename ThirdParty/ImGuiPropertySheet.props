@@ -11,7 +11,8 @@
   <!-- 共有設定 -->
   <PropertyGroup>
     <IncludePath>$(SolutionDir)ThirdParty/ImGui/Inc;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty/ImGui/Bin/$(Platform)/$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="!('$(RuntimeLibraryType)'=='LIB')">$(SolutionDir)ThirdParty/ImGui/Bin/MD/$(Platform)/$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(RuntimeLibraryType)'=='LIB'">$(SolutionDir)ThirdParty/ImGui/Bin/MT/$(Platform)/$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>

@@ -8,26 +8,17 @@
     <_PropertySheetDisplayName>Basic</_PropertySheetDisplayName>
   </PropertyGroup>
 
-  <!-- デバッグ -->
-  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
-    <ClCompile>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-    </ClCompile>
-  </ItemDefinitionGroup>
-
-  <!-- リリース -->
-  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
-    <ClCompile>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-    </ClCompile>
-  </ItemDefinitionGroup>
-
   <!-- 警告抑制 -->
   <ItemDefinitionGroup>
     <ClCompile>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
+
+  <!-- インクルード -->
+  <PropertyGroup>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
   
   <!-- モデル -->
   <ItemDefinitionGroup>

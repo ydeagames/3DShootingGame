@@ -4,21 +4,8 @@
     <Filter Include="Common">
       <UniqueIdentifier>dd471a7f-755e-4eeb-bbe7-9f4d12f0c8dd</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets">
-      <UniqueIdentifier>946e6a1b-bb73-4530-aa2b-c858cc9d80a7</UniqueIdentifier>
-      <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Framework">
       <UniqueIdentifier>{62cfa7e4-8610-4266-8021-e17b4ef9da93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{cf8a0ca0-8af4-47bd-887f-df40814b70ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{a85a0aac-a8fc-4f91-9a85-637537f77f2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Icons">
-      <UniqueIdentifier>{d6d1ab5d-e663-48ef-ab5d-e9d80e50a4ab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\DebugTools">
       <UniqueIdentifier>{b5498548-590e-41a8-b1f7-e928560f1c99}</UniqueIdentifier>
@@ -38,12 +25,6 @@
     <Filter Include="Framework\Physics">
       <UniqueIdentifier>{968b202d-8ad8-45fc-b895-d2e54b4b2abc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\Models">
-      <UniqueIdentifier>{9b5cb267-9962-4216-93b7-bafe3443cf78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Shaders">
-      <UniqueIdentifier>{a4e9b9d3-6215-4d78-a9b4-4d9590eec3bd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\ECS">
       <UniqueIdentifier>{095a5f1f-47f5-4e92-85bf-2e1a57cb2f04}</UniqueIdentifier>
     </Filter>
@@ -53,17 +34,8 @@
     <Filter Include="Framework\Context">
       <UniqueIdentifier>{568cbd5a-439e-4b87-9c9b-6acae77ddc0b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components">
-      <UniqueIdentifier>{7cce0b91-7d67-4ecb-b8b6-84751ab46b95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Events">
-      <UniqueIdentifier>{c5b4d880-481b-4546-8d75-27e33970246b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Events">
       <UniqueIdentifier>{3c75dc0f-9d59-4f3c-b0b1-94a1e4c65f6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Tags">
-      <UniqueIdentifier>{a3de3cb6-9d24-40a6-b60d-b9d7943b6e17}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Tags">
       <UniqueIdentifier>{e3a98d2a-83b3-44b3-890a-a42f0b76ed3c}</UniqueIdentifier>
@@ -233,56 +205,23 @@
     <ClInclude Include="Utilities\Math3DUtils.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Components\AllComponents.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\Background.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\Menu.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\StringCast.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\FPSCamera.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\InfinityGridFloor.h">
-      <Filter>Game\Components</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Components\StandardSerialize.h">
       <Filter>Framework\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Components\PrimitiveRenderer.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\ModelRenderer.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\ECS\Context.h">
       <Filter>Framework\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Events\AllEvents.h">
-      <Filter>Game\Events</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\StandardBuildSettings.h">
       <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ECS\Project.h">
-      <Filter>Framework\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Events\Updatable.h">
       <Filter>Framework\Events</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Events\Renderable.h">
       <Filter>Framework\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\CameraComponent.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Tags\AllTags.h">
-      <Filter>Game\Tags</Filter>
     </ClInclude>
     <ClInclude Include="Framework\ECS\Tag.h">
       <Filter>Framework\ECS</Filter>
@@ -296,29 +235,11 @@
     <ClInclude Include="Framework\Context\ApplicationHandler.h">
       <Filter>Framework\Context</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Components\FontRenderer.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\PlayerController.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\PlayerCamera.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\ImGui\WidgetDND.h">
       <Filter>Framework\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Components\RainbowEffect.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\Goal.h">
-      <Filter>Game\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\PhysX\PhysXScene.h">
       <Filter>Framework\SceneManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\BuildSettings.h">
-      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\cereal_optional\optional_binary.hpp">
       <Filter>ThirdParty\Cereal</Filter>
@@ -1319,10 +1240,13 @@
     <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxTriangleMeshGeometry.h">
       <Filter>ThirdParty\PhysX</Filter>
     </ClInclude>
+    <ClInclude Include="Project.h" />
+    <ClInclude Include="Framework\MyProject.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Framework\Game.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
@@ -1416,87 +1340,16 @@
     <ClCompile Include="Utilities\Math3DUtils.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Components\Background.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\Menu.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\FPSCamera.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\InfinityGridFloor.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\PrimitiveRenderer.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\ModelRenderer.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\CameraComponent.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Context\ApplicationHandler.cpp">
       <Filter>Framework\Context</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\FontRenderer.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\PlayerController.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\PlayerCamera.cpp">
-      <Filter>Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Framework\ImGui\WidgetDND.cpp">
       <Filter>Framework\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Components\RainbowEffect.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Components\Goal.cpp">
-      <Filter>Game\Components</Filter>
-    </ClCompile>
+    <ClCompile Include="Framework\ECS\Project.cpp" />
+    <ClCompile Include="Framework\ECS\DllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resources\resource.rc">
-      <Filter>Resources</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="directx.ico">
-      <Filter>Resources\Icons</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="Resources\settings.manifest">
-      <Filter>Resources</Filter>
-    </Manifest>
-  </ItemGroup>
-  <ItemGroup>
-    <MeshContentTask Include="Resources\Models\Assets\igaguri.fbx">
-      <Filter>Assets\Models</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Resources\Models\Assets\target.fbx">
-      <Filter>Assets\Models</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Resources\Models\Assets\Terrain.obj">
-      <Filter>Assets\Models</Filter>
-    </MeshContentTask>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Resources\Shaders\Assets\RuleTransitionPS.hlsl">
-      <Filter>Assets\Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\Assets\RuleTransitionVS.hlsl">
-      <Filter>Assets\Shaders</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Shaders\Assets\RuleTransition.hlsli">
-      <Filter>Assets\Shaders</Filter>
-    </None>
     <None Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\manual.html">
       <Filter>ThirdParty\Cereal</Filter>
     </None>

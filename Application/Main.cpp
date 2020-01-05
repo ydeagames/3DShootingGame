@@ -5,6 +5,7 @@
 #include "pch.h"
 #include <Framework/Game.h>
 #include <Game/BuildSettings.h>
+#include <Project.h>
 
 // デバッグコンソール
 #include <io.h>
@@ -48,6 +49,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     UNREFERENCED_PARAMETER(lpCmdLine);
 
 	CreateConsoleWindow();
+
+	ECS::AllComponents::Load();
 
     if (!XMVerifyCPUSupport())
         return 1;

@@ -1,7 +1,4 @@
 #pragma once
-#include <Game/Components/AllComponents.h>
-#include <Game/Events/AllEvents.h>
-#include <Game/Tags/AllTags.h>
 
 namespace BuildSettings
 {
