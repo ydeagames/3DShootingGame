@@ -29,33 +29,6 @@
     <Filter Include="Framework\PhysX">
       <UniqueIdentifier>{7b01bfa2-6ca7-490b-ac5b-16d4575d9dad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries">
-      <UniqueIdentifier>{f51ead3e-6acf-4b03-b0d7-1b38c4166517}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\entt">
-      <UniqueIdentifier>{18490d86-28d3-43e0-b71b-0a554da8f5f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\entt\config">
-      <UniqueIdentifier>{d7cb8d82-d192-4d2f-884b-34be721b0adc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\entt\core">
-      <UniqueIdentifier>{917039ed-8c7a-4d29-87e1-3fb32e48fa7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\entt\entity">
-      <UniqueIdentifier>{de1967a4-f3c5-4e39-9505-da160420ac60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\entt\locator">
-      <UniqueIdentifier>{58c80bd2-a7c8-42f0-9759-99111d21670f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\entt\process">
-      <UniqueIdentifier>{9f50b01f-98fc-409d-81ad-ea1ed8e81ce7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\entt\resource">
-      <UniqueIdentifier>{fcca93f8-ce06-4d38-a4f5-8f7e5c262aa8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\entt\signal">
-      <UniqueIdentifier>{40bd6c40-54c1-4991-a038-0e84b7707d83}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\SceneManagement">
       <UniqueIdentifier>{93cb9e8a-6484-4eda-827f-c685444c9f8f}</UniqueIdentifier>
     </Filter>
@@ -94,6 +67,27 @@
     </Filter>
     <Filter Include="Framework\Tags">
       <UniqueIdentifier>{e3a98d2a-83b3-44b3-890a-a42f0b76ed3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{4b7ec58b-3b3c-4817-9fad-8f3d0ae666e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Cereal">
+      <UniqueIdentifier>{a6856b9c-4f51-4838-9380-2c0084d78e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTK">
+      <UniqueIdentifier>{b4496cf5-fe60-41ac-9b94-2e0e4a302049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\EnTT">
+      <UniqueIdentifier>{86486d8a-fd0e-41b4-bef6-8dac06e89665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ImGui">
+      <UniqueIdentifier>{fe1fe017-d3da-4172-b08d-76aa4a2a0e35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Misc">
+      <UniqueIdentifier>{ca27d035-097c-4eb7-822a-66f690d2a5f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\PhysX">
+      <UniqueIdentifier>{73e3565f-2ab2-447a-a66d-68a1d9aec542}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -163,93 +157,6 @@
     </ClInclude>
     <ClInclude Include="Utilities\FPS.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\picojson.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\config\config.h">
-      <Filter>Libraries\entt\config</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\core\algorithm.hpp">
-      <Filter>Libraries\entt\core</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\core\family.hpp">
-      <Filter>Libraries\entt\core</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\core\hashed_string.hpp">
-      <Filter>Libraries\entt\core</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\core\ident.hpp">
-      <Filter>Libraries\entt\core</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\core\monostate.hpp">
-      <Filter>Libraries\entt\core</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\actor.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\attachee.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\entity.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\entt_traits.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\helper.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\prototype.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\registry.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\snapshot.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\sparse_set.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\utility.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entity\view.hpp">
-      <Filter>Libraries\entt\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\locator\locator.hpp">
-      <Filter>Libraries\entt\locator</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\process\process.hpp">
-      <Filter>Libraries\entt\process</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\process\scheduler.hpp">
-      <Filter>Libraries\entt\process</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\resource\cache.hpp">
-      <Filter>Libraries\entt\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\resource\handle.hpp">
-      <Filter>Libraries\entt\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\resource\loader.hpp">
-      <Filter>Libraries\entt\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\signal\delegate.hpp">
-      <Filter>Libraries\entt\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\signal\dispatcher.hpp">
-      <Filter>Libraries\entt\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\signal\emitter.hpp">
-      <Filter>Libraries\entt\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\signal\sigh.hpp">
-      <Filter>Libraries\entt\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\entt\entt.hpp">
-      <Filter>Libraries\entt</Filter>
     </ClInclude>
     <ClInclude Include="Framework\ImGui\ImGuiManager.h">
       <Filter>Framework\ImGui</Filter>
@@ -412,6 +319,1005 @@
     </ClInclude>
     <ClInclude Include="Game\BuildSettings.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\cereal_optional\optional_binary.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\cereal_optional\optional_json.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\cereal_optional\optional_nvp.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\details\helpers.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\details\polymorphic_impl.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\details\polymorphic_impl_fwd.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\details\static_object.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\details\traits.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\details\util.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\base64.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\allocators.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\cursorstreamwrapper.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\document.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\encodedstream.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\encodings.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\error\en.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\error\error.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\filereadstream.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\filewritestream.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\fwd.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\biginteger.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\diyfp.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\dtoa.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\ieee754.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\itoa.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\meta.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\pow10.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\regex.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\stack.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\strfunc.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\strtod.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\internal\swap.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\istreamwrapper.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\memorybuffer.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\memorystream.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\msinttypes\inttypes.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\msinttypes\stdint.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\ostreamwrapper.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\pointer.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\prettywriter.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\rapidjson.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\reader.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\schema.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\stream.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\stringbuffer.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidjson\writer.h">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\rapidxml.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\rapidxml_iterators.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\rapidxml_print.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\rapidxml_utils.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\array.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\atomic.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\base_class.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\bitset.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\boost_variant.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\chrono.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\common.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\complex.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\concepts\pair_associative_container.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\deque.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\forward_list.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\functional.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\list.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\map.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\memory.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\optional.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\polymorphic.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\queue.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\set.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\stack.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\string.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\tuple.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\unordered_map.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\unordered_set.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\utility.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\valarray.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\variant.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\types\vector.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\access.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\cereal.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\macros.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\specialize.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\version.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\archives\adapters.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\archives\binary.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\archives\json.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\archives\portable_binary.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Cereal\Inc\cereal\archives\xml.hpp">
+      <Filter>ThirdParty\Cereal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\Mouse.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\PostProcess.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\PrimitiveBatch.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\ScreenGrab.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\SimpleMath.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\SpriteBatch.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\SpriteFont.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\VertexTypes.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\WICTextureLoader.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\XboxDDSTextureLoader.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\Audio.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\CommonStates.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\DDSTextureLoader.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\DirectXHelpers.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\Effects.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\GamePad.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\GeometricPrimitive.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\GraphicsMemory.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\Keyboard.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\DirectXTK\Inc\Model.h">
+      <Filter>ThirdParty\DirectXTK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\locator\locator.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\process\process.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\process\scheduler.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\resource\cache.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\resource\handle.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\resource\loader.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\signal\delegate.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\signal\dispatcher.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\signal\emitter.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\signal\sigh.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entt.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\config\config.h">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\core\algorithm.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\core\family.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\core\hashed_string.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\core\ident.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\core\monostate.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\actor.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\attachee.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\entity.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\entt_traits.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\helper.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\prototype.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\registry.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\snapshot.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\sparse_set.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\utility.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\EnTT\Inc\entity\view.hpp">
+      <Filter>ThirdParty\EnTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGui\Inc\imgui_internal.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGui\Inc\imstb_rectpack.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGui\Inc\imstb_textedit.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGui\Inc\imstb_truetype.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGui\Inc\imconfig.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGui\Inc\imgui.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGui\Inc\imgui_impl_dx11.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGui\Inc\imgui_impl_win32.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\Misc\Inc\imgui_entt_entity_editor.hpp">
+      <Filter>ThirdParty\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geomutils\GuContactBuffer.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geomutils\GuContactPoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\gpu\PxGpu.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\pvd\PxPvd.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\pvd\PxPvdSceneClient.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\pvd\PxPvdTransport.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\solver\PxSolverDefs.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\task\PxCpuDispatcher.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\task\PxTask.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\task\PxTaskDefine.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\task\PxTaskManager.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleComponents.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleDrive.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleDrive4W.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleDriveNW.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleDriveTank.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleNoDrive.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleSDK.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleShaders.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleTireFriction.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleUpdate.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleUtil.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleUtilControl.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleUtilSetup.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleUtilTelemetry.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\vehicle\PxVehicleWheels.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxActor.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxAggregate.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxArticulation.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxArticulationBase.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxArticulationJoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxArticulationJointReducedCoordinate.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxArticulationLink.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxArticulationReducedCoordinate.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxBatchQuery.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxBatchQueryDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxBroadPhase.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxClient.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxConfig.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxConstraint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxConstraintDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxContact.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxContactModifyCallback.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxDeletionListener.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxFiltering.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxForceMode.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxFoundation.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxImmediateMode.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxLockedData.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxMaterial.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxPhysics.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxPhysicsAPI.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxPhysicsSerialization.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxPhysicsVersion.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxPhysXConfig.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxPruningStructure.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxQueryFiltering.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxQueryReport.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxRigidActor.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxRigidBody.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxRigidDynamic.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxRigidStatic.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxScene.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxSceneDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxSceneLock.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxShape.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxSimulationEventCallback.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxSimulationStatistics.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\PxVisualizationParameter.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\characterkinematic\PxBoxController.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\characterkinematic\PxCapsuleController.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\characterkinematic\PxController.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\characterkinematic\PxControllerBehavior.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\characterkinematic\PxControllerManager.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\characterkinematic\PxControllerObstacles.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\characterkinematic\PxExtended.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\collision\PxCollisionDefs.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxBase.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxCollection.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxCoreUtilityTypes.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxMetaData.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxMetaDataFlags.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxPhysicsInsertionCallback.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxPhysXCommonConfig.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxProfileZone.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxRenderBuffer.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxSerialFramework.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxSerializer.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxStringTable.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxTolerancesScale.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\PxTypeInfo.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\common\windows\PxWindowsDelayLoadHook.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cooking\PxBVH33MidphaseDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cooking\PxBVH34MidphaseDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cooking\PxBVHStructureDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cooking\Pxc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cooking\PxConvexMeshDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cooking\PxCooking.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cooking\PxMidphaseDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cooking\PxTriangleMeshDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cudamanager\PxCudaContextManager.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\cudamanager\PxCudaMemoryManager.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxBinaryConverter.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxBroadPhaseExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxCollectionExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxConstraintExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxContactJoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxConvexMeshExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxD6Joint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxD6JointCreate.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxDefaultAllocator.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxDefaultCpuDispatcher.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxDefaultErrorCallback.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxDefaultSimulationFilterShader.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxDefaultStreams.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxDistanceJoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxExtensionsAPI.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxFixedJoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxJoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxJointLimit.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxMassProperties.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxPrismaticJoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxRaycastCCD.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxRepXSerializer.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxRepXSimpleType.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxRevoluteJoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxRigidActorExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxRigidBodyExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxSceneQueryExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxSerialization.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxShapeExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxSimpleFactory.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxSmoothNormals.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxSphericalJoint.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxStringTableExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\extensions\PxTriangleMeshExt.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\filebuf\PxFileBuf.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\Px.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxAllocatorCallback.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxAssert.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxBitAndData.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxBounds3.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxErrorCallback.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxErrors.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxFlags.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxFoundationConfig.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxIntrinsics.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxIO.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxMat33.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxMat44.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxMath.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxMathUtils.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxMemory.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxPlane.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxPreprocessor.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxProfiler.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxQuat.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxSharedAssert.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxSimpleTypes.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxStrideIterator.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxTransform.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxUnionCast.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxVec2.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxVec3.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\PxVec4.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\unix\PxUnixIntrinsics.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\foundation\windows\PxWindowsIntrinsics.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxBoxGeometry.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxBVHStructure.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxCapsuleGeometry.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxConvexMesh.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxConvexMeshGeometry.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxGeometry.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxGeometryHelpers.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxGeometryQuery.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxHeightField.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxHeightFieldDesc.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxHeightFieldFlag.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxHeightFieldGeometry.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxHeightFieldSample.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxMeshQuery.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxMeshScale.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxPlaneGeometry.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxSimpleTriangleMesh.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxSphereGeometry.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxTriangle.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxTriangleMesh.h">
+      <Filter>ThirdParty\PhysX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxTriangleMeshGeometry.h">
+      <Filter>ThirdParty\PhysX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -590,6 +1496,12 @@
   <ItemGroup>
     <None Include="Resources\Shaders\Assets\RuleTransition.hlsli">
       <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\manual.html">
+      <Filter>ThirdParty\Cereal</Filter>
+    </None>
+    <None Include="..\ThirdParty\DirectXTK\Inc\SimpleMath.inl">
+      <Filter>ThirdParty\DirectXTK</Filter>
     </None>
   </ItemGroup>
 </Project>
