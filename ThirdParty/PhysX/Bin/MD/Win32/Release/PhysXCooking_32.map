@@ -1,0 +1,1802 @@
+ PhysXCooking_32
+
+ Timestamp is 5e12656a (Mon Jan  6 07:38:34 2020)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000640H .text$di                CODE
+ 0001:00000640 00025404H .text$mn                CODE
+ 0002:00000000 000000d4H .idata$5                DATA
+ 0002:000000d4 00000004H .00cfg                  DATA
+ 0002:000000d8 00000004H .CRT$XCA                DATA
+ 0002:000000dc 000000f0H .CRT$XCU                DATA
+ 0002:000001cc 00000004H .CRT$XCZ                DATA
+ 0002:000001d0 00000004H .CRT$XIA                DATA
+ 0002:000001d4 00000004H .CRT$XIZ                DATA
+ 0002:000001d8 00000004H .CRT$XPA                DATA
+ 0002:000001dc 00000004H .CRT$XPZ                DATA
+ 0002:000001e0 00000004H .CRT$XTA                DATA
+ 0002:000001e4 0000000cH .CRT$XTZ                DATA
+ 0002:000001f0 00001b44H .rdata                  DATA
+ 0002:00001d34 0000004cH .rdata$r                DATA
+ 0002:00001d80 00000004H .rdata$sxdata           DATA
+ 0002:00001d84 00000370H .rdata$zzzdbg           DATA
+ 0002:000020f4 00000004H .rtc$IAA                DATA
+ 0002:000020f8 00000004H .rtc$IZZ                DATA
+ 0002:000020fc 00000004H .rtc$TAA                DATA
+ 0002:00002100 00000008H .rtc$TZZ                DATA
+ 0002:00002108 0000007cH .xdata$x                DATA
+ 0002:00002184 00000040H .didat$2                DATA
+ 0002:000021c4 00000020H .didat$3                DATA
+ 0002:000021e4 000000f4H .didat$4                DATA
+ 0002:000022d8 00000b98H .didat$6                DATA
+ 0002:00002e70 00000100H .didat$7                DATA
+ 0002:00002f70 00001c88H .edata                  DATA
+ 0002:00004bf8 00000064H .idata$2                DATA
+ 0002:00004c5c 00000014H .idata$3                DATA
+ 0002:00004c70 000000d4H .idata$4                DATA
+ 0002:00004d44 0000042cH .idata$6                DATA
+ 0003:00000000 00000028H .data                   DATA
+ 0003:00000028 000004c4H .data$r                 DATA
+ 0003:000004ec 000000f4H .didat$5                DATA
+ 0003:000005e0 00000758H .bss                    DATA
+ 0004:00000000 00000020H .gfids$y                DATA
+ 0005:00000000 000000a0H .rsrc$01                DATA
+ 0005:000000a0 000004b0H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
+ 0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_table     00000000     <absolute>
+ 0000:00000000       ___guard_iat_table         00000000     <absolute>
+ 0000:00000000       ___guard_fids_count        00000000     <absolute>
+ 0000:00000000       ___guard_fids_table        00000000     <absolute>
+ 0000:00000000       ___guard_iat_count         00000000     <absolute>
+ 0000:00000001       ___safe_se_handler_count   00000001     <absolute>
+ 0000:00000100       ___guard_flags             00000100     <absolute>
+ 0000:00000000       ___ImageBase               10000000     <linker-defined>
+ 0001:00000640       ?ComputeNbBoundaryEdges@AdjTriangle@physx@@QBEIXZ 10001640 f   Adjacencies.obj
+ 0001:00000680       ?ComputeNbNeighbors@AdjTriangle@physx@@QBEIXZ 10001680 f   Adjacencies.obj
+ 0001:000006c0       ?HasNeighbor@AdjTriangle@physx@@QBE_NIPAI@Z 100016c0 f   Adjacencies.obj
+ 0001:00000740       ?Flip@AdjTriangle@physx@@QAEXXZ 10001740 f   Adjacencies.obj
+ 0001:00000750       ??0Adjacencies@physx@@QAE@XZ 10001750 f   Adjacencies.obj
+ 0001:00000760       ??1Adjacencies@physx@@QAE@XZ 10001760 f   Adjacencies.obj
+ 0001:000007a0       ?Load@Adjacencies@physx@@QAE_NAAVPxInputStream@2@@Z 100017a0 f   Adjacencies.obj
+ 0001:00000880       ?ComputeNbBoundaryEdges@Adjacencies@physx@@QBEIXZ 10001880 f   Adjacencies.obj
+ 0001:000008f0       ?GetBoundaryVertices@Adjacencies@physx@@QBE_NIPA_NPBU?$TriangleT@I@Gu@2@@Z 100018f0 f   Adjacencies.obj
+ 0001:00000a40       ?MakeLastRef@Adjacencies@physx@@QAE_NAAVAdjTriangle@2@IPAU?$TriangleT@I@Gu@2@@Z 10001a40 f   Adjacencies.obj
+ 0001:00000c00       ?AssignNewEdgeCode@Adjacencies@physx@@AAEXIE@Z 10001c00 f   Adjacencies.obj
+ 0001:00000c40       ??0AdjacenciesBuilder@physx@@QAE@XZ 10001c40 f   Adjacencies.obj
+ 0001:00000c50       ??1AdjacenciesBuilder@physx@@QAE@XZ 10001c50 f   Adjacencies.obj
+ 0001:00000c90       ?Init@AdjacenciesBuilder@physx@@QAE_NABUADJACENCIESCREATE@2@@Z 10001c90 f   Adjacencies.obj
+ 0001:00000f70       ??0AdjEdge@@QAE@XZ         10001f70 f i Adjacencies.obj
+ 0001:00000f80       ??0AdjTriangle@physx@@QAE@XZ 10001f80 f i Adjacencies.obj
+ 0001:00000f90       ??0Allocator@shdfnd@physx@@QAE@PBD@Z 10001f90 f i Adjacencies.obj
+ 0001:00000fa0       ??0PxFoundation@physx@@QAE@ABV01@@Z 10001fa0 f i Adjacencies.obj
+ 0001:00000fb0       ??0PxFoundation@physx@@QAE@XZ 10001fb0 f i Adjacencies.obj
+ 0001:00000fc0       ??1AdjEdge@@QAE@XZ         10001fc0 f i Adjacencies.obj
+ 0001:00000fd0       ??1AdjTriangle@physx@@QAE@XZ 10001fd0 f i Adjacencies.obj
+ 0001:00000fe0       ??1PxFoundation@physx@@MAE@XZ 10001fe0 f i Adjacencies.obj
+ 0001:00000ff0       ??4Allocator@shdfnd@physx@@QAEAAV012@$$QAV012@@Z 10001ff0 f i Adjacencies.obj
+ 0001:00001000       ??4Allocator@shdfnd@physx@@QAEAAV012@ABV012@@Z 10002000 f i Adjacencies.obj
+ 0001:00001010       ??4MutexImpl@shdfnd@physx@@QAEAAV012@ABV012@@Z 10002010 f i Adjacencies.obj
+ 0001:00001020       ??4PxFoundation@physx@@QAEAAV01@ABV01@@Z 10002020 f i Adjacencies.obj
+ 0001:00001030       ??_EAdjEdge@@QAEPAXI@Z     10002030 f i Adjacencies.obj
+ 0001:000010a0       ??_EAdjTriangle@physx@@QAEPAXI@Z 100020a0 f i Adjacencies.obj
+ 0001:00001110       ??_EPxFoundation@physx@@MAEPAXI@Z 10002110 f i Adjacencies.obj
+ 0001:00001180       ??_FAllocator@shdfnd@physx@@QAEXXZ 10002180 f i Adjacencies.obj
+ 0001:00001190       ??_GPxFoundation@physx@@MAEPAXI@Z 10002190 f i Adjacencies.obj
+ 0001:000011c0       ??_H@YGXPAXIIP6EPAX0@Z@Z   100021c0 f i Adjacencies.obj
+ 0001:000011f0       ??_I@YGXPAXIIP6EX0@Z@Z     100021f0 f i Adjacencies.obj
+ 0001:000014f0       ?GetNbHits@RadixSort@Cm@physx@@QBEIXZ 100024f0 f i Adjacencies.obj
+ 0001:00001500       ?GetNbTotalCalls@RadixSort@Cm@physx@@QBEIXZ 10002500 f i Adjacencies.obj
+ 0001:00001510       ?GetRanks@RadixSort@Cm@physx@@QBEPBIXZ 10002510 f i Adjacencies.obj
+ 0001:00001520       ?GetRecyclable@RadixSort@Cm@physx@@QBEPAIXZ 10002520 f i Adjacencies.obj
+ 0001:000016d0       ?__empty_global_delete@@YAXPAX@Z 100026d0 f i Adjacencies.obj
+ 0001:000016e0       ?__empty_global_delete@@YAXPAXI@Z 100026e0 f i Adjacencies.obj
+ 0001:000016f0       ?getAllocator@Foundation@shdfnd@physx@@QAEAAVPxAllocatorCallback@3@XZ 100026f0 f i Adjacencies.obj
+ 0001:00001700       ?getAllocatorCallback@Foundation@shdfnd@physx@@UAEAAVPxAllocatorCallback@3@XZ 10002700 f i Adjacencies.obj
+ 0001:00001710       ?getErrorCallback@Foundation@shdfnd@physx@@UAEAAVPxErrorCallback@3@XZ 10002710 f i Adjacencies.obj
+ 0001:00001720       ?getErrorLevel@Foundation@shdfnd@physx@@UBE?AW4Enum@PxErrorCode@3@XZ 10002720 f i Adjacencies.obj
+ 0001:00001730       ?getInternalErrorCallback@Foundation@shdfnd@physx@@QAEAAVPxErrorCallback@3@XZ 10002730 f i Adjacencies.obj
+ 0001:00001740       ?getNamedAllocMap@Foundation@shdfnd@physx@@QAEAAV?$HashMap@PBVNamedAllocator@shdfnd@physx@@PBDU?$Hash@PBVNamedAllocator@shdfnd@physx@@@23@VNonTrackingAllocator@23@@23@XZ 10002740 f i Adjacencies.obj
+ 0001:00001750       ?getNamedAllocMutex@Foundation@shdfnd@physx@@QAEAAV?$MutexT@VAllocator@shdfnd@physx@@@23@XZ 10002750 f i Adjacencies.obj
+ 0001:00001760       ?getReportAllocationNames@Foundation@shdfnd@physx@@UBE_NXZ 10002760 f i Adjacencies.obj
+ 0001:00001770       ?getTempAllocFreeTable@Foundation@shdfnd@physx@@QAEAAV?$Array@PATTempAllocatorChunk@shdfnd@physx@@VAllocator@23@@23@XZ 10002770 f i Adjacencies.obj
+ 0001:00001780       ?getTempAllocMutex@Foundation@shdfnd@physx@@QAEAAV?$MutexT@VAllocator@shdfnd@physx@@@23@XZ 10002780 f i Adjacencies.obj
+ 0001:00001790       ?invalidateRanks@RadixSort@Cm@physx@@QAEXXZ 10002790 f i Adjacencies.obj
+ 0001:000017a0       ?setErrorLevel@Foundation@shdfnd@physx@@UAEXW4Enum@PxErrorCode@3@@Z 100027a0 f i Adjacencies.obj
+ 0001:000017b0       ?setReportAllocationNames@Foundation@shdfnd@physx@@UAEX_N@Z 100027b0 f i Adjacencies.obj
+ 0001:000017c0       _PxCreateCooking           100027c0 f   Cooking.obj
+ 0001:00001830       ?release@Cooking@physx@@UAEXXZ 10002830 f   Cooking.obj
+ 0001:00001840       ?setParams@Cooking@physx@@UAEXABUPxCookingParams@2@@Z 10002840 f   Cooking.obj
+ 0001:000018a0       ?getParams@Cooking@physx@@UBEABUPxCookingParams@2@XZ 100028a0 f   Cooking.obj
+ 0001:000018b0       ?platformMismatch@Cooking@physx@@UBE_NXZ 100028b0 f   Cooking.obj
+ 0001:000018c0       ?cookTriangleMesh@Cooking@physx@@UBE_NABVPxTriangleMeshDesc@2@AAVPxOutputStream@2@PAW4Enum@PxTriangleMeshCookingResult@2@@Z 100028c0 f   Cooking.obj
+ 0001:00001950       ?createTriangleMesh@Cooking@physx@@UBEPAVPxTriangleMesh@2@ABVPxTriangleMeshDesc@2@AAVPxPhysicsInsertionCallback@2@PAW4Enum@PxTriangleMeshCookingResult@2@@Z 10002950 f   Cooking.obj
+ 0001:000019d0       ?validateTriangleMesh@Cooking@physx@@UBE_NABVPxTriangleMeshDesc@2@@Z 100029d0 f   Cooking.obj
+ 0001:00001a60       ?cookConvexMesh@Cooking@physx@@UBE_NABVPxConvexMeshDesc@2@AAVPxOutputStream@2@PAW4Enum@PxConvexMeshCookingResult@2@@Z 10002a60 f   Cooking.obj
+ 0001:00001bf0       ?createConvexMesh@Cooking@physx@@UBEPAVPxConvexMesh@2@ABVPxConvexMeshDesc@2@AAVPxPhysicsInsertionCallback@2@PAW4Enum@PxConvexMeshCookingResult@2@@Z 10002bf0 f   Cooking.obj
+ 0001:00001e50       ?validateConvexMesh@Cooking@physx@@UBE_NABVPxConvexMeshDesc@2@@Z 10002e50 f   Cooking.obj
+ 0001:00001ea0       ?computeHullPolygons@Cooking@physx@@UBE_NABVPxSimpleTriangleMesh@2@AAVPxAllocatorCallback@2@AAIAAPAVPxVec3@2@2AAPAI2AAPAUPxHullPolygon@2@@Z 10002ea0 f   Cooking.obj
+ 0001:00001fd0       ?cookHeightField@Cooking@physx@@UBE_NABVPxHeightFieldDesc@2@AAVPxOutputStream@2@@Z 10002fd0 f   Cooking.obj
+ 0001:000020b0       ?createHeightField@Cooking@physx@@UBEPAVPxHeightField@2@ABVPxHeightFieldDesc@2@AAVPxPhysicsInsertionCallback@2@@Z 100030b0 f   Cooking.obj
+ 0001:000021e0       ?cookBVHStructure@Cooking@physx@@UBE_NABVPxBVHStructureDesc@2@AAVPxOutputStream@2@@Z 100031e0 f   Cooking.obj
+ 0001:00002290       ?createBVHStructure@Cooking@physx@@UBEPAVPxBVHStructure@2@ABVPxBVHStructureDesc@2@AAVPxPhysicsInsertionCallback@2@@Z 10003290 f   Cooking.obj
+ 0001:00002340       ?cookConvexMeshInternal@Cooking@physx@@ABE_NABVPxConvexMeshDesc@2@AAVConvexMeshBuilder@2@PAVConvexHullLib@2@PAW4Enum@PxConvexMeshCookingResult@2@@Z 10003340 f   Cooking.obj
+ 0001:000024a0       ?cookTriangleMesh@Cooking@physx@@ABE_NAAVTriangleMeshBuilder@2@ABVPxTriangleMeshDesc@2@AAVPxOutputStream@2@PAW4Enum@PxTriangleMeshCookingResult@2@@Z 100034a0 f   Cooking.obj
+ 0001:00002520       ?createTriangleMesh@Cooking@physx@@ABEPAVPxTriangleMesh@2@AAVTriangleMeshBuilder@2@ABVPxTriangleMeshDesc@2@AAVPxPhysicsInsertionCallback@2@PAW4Enum@PxTriangleMeshCookingResult@2@@Z 10003520 f   Cooking.obj
+ 0001:000025b0       ??0ConvexMesh@Gu@physx@@QAE@V?$PxFlags@W4Enum@PxBaseFlag@physx@@G@2@@Z 100035b0 f i Cooking.obj
+ 0001:000025e0       ??0Cooking@physx@@QAE@ABUPxCookingParams@1@@Z 100035e0 f i Cooking.obj
+ 0001:00002650       ??0DebugText@Cm@physx@@QAE@$$QAU012@@Z 10003650 f i Cooking.obj
+ 0001:000026a0       ??0DebugText@Cm@physx@@QAE@ABU012@@Z 100036a0 f i Cooking.obj
+ 0001:000026f0       ??0HeightFieldData@Gu@physx@@QAE@$$QAU012@@Z 100036f0 f i Cooking.obj
+ 0001:00002760       ??0HeightFieldData@Gu@physx@@QAE@ABU012@@Z 10003760 f i Cooking.obj
+ 0001:000027d0       ??0HeightFieldData@Gu@physx@@QAE@W4PxEMPTY@2@@Z 100037d0 f i Cooking.obj
+ 0001:000027e0       ??0HeightFieldData@Gu@physx@@QAE@XZ 100037e0 f i Cooking.obj
+ 0001:000027f0       ??0PxConvexMeshDesc@physx@@QAE@ABV01@@Z 100037f0 f i Cooking.obj
+ 0001:00002840       ??0PxMat44@physx@@QAE@ABV01@@Z 10003840 f i Cooking.obj
+ 0001:000028b0       ??0PxMat44@physx@@QAE@W4PxIDENTITY@1@@Z 100038b0 f i Cooking.obj
+ 0001:00002930       ??0RenderOutput@Cm@physx@@QAE@AAVRenderBuffer@12@@Z 10003930 f i Cooking.obj
+ 0001:00002990       ??0RenderOutput@Cm@physx@@QAE@ABV012@@Z 10003990 f i Cooking.obj
+ 0001:000029f0       ??1HeightFieldData@Gu@physx@@QAE@XZ 100039f0 f i Cooking.obj
+ 0001:00002a00       ??1PxBase@physx@@MAE@XZ    10003a00 f i Cooking.obj
+ 0001:00002a10       ??1PxConvexMesh@physx@@MAE@XZ 10003a10 f i Cooking.obj
+ 0001:00002a20       ??1PxCooking@physx@@MAE@XZ 10003a20 f i Cooking.obj
+ 0001:00002a30       ??1PxHeightField@physx@@MAE@XZ 10003a30 f i Cooking.obj
+ 0001:00002a40       ??1RefCountable@Cm@physx@@UAE@XZ 10003a40 f i Cooking.obj
+ 0001:00002a50       ??4DebugText@Cm@physx@@QAEAAU012@$$QAU012@@Z 10003a50 f i Cooking.obj
+ 0001:00002ab0       ??4DebugText@Cm@physx@@QAEAAU012@ABU012@@Z 10003ab0 f i Cooking.obj
+ 0001:00002b10       ??4FPUGuard@shdfnd@physx@@QAEAAV012@ABV012@@Z 10003b10 f i Cooking.obj
+ 0001:00002b30       ??4HeightFieldData@Gu@physx@@QAEAAU012@$$QAU012@@Z 10003b30 f i Cooking.obj
+ 0001:00002ba0       ??4HeightFieldData@Gu@physx@@QAEAAU012@ABU012@@Z 10003ba0 f i Cooking.obj
+ 0001:00002c10       ??_EConvexMesh@Gu@physx@@UAEPAXI@Z 10003c10 f i Cooking.obj
+ 0001:00002cc1       ??_EConvexMesh@Gu@physx@@W7AEPAXI@Z 10003cc1 f i Cooking.obj
+ 0001:00002cd0       ??_EPxConvexMesh@physx@@MAEPAXI@Z 10003cd0 f i Cooking.obj
+ 0001:00002d40       ??_GCooking@physx@@UAEPAXI@Z 10003d40 f i Cooking.obj
+ 0001:00002d40       ??_ECooking@physx@@UAEPAXI@Z 10003d40 f i Cooking.obj
+ 0001:00002d80       ??_EPxBase@physx@@MAEPAXI@Z 10003d80 f i Cooking.obj
+ 0001:00002d80       ??_GPxBase@physx@@MAEPAXI@Z 10003d80 f i Cooking.obj
+ 0001:00002db0       ??_GPxCooking@physx@@MAEPAXI@Z 10003db0 f i Cooking.obj
+ 0001:00002db0       ??_EPxCooking@physx@@MAEPAXI@Z 10003db0 f i Cooking.obj
+ 0001:00002de0       ??_ERefCountable@Cm@physx@@UAEPAXI@Z 10003de0 f i Cooking.obj
+ 0001:00002de0       ??_GRefCountable@Cm@physx@@UAEPAXI@Z 10003de0 f i Cooking.obj
+ 0001:00002e10       ?allocate@?$Array@UPxDebugLine@physx@@V?$ReflectionAllocator@UPxDebugLine@physx@@@shdfnd@2@@shdfnd@physx@@IAEPAUPxDebugLine@3@I@Z 10003e10 f i Cooking.obj
+ 0001:00002e80       ?copy@?$Array@UPxDebugLine@physx@@V?$ReflectionAllocator@UPxDebugLine@physx@@@shdfnd@2@@shdfnd@physx@@KAXPAUPxDebugLine@3@0PBU43@@Z 10003e80 f i Cooking.obj
+ 0001:00002ef0       ?getConcreteTypeName@PxConvexMesh@physx@@UBEPBDXZ 10003ef0 f i Cooking.obj
+ 0001:00002f00       ?getConcreteTypeName@PxHeightField@physx@@UBEPBDXZ 10003f00 f i Cooking.obj
+ 0001:00002f10       ?getConvexEdgeThreshold@HeightField@Gu@physx@@UBEMXZ 10003f10 f i Cooking.obj
+ 0001:00002f20       ?getFlags@HeightField@Gu@physx@@UBE?AV?$PxFlags@W4Enum@PxHeightFieldFlag@physx@@G@3@XZ 10003f20 f i Cooking.obj
+ 0001:00002f30       ?getFormat@HeightField@Gu@physx@@UBE?AW4Enum@PxHeightFieldFormat@3@XZ 10003f30 f i Cooking.obj
+ 0001:00002f40       ?getHeight@HeightField@Gu@physx@@UBEMMM@Z 10003f40 f i Cooking.obj
+ 0001:00002fa0       ?getHeightInternal2@HeightField@Gu@physx@@QBEMIMM@Z 10003fa0 f i Cooking.obj
+ 0001:000030f0       ?getIndexBuffer@ConvexMesh@Gu@physx@@UBEPBEXZ 100040f0 f i Cooking.obj
+ 0001:00003130       ?getNbColumns@HeightField@Gu@physx@@UBEIXZ 10004130 f i Cooking.obj
+ 0001:00003140       ?getNbPolygons@ConvexMesh@Gu@physx@@UBEIXZ 10004140 f i Cooking.obj
+ 0001:00003150       ?getNbRows@HeightField@Gu@physx@@UBEIXZ 10004150 f i Cooking.obj
+ 0001:00003160       ?getNbVertices@ConvexMesh@Gu@physx@@UBEIXZ 10004160 f i Cooking.obj
+ 0001:00003170       ?getPaddedBounds@HeightFieldData@Gu@physx@@QBEABVCenterExtentsPadded@23@XZ 10004170 f i Cooking.obj
+ 0001:00003180       ?getSample@HeightField@Gu@physx@@UBEABUPxHeightFieldSample@3@II@Z 10004180 f i Cooking.obj
+ 0001:000031a0       ?getSampleStride@HeightField@Gu@physx@@UBEIXZ 100041a0 f i Cooking.obj
+ 0001:000031b0       ?getTimestamp@HeightField@Gu@physx@@UBEIXZ 100041b0 f i Cooking.obj
+ 0001:000031c0       ?getTriangleMaterialIndex@HeightField@Gu@physx@@UBEGI@Z 100041c0 f i Cooking.obj
+ 0001:000031f0       ?getTriangleNormal@HeightField@Gu@physx@@UBE?AVPxVec3@3@I@Z 100041f0 f i Cooking.obj
+ 0001:00003210       ?getTriangleNormalInternal@HeightField@Gu@physx@@QBE?AVPxVec3@3@I@Z 10004210 f i Cooking.obj
+ 0001:00003310       ?getTriangleVertexIndices@HeightField@Gu@physx@@QBEXIAAI00@Z 10004310 f i Cooking.obj
+ 0001:000033b0       ?getVertices@ConvexMesh@Gu@physx@@UBEPBVPxVec3@3@XZ 100043b0 f i Cooking.obj
+ 0001:000033c0       ?isKindOf@PxBase@physx@@MBE_NPBD@Z 100043c0 f i Cooking.obj
+ 0001:00003410       ?isKindOf@PxConvexMesh@physx@@MBE_NPBD@Z 10004410 f i Cooking.obj
+ 0001:00003490       ?isKindOf@PxHeightField@physx@@MBE_NPBD@Z 10004490 f i Cooking.obj
+ 0001:00003510       ?isReleasable@PxBase@physx@@UBE_NXZ 10004510 f i Cooking.obj
+ 0001:00003520       ?isValid@PxConvexMeshDesc@physx@@QBE_NXZ 10004520 f i Cooking.obj
+ 0001:000035b0       ?isValid@PxTriangleMeshDesc@physx@@QBE_NXZ 100045b0 f i Cooking.obj
+ 0001:00003620       ?onRefCountZero@RefCountable@Cm@physx@@UAEXXZ 10004620 f i Cooking.obj
+ 0001:00003630       ?outputSegment@RenderOutput@Cm@physx@@QAEXABVPxVec3@3@0@Z 10004630 f i Cooking.obj
+ 0001:000036b0       ?preExportDataReset@ConvexMesh@Gu@physx@@QAEXXZ 100046b0 f i Cooking.obj
+ 0001:000036c0       ?preExportDataReset@HeightField@Gu@physx@@QAEXXZ 100046c0 f i Cooking.obj
+ 0001:000036d0       ?recreate@?$Array@UPxDebugLine@physx@@V?$ReflectionAllocator@UPxDebugLine@physx@@@shdfnd@2@@shdfnd@physx@@IAEXI@Z 100046d0 f i Cooking.obj
+ 0001:00003720       ?requiresObjects@ConvexMesh@Gu@physx@@UAEXAAVPxProcessPxBaseCallback@3@@Z 10004720 f i Cooking.obj
+ 0001:00003730       ?reserveSegments@RenderOutput@Cm@physx@@QAEPAUPxDebugLine@3@I@Z 10004730 f i Cooking.obj
+ 0001:00003780       ??0ReducedVertexCloud@physx@@QAE@PBVPxVec3@1@I@Z 10004780 f   CookingUtils.obj
+ 0001:000037b0       ??1ReducedVertexCloud@physx@@QAE@XZ 100047b0 f   CookingUtils.obj
+ 0001:000037f0       ?Clean@ReducedVertexCloud@physx@@QAEAAV12@XZ 100047f0 f   CookingUtils.obj
+ 0001:00003830       ?Reduce@ReducedVertexCloud@physx@@QAE_NPAUREDUCEDCLOUD@2@@Z 10004830 f   CookingUtils.obj
+ 0001:00003ac0       ??0EdgeList@Gu@physx@@QAE@XZ 10004ac0 f   EdgeList.obj
+ 0001:00003af0       ??1EdgeList@Gu@physx@@QAE@XZ 10004af0 f   EdgeList.obj
+ 0001:00003b70       ?load@EdgeList@Gu@physx@@QAE_NAAVPxInputStream@3@@Z 10004b70 f   EdgeList.obj
+ 0001:00003cc0       ??0EdgeListBuilder@Gu@physx@@QAE@XZ 10004cc0 f   EdgeList.obj
+ 0001:00003cf0       ??1EdgeListBuilder@Gu@physx@@QAE@XZ 10004cf0 f   EdgeList.obj
+ 0001:00003d00       ?init@EdgeListBuilder@Gu@physx@@QAE_NABUEDGELISTCREATE@23@@Z 10004d00 f   EdgeList.obj
+ 0001:00003de0       ?createFacesToEdges@EdgeListBuilder@Gu@physx@@AAE_NIPBIPBG@Z 10004de0 f   EdgeList.obj
+ 0001:00004120       ?createEdgesToFaces@EdgeListBuilder@Gu@physx@@AAE_NIPBIPBG@Z 10005120 f   EdgeList.obj
+ 0001:000042d0       ?computeActiveEdges@EdgeListBuilder@Gu@physx@@AAE_NIPBIPBGPBVPxVec3@3@M@Z 100052d0 f   EdgeList.obj
+ 0001:00006080       ??$?_UI@@YAPAXIV?$ReflectionAllocator@I@shdfnd@physx@@PBDH@Z 10007080 f i EdgeList.obj
+ 0001:000060e0       ??$?_UUEdgeData@Gu@physx@@@@YAPAXIV?$ReflectionAllocator@UEdgeData@Gu@physx@@@shdfnd@physx@@PBDH@Z 100070e0 f i EdgeList.obj
+ 0001:00006140       ??$?_UUEdgeTriangleData@Gu@physx@@@@YAPAXIV?$ReflectionAllocator@UEdgeTriangleData@Gu@physx@@@shdfnd@physx@@PBDH@Z 10007140 f i EdgeList.obj
+ 0001:000061a0       ??0PxVec3@physx@@QAE@XZ    100071a0 f i EdgeList.obj
+ 0001:00006210       ??0MeshCleaner@physx@@QAE@IPBVPxVec3@1@IPBIM@Z 10007210 f   MeshCleaner.obj
+ 0001:00006aa0       ??1MeshCleaner@physx@@QAE@XZ 10007aa0 f   MeshCleaner.obj
+ 0001:00006b00       ?createQuantizer@physx@@YAPAVQuantizer@1@XZ 10007b00 f   Quantizer.obj
+ 0001:00006b60       ?kmeans_cluster3d@@YAIPBVPxVec3@physx@@IIPAV12@PAIMM@Z 10007b60 f   Quantizer.obj
+ 0001:00006ba0       ??$kmeans_cluster@VPxVec3@physx@@M@@YAIPBVPxVec3@physx@@IIPAV01@PAIMM@Z 10007ba0 f i Quantizer.obj
+ 0001:000071a0       ??0QuantizerImpl@@QAE@XZ   100081a0 f i Quantizer.obj
+ 0001:00007200       ??1Quantizer@physx@@MAE@XZ 10008200 f i Quantizer.obj
+ 0001:00007210       ??1QuantizerImpl@@EAE@XZ   10008210 f i Quantizer.obj
+ 0001:00007270       ??_EQuantizer@physx@@MAEPAXI@Z 10008270 f i Quantizer.obj
+ 0001:00007270       ??_GQuantizer@physx@@MAEPAXI@Z 10008270 f i Quantizer.obj
+ 0001:000072a0       ??_GQuantizerImpl@@EAEPAXI@Z 100082a0 f i Quantizer.obj
+ 0001:000072a0       ??_EQuantizerImpl@@EAEPAXI@Z 100082a0 f i Quantizer.obj
+ 0001:00007330       ?allocate@?$Array@VPxVec3@physx@@V?$ReflectionAllocator@VPxVec3@physx@@@shdfnd@2@@shdfnd@physx@@IAEPAVPxVec3@3@I@Z 10008330 f i Quantizer.obj
+ 0001:000073a0       ?copy@?$Array@VPxVec3@physx@@V?$ReflectionAllocator@VPxVec3@physx@@@shdfnd@2@@shdfnd@physx@@KAXPAVPxVec3@3@0PBV43@@Z 100083a0 f i Quantizer.obj
+ 0001:00007470       ?getDenormalizeCenter@QuantizerImpl@@UBEABVPxVec3@physx@@XZ 10008470 f i Quantizer.obj
+ 0001:00007480       ?getDenormalizeScale@QuantizerImpl@@UBEABVPxVec3@physx@@XZ 10008480 f i Quantizer.obj
+ 0001:00007490       ?growAndPushBack@?$Array@VPxVec3@physx@@V?$ReflectionAllocator@VPxVec3@physx@@@shdfnd@2@@shdfnd@physx@@IAEAAVPxVec3@3@ABV43@@Z 10008490 f i Quantizer.obj
+ 0001:00007530       ?kmeansQuantize3D@QuantizerImpl@@UAEPBVPxVec3@physx@@IPBV23@I_NIAAI@Z 10008530 f i Quantizer.obj
+ 0001:00007770       ?normalizeInput@QuantizerImpl@@AAEXIPBVPxVec3@physx@@I@Z 10008770 f i Quantizer.obj
+ 0001:00007a00       ?release@QuantizerImpl@@UAEXXZ 10008a00 f i Quantizer.obj
+ 0001:00007a10       ??0BVHStructureBuilder@physx@@QAE@XZ 10008a10 f   BVHStructureBuilder.obj
+ 0001:00007a40       ??1BVHStructureBuilder@physx@@QAE@XZ 10008a40 f   BVHStructureBuilder.obj
+ 0001:00007aa0       ?loadFromDesc@BVHStructureBuilder@physx@@QAE_NABVPxBVHStructureDesc@2@@Z 10008aa0 f   BVHStructureBuilder.obj
+ 0001:00007c40       ?save@BVHStructureBuilder@physx@@QBE_NAAVPxOutputStream@2@_N@Z 10008c40 f   BVHStructureBuilder.obj
+ 0001:00007d50       ?moveData@BVHStructureBuilder@physx@@QAEXAAUBVHStructureData@Gu@2@@Z 10008d50 f   BVHStructureBuilder.obj
+ 0001:00007da0       ?flatten@@YAXABVNodeAllocator@Gu@physx@@PAUBVHNode@23@@Z 10008da0 f   BVHStructureBuilder.obj
+ 0001:00007f00       ??$?4V?$ReflectionAllocator@USlab@NodeAllocator@Gu@physx@@@shdfnd@physx@@@?$Array@USlab@NodeAllocator@Gu@physx@@V?$ReflectionAllocator@USlab@NodeAllocator@Gu@physx@@@shdfnd@4@@shdfnd@physx@@QAEAAV012@ABV012@@Z 10008f00 f i BVHStructureBuilder.obj
+ 0001:00007f70       ??$copy@V?$ReflectionAllocator@USlab@NodeAllocator@Gu@physx@@@shdfnd@physx@@@?$Array@USlab@NodeAllocator@Gu@physx@@V?$ReflectionAllocator@USlab@NodeAllocator@Gu@physx@@@shdfnd@4@@shdfnd@physx@@IAEXABV012@@Z 10008f70 f i BVHStructureBuilder.obj
+ 0001:00007fe0       ??0AABBTreeBuildNode@Gu@physx@@QAE@ABV012@@Z 10008fe0 f i BVHStructureBuilder.obj
+ 0001:00008020       ??0AABBTreeBuildNode@Gu@physx@@QAE@XZ 10009020 f i BVHStructureBuilder.obj
+ 0001:00008030       ??0AABBTreeBuildParams@Gu@physx@@QAE@IIPBVPxBounds3@2@@Z 10009030 f i BVHStructureBuilder.obj
+ 0001:00008050       ??0BuildStats@Gu@physx@@QAE@XZ 10009050 f i BVHStructureBuilder.obj
+ 0001:00008060       ??0NodeAllocator@Gu@physx@@QAE@ABV012@@Z 10009060 f i BVHStructureBuilder.obj
+ 0001:00008090       ??1AABBTreeBuildNode@Gu@physx@@QAE@XZ 10009090 f i BVHStructureBuilder.obj
+ 0001:000080a0       ??1AABBTreeBuildParams@Gu@physx@@QAE@XZ 100090a0 f i BVHStructureBuilder.obj
+ 0001:000080e0       ??4AABBTreeBuildNode@Gu@physx@@QAEAAV012@ABV012@@Z 100090e0 f i BVHStructureBuilder.obj
+ 0001:00008120       ??4AABBTreeBuildParams@Gu@physx@@QAEAAV012@ABV012@@Z 10009120 f i BVHStructureBuilder.obj
+ 0001:00008130       ??4BuildStats@Gu@physx@@QAEAAU012@$$QAU012@@Z 10009130 f i BVHStructureBuilder.obj
+ 0001:00008150       ??4BuildStats@Gu@physx@@QAEAAU012@ABU012@@Z 10009150 f i BVHStructureBuilder.obj
+ 0001:00008170       ??4NodeAllocator@Gu@physx@@QAEAAV012@ABV012@@Z 10009170 f i BVHStructureBuilder.obj
+ 0001:000081a0       ??_FAABBTreeBuildParams@Gu@physx@@QAEXXZ 100091a0 f i BVHStructureBuilder.obj
+ 0001:000081c0       ?__global_array_delete@@YAXPAX@Z 100091c0 f i BVHStructureBuilder.obj
+ 0001:000081d0       ?__global_array_delete@@YAXPAXI@Z 100091d0 f i BVHStructureBuilder.obj
+ 0001:000081e0       ?__global_delete@@YAXPAX@Z 100091e0 f i BVHStructureBuilder.obj
+ 0001:000081f0       ?__global_delete@@YAXPAXI@Z 100091f0 f i BVHStructureBuilder.obj
+ 0001:00008200       ?allocate@?$Array@USlab@NodeAllocator@Gu@physx@@V?$ReflectionAllocator@USlab@NodeAllocator@Gu@physx@@@shdfnd@4@@shdfnd@physx@@IAEPAUSlab@NodeAllocator@Gu@3@I@Z 10009200 f i BVHStructureBuilder.obj
+ 0001:00008270       ?getAABB@AABBTreeBuildNode@Gu@physx@@QBEABVPxBounds3@3@XZ 10009270 f i BVHStructureBuilder.obj
+ 0001:00008280       ?getCount@BuildStats@Gu@physx@@QBEIXZ 10009280 f i BVHStructureBuilder.obj
+ 0001:00008290       ?getNbPrimitives@AABBTreeBuildNode@Gu@physx@@QBEIXZ 10009290 f i BVHStructureBuilder.obj
+ 0001:000082a0       ?getNbRuntimePrimitives@AABBTreeBuildNode@Gu@physx@@QBEIXZ 100092a0 f i BVHStructureBuilder.obj
+ 0001:000082b0       ?getNeg@AABBTreeBuildNode@Gu@physx@@QBEPBV123@XZ 100092b0 f i BVHStructureBuilder.obj
+ 0001:000082c0       ?getPos@AABBTreeBuildNode@Gu@physx@@QBEPBV123@XZ 100092c0 f i BVHStructureBuilder.obj
+ 0001:000082d0       ?getPrimitives@AABBTreeBuildNode@Gu@physx@@QAEPAIPAI@Z 100092d0 f i BVHStructureBuilder.obj
+ 0001:000082e0       ?getPrimitives@AABBTreeBuildNode@Gu@physx@@QBEPBIPBI@Z 100092e0 f i BVHStructureBuilder.obj
+ 0001:000082f0       ?increaseCount@BuildStats@Gu@physx@@QAEXI@Z 100092f0 f i BVHStructureBuilder.obj
+ 0001:00008300       ?isLeaf@AABBTreeBuildNode@Gu@physx@@QBE_NXZ 10009300 f i BVHStructureBuilder.obj
+ 0001:00008310       ?recreate@?$Array@USlab@NodeAllocator@Gu@physx@@V?$ReflectionAllocator@USlab@NodeAllocator@Gu@physx@@@shdfnd@4@@shdfnd@physx@@IAEXI@Z 10009310 f i BVHStructureBuilder.obj
+ 0001:00008380       ?reset@AABBTreeBuildParams@Gu@physx@@QAEXXZ 10009380 f i BVHStructureBuilder.obj
+ 0001:000083c0       ?reset@BuildStats@Gu@physx@@QAEXXZ 100093c0 f i BVHStructureBuilder.obj
+ 0001:000083d0       ?setCount@BuildStats@Gu@physx@@QAEXI@Z 100093d0 f i BVHStructureBuilder.obj
+ 0001:000083e0       ?setNbRunTimePrimitives@AABBTreeBuildNode@Gu@physx@@QAEXI@Z 100093e0 f i BVHStructureBuilder.obj
+ 0001:000083f0       ?saveHeightField@physx@@YA_NABVHeightField@Gu@1@AAVPxOutputStream@1@_N@Z 100093f0 f   HeightFieldCooking.obj
+ 0001:000085d0       ?buildFromTriangles@RTreeCooker@physx@@SAXAAURTree@Gu@2@PBVPxVec3@2@IPBGPBIIAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@2@PAURemapCallback@12@MW4Enum@PxMeshCookingHint@2@@Z 100095d0 f   RTreeCooking.obj
+ 0001:00008800       ??$median3@I$$CBUSortBoundsPredicate@physx@@@internal@shdfnd@physx@@YAXPAIHHABUSortBoundsPredicate@2@@Z 10009800 f i RTreeCooking.obj
+ 0001:000088f0       ??$partition@I$$CBU?$Less@I@shdfnd@physx@@@internal@shdfnd@physx@@YAHPAIHHABU?$Less@I@12@@Z 100098f0 f i RTreeCooking.obj
+ 0001:00008980       ??$partition@I$$CBUSortBoundsPredicate@physx@@@internal@shdfnd@physx@@YAHPAIHHABUSortBoundsPredicate@2@@Z 10009980 f i RTreeCooking.obj
+ 0001:00008a30       ??$partition@UBoundsLTE@physx@@@quickSelect@physx@@YAIPIAIIIIABUBoundsLTE@1@@Z 10009a30 f i RTreeCooking.obj
+ 0001:00008ab0       ??$quickSelectFirstK@UBoundsLTE@physx@@@quickSelect@physx@@YAXPIAIIIIABUBoundsLTE@1@@Z 10009ab0 f i RTreeCooking.obj
+ 0001:00008b60       ??$smallSort@I$$CBU?$Less@I@shdfnd@physx@@@internal@shdfnd@physx@@YAXPAIHHABU?$Less@I@12@@Z 10009b60 f i RTreeCooking.obj
+ 0001:00008be0       ??$smallSort@I$$CBUSortBoundsPredicate@physx@@@internal@shdfnd@physx@@YAXPAIHHABUSortBoundsPredicate@2@@Z 10009be0 f i RTreeCooking.obj
+ 0001:00008cd0       ??$sort@I@shdfnd@physx@@YAXPAII@Z 10009cd0 f i RTreeCooking.obj
+ 0001:00008cf0       ??$sort@IU?$Less@I@shdfnd@physx@@V?$ReflectionAllocator@I@23@@shdfnd@physx@@YAXPAIIABU?$Less@I@01@ABV?$ReflectionAllocator@I@01@I@Z 10009cf0 f i RTreeCooking.obj
+ 0001:00008e60       ??$sort@IUSortBoundsPredicate@physx@@@shdfnd@physx@@YAXPAIIABUSortBoundsPredicate@1@@Z 10009e60 f i RTreeCooking.obj
+ 0001:00008e80       ??$sort@IUSortBoundsPredicate@physx@@V?$ReflectionAllocator@I@shdfnd@2@@shdfnd@physx@@YAXPAIIABUSortBoundsPredicate@1@ABV?$ReflectionAllocator@I@01@I@Z 10009e80 f i RTreeCooking.obj
+ 0001:00008ff0       ??0SubSortQuick@physx@@QAE@PAIPBUPxBounds3V@1@IM@Z 10009ff0 f i RTreeCooking.obj
+ 0001:00009130       ??0SubSortSAH@physx@@QAE@PAIPBUPxBounds3V@1@IPBI22222M@Z 1000a130 f i RTreeCooking.obj
+ 0001:00009250       ?allocate@?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@IAEPAII@Z 1000a250 f i RTreeCooking.obj
+ 0001:000092c0       ?allocate@?$Array@UPxBounds3V@physx@@V?$ReflectionAllocator@UPxBounds3V@physx@@@shdfnd@2@@shdfnd@physx@@IAEPAUPxBounds3V@3@I@Z 1000a2c0 f i RTreeCooking.obj
+ 0001:00009330       ?allocate@?$Array@URTreeNodeNQ@physx@@V?$ReflectionAllocator@URTreeNodeNQ@physx@@@shdfnd@2@@shdfnd@physx@@IAEPAURTreeNodeNQ@3@I@Z 1000a330 f i RTreeCooking.obj
+ 0001:000093a0       ?allocate@?$Array@URTreeNodeQ@Gu@physx@@V?$ReflectionAllocator@URTreeNodeQ@Gu@physx@@@shdfnd@3@@shdfnd@physx@@IAEPAURTreeNodeQ@Gu@3@I@Z 1000a3a0 f i RTreeCooking.obj
+ 0001:00009410       ?allocate@?$InlineAllocator@$0CAAA@V?$ReflectionAllocator@UInterval@physx@@@shdfnd@physx@@@shdfnd@physx@@QAEPAXIPBDH@Z 1000a410 f i RTreeCooking.obj
+ 0001:00009e50       ?copy@?$Array@URTreeNodeNQ@physx@@V?$ReflectionAllocator@URTreeNodeNQ@physx@@@shdfnd@2@@shdfnd@physx@@KAXPAURTreeNodeNQ@3@0PBU43@@Z 1000ae50 f i RTreeCooking.obj
+ 0001:00009ec0       ?grow@?$Stack@V?$ReflectionAllocator@I@shdfnd@physx@@@internal@shdfnd@physx@@QAEXXZ 1000aec0 f i RTreeCooking.obj
+ 0001:00009f60       ?growAndPushBack@?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@IAEAAIABI@Z 1000af60 f i RTreeCooking.obj
+ 0001:00009ff0       ?growAndPushBack@?$Array@UInterval@physx@@V?$InlineAllocator@$0CAAA@V?$ReflectionAllocator@UInterval@physx@@@shdfnd@physx@@@shdfnd@2@@shdfnd@physx@@IAEAAUInterval@3@ABU43@@Z 1000aff0 f i RTreeCooking.obj
+ 0001:0000a0d0       ?growAndPushBack@?$Array@UPxBounds3V@physx@@V?$ReflectionAllocator@UPxBounds3V@physx@@@shdfnd@2@@shdfnd@physx@@IAEAAUPxBounds3V@3@ABU43@@Z 1000b0d0 f i RTreeCooking.obj
+ 0001:0000a170       ?growAndPushBack@?$Array@URTreeNodeNQ@physx@@V?$ReflectionAllocator@URTreeNodeNQ@physx@@@shdfnd@2@@shdfnd@physx@@IAEAAURTreeNodeNQ@3@ABU43@@Z 1000b170 f i RTreeCooking.obj
+ 0001:0000a220       ?growAndPushBack@?$Array@URTreeNodeQ@Gu@physx@@V?$ReflectionAllocator@URTreeNodeQ@Gu@physx@@@shdfnd@3@@shdfnd@physx@@IAEAAURTreeNodeQ@Gu@3@ABU453@@Z 1000b220 f i RTreeCooking.obj
+ 0001:0000a2e0       ?recreate@?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@IAEXI@Z 1000b2e0 f i RTreeCooking.obj
+ 0001:0000a340       ?recreate@?$Array@UPxBounds3V@physx@@V?$ReflectionAllocator@UPxBounds3V@physx@@@shdfnd@2@@shdfnd@physx@@IAEXI@Z 1000b340 f i RTreeCooking.obj
+ 0001:0000a3b0       ?recreate@?$Array@URTreeNodeNQ@physx@@V?$ReflectionAllocator@URTreeNodeNQ@physx@@@shdfnd@2@@shdfnd@physx@@IAEXI@Z 1000b3b0 f i RTreeCooking.obj
+ 0001:0000a400       ?recreate@?$Array@URTreeNodeQ@Gu@physx@@V?$ReflectionAllocator@URTreeNodeQ@Gu@physx@@@shdfnd@3@@shdfnd@physx@@IAEXI@Z 1000b400 f i RTreeCooking.obj
+ 0001:0000a480       ?recreate@?$Array@VPxVec3@physx@@V?$ReflectionAllocator@VPxVec3@physx@@@shdfnd@2@@shdfnd@physx@@IAEXI@Z 1000b480 f i RTreeCooking.obj
+ 0001:0000a4d0       ?resize@?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@QAEXIABI@Z 1000b4d0 f i RTreeCooking.obj
+ 0001:0000a520       ?resizeUninitialized@?$Array@URTreeNodeNQ@physx@@V?$ReflectionAllocator@URTreeNodeNQ@physx@@@shdfnd@2@@shdfnd@physx@@QAEXI@Z 1000b520 f i RTreeCooking.obj
+ 0001:0000a550       ?sort4@SubSortQuick@physx@@QAEXPIAIIAAV?$Array@URTreeNodeNQ@physx@@V?$ReflectionAllocator@URTreeNodeNQ@physx@@@shdfnd@2@@shdfnd@2@AAIAAUPxBounds3V@2@I@Z 1000b550 f i RTreeCooking.obj
+ 0001:0000a890       ?sort4@SubSortSAH@physx@@QAEXPAIIAAV?$Array@URTreeNodeNQ@physx@@V?$ReflectionAllocator@URTreeNodeNQ@physx@@@shdfnd@2@@shdfnd@2@AAIIPAURTreeNodeNQ@2@@Z 1000b890 f i RTreeCooking.obj
+ 0001:0000b0b0       ?split@SubSortSAH@physx@@QAEIPAII@Z 1000c0b0 f i RTreeCooking.obj
+ 0001:0000b500       ?computeLocalBounds@MeshBulider@physx@@IAEXAAVMeshDataBase@Gu@2@@Z 1000c500 f   MeshBuilder.obj
+ 0001:0000b5b0       ??0TriangleMeshBuilder@physx@@QAE@AAVTriangleMeshData@Gu@1@ABUPxCookingParams@1@@Z 1000c5b0 f   TriangleMeshBuilder.obj
+ 0001:0000b5d0       ??1TriangleMeshBuilder@physx@@UAE@XZ 1000c5d0 f   TriangleMeshBuilder.obj
+ 0001:0000b600       ?cleanMesh@TriangleMeshBuilder@physx@@QAE_N_NPAW4Enum@PxTriangleMeshCookingResult@2@@Z 1000c600 f   TriangleMeshBuilder.obj
+ 0001:0000ba10       ?remapTopology@TriangleMeshBuilder@physx@@QAEXPBI@Z 1000ca10 f   TriangleMeshBuilder.obj
+ 0001:0000bc40       ?createSharedEdgeData@TriangleMeshBuilder@physx@@QAEX_N0@Z 1000cc40 f   TriangleMeshBuilder.obj
+ 0001:0000bf30       ?recordTriangleIndices@TriangleMeshBuilder@physx@@QAEXXZ 1000cf30 f   TriangleMeshBuilder.obj
+ 0001:0000bfb0       ?createGRBMidPhaseAndData@TriangleMeshBuilder@physx@@QAEXI@Z 1000cfb0 f   TriangleMeshBuilder.obj
+ 0001:0000c0f0       ?createGRBData@TriangleMeshBuilder@physx@@QAEXXZ 1000d0f0 f   TriangleMeshBuilder.obj
+ 0001:0000c190       ?loadFromDesc@TriangleMeshBuilder@physx@@QAE_NABVPxTriangleMeshDesc@2@PAW4Enum@PxTriangleMeshCookingResult@2@_N@Z 1000d190 f   TriangleMeshBuilder.obj
+ 0001:0000c390       ?save@TriangleMeshBuilder@physx@@QBE_NAAVPxOutputStream@2@_NABUPxCookingParams@2@@Z 1000d390 f   TriangleMeshBuilder.obj
+ 0001:0000c770       ?checkMeshIndicesSize@TriangleMeshBuilder@physx@@QAEXXZ 1000d770 f   TriangleMeshBuilder.obj
+ 0001:0000c820       ?importMesh@TriangleMeshBuilder@physx@@IAE_NABVPxTriangleMeshDesc@2@ABUPxCookingParams@2@PAW4Enum@PxTriangleMeshCookingResult@2@_N@Z 1000d820 f   TriangleMeshBuilder.obj
+ 0001:0000ca40       ?releaseEdgeList@TriangleMeshBuilder@physx@@IAEXXZ 1000da40 f   TriangleMeshBuilder.obj
+ 0001:0000ca70       ?createEdgeList@TriangleMeshBuilder@physx@@IAEXXZ 1000da70 f   TriangleMeshBuilder.obj
+ 0001:0000cb80       ??0RTreeTriangleMeshBuilder@physx@@QAE@ABUPxCookingParams@1@@Z 1000db80 f   TriangleMeshBuilder.obj
+ 0001:0000cbb0       ??1RTreeTriangleMeshBuilder@physx@@UAE@XZ 1000dbb0 f   TriangleMeshBuilder.obj
+ 0001:0000cc30       ?createMidPhaseStructure@RTreeTriangleMeshBuilder@physx@@UAEXXZ 1000dc30 f   TriangleMeshBuilder.obj
+ 0001:0000ccf0       ?saveMidPhaseStructure@RTreeTriangleMeshBuilder@physx@@UBEXAAVPxOutputStream@2@_N@Z 1000dcf0 f   TriangleMeshBuilder.obj
+ 0001:0000ce80       ??0BV4TriangleMeshBuilder@physx@@QAE@ABUPxCookingParams@1@@Z 1000de80 f   TriangleMeshBuilder.obj
+ 0001:0000cef0       ??1BV4TriangleMeshBuilder@physx@@UAE@XZ 1000def0 f   TriangleMeshBuilder.obj
+ 0001:0000cf50       ?createMidPhaseStructure@BV4TriangleMeshBuilder@physx@@UAEXXZ 1000df50 f   TriangleMeshBuilder.obj
+ 0001:0000d180       ?saveMidPhaseStructure@BV4TriangleMeshBuilder@physx@@UBEXAAVPxOutputStream@2@_N@Z 1000e180 f   TriangleMeshBuilder.obj
+ 0001:0000d320       ?onMeshIndexFormatChange@BV4TriangleMeshBuilder@physx@@UAEXXZ 1000e320 f   TriangleMeshBuilder.obj
+ 0001:0000d350       ?createMidPhaseStructure@BV32TriangleMeshBuilder@physx@@SAXABUPxCookingParams@2@AAVTriangleMeshData@Gu@2@AAVBV32Tree@52@@Z 1000e350 f   TriangleMeshBuilder.obj
+ 0001:0000d490       ?saveMidPhaseStructure@BV32TriangleMeshBuilder@physx@@SAXPAVBV32Tree@Gu@2@AAVPxOutputStream@2@_N@Z 1000e490 f   TriangleMeshBuilder.obj
+ 0001:0000d5f0       ?findSharpVertices@GrbTrimeshCookerHelper@physx@@YAXAAV?$Array@USortedNeighbor@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@2@AAV?$Array@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@42@PBUuint3@2@PBUuint4@2@II@Z 1000e5f0 f   TriangleMeshBuilder.obj
+ 0001:0000d950       ?buildVertexConnectionNew_p1@GrbTrimeshCookerHelper@physx@@YAIAAV?$Array@USortedNeighbor@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@2@AAV?$Array@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@42@PBUuint3@2@PBUuint4@2@II@Z 1000e950 f   TriangleMeshBuilder.obj
+ 0001:0000da60       ?buildVertexConnectionNew_p2@GrbTrimeshCookerHelper@physx@@YAXPAI00AAV?$Array@USortedNeighbor@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@2@AAV?$Array@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@42@I@Z 1000ea60 f   TriangleMeshBuilder.obj
+ 0001:0000dae0       ??$?_UG@@YAPAXIV?$ReflectionAllocator@G@shdfnd@physx@@PBDH@Z 1000eae0 f i TriangleMeshBuilder.obj
+ 0001:0000db40       ??$median3@UEdgeTriLookup@physx@@$$CBU?$Less@UEdgeTriLookup@physx@@@shdfnd@2@@internal@shdfnd@physx@@YAXPAUEdgeTriLookup@2@HHABU?$Less@UEdgeTriLookup@physx@@@12@@Z 1000eb40 f i TriangleMeshBuilder.obj
+ 0001:0000dc20       ??$median3@USortedNeighbor@GrbTrimeshCookerHelper@physx@@$$CBU?$Less@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@internal@shdfnd@physx@@YAXPAUSortedNeighbor@GrbTrimeshCookerHelper@2@HHABU?$Less@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@12@@Z 1000ec20 f i TriangleMeshBuilder.obj
+ 0001:0000dd50       ??$partition@UEdgeTriLookup@physx@@$$CBU?$Less@UEdgeTriLookup@physx@@@shdfnd@2@@internal@shdfnd@physx@@YAHPAUEdgeTriLookup@2@HHABU?$Less@UEdgeTriLookup@physx@@@12@@Z 1000ed50 f i TriangleMeshBuilder.obj
+ 0001:0000de30       ??$partition@USortedNeighbor@GrbTrimeshCookerHelper@physx@@$$CBU?$Less@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@internal@shdfnd@physx@@YAHPAUSortedNeighbor@GrbTrimeshCookerHelper@2@HHABU?$Less@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@12@@Z 1000ee30 f i TriangleMeshBuilder.obj
+ 0001:0000df40       ??$smallSort@UEdgeTriLookup@physx@@$$CBU?$Less@UEdgeTriLookup@physx@@@shdfnd@2@@internal@shdfnd@physx@@YAXPAUEdgeTriLookup@2@HHABU?$Less@UEdgeTriLookup@physx@@@12@@Z 1000ef40 f i TriangleMeshBuilder.obj
+ 0001:0000e030       ??$smallSort@USortedNeighbor@GrbTrimeshCookerHelper@physx@@$$CBU?$Less@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@internal@shdfnd@physx@@YAXPAUSortedNeighbor@GrbTrimeshCookerHelper@2@HHABU?$Less@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@12@@Z 1000f030 f i TriangleMeshBuilder.obj
+ 0001:0000e130       ??$sort@UEdgeTriLookup@physx@@@shdfnd@physx@@YAXPAUEdgeTriLookup@1@I@Z 1000f130 f i TriangleMeshBuilder.obj
+ 0001:0000e150       ??$sort@UEdgeTriLookup@physx@@U?$Less@UEdgeTriLookup@physx@@@shdfnd@2@V?$ReflectionAllocator@UEdgeTriLookup@physx@@@42@@shdfnd@physx@@YAXPAUEdgeTriLookup@1@IABU?$Less@UEdgeTriLookup@physx@@@01@ABV?$ReflectionAllocator@UEdgeTriLookup@physx@@@01@I@Z 1000f150 f i TriangleMeshBuilder.obj
+ 0001:0000e2c0       ??$sort@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@physx@@YAXPAUSortedNeighbor@GrbTrimeshCookerHelper@1@I@Z 1000f2c0 f i TriangleMeshBuilder.obj
+ 0001:0000e2e0       ??$sort@USortedNeighbor@GrbTrimeshCookerHelper@physx@@U?$Less@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@53@@shdfnd@physx@@YAXPAUSortedNeighbor@GrbTrimeshCookerHelper@1@IABU?$Less@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@01@ABV?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@01@I@Z 1000f2e0 f i TriangleMeshBuilder.obj
+ 0001:0000e450       ??0MeshDataBase@Gu@physx@@QAE@XZ 1000f450 f i TriangleMeshBuilder.obj
+ 0001:0000e4c0       ??0PxVec4@physx@@QAE@XZ    1000f4c0 f i TriangleMeshBuilder.obj
+ 0001:0000e4d0       ??0RTreeTriangleData@Gu@physx@@QAE@XZ 1000f4d0 f i TriangleMeshBuilder.obj
+ 0001:0000e540       ??1BV4TriangleData@Gu@physx@@UAE@XZ 1000f540 f i TriangleMeshBuilder.obj
+ 0001:0000e570       ??1MeshDataBase@Gu@physx@@UAE@XZ 1000f570 f i TriangleMeshBuilder.obj
+ 0001:0000e620       ??1RTreeTriangleData@Gu@physx@@UAE@XZ 1000f620 f i TriangleMeshBuilder.obj
+ 0001:0000e670       ??1RemapCallback@RTreeCooker@physx@@UAE@XZ 1000f670 f i TriangleMeshBuilder.obj
+ 0001:0000e680       ??1TriangleMeshData@Gu@physx@@UAE@XZ 1000f680 f i TriangleMeshBuilder.obj
+ 0001:0000e700       ??_EBV4TriangleData@Gu@physx@@UAEPAXI@Z 1000f700 f i TriangleMeshBuilder.obj
+ 0001:0000e700       ??_GBV4TriangleData@Gu@physx@@UAEPAXI@Z 1000f700 f i TriangleMeshBuilder.obj
+ 0001:0000e760       ??_EBV4TriangleMeshBuilder@physx@@UAEPAXI@Z 1000f760 f i TriangleMeshBuilder.obj
+ 0001:0000e760       ??_GBV4TriangleMeshBuilder@physx@@UAEPAXI@Z 1000f760 f i TriangleMeshBuilder.obj
+ 0001:0000e7d0       ??_EMeshDataBase@Gu@physx@@UAEPAXI@Z 1000f7d0 f i TriangleMeshBuilder.obj
+ 0001:0000e7d0       ??_GMeshDataBase@Gu@physx@@UAEPAXI@Z 1000f7d0 f i TriangleMeshBuilder.obj
+ 0001:0000e810       ??_GRTreeCookerRemap@physx@@UAEPAXI@Z 1000f810 f i TriangleMeshBuilder.obj
+ 0001:0000e810       ??_ERTreeCookerRemap@physx@@UAEPAXI@Z 1000f810 f i TriangleMeshBuilder.obj
+ 0001:0000e840       ??_GRTreeTriangleData@Gu@physx@@UAEPAXI@Z 1000f840 f i TriangleMeshBuilder.obj
+ 0001:0000e840       ??_ERTreeTriangleData@Gu@physx@@UAEPAXI@Z 1000f840 f i TriangleMeshBuilder.obj
+ 0001:0000e8c0       ??_GRTreeTriangleMeshBuilder@physx@@UAEPAXI@Z 1000f8c0 f i TriangleMeshBuilder.obj
+ 0001:0000e8c0       ??_ERTreeTriangleMeshBuilder@physx@@UAEPAXI@Z 1000f8c0 f i TriangleMeshBuilder.obj
+ 0001:0000e8f0       ??_ERemapCallback@RTreeCooker@physx@@UAEPAXI@Z 1000f8f0 f i TriangleMeshBuilder.obj
+ 0001:0000e8f0       ??_GRemapCallback@RTreeCooker@physx@@UAEPAXI@Z 1000f8f0 f i TriangleMeshBuilder.obj
+ 0001:0000e920       ??_ETriangleMeshBuilder@physx@@UAEPAXI@Z 1000f920 f i TriangleMeshBuilder.obj
+ 0001:0000e920       ??_GTriangleMeshBuilder@physx@@UAEPAXI@Z 1000f920 f i TriangleMeshBuilder.obj
+ 0001:0000e970       ??_GTriangleMeshData@Gu@physx@@UAEPAXI@Z 1000f970 f i TriangleMeshBuilder.obj
+ 0001:0000e970       ??_ETriangleMeshData@Gu@physx@@UAEPAXI@Z 1000f970 f i TriangleMeshBuilder.obj
+ 0001:0000e9b0       ?allocate@?$Array@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@physx@@IAEPAUSharpEdgeRange@GrbTrimeshCookerHelper@3@I@Z 1000f9b0 f i TriangleMeshBuilder.obj
+ 0001:0000ea20       ?allocate@?$Array@USortedNeighbor@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@physx@@IAEPAUSortedNeighbor@GrbTrimeshCookerHelper@3@I@Z 1000fa20 f i TriangleMeshBuilder.obj
+ 0001:0000ea90       ?allocateMaterials@TriangleMeshData@Gu@physx@@QAEPAGXZ 1000fa90 f i TriangleMeshBuilder.obj
+ 0001:0000eb10       ?allocateTriangles@TriangleMeshData@Gu@physx@@QAEPAXI_NI@Z 1000fb10 f i TriangleMeshBuilder.obj
+ 0001:0000f130       ?getMidphaseID@BV4TriangleMeshBuilder@physx@@UBE?AW4Enum@PxMeshMidPhase@2@XZ 10010130 f i TriangleMeshBuilder.obj
+ 0001:0000f140       ?getMidphaseID@RTreeTriangleMeshBuilder@physx@@UBE?AW4Enum@PxMeshMidPhase@2@XZ 10010140 f i TriangleMeshBuilder.obj
+ 0001:0000f150       ?grow@?$Stack@V?$ReflectionAllocator@UEdgeTriLookup@physx@@@shdfnd@physx@@@internal@shdfnd@physx@@QAEXXZ 10010150 f i TriangleMeshBuilder.obj
+ 0001:0000f1f0       ?grow@?$Stack@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@physx@@@internal@shdfnd@physx@@QAEXXZ 100101f0 f i TriangleMeshBuilder.obj
+ 0001:0000f290       ?growAndPushBack@?$Array@USortedNeighbor@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@physx@@IAEAAUSortedNeighbor@GrbTrimeshCookerHelper@3@ABU453@@Z 10010290 f i TriangleMeshBuilder.obj
+ 0001:0000f330       ?onMeshIndexFormatChange@TriangleMeshBuilder@physx@@UAEXXZ 10010330 f i TriangleMeshBuilder.obj
+ 0001:0000f340       ?recreate@?$Array@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@physx@@IAEXI@Z 10010340 f i TriangleMeshBuilder.obj
+ 0001:0000f3a0       ?recreate@?$Array@USortedNeighbor@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@physx@@IAEXI@Z 100103a0 f i TriangleMeshBuilder.obj
+ 0001:0000f410       ?remap@RTreeCookerRemap@physx@@UAEXPAIII@Z 10010410 f i TriangleMeshBuilder.obj
+ 0001:0000f430       ?resize@?$Array@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USharpEdgeRange@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@physx@@QAEXIABUSharpEdgeRange@GrbTrimeshCookerHelper@3@@Z 10010430 f i TriangleMeshBuilder.obj
+ 0001:0000f480       ?resizeUninitialized@?$Array@USortedNeighbor@GrbTrimeshCookerHelper@physx@@V?$ReflectionAllocator@USortedNeighbor@GrbTrimeshCookerHelper@physx@@@shdfnd@3@@shdfnd@physx@@QAEXI@Z 10010480 f i TriangleMeshBuilder.obj
+ 0001:0000f4b0       ??0BigConvexDataBuilder@physx@@QAE@PBUConvexHullData@Gu@1@PAVBigConvexData@1@PBVPxVec3@1@@Z 100104b0 f   BigConvexDataBuilder.obj
+ 0001:0000f4d0       ??1BigConvexDataBuilder@physx@@QAE@XZ 100104d0 f   BigConvexDataBuilder.obj
+ 0001:0000f4e0       ?precompute@BigConvexDataBuilder@physx@@QAE_NI@Z 100104e0 f   BigConvexDataBuilder.obj
+ 0001:0000fe50       ?initialize@BigConvexDataBuilder@physx@@QAE_NXZ 10010e50 f   BigConvexDataBuilder.obj
+ 0001:0000fec0       ?save@BigConvexDataBuilder@physx@@QBE_NAAVPxOutputStream@2@_N@Z 10010ec0 f   BigConvexDataBuilder.obj
+ 0001:0000ff50       ?computeValencies@BigConvexDataBuilder@physx@@QAE_NABVConvexHullBuilder@2@@Z 10010f50 f   BigConvexDataBuilder.obj
+ 0001:000102a0       ?saveValencies@BigConvexDataBuilder@physx@@QBE_NAAVPxOutputStream@2@_N@Z 100112a0 f   BigConvexDataBuilder.obj
+ 0001:000103d0       ??0BigConvexData@physx@@QAE@W4PxEMPTY@1@@Z 100113d0 f i BigConvexDataBuilder.obj
+ 0001:000103e0       ??4BigConvexData@physx@@QAEAAV01@ABV01@@Z 100113e0 f i BigConvexDataBuilder.obj
+ 0001:00010400       ?GetAdjacentVerts@BigConvexData@physx@@QBEPBEXZ 10011400 f i BigConvexDataBuilder.obj
+ 0001:00010410       ?GetNbNeighbors@BigConvexData@physx@@QBEGI@Z 10011410 f i BigConvexDataBuilder.obj
+ 0001:00010420       ?GetNbSamples@BigConvexData@physx@@QBEIXZ 10011420 f i BigConvexDataBuilder.obj
+ 0001:00010430       ?GetNbVerts@BigConvexData@physx@@QBEIXZ 10011430 f i BigConvexDataBuilder.obj
+ 0001:00010440       ?GetNeighbors@BigConvexData@physx@@QBEPBEI@Z 10011440 f i BigConvexDataBuilder.obj
+ 0001:00010460       ?GetOffset@BigConvexData@physx@@QBEGI@Z 10011460 f i BigConvexDataBuilder.obj
+ 0001:00010470       ?GetSubdiv@BigConvexData@physx@@QBEIXZ 10011470 f i BigConvexDataBuilder.obj
+ 0001:00010480       ?GetValencies@BigConvexData@physx@@QBEPBUValency@Gu@2@XZ 10011480 f i BigConvexDataBuilder.obj
+ 0001:00010490       ?GetValency@BigConvexData@physx@@QBEGI@Z 10011490 f i BigConvexDataBuilder.obj
+ 0001:000104a0       ??0ConvexHullBuilder@physx@@QAE@PAUConvexHullData@Gu@1@_N@Z 100114a0 f   ConvexHullBuilder.obj
+ 0001:000104f0       ??1ConvexHullBuilder@physx@@QAE@XZ 100114f0 f   ConvexHullBuilder.obj
+ 0001:000105c0       ?init@ConvexHullBuilder@physx@@QAE_NIPBVPxVec3@2@PBIIIPBUPxHullPolygon@2@_NPAVConvexHullLib@2@@Z 100115c0 f   ConvexHullBuilder.obj
+ 0001:00010910       ?save@ConvexHullBuilder@physx@@QBE_NAAVPxOutputStream@2@_N@Z 10011910 f   ConvexHullBuilder.obj
+ 0001:00010bb0       ?copy@ConvexHullBuilder@physx@@QAE_NAAUConvexHullData@Gu@2@AAI@Z 10011bb0 f   ConvexHullBuilder.obj
+ 0001:00010dd0       ?createEdgeList@ConvexHullBuilder@physx@@QAE_N_NI@Z 10011dd0 f   ConvexHullBuilder.obj
+ 0001:000114e0       ?checkHullPolygons@ConvexHullBuilder@physx@@QBE_NXZ 100124e0 f   ConvexHullBuilder.obj
+ 0001:000118d0       ?calculateVertexMapTable@ConvexHullBuilder@physx@@QAE_NI_N@Z 100128d0 f   ConvexHullBuilder.obj
+ 0001:00011a90       ?computeGeomCenter@ConvexHullBuilder@physx@@IBE_NAAVPxVec3@2@IPAUHullTriangleData@2@@Z 10012a90 f   ConvexHullBuilder.obj
+ 0001:00011c90       ??1ConvexHullLib@physx@@UAE@XZ 10012c90 f   ConvexHullLib.obj
+ 0001:00011cd0       ?cleanupVertices@ConvexHullLib@physx@@IAE_NIPBVPxVec3@2@IAAIPAV32@AAV32@3@Z 10012cd0 f   ConvexHullLib.obj
+ 0001:00012020       ?shiftAndcleanupVertices@ConvexHullLib@physx@@IAE_NIPBVPxVec3@2@IAAIPAV32@AAV32@3@Z 10013020 f   ConvexHullLib.obj
+ 0001:000121a0       ?swapLargestFace@ConvexHullLib@physx@@IAEXAAVPxConvexMeshDesc@2@@Z 100131a0 f   ConvexHullLib.obj
+ 0001:00012370       ?shiftConvexMeshDesc@ConvexHullLib@physx@@IAEXAAVPxConvexMeshDesc@2@@Z 10013370 f   ConvexHullLib.obj
+ 0001:00012410       ??_GConvexHullLib@physx@@UAEPAXI@Z 10013410 f i ConvexHullLib.obj
+ 0001:00012410       ??_EConvexHullLib@physx@@UAEPAXI@Z 10013410 f i ConvexHullLib.obj
+ 0001:00012750       ??0ConvexHull@physx@@QAE@ABVPxVec3@1@0ABV?$Array@VPxPlane@physx@@V?$ReflectionAllocator@VPxPlane@physx@@@shdfnd@2@@shdfnd@1@@Z 10013750 f   ConvexHullUtils.obj
+ 0001:00013290       ??0ConvexHull@physx@@QAE@ABVPxVec3@1@ABVPxTransform@1@ABV?$Array@VPxPlane@physx@@V?$ReflectionAllocator@VPxPlane@physx@@@shdfnd@2@@shdfnd@1@@Z 10014290 f   ConvexHullUtils.obj
+ 0001:00014860       ?findCandidatePlane@ConvexHull@physx@@QBEHMM@Z 10015860 f   ConvexHullUtils.obj
+ 0001:00014af0       ?assertIntact@ConvexHull@physx@@QBE_NM@Z 10015af0 f   ConvexHullUtils.obj
+ 0001:00014df0       ?maxNumVertsPerFace@ConvexHull@physx@@QBEIXZ 10015df0 f   ConvexHullUtils.obj
+ 0001:00014e60       ?convexHullCrop@physx@@YAPAVConvexHull@1@ABV21@ABVPxPlane@1@M@Z 10015e60 f   ConvexHullUtils.obj
+ 0001:00015f30       ?computeOBBFromConvex@physx@@YA_NABVPxConvexMeshDesc@1@AAVPxVec3@1@AAVPxTransform@1@@Z 10016f30 f   ConvexHullUtils.obj
+ 0001:000166d0       ?computeOBBSIMD@local@@YAXIPBT__m128@@AAT2@ABT2@1@Z 100176d0 f   ConvexHullUtils.obj
+ 0001:000168a0       ??0Box@Gu@physx@@QAE@ABV012@@Z 100178a0 f i ConvexHullUtils.obj
+ 0001:00016910       ??0Box@Gu@physx@@QAE@ABVPxVec3@2@0ABVPxMat33@2@@Z 10017910 f i ConvexHullUtils.obj
+ 0001:00016980       ??0Box@Gu@physx@@QAE@XZ    10017980 f i ConvexHullUtils.obj
+ 0001:00016990       ??0HalfEdge@ConvexHull@physx@@QAE@XZ 10017990 f i ConvexHullUtils.obj
+ 0001:000169a0       ??0PxPlane@physx@@QAE@XZ   100179a0 f i ConvexHullUtils.obj
+ 0001:000169b0       ??0PxQuat@physx@@QAE@ABVPxMat33@1@@Z 100179b0 f i ConvexHullUtils.obj
+ 0001:00016ba0       ??1Box@Gu@physx@@QAE@XZ    10017ba0 f i ConvexHullUtils.obj
+ 0001:00016bb0       ??4Box@Gu@physx@@QAEABV012@ABV012@@Z 10017bb0 f i ConvexHullUtils.obj
+ 0001:00016c20       ?allocate@?$Array@VHalfEdge@ConvexHull@physx@@V?$ReflectionAllocator@VHalfEdge@ConvexHull@physx@@@shdfnd@3@@shdfnd@physx@@IAEPAVHalfEdge@ConvexHull@3@I@Z 10017c20 f i ConvexHullUtils.obj
+ 0001:00016c90       ?allocate@?$Array@VPxPlane@physx@@V?$ReflectionAllocator@VPxPlane@physx@@@shdfnd@2@@shdfnd@physx@@IAEPAVPxPlane@3@I@Z 10017c90 f i ConvexHullUtils.obj
+ 0001:00016d00       ?computeAABBExtent@Box@Gu@physx@@QBE?AVPxVec3@3@XZ 10017d00 f i ConvexHullUtils.obj
+ 0001:00016db0       ?computeBoxPoints@Box@Gu@physx@@QBEXPIAVPxVec3@3@@Z 10017db0 f i ConvexHullUtils.obj
+ 0001:00016dd0       ?copy@?$Array@VPxPlane@physx@@V?$ReflectionAllocator@VPxPlane@physx@@@shdfnd@2@@shdfnd@physx@@KAXPAVPxPlane@3@0PBV43@@Z 10017dd0 f i ConvexHullUtils.obj
+ 0001:00016e20       ?copyHull@ConvexHull@physx@@QAEXABV12@@Z 10017e20 f i ConvexHullUtils.obj
+ 0001:00016ea0       ?create@?$Array@VPxVec3@physx@@V?$ReflectionAllocator@VPxVec3@physx@@@shdfnd@2@@shdfnd@physx@@KAXPAVPxVec3@3@0ABV43@@Z 10017ea0 f i ConvexHullUtils.obj
+ 0001:00016f60       ?getInverse@PxMat33@physx@@QBE?BV12@XZ 10017f60 f i ConvexHullUtils.obj
+ 0001:000171d0       ?getTransform@Box@Gu@physx@@QBE?AVPxTransform@3@XZ 100181d0 f i ConvexHullUtils.obj
+ 0001:00017220       ?growAndPushBack@?$Array@VHalfEdge@ConvexHull@physx@@V?$ReflectionAllocator@VHalfEdge@ConvexHull@physx@@@shdfnd@3@@shdfnd@physx@@IAEAAVHalfEdge@ConvexHull@3@ABV453@@Z 10018220 f i ConvexHullUtils.obj
+ 0001:000172b0       ?growAndPushBack@?$Array@VPxPlane@physx@@V?$ReflectionAllocator@VPxPlane@physx@@@shdfnd@2@@shdfnd@physx@@IAEAAVPxPlane@3@ABV43@@Z 100182b0 f i ConvexHullUtils.obj
+ 0001:00017340       ?isValid@Box@Gu@physx@@QBE_NXZ 10018340 f i ConvexHullUtils.obj
+ 0001:00017360       ?recreate@?$Array@VHalfEdge@ConvexHull@physx@@V?$ReflectionAllocator@VHalfEdge@ConvexHull@physx@@@shdfnd@3@@shdfnd@physx@@IAEXI@Z 10018360 f i ConvexHullUtils.obj
+ 0001:000173c0       ?recreate@?$Array@VPxPlane@physx@@V?$ReflectionAllocator@VPxPlane@physx@@@shdfnd@2@@shdfnd@physx@@IAEXI@Z 100183c0 f i ConvexHullUtils.obj
+ 0001:00017410       ?resize@?$Array@VHalfEdge@ConvexHull@physx@@V?$ReflectionAllocator@VHalfEdge@ConvexHull@physx@@@shdfnd@3@@shdfnd@physx@@QAEXIABVHalfEdge@ConvexHull@3@@Z 10018410 f i ConvexHullUtils.obj
+ 0001:00017460       ?resize@?$Array@VPxPlane@physx@@V?$ReflectionAllocator@VPxPlane@physx@@@shdfnd@2@@shdfnd@physx@@QAEXIABVPxPlane@3@@Z 10018460 f i ConvexHullUtils.obj
+ 0001:000174c0       ?resize@?$Array@VPxVec3@physx@@V?$ReflectionAllocator@VPxVec3@physx@@@shdfnd@2@@shdfnd@physx@@QAEXIABVPxVec3@3@@Z 100184c0 f i ConvexHullUtils.obj
+ 0001:00017510       ?rotate@Box@Gu@physx@@QBE?AVPxVec3@3@ABV43@@Z 10018510 f i ConvexHullUtils.obj
+ 0001:000175b0       ?rotateInv@Box@Gu@physx@@QBE?AVPxVec3@3@ABV43@@Z 100185b0 f i ConvexHullUtils.obj
+ 0001:00017640       ?setAxes@Box@Gu@physx@@QAEXABVPxVec3@3@00@Z 10018640 f i ConvexHullUtils.obj
+ 0001:00017690       ?setEmpty@Box@Gu@physx@@QAEXXZ 10018690 f i ConvexHullUtils.obj
+ 0001:00017700       ?transform@Box@Gu@physx@@QBE?AVPxVec3@3@ABV43@@Z 10018700 f i ConvexHullUtils.obj
+ 0001:000177c0       ??0ConvexMeshBuilder@physx@@QAE@_N@Z 100187c0 f   ConvexMeshBuilder.obj
+ 0001:00017820       ??1ConvexMeshBuilder@physx@@QAE@XZ 10018820 f   ConvexMeshBuilder.obj
+ 0001:00017850       ?build@ConvexMeshBuilder@physx@@QAE_NABVPxConvexMeshDesc@2@I_NPAVConvexHullLib@2@@Z 10018850 f   ConvexMeshBuilder.obj
+ 0001:00017970       ?save@ConvexMeshBuilder@physx@@QBE_NAAVPxOutputStream@2@_N@Z 10018970 f   ConvexMeshBuilder.obj
+ 0001:00017b50       ?copy@ConvexMeshBuilder@physx@@QAE_NAAUConvexHullData@Gu@2@AAI@Z 10018b50 f   ConvexMeshBuilder.obj
+ 0001:00017bc0       ?loadConvexHull@ConvexMeshBuilder@physx@@QAE_NABVPxConvexMeshDesc@2@PAVConvexHullLib@2@@Z 10018bc0 f   ConvexMeshBuilder.obj
+ 0001:00017db0       ?computeHullPolygons@ConvexMeshBuilder@physx@@QAE_NABIPBVPxVec3@2@0PBIAAVPxAllocatorCallback@2@AAIAAPAV32@4AAPAI4AAPAUPxHullPolygon@2@@Z 10018db0 f   ConvexMeshBuilder.obj
+ 0001:00017f30       ?computeGaussMaps@ConvexMeshBuilder@physx@@QAE_NXZ 10018f30 f   ConvexMeshBuilder.obj
+ 0001:00017ff0       ?computeMassInfo@ConvexMeshBuilder@physx@@QAEX_N@Z 10018ff0 f   ConvexMeshBuilder.obj
+ 0001:000184c0       ?computeInternalObjects@ConvexMeshBuilder@physx@@QAEXXZ 100194c0 f   ConvexMeshBuilder.obj
+ 0001:00018980       ?isFinite@PxVec3@physx@@QBE_NXZ 10019980 f i ConvexMeshBuilder.obj
+ 0001:000189f0       ??0ConvexPolygonsBuilder@physx@@QAE@PAUConvexHullData@Gu@1@_N@Z 100199f0 f   ConvexPolygonsBuilder.obj
+ 0001:00018a20       ??1ConvexPolygonsBuilder@physx@@QAE@XZ 10019a20 f   ConvexPolygonsBuilder.obj
+ 0001:00018a50       ?computeHullPolygons@ConvexPolygonsBuilder@physx@@QAE_NABIPBVPxVec3@2@0PBI@Z 10019a50 f   ConvexPolygonsBuilder.obj
+ 0001:00018c00       ?createPolygonData@ConvexPolygonsBuilder@physx@@AAE_NXZ 10019c00 f   ConvexPolygonsBuilder.obj
+ 0001:00019510       ?createTrianglesFromPolygons@ConvexPolygonsBuilder@physx@@AAE_NXZ 1001a510 f   ConvexPolygonsBuilder.obj
+ 0001:00019a40       ??$?_UE@@YAPAXIV?$ReflectionAllocator@E@shdfnd@physx@@PBDH@Z 1001aa40 f i ConvexPolygonsBuilder.obj
+ 0001:00019aa0       ??$copy@V?$ReflectionAllocator@VPair@@@shdfnd@physx@@@?$Array@VPair@@V?$ReflectionAllocator@VPair@@@shdfnd@physx@@@shdfnd@physx@@IAEXABV012@@Z 1001aaa0 f i ConvexPolygonsBuilder.obj
+ 0001:0001a620       ?allocate@?$Array@VPair@@V?$ReflectionAllocator@VPair@@@shdfnd@physx@@@shdfnd@physx@@IAEPAVPair@@I@Z 1001b620 f i ConvexPolygonsBuilder.obj
+ 0001:0001b8b0       ?growAndPushBack@?$Array@VPair@@V?$ReflectionAllocator@VPair@@@shdfnd@physx@@@shdfnd@physx@@IAEAAVPair@@ABV4@@Z 1001c8b0 f i ConvexPolygonsBuilder.obj
+ 0001:0001b940       ??0QuickHullConvexHullLib@physx@@QAE@ABVPxConvexMeshDesc@1@ABUPxCookingParams@1@@Z 1001c940 f   QuickHullConvexHullLib.obj
+ 0001:0001ba00       ??1QuickHullConvexHullLib@physx@@UAE@XZ 1001ca00 f   QuickHullConvexHullLib.obj
+ 0001:0001ba90       ?createConvexHull@QuickHullConvexHullLib@physx@@UAE?AW4Enum@PxConvexMeshCookingResult@2@XZ 1001ca90 f   QuickHullConvexHullLib.obj
+ 0001:0001bc90       ?fillConvexMeshDesc@QuickHullConvexHullLib@physx@@UAEXAAVPxConvexMeshDesc@2@@Z 1001cc90 f   QuickHullConvexHullLib.obj
+ 0001:0001bcd0       ?createEdgeList@QuickHullConvexHullLib@physx@@UAE_NIPBEPAPAEPAPAG2@Z 1001ccd0 f   QuickHullConvexHullLib.obj
+ 0001:0001bf10       ?expandHullOBB@QuickHullConvexHullLib@physx@@IAE?AW4Enum@PxConvexMeshCookingResult@2@XZ 1001cf10 f   QuickHullConvexHullLib.obj
+ 0001:0001c310       ?expandHull@QuickHullConvexHullLib@physx@@IAE?AW4Enum@PxConvexMeshCookingResult@2@XZ 1001d310 f   QuickHullConvexHullLib.obj
+ 0001:0001c980       ?cleanupForSimplex@QuickHullConvexHullLib@physx@@IAE_NPAVPxVec3@2@IPAUQuickHullVertex@local@@1AAM2@Z 1001d980 f   QuickHullConvexHullLib.obj
+ 0001:0001d010       ?fillConvexMeshDescFromQuickHull@QuickHullConvexHullLib@physx@@IAEXAAVPxConvexMeshDesc@2@@Z 1001e010 f   QuickHullConvexHullLib.obj
+ 0001:0001d3c0       ?fillConvexMeshDescFromCroppedHull@QuickHullConvexHullLib@physx@@IAEXAAVPxConvexMeshDesc@2@@Z 1001e3c0 f   QuickHullConvexHullLib.obj
+ 0001:0001d580       ?getOppositeFaceDistance@QuickHullHalfEdge@local@@QBEMXZ 1001e580 f   QuickHullConvexHullLib.obj
+ 0001:0001d5c0       ?mergeAdjacentFace@QuickHullFace@local@@QAE_NPAUQuickHullHalfEdge@2@AAV?$Array@PAUQuickHullFace@local@@V?$ReflectionAllocator@PAUQuickHullFace@local@@@shdfnd@physx@@@shdfnd@physx@@@Z 1001e5c0 f   QuickHullConvexHullLib.obj
+ 0001:0001d9b0       ?checkFaceConsistency@QuickHullFace@local@@QAE_NXZ 1001e9b0 f   QuickHullConvexHullLib.obj
+ 0001:0001d9c0       ?connectHalfEdges@QuickHullFace@local@@AAEPAU12@PAUQuickHullHalfEdge@2@0@Z 1001e9c0 f   QuickHullConvexHullLib.obj
+ 0001:0001dce0       ??0QuickHull@local@@QAE@ABUPxCookingParams@physx@@ABVPxConvexMeshDesc@3@@Z 1001ece0 f   QuickHullConvexHullLib.obj
+ 0001:0001de30       ??1QuickHull@local@@QAE@XZ 1001ee30 f   QuickHullConvexHullLib.obj
+ 0001:0001df30       ?preallocate@QuickHull@local@@QAEXI@Z 1001ef30 f   QuickHullConvexHullLib.obj
+ 0001:0001e050       ?parseInputVertices@QuickHull@local@@QAEXPBVPxVec3@physx@@I@Z 1001f050 f   QuickHullConvexHullLib.obj
+ 0001:0001e0b0       ?releaseHull@QuickHull@local@@QAEXXZ 1001f0b0 f   QuickHullConvexHullLib.obj
+ 0001:0001e0e0       ?setPrecomputedMinMax@QuickHull@local@@QAEXPBUQuickHullVertex@2@0MM@Z 1001f0e0 f   QuickHullConvexHullLib.obj
+ 0001:0001e250       ?buildHull@QuickHull@local@@QAE?AW4Enum@QuickHullResult@2@XZ 1001f250 f   QuickHullConvexHullLib.obj
+ 0001:0001e410       ?maxNumVertsPerFace@QuickHull@local@@QBEIXZ 1001f410 f   QuickHullConvexHullLib.obj
+ 0001:0001e440       ?computeMinMaxVerts@QuickHull@local@@IAEXXZ 1001f440 f   QuickHullConvexHullLib.obj
+ 0001:0001e790       ?findSimplex@QuickHull@local@@IAE_NXZ 1001f790 f   QuickHullConvexHullLib.obj
+ 0001:0001ec40       ?addSimplex@QuickHull@local@@IAEXPAUQuickHullVertex@2@_N@Z 1001fc40 f   QuickHullConvexHullLib.obj
+ 0001:0001eff0       ?nextPointToAdd@QuickHull@local@@IAEPAUQuickHullVertex@2@AAPAUQuickHullFace@2@@Z 1001fff0 f   QuickHullConvexHullLib.obj
+ 0001:0001f060       ?addPointToHull@QuickHull@local@@IAE_NPBUQuickHullVertex@2@AAUQuickHullFace@2@AA_N@Z 10020060 f   QuickHullConvexHullLib.obj
+ 0001:0001f1c0       ?createTriangle@QuickHull@local@@IAEPAUQuickHullFace@2@ABUQuickHullVertex@2@00@Z 100201c0 f   QuickHullConvexHullLib.obj
+ 0001:0001f510       ?addPointToFace@QuickHull@local@@IAEXAAUQuickHullFace@2@PAUQuickHullVertex@2@M@Z 10020510 f   QuickHullConvexHullLib.obj
+ 0001:0001f560       ?removeEyePointFromFace@QuickHull@local@@IAEXAAUQuickHullFace@2@PBUQuickHullVertex@2@@Z 10020560 f   QuickHullConvexHullLib.obj
+ 0001:0001f570       ?calculateHorizon@QuickHull@local@@IAEXABVPxVec3@physx@@PAUQuickHullHalfEdge@2@AAUQuickHullFace@2@AAV?$Array@PAUQuickHullHalfEdge@local@@V?$ReflectionAllocator@PAUQuickHullHalfEdge@local@@@shdfnd@physx@@@shdfnd@4@AAV?$Array@PAUQuickHullFace@local@@V?$ReflectionAllocator@PAUQuickHullFace@local@@@shdfnd@physx@@@84@@Z 10020570 f   QuickHullConvexHullLib.obj
+ 0001:0001f6e0       ?addNewFacesFromHorizon@QuickHull@local@@IAEXPBUQuickHullVertex@2@ABV?$Array@PAUQuickHullHalfEdge@local@@V?$ReflectionAllocator@PAUQuickHullHalfEdge@local@@@shdfnd@physx@@@shdfnd@physx@@AAV?$Array@PAUQuickHullFace@local@@V?$ReflectionAllocator@PAUQuickHullFace@local@@@shdfnd@physx@@@56@@Z 100206e0 f   QuickHullConvexHullLib.obj
+ 0001:0001f7f0       ?doAdjacentMerge@QuickHull@local@@IAE_NAAUQuickHullFace@2@_NAA_N@Z 100207f0 f   QuickHullConvexHullLib.obj
+ 0001:0001fa30       ?doPostAdjacentMerge@QuickHull@local@@IAE_NAAUQuickHullFace@2@M@Z 10020a30 f   QuickHullConvexHullLib.obj
+ 0001:0001fb20       ?deleteFacePoints@QuickHull@local@@IAEXAAUQuickHullFace@2@PAU32@@Z 10020b20 f   QuickHullConvexHullLib.obj
+ 0001:0001fc10       ?resolveUnclaimedPoints@QuickHull@local@@IAEXABV?$Array@PAUQuickHullFace@local@@V?$ReflectionAllocator@PAUQuickHullFace@local@@@shdfnd@physx@@@shdfnd@physx@@@Z 10020c10 f   QuickHullConvexHullLib.obj
+ 0001:0001fd00       ?postMergeHull@QuickHull@local@@IAEXXZ 10020d00 f   QuickHullConvexHullLib.obj
+ 0001:0001fe30       ?canMergeFaces@QuickHull@local@@IAE_NABUQuickHullHalfEdge@2@@Z 10020e30 f   QuickHullConvexHullLib.obj
+ 0001:00020540       ?getExpandPoint@local@@YAXABUQuickHullHalfEdge@1@AAUExpandPoint@1@PBV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@@Z 10021540 f   QuickHullConvexHullLib.obj
+ 0001:000205d0       ?addExpandPoint@local@@YAXABUExpandPoint@1@AAV?$Array@UExpandPoint@local@@V?$ReflectionAllocator@UExpandPoint@local@@@shdfnd@physx@@@shdfnd@physx@@@Z 100215d0 f   QuickHullConvexHullLib.obj
+ 0001:000206a0       ??0ExpandPoint@local@@QAE@ABU01@@Z 100216a0 f i QuickHullConvexHullLib.obj
+ 0001:00020700       ??0PxPlane@physx@@QAE@ABV01@@Z 10021700 f i QuickHullConvexHullLib.obj
+ 0001:00020720       ??0QuickHullVertex@local@@QAE@XZ 10021720 f i QuickHullConvexHullLib.obj
+ 0001:00020730       ??1?$MemBlock@UQuickHullFace@local@@$00@local@@QAE@XZ 10021730 f i QuickHullConvexHullLib.obj
+ 0001:00020790       ??1?$MemBlock@UQuickHullHalfEdge@local@@$0A@@local@@QAE@XZ 10021790 f i QuickHullConvexHullLib.obj
+ 0001:000207f0       ??1ConvexHull@physx@@QAE@XZ 100217f0 f i QuickHullConvexHullLib.obj
+ 0001:00020860       ??_GQuickHullConvexHullLib@physx@@UAEPAXI@Z 10021860 f i QuickHullConvexHullLib.obj
+ 0001:00020860       ??_EQuickHullConvexHullLib@physx@@UAEPAXI@Z 10021860 f i QuickHullConvexHullLib.obj
+ 0001:000208a0       ??__G@YGXPAX0IIP6EPAX00@Z@Z 100218a0 f i QuickHullConvexHullLib.obj
+ 0001:000208e0       ?allocate@?$Array@PAUQuickHullFace@local@@V?$ReflectionAllocator@PAUQuickHullFace@local@@@shdfnd@physx@@@shdfnd@physx@@IAEPAPAUQuickHullFace@local@@I@Z 100218e0 f i QuickHullConvexHullLib.obj
+ 0001:00020950       ?allocate@?$Array@PAUQuickHullHalfEdge@local@@V?$ReflectionAllocator@PAUQuickHullHalfEdge@local@@@shdfnd@physx@@@shdfnd@physx@@IAEPAPAUQuickHullHalfEdge@local@@I@Z 10021950 f i QuickHullConvexHullLib.obj
+ 0001:000209c0       ?allocate@?$Array@PAUQuickHullVertex@local@@V?$ReflectionAllocator@PAUQuickHullVertex@local@@@shdfnd@physx@@@shdfnd@physx@@IAEPAPAUQuickHullVertex@local@@I@Z 100219c0 f i QuickHullConvexHullLib.obj
+ 0001:00020a30       ?allocate@?$Array@UExpandPoint@local@@V?$ReflectionAllocator@UExpandPoint@local@@@shdfnd@physx@@@shdfnd@physx@@IAEPAUExpandPoint@local@@I@Z 10021a30 f i QuickHullConvexHullLib.obj
+ 0001:00020aa0       ?copy@?$Array@UExpandPoint@local@@V?$ReflectionAllocator@UExpandPoint@local@@@shdfnd@physx@@@shdfnd@physx@@KAXPAUExpandPoint@local@@0PBU45@@Z 10021aa0 f i QuickHullConvexHullLib.obj
+ 0001:00020b30       ?getFreeItem@?$MemBlock@UQuickHullFace@local@@$00@local@@QAEPAUQuickHullFace@2@XZ 10021b30 f i QuickHullConvexHullLib.obj
+ 0001:00020c20       ?getFreeItem@?$MemBlock@UQuickHullHalfEdge@local@@$0A@@local@@QAEPAUQuickHullHalfEdge@2@XZ 10021c20 f i QuickHullConvexHullLib.obj
+ 0001:00020cc0       ?growAndPushBack@?$Array@PAUQuickHullFace@local@@V?$ReflectionAllocator@PAUQuickHullFace@local@@@shdfnd@physx@@@shdfnd@physx@@IAEAAPAUQuickHullFace@local@@ABQAU45@@Z 10021cc0 f i QuickHullConvexHullLib.obj
+ 0001:00020d50       ?growAndPushBack@?$Array@PAUQuickHullHalfEdge@local@@V?$ReflectionAllocator@PAUQuickHullHalfEdge@local@@@shdfnd@physx@@@shdfnd@physx@@IAEAAPAUQuickHullHalfEdge@local@@ABQAU45@@Z 10021d50 f i QuickHullConvexHullLib.obj
+ 0001:00020de0       ?growAndPushBack@?$Array@PAUQuickHullVertex@local@@V?$ReflectionAllocator@PAUQuickHullVertex@local@@@shdfnd@physx@@@shdfnd@physx@@IAEAAPAUQuickHullVertex@local@@ABQAU45@@Z 10021de0 f i QuickHullConvexHullLib.obj
+ 0001:00020e70       ?growAndPushBack@?$Array@UExpandPoint@local@@V?$ReflectionAllocator@UExpandPoint@local@@@shdfnd@physx@@@shdfnd@physx@@IAEAAUExpandPoint@local@@ABU45@@Z 10021e70 f i QuickHullConvexHullLib.obj
+ 0001:00020f10       ?init@?$MemBlock@UQuickHullFace@local@@$00@local@@QAEXI@Z 10021f10 f i QuickHullConvexHullLib.obj
+ 0001:00020fc0       ?init@?$MemBlock@UQuickHullHalfEdge@local@@$0A@@local@@QAEXI@Z 10021fc0 f i QuickHullConvexHullLib.obj
+ 0001:00021030       ?recreate@?$Array@PAUQuickHullFace@local@@V?$ReflectionAllocator@PAUQuickHullFace@local@@@shdfnd@physx@@@shdfnd@physx@@IAEXI@Z 10022030 f i QuickHullConvexHullLib.obj
+ 0001:00021090       ?recreate@?$Array@PAUQuickHullHalfEdge@local@@V?$ReflectionAllocator@PAUQuickHullHalfEdge@local@@@shdfnd@physx@@@shdfnd@physx@@IAEXI@Z 10022090 f i QuickHullConvexHullLib.obj
+ 0001:000210f0       ?recreate@?$Array@PAUQuickHullVertex@local@@V?$ReflectionAllocator@PAUQuickHullVertex@local@@@shdfnd@physx@@@shdfnd@physx@@IAEXI@Z 100220f0 f i QuickHullConvexHullLib.obj
+ 0001:00021150       ?recreate@?$Array@UExpandPoint@local@@V?$ReflectionAllocator@UExpandPoint@local@@@shdfnd@physx@@@shdfnd@physx@@IAEXI@Z 10022150 f i QuickHullConvexHullLib.obj
+ 0001:000211a0       ?reset@?$MemBlock@UQuickHullFace@local@@$00@local@@QAEXXZ 100221a0 f i QuickHullConvexHullLib.obj
+ 0001:000211f0       ?reset@?$MemBlock@UQuickHullHalfEdge@local@@$0A@@local@@QAEXXZ 100221f0 f i QuickHullConvexHullLib.obj
+ 0001:000212a0       ?computeVolumeIntegrals@physx@@YA_NABVPxSimpleTriangleMesh@1@MAAUPxIntegrals@1@@Z 100222a0 f   VolumeIntegration.obj
+ 0001:00021310       ?computeVolumeIntegralsEberly@physx@@YA_NABVPxConvexMeshDesc@1@MAAUPxIntegrals@1@ABVPxVec3@1@@Z 10022310 f   VolumeIntegration.obj
+ 0001:00021360       ?computeVolumeIntegralsEberlySIMD@physx@@YA_NABVPxConvexMeshDesc@1@MAAUPxIntegrals@1@ABVPxVec3@1@@Z 10022360 f   VolumeIntegration.obj
+ 0001:00023790       _PxSetPhysXCookingDelayLoadHook 10024790 f   WindowsCookingDelayLoadHook.obj
+ 0001:000237a0       ?cookingDelayHook@@YGP6GHXZIPAUDelayLoadInfo@@@Z 100247a0 f   WindowsCookingDelayLoadHook.obj
+ 0001:000237f0       ?physXCommonDliNotePreLoadLibrary@Cm@physx@@YGP6GHXZPBDPBVPxDelayLoadHook@2@@Z 100247f0 f i WindowsCookingDelayLoadHook.obj
+ 0001:0002385d       __imp_load_??0RadixSortBuffered@Cm@physx@@QAE@XZ 1002485d f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023867       __tailMerge_PhysXCommon_32_dll 10024867 f i PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023878       ??0RadixSortBuffered@Cm@physx@@QAE@XZ 10024878 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002387e       __imp_load_??1RadixSortBuffered@Cm@physx@@UAE@XZ 1002487e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023888       ??1RadixSortBuffered@Cm@physx@@UAE@XZ 10024888 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002388e       __imp_load_?Sort@RadixSortBuffered@Cm@physx@@QAEAAV123@PBIIW4RadixHint@23@@Z 1002488e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023898       ?Sort@RadixSortBuffered@Cm@physx@@QAEAAV123@PBIIW4RadixHint@23@@Z 10024898 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002389e       __imp_load_?readDword@physx@@YAI_NAAVPxInputStream@1@@Z 1002489e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238a8       ?readDword@physx@@YAI_NAAVPxInputStream@1@@Z 100248a8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238ae       __imp_load_?ReadHeader@Gu@physx@@YA_NEEEEAAIAA_NAAVPxInputStream@2@@Z 100248ae f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238b8       ?ReadHeader@Gu@physx@@YA_NEEEEAAIAA_NAAVPxInputStream@2@@Z 100248b8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238be       __imp_load_?exportExtraData@ConvexMesh@Gu@physx@@UAEXAAVPxSerializationContext@3@@Z 100248be f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238c8       ?exportExtraData@ConvexMesh@Gu@physx@@UAEXAAVPxSerializationContext@3@@Z 100248c8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238ce       __imp_load_?onRefCountZero@ConvexMesh@Gu@physx@@UAEXXZ 100248ce f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238d8       ?onRefCountZero@ConvexMesh@Gu@physx@@UAEXXZ 100248d8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238de       __imp_load_?release@ConvexMesh@Gu@physx@@UAEXXZ 100248de f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238e8       ?release@ConvexMesh@Gu@physx@@UAEXXZ 100248e8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238ee       __imp_load_?getPolygonData@ConvexMesh@Gu@physx@@UBE_NIAAUPxHullPolygon@3@@Z 100248ee f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238f8       ?getPolygonData@ConvexMesh@Gu@physx@@UBE_NIAAUPxHullPolygon@3@@Z 100248f8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000238fe       __imp_load_?isGpuCompatible@ConvexMesh@Gu@physx@@UBE_NXZ 100248fe f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023908       ?isGpuCompatible@ConvexMesh@Gu@physx@@UBE_NXZ 10024908 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002390e       __imp_load_?getReferenceCount@ConvexMesh@Gu@physx@@UBEIXZ 1002490e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023918       ?getReferenceCount@ConvexMesh@Gu@physx@@UBEIXZ 10024918 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002391e       __imp_load_?acquireReference@ConvexMesh@Gu@physx@@UAEXXZ 1002491e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023928       ?acquireReference@ConvexMesh@Gu@physx@@UAEXXZ 10024928 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002392e       __imp_load_?getMassInformation@ConvexMesh@Gu@physx@@UBEXAAMAAVPxMat33@3@AAVPxVec3@3@@Z 1002492e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023938       ?getMassInformation@ConvexMesh@Gu@physx@@UBEXAAMAAVPxMat33@3@AAVPxVec3@3@@Z 10024938 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002393e       __imp_load_?getLocalBounds@ConvexMesh@Gu@physx@@UBE?AVPxBounds3@3@XZ 1002493e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023948       ?getLocalBounds@ConvexMesh@Gu@physx@@UBE?AVPxBounds3@3@XZ 10024948 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002394e       __imp_load_??1ConvexMesh@Gu@physx@@UAE@XZ 1002494e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023958       ??1ConvexMesh@Gu@physx@@UAE@XZ 10024958 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002395e       __imp_load_??0HeightField@Gu@physx@@QAE@PAVGuMeshFactory@2@@Z 1002495e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023968       ??0HeightField@Gu@physx@@QAE@PAVGuMeshFactory@2@@Z 10024968 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002396e       __imp_load_?loadFromDesc@HeightField@Gu@physx@@QAE_NABVPxHeightFieldDesc@3@@Z 1002496e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023978       ?loadFromDesc@HeightField@Gu@physx@@QAE_NABVPxHeightFieldDesc@3@@Z 10024978 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002397e       __imp_load_?computeCellCoordinates@HeightField@Gu@physx@@QBEIMMAAM0@Z 1002497e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023988       ?computeCellCoordinates@HeightField@Gu@physx@@QBEIMMAAM0@Z 10024988 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002398e       __imp_load_?releaseMemory@HeightField@Gu@physx@@QAEXXZ 1002498e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023998       ?releaseMemory@HeightField@Gu@physx@@QAEXXZ 10024998 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:0002399e       __imp_load_??1HeightField@Gu@physx@@UAE@XZ 1002499e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239a8       ??1HeightField@Gu@physx@@UAE@XZ 100249a8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239ae       __imp_load_??0NodeAllocator@Gu@physx@@QAE@XZ 100249ae f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239b8       ??0NodeAllocator@Gu@physx@@QAE@XZ 100249b8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239be       __imp_load_??1NodeAllocator@Gu@physx@@QAE@XZ 100249be f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239c8       ??1NodeAllocator@Gu@physx@@QAE@XZ 100249c8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239ce       __imp_load_?release@NodeAllocator@Gu@physx@@QAEXXZ 100249ce f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239d8       ?release@NodeAllocator@Gu@physx@@QAEXXZ 100249d8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239de       __imp_load_?buildAABBTree@Gu@physx@@YA_NAAVAABBTreeBuildParams@12@AAVNodeAllocator@12@AAUBuildStats@12@AAPAI@Z 100249de f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239e8       ?buildAABBTree@Gu@physx@@YA_NAAVAABBTreeBuildParams@12@AAVNodeAllocator@12@AAUBuildStats@12@AAPAI@Z 100249e8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239ee       __imp_load_?writeDword@physx@@YAXI_NAAVPxOutputStream@1@@Z 100249ee f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239f8       ?writeDword@physx@@YAXI_NAAVPxOutputStream@1@@Z 100249f8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:000239fe       __imp_load_?writeFloatBuffer@physx@@YAXPBMI_NAAVPxOutputStream@1@@Z 100249fe f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a08       ?writeFloatBuffer@physx@@YAXPBMI_NAAVPxOutputStream@1@@Z 10024a08 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a0e       __imp_load_?writeHeader@physx@@YA_NCCCCI_NAAVPxOutputStream@1@@Z 10024a0e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a18       ?writeHeader@physx@@YA_NCCCCI_NAAVPxOutputStream@1@@Z 10024a18 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a1e       __imp_load_?writeWord@physx@@YAXG_NAAVPxOutputStream@1@@Z 10024a1e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a28       ?writeWord@physx@@YAXG_NAAVPxOutputStream@1@@Z 10024a28 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a2e       __imp_load_?writeFloat@physx@@YAXM_NAAVPxOutputStream@1@@Z 10024a2e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a38       ?writeFloat@physx@@YAXM_NAAVPxOutputStream@1@@Z 10024a38 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a3e       __imp_load_?computeBoundsAroundVertices@Gu@physx@@YAXAAVPxBounds3@2@IPIBVPxVec3@2@@Z 10024a3e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a48       ?computeBoundsAroundVertices@Gu@physx@@YAXAAVPxBounds3@2@IPIBVPxVec3@2@@Z 10024a48 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a4e       __imp_load_??0SourceMesh@Gu@physx@@QAE@XZ 10024a4e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a58       ??0SourceMesh@Gu@physx@@QAE@XZ 10024a58 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a5e       __imp_load_??1SourceMesh@Gu@physx@@QAE@XZ 10024a5e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a68       ??1SourceMesh@Gu@physx@@QAE@XZ 10024a68 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a6e       __imp_load_??0BV4Tree@Gu@physx@@QAE@XZ 10024a6e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a78       ??0BV4Tree@Gu@physx@@QAE@XZ 10024a78 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a7e       __imp_load_??1BV4Tree@Gu@physx@@QAE@XZ 10024a7e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a88       ??1BV4Tree@Gu@physx@@QAE@XZ 10024a88 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a8e       __imp_load_??0BV32Tree@Gu@physx@@QAE@XZ 10024a8e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a98       ??0BV32Tree@Gu@physx@@QAE@XZ 10024a98 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023a9e       __imp_load_??1BV32Tree@Gu@physx@@QAE@XZ 10024a9e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023aa8       ??1BV32Tree@Gu@physx@@QAE@XZ 10024aa8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023aae       __imp_load_?writeWordBuffer@physx@@YAXPBGI_NAAVPxOutputStream@1@@Z 10024aae f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023ab8       ?writeWordBuffer@physx@@YAXPBGI_NAAVPxOutputStream@1@@Z 10024ab8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023abe       __imp_load_?computeMaxIndex@physx@@YAIPBII@Z 10024abe f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023ac8       ?computeMaxIndex@physx@@YAIPBII@Z 10024ac8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023ace       __imp_load_?storeIndices@physx@@YAXIIPBIAAVPxOutputStream@1@_N@Z 10024ace f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023ad8       ?storeIndices@physx@@YAXIIPBIAAVPxOutputStream@1@_N@Z 10024ad8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023ade       __imp_load_?BuildBV4Ex@Gu@physx@@YA_NAAVBV4Tree@12@AAVSourceMesh@12@MI@Z 10024ade f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023ae8       ?BuildBV4Ex@Gu@physx@@YA_NAAVBV4Tree@12@AAVSourceMesh@12@MI@Z 10024ae8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023aee       __imp_load_?BuildBV32Ex@Gu@physx@@YA_NAAVBV32Tree@12@AAVSourceMesh@12@MI@Z 10024aee f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023af8       ?BuildBV32Ex@Gu@physx@@YA_NAAVBV32Tree@12@AAVSourceMesh@12@MI@Z 10024af8 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023afe       __imp_load_?computeMaxIndex@physx@@YAGPBGI@Z 10024afe f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b08       ?computeMaxIndex@physx@@YAGPBGI@Z 10024b08 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b0e       __imp_load_?WriteHeader@Gu@physx@@YA_NEEEEI_NAAVPxOutputStream@2@@Z 10024b0e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b18       ?WriteHeader@Gu@physx@@YA_NEEEEI_NAAVPxOutputStream@2@@Z 10024b18 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b1e       __imp_load_?StoreIndices@Gu@physx@@YAXGIPBGAAVPxOutputStream@2@_N@Z 10024b1e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b28       ?StoreIndices@Gu@physx@@YAXGIPBGAAVPxOutputStream@2@_N@Z 10024b28 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b2e       __imp_load_?CreateOffsets@BigConvexData@physx@@IAEXXZ 10024b2e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b38       ?CreateOffsets@BigConvexData@physx@@IAEXXZ 10024b38 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b3e       __imp_load_?computeOBBPoints@Gu@physx@@YAXPIAVPxVec3@2@ABV32@1111@Z 10024b3e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b48       ?computeOBBPoints@Gu@physx@@YAXPIAVPxVec3@2@ABV32@1111@Z 10024b48 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b4e       __imp_load_??0BigConvexData@physx@@QAE@XZ 10024b4e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b58       ??0BigConvexData@physx@@QAE@XZ 10024b58 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b5e       __imp_load_??1BigConvexData@physx@@QAE@XZ 10024b5e f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b68       ??1BigConvexData@physx@@QAE@XZ 10024b68 f   PhysXCommon_32:PhysXCommon_32.dll
+ 0001:00023b6e       __imp_load__PxGetFoundation 10024b6e f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023b78       __tailMerge_PhysXFoundation_32_dll 10024b78 f i PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023b89       _PxGetFoundation           10024b89 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023b8f       __imp_load_?getAllocator@shdfnd@physx@@YAAAVPxAllocatorCallback@2@XZ 10024b8f f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023b99       ?getAllocator@shdfnd@physx@@YAAAVPxAllocatorCallback@2@XZ 10024b99 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023b9f       __imp_load_?getInstance@Foundation@shdfnd@physx@@SAAAV123@XZ 10024b9f f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023ba9       ?getInstance@Foundation@shdfnd@physx@@SAAAV123@XZ 10024ba9 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023baf       __imp_load_?error@Foundation@shdfnd@physx@@QAAXW4Enum@PxErrorCode@3@PBDH1ZZ 10024baf f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bb9       ?error@Foundation@shdfnd@physx@@QAAXW4Enum@PxErrorCode@3@PBDH1ZZ 10024bb9 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bbf       __imp_load_?incRefCount@Foundation@shdfnd@physx@@SAXXZ 10024bbf f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bc9       ?incRefCount@Foundation@shdfnd@physx@@SAXXZ 10024bc9 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bcf       __imp_load_?decRefCount@Foundation@shdfnd@physx@@SAXXZ 10024bcf f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bd9       ?decRefCount@Foundation@shdfnd@physx@@SAXXZ 10024bd9 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bdf       __imp_load_??0FPUGuard@shdfnd@physx@@QAE@XZ 10024bdf f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023be9       ??0FPUGuard@shdfnd@physx@@QAE@XZ 10024be9 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bef       __imp_load_??1FPUGuard@shdfnd@physx@@QAE@XZ 10024bef f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bf9       ??1FPUGuard@shdfnd@physx@@QAE@XZ 10024bf9 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023bff       __imp_load_?allocate@TempAllocator@shdfnd@physx@@QAEPAXIPBDH@Z 10024bff f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023c09       ?allocate@TempAllocator@shdfnd@physx@@QAEPAXIPBDH@Z 10024c09 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023c0f       __imp_load_?deallocate@TempAllocator@shdfnd@physx@@QAEXPAX@Z 10024c0f f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023c19       ?deallocate@TempAllocator@shdfnd@physx@@QAEXPAX@Z 10024c19 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023c1f       __imp_load_?PxDiagonalize@physx@@YA?AVPxVec3@1@ABVPxMat33@1@AAVPxQuat@1@@Z 10024c1f f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023c29       ?PxDiagonalize@physx@@YA?AVPxVec3@1@ABVPxMat33@1@AAVPxQuat@1@@Z 10024c29 f   PhysXFoundation_32:PhysXFoundation_32.dll
+ 0001:00023c30       _LoadLibraryA@4            10024c30 f   kernel32:KERNEL32.dll
+ 0001:00023c36       ??$PFromRva@PAP6GHXZ@@YGPAP6GHXZK@Z 10024c36 f i Delayimp:delayhlp.obj
+ 0001:00023c48       ??$PFromRva@PAPAUHINSTANCE__@@@@YGPAPAUHINSTANCE__@@K@Z 10024c48 f i Delayimp:delayhlp.obj
+ 0001:00023c5a       ??$PFromRva@PAU_IMAGE_IMPORT_BY_NAME@@@@YGPAU_IMAGE_IMPORT_BY_NAME@@K@Z 10024c5a f i Delayimp:delayhlp.obj
+ 0001:00023c6c       ??$PFromRva@PAU_IMAGE_THUNK_DATA32@@@@YGPAU_IMAGE_THUNK_DATA32@@K@Z 10024c6c f i Delayimp:delayhlp.obj
+ 0001:00023c7e       ??$PFromRva@PBD@@YGPBDK@Z  10024c7e f i Delayimp:delayhlp.obj
+ 0001:00023c90       ??$PFromRva@PBUImgDelayDescr@@@@YGPBUImgDelayDescr@@K@Z 10024c90 f i Delayimp:delayhlp.obj
+ 0001:00023ca2       ??$PFromRva@PBU_IMAGE_THUNK_DATA32@@@@YGPBU_IMAGE_THUNK_DATA32@@K@Z 10024ca2 f i Delayimp:delayhlp.obj
+ 0001:00023cb4       ?CountOfImports@@YGIPBU_IMAGE_THUNK_DATA32@@@Z 10024cb4 f i Delayimp:delayhlp.obj
+ 0001:00023ccf       ?DloadAcquireSectionWriteAccess@@YGXXZ 10024ccf f i Delayimp:delayhlp.obj
+ 0001:00023d02       ?DloadGetSRWLockFunctionPointers@@YGEXZ 10024d02 f i Delayimp:delayhlp.obj
+ 0001:00023d7d       ?DloadLock@@YGXXZ          10024d7d f i Delayimp:delayhlp.obj
+ 0001:00023dda       ?DloadMakePermanentImageCommit@@YGXPAXK@Z 10024dda f i Delayimp:delayhlp.obj
+ 0001:00023e4c       ?DloadObtainSection@@YGPAXPAK0@Z 10024e4c f i Delayimp:delayhlp.obj
+ 0001:00023ecf       ?DloadProtectSection@@YGXKPAK@Z 10024ecf f i Delayimp:delayhlp.obj
+ 0001:00023f3f       ?DloadReleaseSectionWriteAccess@@YGXXZ 10024f3f f i Delayimp:delayhlp.obj
+ 0001:00023f77       ?DloadUnlock@@YGXXZ        10024f77 f i Delayimp:delayhlp.obj
+ 0001:00023fd6       ?IndexFromPImgThunkData@@YGIPBU_IMAGE_THUNK_DATA32@@0@Z 10024fd6 f i Delayimp:delayhlp.obj
+ 0001:00024138       _HRESULT_FROM_WIN32@4      10025138 f i Delayimp:delayhlp.obj
+ 0001:00024150       _ReadAcquire@4             10025150 f i Delayimp:delayhlp.obj
+ 0001:0002415e       _ReadPointerAcquire@4      1002515e f i Delayimp:delayhlp.obj
+ 0001:0002416c       _WritePointerRelease@8     1002516c f i Delayimp:delayhlp.obj
+ 0001:0002417d       _WriteRelease@8            1002517d f i Delayimp:delayhlp.obj
+ 0001:0002418e       __InlineInterlockedCompareExchangePointer@12 1002518e f i Delayimp:delayhlp.obj
+ 0001:000241a4       ___FUnloadDelayLoadedDLL2@4 100251a4 f   Delayimp:delayhlp.obj
+ 0001:0002422a       ___HrLoadAllImportsForDll@4 1002522a f   Delayimp:delayhlp.obj
+ 0001:0002428d       ___delayLoadHelper2@8      1002528d f   Delayimp:delayhlp.obj
+ 0001:00024512       ??3@YAXPAXI@Z              10025512 f   MSVCRT:delete_scalar_size.obj
+ 0001:00024520       ??_V@YAXPAXI@Z             10025520 f   MSVCRT:delete_array_size.obj
+ 0001:0002452e       ?__scrt_initialize_type_info@@YAXXZ 1002552e f   MSVCRT:tncleanup.obj
+ 0001:0002453a       ?__scrt_uninitialize_type_info@@YAXXZ 1002553a f   MSVCRT:tncleanup.obj
+ 0001:00024546       ??1type_info@@UAE@XZ       10025546 f   MSVCRT:std_type_info_static.obj
+ 0001:0002454d       ??_Gtype_info@@UAEPAXI@Z   1002554d f i MSVCRT:std_type_info_static.obj
+ 0001:0002454d       ??_Etype_info@@UAEPAXI@Z   1002554d f i MSVCRT:std_type_info_static.obj
+ 0001:00024570       __alloca_probe_16          10025570 f   MSVCRT:alloca16.obj
+ 0001:00024586       __alloca_probe_8           10025586     MSVCRT:alloca16.obj
+ 0001:0002459c       ??3@YAXPAX@Z               1002559c f   MSVCRT:delete_scalar.obj
+ 0001:000245a1       ??_V@YAXPAX@Z              100255a1 f   MSVCRT:delete_array.obj
+ 0001:000245b0       __chkstk                   100255b0 f   MSVCRT:chkstk.obj
+ 0001:000245b0       __alloca_probe             100255b0 f   MSVCRT:chkstk.obj
+ 0001:000245e0       __ftoui3                   100255e0 f   MSVCRT:_ftol3_.obj
+ 0001:000245ef       __ftoul3                   100255ef f   MSVCRT:_ftol3_.obj
+ 0001:000245fe       __ftol3                    100255fe f   MSVCRT:_ftol3_.obj
+ 0001:0002460b       __ftol3_NaN                1002560b f   MSVCRT:_ftol3_.obj
+ 0001:00024623       __ftol3_work               10025623 f   MSVCRT:_ftol3_.obj
+ 0001:000246a9       __ftol3_common             100256a9 f   MSVCRT:_ftol3_.obj
+ 0001:0002476b       __ftol3_arg_error          1002576b f   MSVCRT:_ftol3_.obj
+ 0001:0002477d       __ftol3_except             1002577d f   MSVCRT:_ftol3_.obj
+ 0001:000247c1       __dtoui3                   100257c1 f   MSVCRT:_ftol3_.obj
+ 0001:000247d0       __dtoul3                   100257d0 f   MSVCRT:_ftol3_.obj
+ 0001:000247df       __dtol3                    100257df f   MSVCRT:_ftol3_.obj
+ 0001:000247ec       __dtol3_NaN                100257ec f   MSVCRT:_ftol3_.obj
+ 0001:00024809       __dtol3_work               10025809 f   MSVCRT:_ftol3_.obj
+ 0001:000248f0       __ultod3                   100258f0 f   MSVCRT:_ftol3_.obj
+ 0001:00024930       __ltod3                    10025930 f   MSVCRT:_ftol3_.obj
+ 0001:00024c5f       __CRT_INIT@12              10025c5f f   MSVCRT:dll_dllmain.obj
+ 0001:00024c68       __DllMainCRTStartup@12     10025c68 f   MSVCRT:dll_dllmain.obj
+ 0001:00024c8b       @__security_check_cookie@4 10025c8b f   MSVCRT:_secchk_.obj
+ 0001:00024c9c       @_guard_check_icall_nop@4  10025c9c f i MSVCRT:guard_support.obj
+ 0001:00024c9d       __guard_icall_checks_enforced 10025c9d f i MSVCRT:guard_support.obj
+ 0001:00024caf       ??$__crt_fast_decode_pointer@PAP6AXXZ@@YAPAP6AXXZQAP6AXXZ@Z 10025caf f i MSVCRT:utility.obj
+ 0001:00024cc3       ??$__crt_fast_encode_pointer@PAP6AXXZ@@YAPAP6AXXZQAP6AXXZ@Z 10025cc3 f i MSVCRT:utility.obj
+ 0001:00024ce0       ?__crt_rotate_pointer_value@@YAIIH@Z 10025ce0 f i MSVCRT:utility.obj
+ 0001:00024ced       ?configure_argv@__scrt_narrow_argv_policy@@SAHXZ 10025ced f i MSVCRT:utility.obj
+ 0001:00024d71       _NtCurrentTeb              10025d71 f i MSVCRT:utility.obj
+ 0001:00024d78       ___scrt_acquire_startup_lock 10025d78 f   MSVCRT:utility.obj
+ 0001:00024dad       ___scrt_dllmain_after_initialize_c 10025dad f   MSVCRT:utility.obj
+ 0001:00024dd8       ___scrt_dllmain_before_initialize_c 10025dd8 f   MSVCRT:utility.obj
+ 0001:00024de6       ___scrt_dllmain_crt_thread_attach 10025de6 f   MSVCRT:utility.obj
+ 0001:00024e05       ___scrt_dllmain_crt_thread_detach 10025e05 f   MSVCRT:utility.obj
+ 0001:00024e12       ___scrt_dllmain_exception_filter 10025e12 f   MSVCRT:utility.obj
+ 0001:00024e45       ___scrt_dllmain_uninitialize_c 10025e45 f   MSVCRT:utility.obj
+ 0001:00024e68       ___scrt_dllmain_uninitialize_critical 10025e68 f   MSVCRT:utility.obj
+ 0001:00024e75       ___scrt_initialize_crt     10025e75 f   MSVCRT:utility.obj
+ 0001:00024eae       ___scrt_initialize_onexit_tables 10025eae f   MSVCRT:utility.obj
+ 0001:00024f45       ___scrt_is_nonwritable_in_current_image 10025f45 f   MSVCRT:utility.obj
+ 0001:00024fcf       ___scrt_release_startup_lock 10025fcf f   MSVCRT:utility.obj
+ 0001:00024fec       ___scrt_uninitialize_crt   10025fec f   MSVCRT:utility.obj
+ 0001:00025014       __onexit                   10026014 f   MSVCRT:utility.obj
+ 0001:0002504f       _at_quick_exit             1002604f f   MSVCRT:utility.obj
+ 0001:00025080       _atexit                    10026080 f   MSVCRT:utility.obj
+ 0001:00025095       ___security_init_cookie    10026095 f   MSVCRT:gs_support.obj
+ 0001:00025131       _DllMain@12                10026131 f   MSVCRT:dll_dllmain_stub.obj
+ 0001:00025153       ___local_stdio_printf_options 10026153 f i MSVCRT:default_local_stdio_options.obj
+ 0001:00025159       ___local_stdio_scanf_options 10026159 f i MSVCRT:default_local_stdio_options.obj
+ 0001:0002515f       ___scrt_initialize_default_local_stdio_options 1002615f f   MSVCRT:default_local_stdio_options.obj
+ 0001:0002517c       ___scrt_get_dyn_tls_init_callback 1002617c f   MSVCRT:dyn_tls_init.obj
+ 0001:00025182       ___scrt_fastfail           10026182 f   MSVCRT:utility_desktop.obj
+ 0001:0002529d       ___scrt_get_show_window_mode 1002629d f   MSVCRT:utility_desktop.obj
+ 0001:000252d0       ___scrt_initialize_winrt   100262d0 f   MSVCRT:utility_desktop.obj
+ 0001:000252d3       ___scrt_is_managed_app     100262d3 f   MSVCRT:utility_desktop.obj
+ 0001:00025317       ___scrt_set_unhandled_exception_filter 10026317 f   MSVCRT:utility_desktop.obj
+ 0001:00025323       ___scrt_unhandled_exception_filter@4 10026323 f   MSVCRT:utility_desktop.obj
+ 0001:00025364       __crt_debugger_hook        10026364 f   MSVCRT:utility_desktop.obj
+ 0001:0002536c       __RTC_Initialize           1002636c f   MSVCRT:_initsect_.obj
+ 0001:00025397       __RTC_Terminate            10026397 f   MSVCRT:_initsect_.obj
+ 0001:000253c2       @_guard_check_icall@4      100263c2 f i MSVCRT:checkcfg.obj
+ 0001:000253d0       __SEH_prolog4              100263d0 f   MSVCRT:_sehprolg4_.obj
+ 0001:00025416       __SEH_epilog4              10026416 f   MSVCRT:_sehprolg4_.obj
+ 0001:0002542b       __except_handler4          1002642b f   MSVCRT:_chandler4gs_.obj
+ 0001:0002544e       ___raise_securityfailure   1002644e f   MSVCRT:gs_report.obj
+ 0001:00025476       ___report_gsfailure        10026476 f   MSVCRT:gs_report.obj
+ 0001:00025571       ___report_rangecheckfailure 10026571 f   MSVCRT:gs_report.obj
+ 0001:0002557d       ___report_securityfailure  1002657d f   MSVCRT:gs_report.obj
+ 0001:0002564d       ___report_securityfailureEx 1002664d f   MSVCRT:gs_report.obj
+ 0001:00025763       ___isa_available_init      10026763 f   MSVCRT:_cpu_disp_.obj
+ 0001:00025907       __get_startup_argv_mode    10026907 f   MSVCRT:argv_mode.obj
+ 0001:0002590b       ___scrt_is_ucrt_dll_in_use 1002690b f   MSVCRT:ucrt_detection.obj
+ 0001:00025918       __purecall                 10026918 f   vcruntime:VCRUNTIME140.dll
+ 0001:0002591e       ___std_type_info_name      1002691e f   vcruntime:VCRUNTIME140.dll
+ 0001:00025924       _memset                    10026924 f   vcruntime:VCRUNTIME140.dll
+ 0001:0002592a       _memcpy                    1002692a f   vcruntime:VCRUNTIME140.dll
+ 0001:00025930       _strstr                    10026930 f   vcruntime:VCRUNTIME140.dll
+ 0001:00025936       ___std_type_info_destroy_list 10026936 f   vcruntime:VCRUNTIME140.dll
+ 0001:0002593c       __except_handler4_common   1002693c f   vcruntime:VCRUNTIME140.dll
+ 0001:00025942       ___libm_sse2_powf          10026942 f   ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0001:00025948       ___libm_sse2_cosf          10026948 f   ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0001:0002594e       ___libm_sse2_sinf          1002694e f   ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0001:00025954       __fpclass                  10026954 f   ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0001:0002595a       _free                      1002695a f   ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0001:00025960       __except1                  10026960 f   ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0001:00025966       __initterm                 10026966 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0002596c       __initterm_e               1002696c f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00025972       __seh_filter_dll           10026972 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00025978       __configure_narrow_argv    10026978 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0002597e       __initialize_narrow_environment 1002697e f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00025984       __initialize_onexit_table  10026984 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0002598a       __register_onexit_function 1002698a f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00025990       __execute_onexit_table     10026990 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00025996       __crt_atexit               10026996 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0002599c       __crt_at_quick_exit        1002699c f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000259a2       __cexit                    100269a2 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000259a8       _terminate                 100269a8 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000259ae       _RaiseException@16         100269ae f   kernel32:KERNEL32.dll
+ 0001:000259b4       _GetLastError@0            100269b4 f   kernel32:KERNEL32.dll
+ 0001:000259ba       _GetSystemInfo@4           100269ba f   kernel32:KERNEL32.dll
+ 0001:000259c0       _VirtualProtect@16         100269c0 f   kernel32:KERNEL32.dll
+ 0001:000259c6       _VirtualQuery@12           100269c6 f   kernel32:KERNEL32.dll
+ 0001:000259cc       _FreeLibrary@4             100269cc f   kernel32:KERNEL32.dll
+ 0001:000259d2       _GetModuleHandleW@4        100269d2 f   kernel32:KERNEL32.dll
+ 0001:000259d8       _GetProcAddress@8          100269d8 f   kernel32:KERNEL32.dll
+ 0001:000259de       _LoadLibraryExA@12         100269de f   kernel32:KERNEL32.dll
+ 0001:000259e4       _InitializeSListHead@4     100269e4 f   kernel32:KERNEL32.dll
+ 0001:000259ea       _QueryPerformanceCounter@4 100269ea f   kernel32:KERNEL32.dll
+ 0001:000259f0       _GetCurrentProcessId@0     100269f0 f   kernel32:KERNEL32.dll
+ 0001:000259f6       _GetCurrentThreadId@0      100269f6 f   kernel32:KERNEL32.dll
+ 0001:000259fc       _GetSystemTimeAsFileTime@4 100269fc f   kernel32:KERNEL32.dll
+ 0001:00025a02       _DisableThreadLibraryCalls@4 10026a02 f   kernel32:KERNEL32.dll
+ 0001:00025a08       _IsDebuggerPresent@0       10026a08 f   kernel32:KERNEL32.dll
+ 0001:00025a0e       _UnhandledExceptionFilter@4 10026a0e f   kernel32:KERNEL32.dll
+ 0001:00025a14       _SetUnhandledExceptionFilter@4 10026a14 f   kernel32:KERNEL32.dll
+ 0001:00025a1a       _GetStartupInfoW@4         10026a1a f   kernel32:KERNEL32.dll
+ 0001:00025a20       _IsProcessorFeaturePresent@4 10026a20 f   kernel32:KERNEL32.dll
+ 0001:00025a26       _GetCurrentProcess@0       10026a26 f   kernel32:KERNEL32.dll
+ 0001:00025a2c       _TerminateProcess@8        10026a2c f   kernel32:KERNEL32.dll
+ 0001:00025a32       ___vcrt_initialize         10026a32 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a32       ___scrt_stub_for_acrt_initialize 10026a32 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a32       ___acrt_initialize         10026a32 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a35       ___scrt_stub_for_acrt_thread_attach 10026a35 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a35       ___vcrt_thread_attach      10026a35 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a35       ___acrt_thread_attach      10026a35 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a38       ___scrt_stub_for_acrt_thread_detach 10026a38 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a38       ___acrt_thread_detach      10026a38 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a38       ___vcrt_thread_detach      10026a38 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a3b       ___scrt_stub_for_acrt_uninitialize 10026a3b f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a3b       ___acrt_uninitialize       10026a3b f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a3b       ___vcrt_uninitialize       10026a3b f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a3e       ___acrt_uninitialize_critical 10026a3e f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a3e       ___scrt_stub_for_acrt_uninitialize_critical 10026a3e f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a3e       ___vcrt_uninitialize_critical 10026a3e f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a41       __is_c_termination_complete 10026a41 f   MSVCRT:ucrt_stubs.obj
+ 0001:00025a41       ___scrt_stub_for_is_c_termination_complete 10026a41 f   MSVCRT:ucrt_stubs.obj
+ 0002:00000000       __imp__LoadLibraryA@4      10027000     kernel32:KERNEL32.dll
+ 0002:00000004       __imp__GetCurrentProcess@0 10027004     kernel32:KERNEL32.dll
+ 0002:00000008       __imp__IsProcessorFeaturePresent@4 10027008     kernel32:KERNEL32.dll
+ 0002:0000000c       __imp__GetStartupInfoW@4   1002700c     kernel32:KERNEL32.dll
+ 0002:00000010       __imp__SetUnhandledExceptionFilter@4 10027010     kernel32:KERNEL32.dll
+ 0002:00000014       __imp__UnhandledExceptionFilter@4 10027014     kernel32:KERNEL32.dll
+ 0002:00000018       __imp__IsDebuggerPresent@0 10027018     kernel32:KERNEL32.dll
+ 0002:0000001c       __imp__DisableThreadLibraryCalls@4 1002701c     kernel32:KERNEL32.dll
+ 0002:00000020       __imp__GetSystemTimeAsFileTime@4 10027020     kernel32:KERNEL32.dll
+ 0002:00000024       __imp__GetCurrentThreadId@0 10027024     kernel32:KERNEL32.dll
+ 0002:00000028       __imp__GetCurrentProcessId@0 10027028     kernel32:KERNEL32.dll
+ 0002:0000002c       __imp__QueryPerformanceCounter@4 1002702c     kernel32:KERNEL32.dll
+ 0002:00000030       __imp__InitializeSListHead@4 10027030     kernel32:KERNEL32.dll
+ 0002:00000034       __imp__LoadLibraryExA@12   10027034     kernel32:KERNEL32.dll
+ 0002:00000038       __imp__GetProcAddress@8    10027038     kernel32:KERNEL32.dll
+ 0002:0000003c       __imp__GetModuleHandleW@4  1002703c     kernel32:KERNEL32.dll
+ 0002:00000040       __imp__FreeLibrary@4       10027040     kernel32:KERNEL32.dll
+ 0002:00000044       __imp__VirtualQuery@12     10027044     kernel32:KERNEL32.dll
+ 0002:00000048       __imp__VirtualProtect@16   10027048     kernel32:KERNEL32.dll
+ 0002:0000004c       __imp__GetSystemInfo@4     1002704c     kernel32:KERNEL32.dll
+ 0002:00000050       __imp__GetLastError@0      10027050     kernel32:KERNEL32.dll
+ 0002:00000054       __imp__RaiseException@16   10027054     kernel32:KERNEL32.dll
+ 0002:00000058       __imp__TerminateProcess@8  10027058     kernel32:KERNEL32.dll
+ 0002:0000005c       \177KERNEL32_NULL_THUNK_DATA 1002705c     kernel32:KERNEL32.dll
+ 0002:00000060       __imp___purecall           10027060     vcruntime:VCRUNTIME140.dll
+ 0002:00000064       __imp____std_type_info_name 10027064     vcruntime:VCRUNTIME140.dll
+ 0002:00000068       __imp__memset              10027068     vcruntime:VCRUNTIME140.dll
+ 0002:0000006c       __imp__memcpy              1002706c     vcruntime:VCRUNTIME140.dll
+ 0002:00000070       __imp___except_handler4_common 10027070     vcruntime:VCRUNTIME140.dll
+ 0002:00000074       __imp__strstr              10027074     vcruntime:VCRUNTIME140.dll
+ 0002:00000078       __imp____std_type_info_destroy_list 10027078     vcruntime:VCRUNTIME140.dll
+ 0002:0000007c       \177VCRUNTIME140_NULL_THUNK_DATA 1002707c     vcruntime:VCRUNTIME140.dll
+ 0002:00000080       __imp__free                10027080     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00000084       \177api-ms-win-crt-heap-l1-1-0_NULL_THUNK_DATA 10027084     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00000088       __imp____libm_sse2_cosf    10027088     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:0000008c       __imp____libm_sse2_sinf    1002708c     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:00000090       __imp___fpclass            10027090     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:00000094       __imp___except1            10027094     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:00000098       __imp____libm_sse2_powf    10027098     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:0000009c       \177api-ms-win-crt-math-l1-1-0_NULL_THUNK_DATA 1002709c     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:000000a0       __imp___initterm           100270a0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000a4       __imp___initterm_e         100270a4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000a8       __imp___seh_filter_dll     100270a8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000ac       __imp___configure_narrow_argv 100270ac     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000b0       __imp___initialize_narrow_environment 100270b0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000b4       __imp___initialize_onexit_table 100270b4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000b8       __imp___register_onexit_function 100270b8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000bc       __imp__terminate           100270bc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000c0       __imp___execute_onexit_table 100270c0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000c4       __imp___crt_at_quick_exit  100270c4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000c8       __imp___crt_atexit         100270c8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000cc       __imp___cexit              100270cc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000d0       \177api-ms-win-crt-runtime-l1-1-0_NULL_THUNK_DATA 100270d0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000d4       ___guard_check_icall_fptr  100270d4     MSVCRT:guard_support.obj
+ 0002:000000d8       ___xc_a                    100270d8     MSVCRT:initializers.obj
+ 0002:000001cc       ___xc_z                    100271cc     MSVCRT:initializers.obj
+ 0002:000001d0       ___xi_a                    100271d0     MSVCRT:initializers.obj
+ 0002:000001d4       ___xi_z                    100271d4     MSVCRT:initializers.obj
+ 0002:000001d8       ___xp_a                    100271d8     MSVCRT:initializers.obj
+ 0002:000001dc       ___xp_z                    100271dc     MSVCRT:initializers.obj
+ 0002:000001e0       ___xt_a                    100271e0     MSVCRT:initializers.obj
+ 0002:000001e4       ___xt_z                    100271e4     MSVCRT:initializers.obj
+ 0002:000001f0       ??_7PxFoundation@physx@@6B@ 100271f0     Adjacencies.obj
+ 0002:00000210       ??_C@_0DC@DMHHONHL@Adjacencies?3?3GetBoundaryVertices@ 10027210     Adjacencies.obj
+ 0002:00000244       ??_C@_0DH@INIBFA@C?3?2PhysX?2physx?2source?2physxcooki@ 10027244     Adjacencies.obj
+ 0002:0000027c       ??_C@_0CK@KKNAOLHI@Adjacencies?3?3MakeLastRef?3?5NULL?5p@ 1002727c     Adjacencies.obj
+ 0002:000002a8       ??_C@_0DA@FMEHLBKI@Adjacencies?3?3UpdateLink?3?5invalid@ 100272a8     Adjacencies.obj
+ 0002:000002d8       ??_C@_0EA@CPHOACLK@Adjacencies?3?3CreateDatabase?3?5can@ 100272d8     Adjacencies.obj
+ 0002:00000318       ??_C@_0BM@OIFKLHDN@?$DMallocation?5names?5disabled?$DO?$AA@ 10027318     Adjacencies.obj
+ 0002:00000334       ?sBufferSize@DebugText@Cm@physx@@2HB 10027334     Cooking.obj
+ 0002:00000340       ?g_PXSinCoefficients0@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027340     Cooking.obj
+ 0002:00000350       ?g_PXSinCoefficients1@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027350     Cooking.obj
+ 0002:00000360       ?g_PXSinCoefficients2@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027360     Cooking.obj
+ 0002:00000370       ?g_PXCosCoefficients0@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027370     Cooking.obj
+ 0002:00000380       ?g_PXCosCoefficients1@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027380     Cooking.obj
+ 0002:00000390       ?g_PXCosCoefficients2@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027390     Cooking.obj
+ 0002:000003a0       ?g_PXTanCoefficients0@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 100273a0     Cooking.obj
+ 0002:000003b0       ?g_PXTanCoefficients1@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 100273b0     Cooking.obj
+ 0002:000003c0       ?g_PXTanCoefficients2@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 100273c0     Cooking.obj
+ 0002:000003d0       ?g_PXASinCoefficients0@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 100273d0     Cooking.obj
+ 0002:000003e0       ?g_PXASinCoefficients1@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 100273e0     Cooking.obj
+ 0002:000003f0       ?g_PXASinCoefficients2@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 100273f0     Cooking.obj
+ 0002:00000400       ?g_PXATanCoefficients0@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027400     Cooking.obj
+ 0002:00000410       ?g_PXATanCoefficients1@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027410     Cooking.obj
+ 0002:00000420       ?g_PXATanCoefficients2@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027420     Cooking.obj
+ 0002:00000430       ?g_PXSinEstCoefficients@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027430     Cooking.obj
+ 0002:00000440       ?g_PXCosEstCoefficients@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027440     Cooking.obj
+ 0002:00000450       ?g_PXTanEstCoefficients@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027450     Cooking.obj
+ 0002:00000460       ?g_PXATanEstCoefficients@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027460     Cooking.obj
+ 0002:00000470       ?g_PXASinEstCoefficients@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027470     Cooking.obj
+ 0002:00000480       ?g_PXASinEstConstants@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027480     Cooking.obj
+ 0002:00000490       ?g_PXPiConstants0@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 10027490     Cooking.obj
+ 0002:000004a0       ?g_PXReciprocalTwoPi@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 100274a0     Cooking.obj
+ 0002:000004b0       ?g_PXTwoPi@aos@shdfnd@physx@@3UPX_VECTORF32@123@B 100274b0     Cooking.obj
+ 0002:000004e0       ??_C@_06EJKDJEDO@PxBase?$AA@ 100274e0     Cooking.obj
+ 0002:000004e8       ??_C@_0N@CDGINLLF@PxConvexMesh?$AA@ 100274e8     Cooking.obj
+ 0002:000004f8       ??_C@_0O@PBAKPCEC@PxHeightField?$AA@ 100274f8     Cooking.obj
+ 0002:00000508       ??_7PxBase@physx@@6B@      10027508     Cooking.obj
+ 0002:0000051c       ??_7PxConvexMesh@physx@@6B@ 1002751c     Cooking.obj
+ 0002:00000558       ??_7PxCooking@physx@@6B@   10027558     Cooking.obj
+ 0002:00000598       ??_7Cooking@physx@@6B@     10027598     Cooking.obj
+ 0002:000005d8       ??_7RefCountable@Cm@physx@@6B@ 100275d8     Cooking.obj
+ 0002:000005e0       ??_7ConvexMesh@Gu@physx@@6BPxConvexMesh@2@@ 100275e0     Cooking.obj
+ 0002:00000624       ??_7ConvexMesh@Gu@physx@@6BRefCountable@Cm@2@@ 10027624     Cooking.obj
+ 0002:00000630       ??_C@_0FC@PJIHAFK@Cooking?3?3validateTriangleMesh?3?5u@ 10027630     Cooking.obj
+ 0002:00000684       ??_C@_0DD@EKHNBCAO@C?3?2PhysX?2physx?2source?2physxcooki@ 10027684     Cooking.obj
+ 0002:000006b8       ??_C@_0EK@EKAIJEBL@Cooking?3?3cookConvexMesh?3?5user?9pr@ 100276b8     Cooking.obj
+ 0002:00000708       ??_C@_0FA@GFFGAPML@Cooking?3?3cookConvexMesh?3?5provide@ 10027708     Cooking.obj
+ 0002:00000758       ??_C@_0EP@PKDCPNNO@Cooking?3?3cookConvexMesh?3?5provide@ 10027758     Cooking.obj
+ 0002:000007a8       ??_C@_0EO@LKFMMDE@Cooking?3?3cookConvexMesh?3?5user?9pr@ 100277a8     Cooking.obj
+ 0002:000007f8       ??_C@_0DD@PEFEOIJG@c?3?2physx?2physx?2source?2foundation@ 100277f8     Cooking.obj
+ 0002:0000082c       __real@00000000            1002782c     Cooking.obj
+ 0002:00000830       __real@3a83126f            10027830     Cooking.obj
+ 0002:00000834       __real@3f800000            10027834     Cooking.obj
+ 0002:00000838       __real@ba83126f            10027838     Cooking.obj
+ 0002:0000083c       __real@bf800000            1002783c     Cooking.obj
+ 0002:00000840       __xmm@000000003a83126f3a83126f3a83126f 10027840     Cooking.obj
+ 0002:00000850       __xmm@00000000ba83126fba83126fba83126f 10027850     Cooking.obj
+ 0002:00000860       ??_C@_0BA@DLCJDKDM@NonTrackedAlloc?$AA@ 10027860     CookingUtils.obj
+ 0002:00000870       ??_C@_0DI@LHAHFHNF@C?3?2PhysX?2physx?2source?2physxcooki@ 10027870     CookingUtils.obj
+ 0002:000008a8       ??_C@_0DE@KDFILKPG@C?3?2PhysX?2physx?2source?2physxcooki@ 100278a8     EdgeList.obj
+ 0002:000008dc       ??_C@_0CO@GBNJFPN@EdgeList?3?3CreateFacesToEdges?3?5NU@ 100278dc     EdgeList.obj
+ 0002:0000090c       ??_C@_0CO@EHJBBMNK@EdgeList?3?3ComputeActiveEdges?3?5NU@ 1002790c     EdgeList.obj
+ 0002:0000093c       ??_C@_0DI@GBHLFOFP@ActiveEdges?3?3ComputeConvexEdges?3@ 1002793c     EdgeList.obj
+ 0002:00000974       ??_C@_0DM@JOGBLHDI@ActiveEdges?3?3ComputeConvexEdges?3@ 10027974     EdgeList.obj
+ 0002:000009b0       ??_C@_0ED@FEMJKPEL@ActiveEdges?3?3ComputeConvexEdges?3@ 100279b0     EdgeList.obj
+ 0002:000009f8       ??_C@_0EB@BFDPMFCD@ActiveEdges?3?3ComputeConvexEdges?3@ 100279f8     EdgeList.obj
+ 0002:00000a3c       __real@bf7fbe77            10027a3c     EdgeList.obj
+ 0002:00000a40       __xmm@7fffffff7fffffff7fffffff7fffffff 10027a40     EdgeList.obj
+ 0002:00000a50       __xmm@80000000800000008000000080000000 10027a50     EdgeList.obj
+ 0002:00000a60       ??_C@_0DH@CFNGKMAE@C?3?2PhysX?2physx?2source?2physxcooki@ 10027a60     MeshCleaner.obj
+ 0002:00000a98       __real@3f000000            10027a98     MeshCleaner.obj
+ 0002:00000a9c       __real@4b000000            10027a9c     MeshCleaner.obj
+ 0002:00000aa0       __real@80000000            10027aa0     MeshCleaner.obj
+ 0002:00000aa4       ??_7Quantizer@physx@@6B@   10027aa4     Quantizer.obj
+ 0002:00000ab8       ??_7QuantizerImpl@@6B@     10027ab8     Quantizer.obj
+ 0002:00000acc       ??_C@_0DF@JNJAHKHB@C?3?2PhysX?2physx?2source?2physxcooki@ 10027acc     Quantizer.obj
+ 0002:00000b04       ??_C@_0DD@EBBFHGGD@C?3?2PhysX?2physx?2source?2foundation@ 10027b04     Quantizer.obj
+ 0002:00000b38       __real@3f8020c5            10027b38     Quantizer.obj
+ 0002:00000b3c       __real@7f7fffff            10027b3c     Quantizer.obj
+ 0002:00000b40       __real@fe7fffff            10027b40     Quantizer.obj
+ 0002:00000b50       __xmm@41f00000000000000000000000000000 10027b50     Quantizer.obj
+ 0002:00000b60       __xmm@fe7fffff7e7fffff7e7fffff7e7fffff 10027b60     Quantizer.obj
+ 0002:00000b90       ??_C@_0DP@GCNJGMEO@C?3?2PhysX?2physx?2source?2physxcooki@ 10027b90     BVHStructureBuilder.obj
+ 0002:00000bd0       __real@3ba3d70a            10027bd0     BVHStructureBuilder.obj
+ 0002:00000be0       ?reductionFactors@SubSortQuick@physx@@2QBMB 10027be0     RTreeCooking.obj
+ 0002:00000bec       ?stopAtTrisPerLeaf1@SubSortQuick@physx@@2QBIB 10027bec     RTreeCooking.obj
+ 0002:00000ca8       ??_C@_0DN@FDPOALNG@C?3?2PhysX?2physx?2source?2physxcooki@ 10027ca8     RTreeCooking.obj
+ 0002:00000ce8       ??_C@_0DC@LFHLABHI@C?3?2PhysX?2physx?2source?2foundation@ 10027ce8     RTreeCooking.obj
+ 0002:00000d1c       ??_C@_0DL@CGCEOCLK@c?3?2physx?2physx?2source?2foundation@ 10027d1c     RTreeCooking.obj
+ 0002:00000d58       __real@37800080            10027d58     RTreeCooking.obj
+ 0002:00000d5c       __real@3a03126f            10027d5c     RTreeCooking.obj
+ 0002:00000d60       __real@41100000            10027d60     RTreeCooking.obj
+ 0002:00000d64       __real@41700000            10027d64     RTreeCooking.obj
+ 0002:00000d68       __real@42200000            10027d68     RTreeCooking.obj
+ 0002:00000d6c       __real@ff7fffff            10027d6c     RTreeCooking.obj
+ 0002:00000d70       __xmm@00000001000000010000000100000001 10027d70     RTreeCooking.obj
+ 0002:00000d80       __xmm@00000003000000020000000100000000 10027d80     RTreeCooking.obj
+ 0002:00000db0       __real@40000000            10027db0     MeshBuilder.obj
+ 0002:00000db4       __real@c1b00000            10027db4     MeshBuilder.obj
+ 0002:00000de0       ??_7MeshDataBase@Gu@physx@@6B@ 10027de0     TriangleMeshBuilder.obj
+ 0002:00000de4       ??_C@_0DG@KMKCPGHC@C?3?2PhysX?2physx?2source?2geomutils?2@ 10027de4     TriangleMeshBuilder.obj
+ 0002:00000e1c       ??_7TriangleMeshData@Gu@physx@@6B@ 10027e1c     TriangleMeshBuilder.obj
+ 0002:00000e20       ??_7RTreeTriangleData@Gu@physx@@6B@ 10027e20     TriangleMeshBuilder.obj
+ 0002:00000e24       ??_7BV4TriangleData@Gu@physx@@6B@ 10027e24     TriangleMeshBuilder.obj
+ 0002:00000e28       ??_7RemapCallback@RTreeCooker@physx@@6B@ 10027e28     TriangleMeshBuilder.obj
+ 0002:00000e30       ??_7TriangleMeshBuilder@physx@@6B@ 10027e30     TriangleMeshBuilder.obj
+ 0002:00000e44       ??_7RTreeTriangleMeshBuilder@physx@@6B@ 10027e44     TriangleMeshBuilder.obj
+ 0002:00000e58       ??_7BV4TriangleMeshBuilder@physx@@6B@ 10027e58     TriangleMeshBuilder.obj
+ 0002:00000e70       ??_C@_0EF@HLMGCAHK@c?3?2physx?2physx?2source?2physxcooki@ 10027e70     TriangleMeshBuilder.obj
+ 0002:00000eb8       ??_C@_0EE@CHCFCMKP@C?3?2PhysX?2physx?2source?2physxcooki@ 10027eb8     TriangleMeshBuilder.obj
+ 0002:00000efc       ??_C@_0DJ@IGODLHLP@TriangleMesh?3?5Enable?5mesh?5weldin@ 10027efc     TriangleMeshBuilder.obj
+ 0002:00000f38       ??_C@_0FJ@HHJLKGDF@TriangleMesh?3?5triangles?5are?5too?5@ 10027f38     TriangleMeshBuilder.obj
+ 0002:00000f94       ??_C@_0CN@KGPHHHLK@TriangleMesh?3?5mesh?5is?5too?5big?5fo@ 10027f94     TriangleMeshBuilder.obj
+ 0002:00000fc4       ??_C@_0DD@CMJGDCNN@TriangleMesh?3?3loadFromDesc?3?5desc@ 10027fc4     TriangleMeshBuilder.obj
+ 0002:00000ff8       ??_C@_0ED@ILJJNHIP@TriangleMesh?3?3loadFromDesc?3?5mPar@ 10027ff8     TriangleMeshBuilder.obj
+ 0002:0000103c       ??_C@_0BJ@BKHDBBHO@cleaning?5the?5mesh?5failed?$AA@ 1002803c     TriangleMeshBuilder.obj
+ 0002:00001058       ??_C@_0BK@JIDHMMCE@BV4?5tree?5failed?5to?5build?4?$AA@ 10028058     TriangleMeshBuilder.obj
+ 0002:00001074       ??_C@_0BL@DHNECNBE@BV32?5tree?5failed?5to?5build?4?$AA@ 10028074     TriangleMeshBuilder.obj
+ 0002:00001090       ??_7RTreeCookerRemap@physx@@6B@ 10028090     TriangleMeshBuilder.obj
+ 0002:00001098       __real@48742400            10028098     TriangleMeshBuilder.obj
+ 0002:000010c0       ??_C@_0EH@JNHGPKKD@C?3?2PhysX?2physx?2source?2physxcooki@ 100280c0     BigConvexDataBuilder.obj
+ 0002:00001130       ??_C@_0EE@LFJLMOMK@C?3?2PhysX?2physx?2source?2physxcooki@ 10028130     ConvexHullBuilder.obj
+ 0002:00001178       ??_C@_0EB@DCEIFDGC@ConvexHullBuilder?3?3init?3?5convex?5@ 10028178     ConvexHullBuilder.obj
+ 0002:000011c0       ??_C@_0FM@KICBLCBH@Gu?3?3ConvexMesh?3?3checkHullPolygon@ 100281c0     ConvexHullBuilder.obj
+ 0002:00001220       ??_C@_0GO@HBFIOGLL@Gu?3?3ConvexMesh?3?3checkHullPolygon@ 10028220     ConvexHullBuilder.obj
+ 0002:00001290       ??_C@_0HF@OLJFBIEL@ConvexHullBuilder?3?5convex?5hull?5d@ 10028290     ConvexHullBuilder.obj
+ 0002:00001308       ??_C@_0OG@JNHFOIL@ConvexHullBuilder?3?5convex?5hull?5d@ 10028308     ConvexHullBuilder.obj
+ 0002:000013f0       ??_C@_0EJ@NIOIBAKH@Cooking?3?3cookConvexMesh?3?5non?9man@ 100283f0     ConvexHullBuilder.obj
+ 0002:0000143c       __real@3ca3d70a            1002843c     ConvexHullBuilder.obj
+ 0002:00001440       __real@3eaaaaab            10028440     ConvexHullBuilder.obj
+ 0002:00001444       ??_7ConvexHullLib@physx@@6B@ 10028444     ConvexHullLib.obj
+ 0002:00001458       ??_C@_0EA@FGOABJFC@C?3?2PhysX?2physx?2source?2physxcooki@ 10028458     ConvexHullLib.obj
+ 0002:00001498       __real@358637bd            10028498     ConvexHullLib.obj
+ 0002:0000149c       __real@3c23d70a            1002849c     ConvexHullLib.obj
+ 0002:000014a0       __real@3d4ccccd            100284a0     ConvexHullLib.obj
+ 0002:000014d0       ??_C@_0EC@FJLLCMBC@C?3?2PhysX?2physx?2source?2physxcooki@ 100284d0     ConvexHullUtils.obj
+ 0002:00001514       __real@00800000            10028514     ConvexHullUtils.obj
+ 0002:00001518       __real@3c8efa35            10028518     ConvexHullUtils.obj
+ 0002:0000151c       __real@3e20d97c            1002851c     ConvexHullUtils.obj
+ 0002:00001520       __real@4e6e6b28            10028520     ConvexHullUtils.obj
+ 0002:00001524       __real@bf000000            10028524     ConvexHullUtils.obj
+ 0002:00001550       ??_C@_0DF@LLFJIJGM@Gu?3?3ConvexMesh?3?3loadFromDesc?3?5de@ 10028550     ConvexMeshBuilder.obj
+ 0002:00001588       ??_C@_0EE@HLDPGOJP@C?3?2PhysX?2physx?2source?2physxcooki@ 10028588     ConvexMeshBuilder.obj
+ 0002:000015d0       ??_C@_0HK@JOGKIEAA@Gu?3?3ConvexMesh?3?5Mesh?5has?5a?5negat@ 100285d0     ConvexMeshBuilder.obj
+ 0002:0000164c       ??_C@_0DH@NJPPHFFD@Gu?3?3ConvexMesh?3?5Error?5computing?5@ 1002864c     ConvexMeshBuilder.obj
+ 0002:00001684       ??_C@_0DJ@LJDLGLDJ@Gu?3?3ConvexMesh?3?3loadConvexHull?3?5@ 10028684     ConvexMeshBuilder.obj
+ 0002:000016c0       ??_C@_0HJ@KJANPPOE@ConvexMeshBuilder?3?3computeHullPo@ 100286c0     ConvexMeshBuilder.obj
+ 0002:0000173c       ??_C@_06KDGGGLIJ@PxVec3?$AA@ 1002873c     ConvexMeshBuilder.obj
+ 0002:00001744       ??_C@_05LMJPANIN@PxU32?$AA@ 10028744     ConvexMeshBuilder.obj
+ 0002:0000174c       ??_C@_0O@JMAGMMGG@PxHullPolygon?$AA@ 1002874c     ConvexMeshBuilder.obj
+ 0002:0000175c       __real@33d6bf95            1002875c     ConvexMeshBuilder.obj
+ 0002:00001760       __real@3f13cd3a            10028760     ConvexMeshBuilder.obj
+ 0002:00001764       __real@b3d6bf95            10028764     ConvexMeshBuilder.obj
+ 0002:00001770       __xmm@80000000000000008000000000000000 10028770     ConvexMeshBuilder.obj
+ 0002:00001780       ??_C@_0DP@PJBJBEGF@Meshmerizer?3?3extractHullPolygons@ 10028780     ConvexPolygonsBuilder.obj
+ 0002:000017c0       ??_C@_0EI@MLOMDMOH@C?3?2PhysX?2physx?2source?2physxcooki@ 100287c0     ConvexPolygonsBuilder.obj
+ 0002:00001808       ??_C@_0DL@IAFKOCCK@ConvexHullBuilder?3?5convex?5hull?5h@ 10028808     ConvexPolygonsBuilder.obj
+ 0002:00001848       ??_C@_0GF@OJLJHAMH@ConvexHullBuilder?3?3CreateTriangl@ 10028848     ConvexPolygonsBuilder.obj
+ 0002:000018b0       ??_7QuickHullConvexHullLib@physx@@6B@ 100288b0     QuickHullConvexHullLib.obj
+ 0002:000018c0       ??_C@_0EJ@NFCELAPD@C?3?2PhysX?2physx?2source?2physxcooki@ 100288c0     QuickHullConvexHullLib.obj
+ 0002:00001910       ??_C@_0GA@EPPAEJPM@QuickHullConvexHullLib?3?3findSimp@ 10028910     QuickHullConvexHullLib.obj
+ 0002:00001970       ??_C@_0FB@NEBIJMML@QuickHullConvexHullLib?3?3findSimp@ 10028970     QuickHullConvexHullLib.obj
+ 0002:000019c8       ??_C@_0FB@CLLCBEMM@QuickHullConvexHullLib?3?3findSimp@ 100289c8     QuickHullConvexHullLib.obj
+ 0002:00001a1c       __real@34c00000            10028a1c     QuickHullConvexHullLib.obj
+ 0002:00001a20       __real@3e800000            10028a20     QuickHullConvexHullLib.obj
+ 0002:00001a50       __real@0000000000000000    10028a50     VolumeIntegration.obj
+ 0002:00001a58       __real@3c088889            10028a58     VolumeIntegration.obj
+ 0002:00001a5c       __real@3c888889            10028a5c     VolumeIntegration.obj
+ 0002:00001a60       __real@3d2aaaab            10028a60     VolumeIntegration.obj
+ 0002:00001a64       __real@3e2aaaab            10028a64     VolumeIntegration.obj
+ 0002:00001a68       __real@3f91111111111111    10028a68     VolumeIntegration.obj
+ 0002:00001a70       __real@3fa5555555555555    10028a70     VolumeIntegration.obj
+ 0002:00001a78       __real@3fa999999999999a    10028a78     VolumeIntegration.obj
+ 0002:00001a80       __real@3fb5555555555555    10028a80     VolumeIntegration.obj
+ 0002:00001a88       __real@3fc5555555555555    10028a88     VolumeIntegration.obj
+ 0002:00001a90       __real@3fd5555555555555    10028a90     VolumeIntegration.obj
+ 0002:00001a98       __real@3fe0000000000000    10028a98     VolumeIntegration.obj
+ 0002:00001aa0       __real@3ff0000000000000    10028aa0     VolumeIntegration.obj
+ 0002:00001aa8       __real@4008000000000000    10028aa8     VolumeIntegration.obj
+ 0002:00001ab0       __real@4010000000000000    10028ab0     VolumeIntegration.obj
+ 0002:00001ab8       __real@bf91111111111111    10028ab8     VolumeIntegration.obj
+ 0002:00001ac0       __real@bfa999999999999a    10028ac0     VolumeIntegration.obj
+ 0002:00001ac8       __real@bfb5555555555555    10028ac8     VolumeIntegration.obj
+ 0002:00001ad0       __real@bfc5555555555555    10028ad0     VolumeIntegration.obj
+ 0002:00001ae0       __xmm@3f811111111111113f81111111111111 10028ae0     VolumeIntegration.obj
+ 0002:00001af0       __xmm@3f811111111111113f91111111111111 10028af0     VolumeIntegration.obj
+ 0002:00001b00       __xmm@3f911111111111113f91111111111111 10028b00     VolumeIntegration.obj
+ 0002:00001b10       __xmm@3fa55555555555553fa5555555555555 10028b10     VolumeIntegration.obj
+ 0002:00001b20       __xmm@3fa55555555555553fc5555555555555 10028b20     VolumeIntegration.obj
+ 0002:00001b30       __xmm@7fffffffffffffff7fffffffffffffff 10028b30     VolumeIntegration.obj
+ 0002:00001b40       ??_C@_0BA@EGLNOO@PhysXFoundation?$AA@ 10028b40     WindowsCookingDelayLoadHook.obj
+ 0002:00001b50       ??_C@_0M@ILKNCJKN@PhysXCommon?$AA@ 10028b50     WindowsCookingDelayLoadHook.obj
+ 0002:00001b60       __sz_PhysXCommon_32_dll    10028b60     PhysXCommon_32:PhysXCommon_32.dll
+ 0002:00001b80       __sz_PhysXFoundation_32_dll 10028b80     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0002:00001b98       ??_C@_1BK@DBDEIDLH@?$AAK?$AAE?$AAR?$AAN?$AAE?$AAL?$AA3?$AA2?$AA?4?$AAD?$AAL?$AAL?$AA?$AA@ 10028b98     Delayimp:delayhlp.obj
+ 0002:00001bb4       ??_C@_0BI@OMNLIJDB@AcquireSRWLockExclusive?$AA@ 10028bb4     Delayimp:delayhlp.obj
+ 0002:00001bcc       ??_C@_0BI@HMIEPCNJ@ReleaseSRWLockExclusive?$AA@ 10028bcc     Delayimp:delayhlp.obj
+ 0002:00001be4       ___pfnDliFailureHook2      10028be4     Delayimp:delayhk1.obj
+ 0002:00001bec       ??_7type_info@@6B@         10028bec     MSVCRT:std_type_info_static.obj
+ 0002:00001c74       __pDefaultRawDllMain       10028c74     MSVCRT:dll_dllmain.obj
+ 0002:00001c74       __pRawDllMain              10028c74     MSVCRT:dll_dllmain.obj
+ 0002:00001c78       __load_config_used         10028c78     MSVCRT:loadcfg.obj
+ 0002:00001d34       ??_R4type_info@@6B@        10028d34     MSVCRT:std_type_info_static.obj
+ 0002:00001d48       ??_R3type_info@@8          10028d48     MSVCRT:std_type_info_static.obj
+ 0002:00001d58       ??_R2type_info@@8          10028d58     MSVCRT:std_type_info_static.obj
+ 0002:00001d60       ??_R1A@?0A@EA@type_info@@8 10028d60     MSVCRT:std_type_info_static.obj
+ 0002:00001d80       ___safe_se_handler_table   10028d80     <linker-defined>
+ 0002:000020f4       ___rtc_iaa                 100290f4     MSVCRT:_initsect_.obj
+ 0002:000020f8       ___rtc_izz                 100290f8     MSVCRT:_initsect_.obj
+ 0002:000020fc       ___rtc_taa                 100290fc     MSVCRT:_initsect_.obj
+ 0002:00002100       ___rtc_tzz                 10029100     MSVCRT:_initsect_.obj
+ 0002:00002184       __DELAY_IMPORT_DESCRIPTOR_PhysXCommon_32_dll 10029184     PhysXCommon_32:PhysXCommon_32.dll
+ 0002:000021a4       __DELAY_IMPORT_DESCRIPTOR_PhysXFoundation_32_dll 100291a4     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0002:000021c4       __NULL_DELAY_IMPORT_DESCRIPTOR 100291c4     PhysXCommon_32:PhysXCommon_32.dll
+ 0002:000022a4       \177PhysXCommon_32_NULL_THUNK_DATA_DLN 100292a4     PhysXCommon_32:PhysXCommon_32.dll
+ 0002:000022d4       \177PhysXFoundation_32_NULL_THUNK_DATA_DLN 100292d4     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0002:00002e74       \177PhysXCommon_32_NULL_THUNK_DATA_DLB 10029e74     PhysXCommon_32:PhysXCommon_32.dll
+ 0002:00002f38       \177PhysXFoundation_32_NULL_THUNK_DATA_DLB 10029f38     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0002:00004bf8       __IMPORT_DESCRIPTOR_KERNEL32 1002bbf8     kernel32:KERNEL32.dll
+ 0002:00004c0c       __IMPORT_DESCRIPTOR_VCRUNTIME140 1002bc0c     vcruntime:VCRUNTIME140.dll
+ 0002:00004c20       __IMPORT_DESCRIPTOR_api-ms-win-crt-math-l1-1-0 1002bc20     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:00004c34       __IMPORT_DESCRIPTOR_api-ms-win-crt-heap-l1-1-0 1002bc34     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00004c48       __IMPORT_DESCRIPTOR_api-ms-win-crt-runtime-l1-1-0 1002bc48     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00004c5c       __NULL_IMPORT_DESCRIPTOR   1002bc5c     kernel32:KERNEL32.dll
+ 0003:00000008       ___pfnDliNotifyHook2       1002d008     WindowsCookingDelayLoadHook.obj
+ 0003:0000000c       __fltused                  1002d00c     MSVCRT:fltused.obj
+ 0003:00000010       ___security_cookie_complement 1002d010     MSVCRT:gs_cookie.obj
+ 0003:00000014       ___security_cookie         1002d014     MSVCRT:gs_cookie.obj
+ 0003:00000018       ___scrt_native_dllmain_reason 1002d018     MSVCRT:utility.obj
+ 0003:00000020       ___isa_enabled             1002d020     MSVCRT:_cpu_disp_.obj
+ 0003:00000024       ___scrt_ucrt_dll_is_in_use 1002d024     MSVCRT:ucrt_stubs.obj
+ 0003:00000028       ??_R0?AVAdjEdge@@@8        1002d028     Adjacencies.obj
+ 0003:00000040       ??_R0I@8                   1002d040     Adjacencies.obj
+ 0003:0000004c       ??_R0?AVAdjTriangle@physx@@@8 1002d04c     Adjacencies.obj
+ 0003:0000006c       ??_R0?AVCooking@physx@@@8  1002d06c     Cooking.obj
+ 0003:00000088       ??_R0?AVHeightField@Gu@physx@@@8 1002d088     Cooking.obj
+ 0003:000000ac       ??_R0?AVQuickHullConvexHullLib@physx@@@8 1002d0ac     Cooking.obj
+ 0003:000000d8       ??_R0?AUPxDebugLine@physx@@@8 1002d0d8     Cooking.obj
+ 0003:000000f8       ??_R0M@8                   1002d0f8     CookingUtils.obj
+ 0003:00000104       ??_R0?AUEdgeData@Gu@physx@@@8 1002d104     EdgeList.obj
+ 0003:00000124       ??_R0?AUEdgeTriangleData@Gu@physx@@@8 1002d124     EdgeList.obj
+ 0003:0000014c       ??_R0?AVQuantizerImpl@@@8  1002d14c     Quantizer.obj
+ 0003:00000168       ??_R0?AVPxVec3@physx@@@8   1002d168     Quantizer.obj
+ 0003:00000184       ??_R0?AUSlab@NodeAllocator@Gu@physx@@@8 1002d184     BVHStructureBuilder.obj
+ 0003:000001b0       ??_R0?AUInterval@physx@@@8 1002d1b0     RTreeCooking.obj
+ 0003:000001d0       ??_R0?AURTreeNodeQ@Gu@physx@@@8 1002d1d0     RTreeCooking.obj
+ 0003:000001f4       ??_R0?AURTreeNodeNQ@physx@@@8 1002d1f4     RTreeCooking.obj
+ 0003:00000214       ??_R0?AUPxBounds3V@physx@@@8 1002d214     RTreeCooking.obj
+ 0003:00000234       ??_R0?AVEdgeListBuilder@Gu@physx@@@8 1002d234     TriangleMeshBuilder.obj
+ 0003:0000025c       ??_R0?AVBV32Tree@Gu@physx@@@8 1002d25c     TriangleMeshBuilder.obj
+ 0003:0000027c       ??_R0E@8                   1002d27c     TriangleMeshBuilder.obj
+ 0003:00000288       ??_R0G@8                   1002d288     TriangleMeshBuilder.obj
+ 0003:00000294       ??_R0?AUSortedNeighbor@GrbTrimeshCookerHelper@physx@@@8 1002d294     TriangleMeshBuilder.obj
+ 0003:000002d0       ??_R0?AUSharpEdgeRange@GrbTrimeshCookerHelper@physx@@@8 1002d2d0     TriangleMeshBuilder.obj
+ 0003:0000030c       ??_R0?AUEdgeTriLookup@physx@@@8 1002d30c     TriangleMeshBuilder.obj
+ 0003:00000330       ??_R0?AUEdgeDescData@Gu@physx@@@8 1002d330     ConvexHullBuilder.obj
+ 0003:00000354       ??_R0_N@8                  1002d354     ConvexHullBuilder.obj
+ 0003:00000360       ??_R0?AVConvexHull@physx@@@8 1002d360     ConvexHullUtils.obj
+ 0003:00000380       ??_R0?AVHalfEdge@ConvexHull@physx@@@8 1002d380     ConvexHullUtils.obj
+ 0003:000003a8       ??_R0?AVPxPlane@physx@@@8  1002d3a8     ConvexHullUtils.obj
+ 0003:000003c4       ??_R0?AVBigConvexData@physx@@@8 1002d3c4     ConvexMeshBuilder.obj
+ 0003:000003e8       ??_R0?AUHullTriangleData@physx@@@8 1002d3e8     ConvexPolygonsBuilder.obj
+ 0003:00000410       ??_R0?AVPair@@@8           1002d410     ConvexPolygonsBuilder.obj
+ 0003:00000424       ??_R0?AVQuickHull@local@@@8 1002d424     QuickHullConvexHullLib.obj
+ 0003:00000444       ??_R0?AUExpandPoint@local@@@8 1002d444     QuickHullConvexHullLib.obj
+ 0003:00000464       ??_R0PAUQuickHullFace@local@@@8 1002d464     QuickHullConvexHullLib.obj
+ 0003:00000488       ??_R0PAUQuickHullHalfEdge@local@@@8 1002d488     QuickHullConvexHullLib.obj
+ 0003:000004b0       ??_R0PAUQuickHullVertex@local@@@8 1002d4b0     QuickHullConvexHullLib.obj
+ 0003:000004d4       ??_R0?AVtype_info@@@8      1002d4d4     MSVCRT:std_type_info_static.obj
+ 0003:000004ec       __imp_??0RadixSortBuffered@Cm@physx@@QAE@XZ 1002d4ec     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000004f0       __imp_??1RadixSortBuffered@Cm@physx@@UAE@XZ 1002d4f0     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000004f4       __imp_?Sort@RadixSortBuffered@Cm@physx@@QAEAAV123@PBIIW4RadixHint@23@@Z 1002d4f4     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000004f8       __imp_?readDword@physx@@YAI_NAAVPxInputStream@1@@Z 1002d4f8     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000004fc       __imp_?ReadHeader@Gu@physx@@YA_NEEEEAAIAA_NAAVPxInputStream@2@@Z 1002d4fc     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000500       __imp_?exportExtraData@ConvexMesh@Gu@physx@@UAEXAAVPxSerializationContext@3@@Z 1002d500     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000504       __imp_?onRefCountZero@ConvexMesh@Gu@physx@@UAEXXZ 1002d504     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000508       __imp_?release@ConvexMesh@Gu@physx@@UAEXXZ 1002d508     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000050c       __imp_?getPolygonData@ConvexMesh@Gu@physx@@UBE_NIAAUPxHullPolygon@3@@Z 1002d50c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000510       __imp_?isGpuCompatible@ConvexMesh@Gu@physx@@UBE_NXZ 1002d510     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000514       __imp_?getReferenceCount@ConvexMesh@Gu@physx@@UBEIXZ 1002d514     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000518       __imp_?acquireReference@ConvexMesh@Gu@physx@@UAEXXZ 1002d518     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000051c       __imp_?getMassInformation@ConvexMesh@Gu@physx@@UBEXAAMAAVPxMat33@3@AAVPxVec3@3@@Z 1002d51c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000520       __imp_?getLocalBounds@ConvexMesh@Gu@physx@@UBE?AVPxBounds3@3@XZ 1002d520     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000524       __imp_??1ConvexMesh@Gu@physx@@UAE@XZ 1002d524     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000528       __imp_??0HeightField@Gu@physx@@QAE@PAVGuMeshFactory@2@@Z 1002d528     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000052c       __imp_?loadFromDesc@HeightField@Gu@physx@@QAE_NABVPxHeightFieldDesc@3@@Z 1002d52c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000530       __imp_?computeCellCoordinates@HeightField@Gu@physx@@QBEIMMAAM0@Z 1002d530     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000534       __imp_?releaseMemory@HeightField@Gu@physx@@QAEXXZ 1002d534     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000538       __imp_??1HeightField@Gu@physx@@UAE@XZ 1002d538     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000053c       __imp_??0NodeAllocator@Gu@physx@@QAE@XZ 1002d53c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000540       __imp_??1NodeAllocator@Gu@physx@@QAE@XZ 1002d540     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000544       __imp_?release@NodeAllocator@Gu@physx@@QAEXXZ 1002d544     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000548       __imp_?buildAABBTree@Gu@physx@@YA_NAAVAABBTreeBuildParams@12@AAVNodeAllocator@12@AAUBuildStats@12@AAPAI@Z 1002d548     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000054c       __imp_?writeDword@physx@@YAXI_NAAVPxOutputStream@1@@Z 1002d54c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000550       __imp_?writeFloatBuffer@physx@@YAXPBMI_NAAVPxOutputStream@1@@Z 1002d550     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000554       __imp_?writeHeader@physx@@YA_NCCCCI_NAAVPxOutputStream@1@@Z 1002d554     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000558       __imp_?writeWord@physx@@YAXG_NAAVPxOutputStream@1@@Z 1002d558     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000055c       __imp_?writeFloat@physx@@YAXM_NAAVPxOutputStream@1@@Z 1002d55c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000560       __imp_?computeBoundsAroundVertices@Gu@physx@@YAXAAVPxBounds3@2@IPIBVPxVec3@2@@Z 1002d560     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000564       __imp_??0SourceMesh@Gu@physx@@QAE@XZ 1002d564     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000568       __imp_??1SourceMesh@Gu@physx@@QAE@XZ 1002d568     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000056c       __imp_??0BV4Tree@Gu@physx@@QAE@XZ 1002d56c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000570       __imp_??1BV4Tree@Gu@physx@@QAE@XZ 1002d570     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000574       __imp_??0BV32Tree@Gu@physx@@QAE@XZ 1002d574     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000578       __imp_??1BV32Tree@Gu@physx@@QAE@XZ 1002d578     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000057c       __imp_?writeWordBuffer@physx@@YAXPBGI_NAAVPxOutputStream@1@@Z 1002d57c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000580       __imp_?computeMaxIndex@physx@@YAIPBII@Z 1002d580     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000584       __imp_?storeIndices@physx@@YAXIIPBIAAVPxOutputStream@1@_N@Z 1002d584     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000588       __imp_?BuildBV4Ex@Gu@physx@@YA_NAAVBV4Tree@12@AAVSourceMesh@12@MI@Z 1002d588     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000058c       __imp_?BuildBV32Ex@Gu@physx@@YA_NAAVBV32Tree@12@AAVSourceMesh@12@MI@Z 1002d58c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000590       __imp_?computeMaxIndex@physx@@YAGPBGI@Z 1002d590     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000594       __imp_?WriteHeader@Gu@physx@@YA_NEEEEI_NAAVPxOutputStream@2@@Z 1002d594     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:00000598       __imp_?StoreIndices@Gu@physx@@YAXGIPBGAAVPxOutputStream@2@_N@Z 1002d598     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:0000059c       __imp_?CreateOffsets@BigConvexData@physx@@IAEXXZ 1002d59c     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000005a0       __imp_?computeOBBPoints@Gu@physx@@YAXPIAVPxVec3@2@ABV32@1111@Z 1002d5a0     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000005a4       __imp_??0BigConvexData@physx@@QAE@XZ 1002d5a4     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000005a8       __imp_??1BigConvexData@physx@@QAE@XZ 1002d5a8     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000005ac       \177PhysXCommon_32_NULL_THUNK_DATA_DLA 1002d5ac     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000005b0       __imp__PxGetFoundation     1002d5b0     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005b4       __imp_?getAllocator@shdfnd@physx@@YAAAVPxAllocatorCallback@2@XZ 1002d5b4     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005b8       __imp_?getInstance@Foundation@shdfnd@physx@@SAAAV123@XZ 1002d5b8     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005bc       __imp_?error@Foundation@shdfnd@physx@@QAAXW4Enum@PxErrorCode@3@PBDH1ZZ 1002d5bc     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005c0       __imp_?incRefCount@Foundation@shdfnd@physx@@SAXXZ 1002d5c0     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005c4       __imp_?decRefCount@Foundation@shdfnd@physx@@SAXXZ 1002d5c4     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005c8       __imp_??0FPUGuard@shdfnd@physx@@QAE@XZ 1002d5c8     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005cc       __imp_??1FPUGuard@shdfnd@physx@@QAE@XZ 1002d5cc     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005d0       __imp_?allocate@TempAllocator@shdfnd@physx@@QAEPAXIPBDH@Z 1002d5d0     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005d4       __imp_?deallocate@TempAllocator@shdfnd@physx@@QAEXPAX@Z 1002d5d4     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005d8       __imp_?PxDiagonalize@physx@@YA?AVPxVec3@1@ABVPxMat33@1@AAVPxQuat@1@@Z 1002d5d8     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000005dc       \177PhysXFoundation_32_NULL_THUNK_DATA_DLA 1002d5dc     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000009a4       __hmod__PhysXCommon_32_dll 1002d9a4     PhysXCommon_32:PhysXCommon_32.dll
+ 0003:000009a8       __hmod__PhysXFoundation_32_dll 1002d9a8     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0003:000009ac       ?DloadKernel32@@3PAUHINSTANCE__@@A 1002d9ac     Delayimp:delayhlp.obj
+ 0003:000009b0       ?DloadAcquireSRWLockExclusive@@3P6GXPAK@ZA 1002d9b0     Delayimp:delayhlp.obj
+ 0003:000009b4       ?DloadReleaseSRWLockExclusive@@3P6GXPAK@ZA 1002d9b4     Delayimp:delayhlp.obj
+ 0003:000009b8       ?DloadSrwLock@@3KA         1002d9b8     Delayimp:delayhlp.obj
+ 0003:000009bc       ?DloadSectionLockCount@@3KA 1002d9bc     Delayimp:delayhlp.obj
+ 0003:000009c0       ?DloadSectionOldProtection@@3KA 1002d9c0     Delayimp:delayhlp.obj
+ 0003:000009c4       ?DloadSectionCommitPermanent@@3KA 1002d9c4     Delayimp:delayhlp.obj
+ 0003:000009c8       ?__type_info_root_node@@3U__type_info_node@@A 1002d9c8     MSVCRT:tncleanup.obj
+ 0003:000009d4       ___scrt_current_native_startup_state 1002d9d4     MSVCRT:utility.obj
+ 0003:000009d8       ___scrt_native_startup_lock 1002d9d8     MSVCRT:utility.obj
+ 0003:000009f8       ?_OptionsStorage@?1??__local_stdio_printf_options@@9@4_KA 1002d9f8     MSVCRT:default_local_stdio_options.obj
+ 0003:00000a00       ?_OptionsStorage@?1??__local_stdio_scanf_options@@9@4_KA 1002da00     MSVCRT:default_local_stdio_options.obj
+ 0003:00000a08       ___scrt_debugger_hook_flag 1002da08     MSVCRT:utility_desktop.obj
+ 0003:00000d2c       ___isa_available           1002dd2c     MSVCRT:_cpu_disp_.obj
+ 0003:00000d30       ___favor                   1002dd30     MSVCRT:_cpu_disp_.obj
+ 0003:00000d34       ___dyn_tls_init_callback   1002dd34     <common>
+
+ entry point at        0001:00024c68
+
+ Static symbols
+
+ 0000:fffcf000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCooking_32.exp
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXFoundation_32:PhysXFoundation_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     PhysXCommon_32:PhysXCommon_32.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:fffcf000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:fffcf000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:fffcf000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffcf000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:fffcf000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00000000       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001000 f   Cooking.obj
+ 0001:00000020       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001020 f   Cooking.obj
+ 0001:00000030       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001030 f   Cooking.obj
+ 0001:00000050       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001050 f   Cooking.obj
+ 0001:00000070       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001070 f   Cooking.obj
+ 0001:00000080       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001080 f   Cooking.obj
+ 0001:000000a0       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100010a0 f   BVHStructureBuilder.obj
+ 0001:000000c0       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100010c0 f   BVHStructureBuilder.obj
+ 0001:000000d0       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100010d0 f   BVHStructureBuilder.obj
+ 0001:000000f0       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100010f0 f   BVHStructureBuilder.obj
+ 0001:00000110       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001110 f   BVHStructureBuilder.obj
+ 0001:00000120       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001120 f   BVHStructureBuilder.obj
+ 0001:00000140       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001140 f   RTreeCooking.obj
+ 0001:00000160       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001160 f   RTreeCooking.obj
+ 0001:00000170       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001170 f   RTreeCooking.obj
+ 0001:00000190       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001190 f   RTreeCooking.obj
+ 0001:000001b0       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100011b0 f   RTreeCooking.obj
+ 0001:000001c0       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100011c0 f   RTreeCooking.obj
+ 0001:000001e0       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100011e0 f   MeshBuilder.obj
+ 0001:00000200       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001200 f   MeshBuilder.obj
+ 0001:00000210       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001210 f   MeshBuilder.obj
+ 0001:00000230       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001230 f   MeshBuilder.obj
+ 0001:00000250       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001250 f   MeshBuilder.obj
+ 0001:00000260       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001260 f   MeshBuilder.obj
+ 0001:00000280       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001280 f   TriangleMeshBuilder.obj
+ 0001:000002a0       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100012a0 f   TriangleMeshBuilder.obj
+ 0001:000002b0       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100012b0 f   TriangleMeshBuilder.obj
+ 0001:000002d0       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100012d0 f   TriangleMeshBuilder.obj
+ 0001:000002f0       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100012f0 f   TriangleMeshBuilder.obj
+ 0001:00000300       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001300 f   TriangleMeshBuilder.obj
+ 0001:00000320       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001320 f   BigConvexDataBuilder.obj
+ 0001:00000340       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001340 f   BigConvexDataBuilder.obj
+ 0001:00000350       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001350 f   BigConvexDataBuilder.obj
+ 0001:00000370       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001370 f   BigConvexDataBuilder.obj
+ 0001:00000390       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001390 f   BigConvexDataBuilder.obj
+ 0001:000003a0       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100013a0 f   BigConvexDataBuilder.obj
+ 0001:000003c0       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100013c0 f   ConvexHullBuilder.obj
+ 0001:000003e0       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100013e0 f   ConvexHullBuilder.obj
+ 0001:000003f0       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100013f0 f   ConvexHullBuilder.obj
+ 0001:00000410       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001410 f   ConvexHullBuilder.obj
+ 0001:00000430       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001430 f   ConvexHullBuilder.obj
+ 0001:00000440       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001440 f   ConvexHullBuilder.obj
+ 0001:00000460       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001460 f   ConvexHullUtils.obj
+ 0001:00000480       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001480 f   ConvexHullUtils.obj
+ 0001:00000490       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001490 f   ConvexHullUtils.obj
+ 0001:000004b0       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100014b0 f   ConvexHullUtils.obj
+ 0001:000004d0       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100014d0 f   ConvexHullUtils.obj
+ 0001:000004e0       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100014e0 f   ConvexHullUtils.obj
+ 0001:00000500       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001500 f   ConvexMeshBuilder.obj
+ 0001:00000520       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001520 f   ConvexMeshBuilder.obj
+ 0001:00000530       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001530 f   ConvexMeshBuilder.obj
+ 0001:00000550       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001550 f   ConvexMeshBuilder.obj
+ 0001:00000570       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001570 f   ConvexMeshBuilder.obj
+ 0001:00000580       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001580 f   ConvexMeshBuilder.obj
+ 0001:000005a0       ??__EmaxFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100015a0 f   VolumeIntegration.obj
+ 0001:000005c0       ??__EmaxV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100015c0 f   VolumeIntegration.obj
+ 0001:000005d0       ??__EmaxV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100015d0 f   VolumeIntegration.obj
+ 0001:000005f0       ??__EminFError@_VecMathTests@aos@shdfnd@physx@@YAXXZ 100015f0 f   VolumeIntegration.obj
+ 0001:00000610       ??__EminV3Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001610 f   VolumeIntegration.obj
+ 0001:00000620       ??__EminV4Error@_VecMathTests@aos@shdfnd@physx@@YAXXZ 10001620 f   VolumeIntegration.obj
+ 0001:00001230       ?AddTriangle@@YAXIIIIPAVAdjTriangle@physx@@AAIPAVAdjEdge@@@Z 10002230 f   Adjacencies.obj
+ 0001:00001310       ?CreateDatabase@@YA_NPAVAdjTriangle@physx@@IPBVAdjEdge@@ABUADJACENCIESCREATE@2@@Z 10002310 f   Adjacencies.obj
+ 0001:00001530       ?UpdateLink@@YA_NIIIIPAVAdjTriangle@physx@@ABUADJACENCIESCREATE@2@@Z 10002530 f   Adjacencies.obj
+ 0001:000061b0       ?OppositeVertex@@YAIIIIII@Z 100071b0 f   EdgeList.obj
+ 0001:00009490       ?buildFromBounds@physx@@YAXAAURTree@Gu@1@PBUPxBounds3V@1@IAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@1@PAURemapCallback@RTreeCooker@1@AAT__m128@@4MW4Enum@PxMeshCookingHint@1@@Z 1000a490 f   RTreeCooking.obj
+ 0001:0000ebc0       ?binarySearch@physx@@YAIPIBUEdgeTriLookup@1@IABU21@@Z 1000fbc0 f   TriangleMeshBuilder.obj
+ 0001:0000ec10       ?buildAdjacencies@physx@@YAXPAUuint4@1@PAVPxVec3@1@PBV31@PBUuint3@1@I@Z 1000fc10 f   TriangleMeshBuilder.obj
+ 0001:0000efb0       ?findAdjacent@physx@@YAIPBVPxVec3@1@0PBUuint3@1@IIIABVPxPlane@1@PAUEdgeTriLookup@1@I@Z 1000ffb0 f   TriangleMeshBuilder.obj
+ 0001:00012460       ?checkPointsAABBValidity@local@@YA_NIPBVPxVec3@physx@@IMMAAV23@1AAIPAV23@_N@Z 10013460 f   ConvexHullLib.obj
+ 0001:00018540       ?ComputeInternalExtent@@YAXAAUConvexHullData@Gu@physx@@PBUHullPolygonData@23@@Z 10019540 f   ConvexMeshBuilder.obj
+ 0001:00019b10       ?CheckFloodFill@Local@?7??extractHullPolygons@@YA_NAAIAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@ABVConvexPolygonsBuilder@5@PAV345@1@Z@SA_N1PAVAdjTriangle@5@PA_NPBI@Z 1001ab10 f   ConvexPolygonsBuilder.obj
+ 0001:00019c50       ?CheckFloodFillFace@Local@?7??extractHullPolygons@@YA_NAAIAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@ABVConvexPolygonsBuilder@5@PAV345@1@Z@SA_NIPBVAdjTriangle@5@PBI@Z 1001ac50 f   ConvexPolygonsBuilder.obj
+ 0001:00019dd0       ?CleanFaces@@YA_NAAIPAU?$TriangleT@I@Gu@physx@@0PAVPxVec3@3@@Z 1001add0 f   ConvexPolygonsBuilder.obj
+ 0001:00019ec0       ?FloodFill@Local@?7??extractHullPolygons@@YA_NAAIAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@ABVConvexPolygonsBuilder@5@PAV345@1@Z@SAX1PBVAdjTriangle@5@IPA_N@Z 1001aec0 f   ConvexPolygonsBuilder.obj
+ 0001:00019f80       ?GetNeighborFace@Local@?7??extractHullPolygons@@YA_NAAIAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@ABVConvexPolygonsBuilder@5@PAV345@1@Z@SA_NIIPBVAdjTriangle@5@PBI00@Z 1001af80 f   ConvexPolygonsBuilder.obj
+ 0001:0001a0c0       ?TestDuplicateTriangles@@YA_NAAIPAU?$TriangleT@I@Gu@physx@@_N@Z 1001b0c0 f   ConvexPolygonsBuilder.obj
+ 0001:0001a1c0       ?TestUnifiedNormals@@YA_NIPBVPxVec3@physx@@IPAU?$TriangleT@I@Gu@2@_N@Z 1001b1c0 f   ConvexPolygonsBuilder.obj
+ 0001:0001a690       ?checkRedundantVertices@@YAXAAIAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@ABVConvexPolygonsBuilder@3@11@Z 1001b690 f   ConvexPolygonsBuilder.obj
+ 0001:0001acc0       ?computeNewellPlane@@YA_NAAVPxPlane@physx@@IPBEPBVPxVec3@2@@Z 1001bcc0 f   ConvexPolygonsBuilder.obj
+ 0001:0001aed0       ?extractHullPolygons@@YA_NAAIAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@ABVConvexPolygonsBuilder@3@PAV123@1@Z 1001bed0 f   ConvexPolygonsBuilder.obj
+ 0001:0001b5c0       ?findLineStrip@@YA_NAAV?$Array@IV?$ReflectionAllocator@I@shdfnd@physx@@@shdfnd@physx@@ABV?$Array@VPair@@V?$ReflectionAllocator@VPair@@@shdfnd@physx@@@23@@Z 1001c5c0 f   ConvexPolygonsBuilder.obj
+ 0001:0001bc78       $LN122                     1001cc78     QuickHullConvexHullLib.obj
+ 0001:0001c96c       $LN395                     1001d96c     QuickHullConvexHullLib.obj
+ 0001:000213b0       ?computeCOMInertiaTensor@VolumeIntegrator@?A0x7075e46c@physx@@AAEXPAN@Z 100223b0 f   VolumeIntegration.obj
+ 0001:00021680       ?computeFaceIntegrals@VolumeIntegrator@?A0x7075e46c@physx@@AAEXABUFace@123@@Z 10022680 f   VolumeIntegration.obj
+ 0001:000219a0       ?computeProjectionIntegrals@VolumeIntegrator@?A0x7075e46c@physx@@AAEXABUFace@123@@Z 100229a0 f   VolumeIntegration.obj
+ 0001:00021e70       ?computeVolumeIntegrals@VolumeIntegrator@?A0x7075e46c@physx@@QAE_NAAUPxIntegrals@3@@Z 10022e70 f   VolumeIntegration.obj
+ 0001:00022410       ?computeVolumeIntegrals@VolumeIntegratorEberly@?A0x7075e46c@physx@@QAE_NAAUPxIntegrals@3@ABVPxVec3@3@@Z 10023410 f   VolumeIntegration.obj
+ 0001:00023130       ?computeVolumeIntegralsSIMD@VolumeIntegratorEberly@?A0x7075e46c@physx@@QAE_NAAUPxIntegrals@3@ABVPxVec3@3@@Z 10024130 f   VolumeIntegration.obj
+ 0001:000237cc       $LN13                      100247cc     WindowsCookingDelayLoadHook.obj
+ 0001:00023fc1       ?FLoadedAtPreferredAddress@@YG_NPAU_IMAGE_NT_HEADERS@@PAUHINSTANCE__@@@Z 10024fc1 f   Delayimp:delayhlp.obj
+ 0001:00023fe8       ?OverlayIAT@@YGXPAU_IMAGE_THUNK_DATA32@@PBU1@@Z 10024fe8 f   Delayimp:delayhlp.obj
+ 0001:0002401e       ?PiddFromDllName@@YGPBUImgDelayDescr@@PBD@Z 1002501e f   Delayimp:delayhlp.obj
+ 0001:000240a5       ?PinhFromImageBase@@YGPAU_IMAGE_NT_HEADERS@@PAUHINSTANCE__@@@Z 100250a5 f   Delayimp:delayhlp.obj
+ 0001:000240b6       ?TimeStampOfImage@@YGKPAU_IMAGE_NT_HEADERS@@@Z 100250b6 f   Delayimp:delayhlp.obj
+ 0001:000240c5       ?__memcmp@@YGHPBX0I@Z      100250c5 f   Delayimp:delayhlp.obj
+ 0001:000240f8       ?__memcpy@@YGPAXPAXPBXI@Z  100250f8 f   Delayimp:delayhlp.obj
+ 0001:00024121       ?__strlen@@YGIPBD@Z        10025121 f   Delayimp:delayhlp.obj
+ 0001:00024570       $$000000                   10025570     MSVCRT:alloca16.obj
+ 0001:000245b0       $$000000                   100255b0     MSVCRT:chkstk.obj
+ 0001:000245e0       $$000000                   100255e0     MSVCRT:_ftol3_.obj
+ 0001:00024957       ?dllmain_crt_dispatch@@YGHQAUHINSTANCE__@@KQAX@Z 10025957 f   MSVCRT:dll_dllmain.obj
+ 0001:000249aa       ?dllmain_crt_process_attach@@YAHQAUHINSTANCE__@@QAX@Z 100259aa f   MSVCRT:dll_dllmain.obj
+ 0001:00024abc       ?dllmain_crt_process_detach@@YAH_N@Z 10025abc f   MSVCRT:dll_dllmain.obj
+ 0001:00024b39       ?dllmain_dispatch@@YAHQAUHINSTANCE__@@KQAX@Z 10025b39 f   MSVCRT:dll_dllmain.obj
+ 0001:00024c35       ?dllmain_raw@@YGHQAUHINSTANCE__@@KQAX@Z 10025c35 f   MSVCRT:dll_dllmain.obj
+ 0001:00024cfa       ?find_pe_section@@YAPAU_IMAGE_SECTION_HEADER@@QAEI@Z 10025cfa f   MSVCRT:utility.obj
+ 0001:00024d3e       ?is_potentially_valid_image_base@@YA_NQAX@Z 10025d3e f   MSVCRT:utility.obj
+ 0001:000253d0       $$000000                   100263d0     MSVCRT:_sehprolg4_.obj
+ 0002:000000dc       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270dc     Cooking.obj
+ 0002:000000e0       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270e0     Cooking.obj
+ 0002:000000e4       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270e4     Cooking.obj
+ 0002:000000e8       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270e8     Cooking.obj
+ 0002:000000ec       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270ec     Cooking.obj
+ 0002:000000f0       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270f0     Cooking.obj
+ 0002:000000f4       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270f4     BVHStructureBuilder.obj
+ 0002:000000f8       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270f8     BVHStructureBuilder.obj
+ 0002:000000fc       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100270fc     BVHStructureBuilder.obj
+ 0002:00000100       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027100     BVHStructureBuilder.obj
+ 0002:00000104       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027104     BVHStructureBuilder.obj
+ 0002:00000108       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027108     BVHStructureBuilder.obj
+ 0002:0000010c       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002710c     RTreeCooking.obj
+ 0002:00000110       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027110     RTreeCooking.obj
+ 0002:00000114       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027114     RTreeCooking.obj
+ 0002:00000118       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027118     RTreeCooking.obj
+ 0002:0000011c       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002711c     RTreeCooking.obj
+ 0002:00000120       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027120     RTreeCooking.obj
+ 0002:00000124       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027124     MeshBuilder.obj
+ 0002:00000128       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027128     MeshBuilder.obj
+ 0002:0000012c       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002712c     MeshBuilder.obj
+ 0002:00000130       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027130     MeshBuilder.obj
+ 0002:00000134       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027134     MeshBuilder.obj
+ 0002:00000138       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027138     MeshBuilder.obj
+ 0002:0000013c       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002713c     TriangleMeshBuilder.obj
+ 0002:00000140       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027140     TriangleMeshBuilder.obj
+ 0002:00000144       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027144     TriangleMeshBuilder.obj
+ 0002:00000148       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027148     TriangleMeshBuilder.obj
+ 0002:0000014c       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002714c     TriangleMeshBuilder.obj
+ 0002:00000150       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027150     TriangleMeshBuilder.obj
+ 0002:00000154       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027154     BigConvexDataBuilder.obj
+ 0002:00000158       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027158     BigConvexDataBuilder.obj
+ 0002:0000015c       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002715c     BigConvexDataBuilder.obj
+ 0002:00000160       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027160     BigConvexDataBuilder.obj
+ 0002:00000164       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027164     BigConvexDataBuilder.obj
+ 0002:00000168       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027168     BigConvexDataBuilder.obj
+ 0002:0000016c       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002716c     ConvexHullBuilder.obj
+ 0002:00000170       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027170     ConvexHullBuilder.obj
+ 0002:00000174       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027174     ConvexHullBuilder.obj
+ 0002:00000178       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027178     ConvexHullBuilder.obj
+ 0002:0000017c       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002717c     ConvexHullBuilder.obj
+ 0002:00000180       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027180     ConvexHullBuilder.obj
+ 0002:00000184       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027184     ConvexHullUtils.obj
+ 0002:00000188       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027188     ConvexHullUtils.obj
+ 0002:0000018c       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002718c     ConvexHullUtils.obj
+ 0002:00000190       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027190     ConvexHullUtils.obj
+ 0002:00000194       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027194     ConvexHullUtils.obj
+ 0002:00000198       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 10027198     ConvexHullUtils.obj
+ 0002:0000019c       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 1002719c     ConvexMeshBuilder.obj
+ 0002:000001a0       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271a0     ConvexMeshBuilder.obj
+ 0002:000001a4       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271a4     ConvexMeshBuilder.obj
+ 0002:000001a8       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271a8     ConvexMeshBuilder.obj
+ 0002:000001ac       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271ac     ConvexMeshBuilder.obj
+ 0002:000001b0       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271b0     ConvexMeshBuilder.obj
+ 0002:000001b4       ?minFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271b4     VolumeIntegration.obj
+ 0002:000001b8       ?maxFError$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271b8     VolumeIntegration.obj
+ 0002:000001bc       ?minV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271bc     VolumeIntegration.obj
+ 0002:000001c0       ?maxV3Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271c0     VolumeIntegration.obj
+ 0002:000001c4       ?minV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271c4     VolumeIntegration.obj
+ 0002:000001c8       ?maxV4Error$initializer$@_VecMathTests@aos@shdfnd@physx@@3P6AXXZA 100271c8     VolumeIntegration.obj
+ 0002:000004c0       ?minus1w@?A0xc2507840@aos@shdfnd@physx@@3QBMB 100274c0     Cooking.obj
+ 0002:000004d0       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 100274d0     Cooking.obj
+ 0002:00000b70       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 10027b70     BVHStructureBuilder.obj
+ 0002:00000b80       ?minus1w@?A0x6b5d8c50@aos@shdfnd@physx@@3QBMB 10027b80     BVHStructureBuilder.obj
+ 0002:00000c10       ?minus1w@?A0x6a78e451@aos@shdfnd@physx@@3QBMB 10027c10     RTreeCooking.obj
+ 0002:00000c20       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 10027c20     RTreeCooking.obj
+ 0002:00000c30       ?stopAtTrisPerPage@physx@@3QBIB 10027c30     RTreeCooking.obj
+ 0002:00000c6c       ?stopAtTrisPerLeaf@physx@@3QBIB 10027c6c     RTreeCooking.obj
+ 0002:00000d90       ?minus1w@?A0x9997f86a@aos@shdfnd@physx@@3QBMB 10027d90     MeshBuilder.obj
+ 0002:00000da0       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 10027da0     MeshBuilder.obj
+ 0002:00000dc0       ?minus1w@?A0x156c7994@aos@shdfnd@physx@@3QBMB 10027dc0     TriangleMeshBuilder.obj
+ 0002:00000dd0       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 10027dd0     TriangleMeshBuilder.obj
+ 0002:000010a0       ?minus1w@?A0x5893c27f@aos@shdfnd@physx@@3QBMB 100280a0     BigConvexDataBuilder.obj
+ 0002:000010b0       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 100280b0     BigConvexDataBuilder.obj
+ 0002:00001110       ?minus1w@?A0xf19bf748@aos@shdfnd@physx@@3QBMB 10028110     ConvexHullBuilder.obj
+ 0002:00001120       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 10028120     ConvexHullBuilder.obj
+ 0002:000014b0       ?minus1w@?A0x966c5594@aos@shdfnd@physx@@3QBMB 100284b0     ConvexHullUtils.obj
+ 0002:000014c0       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 100284c0     ConvexHullUtils.obj
+ 0002:00001530       ?minus1w@?A0x3f3f571d@aos@shdfnd@physx@@3QBMB 10028530     ConvexMeshBuilder.obj
+ 0002:00001540       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 10028540     ConvexMeshBuilder.obj
+ 0002:00001a30       ?minus1w@?A0x7075e46c@aos@shdfnd@physx@@3QBMB 10028a30     VolumeIntegration.obj
+ 0002:00001a40       ?gMaskXYZ@internalWindowsSimd@aos@shdfnd@physx@@3QBIB 10028a40     VolumeIntegration.obj
+ 0002:00001bf0       _Int32ToUInt32             10028bf0     MSVCRT:_ftol3_.obj
+ 0002:00001bf8       _DP2to32                   10028bf8     MSVCRT:_ftol3_.obj
+ 0002:00001c00       _MantissaMask              10028c00     MSVCRT:_ftol3_.obj
+ 0002:00001c08       _IntegerBit                10028c08     MSVCRT:_ftol3_.obj
+ 0002:00001c10       _SignBit64                 10028c10     MSVCRT:_ftol3_.obj
+ 0002:00001c18       _MinFP64                   10028c18     MSVCRT:_ftol3_.obj
+ 0002:00001c20       _MinInt64                  10028c20     MSVCRT:_ftol3_.obj
+ 0002:00001c28       _MaxInt64                  10028c28     MSVCRT:_ftol3_.obj
+ 0002:00001c30       _MaxUInt64                 10028c30     MSVCRT:_ftol3_.obj
+ 0002:00001c38       _MaxFP32                   10028c38     MSVCRT:_ftol3_.obj
+ 0002:00001c40       _MinFP32                   10028c40     MSVCRT:_ftol3_.obj
+ 0002:00001c48       _MinSubInexact             10028c48     MSVCRT:_ftol3_.obj
+ 0002:00001c50       _FpExcptTable              10028c50     MSVCRT:_ftol3_.obj
+ 0002:00001c60       _i1075                     10028c60     MSVCRT:_ftol3_.obj
+ 0002:00001c64       _i1087                     10028c64     MSVCRT:_ftol3_.obj
+ 0002:00001c68       _x0800                     10028c68     MSVCRT:_ftol3_.obj
+ 0002:00001c6c       _x17FF                     10028c6c     MSVCRT:_ftol3_.obj
+ 0002:00001c70       _CWMask                    10028c70     MSVCRT:_ftol3_.obj
+ 0002:00001cd4       _GS_ExceptionPointers      10028cd4     MSVCRT:gs_report.obj
+ 0002:00002108       __sehtable$?dllmain_crt_process_attach@@YAHQAUHINSTANCE__@@QAX@Z 10029108     MSVCRT:dll_dllmain.obj
+ 0002:00002128       __sehtable$?dllmain_crt_process_detach@@YAH_N@Z 10029128     MSVCRT:dll_dllmain.obj
+ 0002:00002148       __sehtable$?dllmain_dispatch@@YAHQAUHINSTANCE__@@KQAX@Z 10029148     MSVCRT:dll_dllmain.obj
+ 0002:00002168       __sehtable$___scrt_is_nonwritable_in_current_image 10029168     MSVCRT:utility.obj
+ 0002:00002f70       .edata                     10029f70     PhysXCooking_32.exp
+ 0002:00002f98       rgpv                       10029f98     PhysXCooking_32.exp
+ 0002:00003184       rgszName                   1002a184     PhysXCooking_32.exp
+ 0002:00003370       rgwOrd                     1002a370     PhysXCooking_32.exp
+ 0002:00003466       szName                     1002a466     PhysXCooking_32.exp
+ 0002:0000347a       $N00001                    1002a47a     PhysXCooking_32.exp
+ 0002:000034a7       $N00002                    1002a4a7     PhysXCooking_32.exp
+ 0002:000034cd       $N00003                    1002a4cd     PhysXCooking_32.exp
+ 0002:00003506       $N00004                    1002a506     PhysXCooking_32.exp
+ 0002:0000352b       $N00005                    1002a52b     PhysXCooking_32.exp
+ 0002:00003556       $N00006                    1002a556     PhysXCooking_32.exp
+ 0002:00003575       $N00007                    1002a575     PhysXCooking_32.exp
+ 0002:000035a7       $N00008                    1002a5a7     PhysXCooking_32.exp
+ 0002:000035bf       $N00009                    1002a5bf     PhysXCooking_32.exp
+ 0002:000035de       $N00010                    1002a5de     PhysXCooking_32.exp
+ 0002:00003625       $N00011                    1002a625     PhysXCooking_32.exp
+ 0002:0000364c       $N00012                    1002a64c     PhysXCooking_32.exp
+ 0002:00003671       $N00013                    1002a671     PhysXCooking_32.exp
+ 0002:0000369e       $N00014                    1002a69e     PhysXCooking_32.exp
+ 0002:000036c9       $N00015                    1002a6c9     PhysXCooking_32.exp
+ 0002:000036f9       $N00016                    1002a6f9     PhysXCooking_32.exp
+ 0002:0000371d       $N00017                    1002a71d     PhysXCooking_32.exp
+ 0002:00003746       $N00018                    1002a746     PhysXCooking_32.exp
+ 0002:0000376a       $N00019                    1002a76a     PhysXCooking_32.exp
+ 0002:00003788       $N00020                    1002a788     PhysXCooking_32.exp
+ 0002:000037bc       $N00021                    1002a7bc     PhysXCooking_32.exp
+ 0002:000037e4       $N00022                    1002a7e4     PhysXCooking_32.exp
+ 0002:0000380a       $N00023                    1002a80a     PhysXCooking_32.exp
+ 0002:00003832       $N00024                    1002a832     PhysXCooking_32.exp
+ 0002:0000384a       $N00025                    1002a84a     PhysXCooking_32.exp
+ 0002:0000386e       $N00026                    1002a86e     PhysXCooking_32.exp
+ 0002:0000388c       $N00027                    1002a88c     PhysXCooking_32.exp
+ 0002:000038aa       $N00028                    1002a8aa     PhysXCooking_32.exp
+ 0002:000038c9       $N00029                    1002a8c9     PhysXCooking_32.exp
+ 0002:000038fc       $N00030                    1002a8fc     PhysXCooking_32.exp
+ 0002:00003931       $N00031                    1002a931     PhysXCooking_32.exp
+ 0002:00003962       $N00032                    1002a962     PhysXCooking_32.exp
+ 0002:00003991       $N00033                    1002a991     PhysXCooking_32.exp
+ 0002:000039bb       $N00034                    1002a9bb     PhysXCooking_32.exp
+ 0002:000039e0       $N00035                    1002a9e0     PhysXCooking_32.exp
+ 0002:00003a0e       $N00036                    1002aa0e     PhysXCooking_32.exp
+ 0002:00003a3a       $N00037                    1002aa3a     PhysXCooking_32.exp
+ 0002:00003a67       $N00038                    1002aa67     PhysXCooking_32.exp
+ 0002:00003a92       $N00039                    1002aa92     PhysXCooking_32.exp
+ 0002:00003ac0       $N00040                    1002aac0     PhysXCooking_32.exp
+ 0002:00003af3       $N00041                    1002aaf3     PhysXCooking_32.exp
+ 0002:00003b24       $N00042                    1002ab24     PhysXCooking_32.exp
+ 0002:00003b53       $N00043                    1002ab53     PhysXCooking_32.exp
+ 0002:00003b82       $N00044                    1002ab82     PhysXCooking_32.exp
+ 0002:00003bab       $N00045                    1002abab     PhysXCooking_32.exp
+ 0002:00003bc7       $N00046                    1002abc7     PhysXCooking_32.exp
+ 0002:00003bf0       $N00047                    1002abf0     PhysXCooking_32.exp
+ 0002:00003c13       $N00048                    1002ac13     PhysXCooking_32.exp
+ 0002:00003c43       $N00049                    1002ac43     PhysXCooking_32.exp
+ 0002:00003c69       $N00050                    1002ac69     PhysXCooking_32.exp
+ 0002:00003c96       $N00051                    1002ac96     PhysXCooking_32.exp
+ 0002:00003cc0       $N00052                    1002acc0     PhysXCooking_32.exp
+ 0002:00003cec       $N00053                    1002acec     PhysXCooking_32.exp
+ 0002:00003d14       $N00054                    1002ad14     PhysXCooking_32.exp
+ 0002:00003d41       $N00055                    1002ad41     PhysXCooking_32.exp
+ 0002:00003d69       $N00056                    1002ad69     PhysXCooking_32.exp
+ 0002:00003d90       $N00057                    1002ad90     PhysXCooking_32.exp
+ 0002:00003dbc       $N00058                    1002adbc     PhysXCooking_32.exp
+ 0002:00003de3       $N00059                    1002ade3     PhysXCooking_32.exp
+ 0002:00003e1c       $N00060                    1002ae1c     PhysXCooking_32.exp
+ 0002:00003e45       $N00061                    1002ae45     PhysXCooking_32.exp
+ 0002:00003e78       $N00062                    1002ae78     PhysXCooking_32.exp
+ 0002:00003eac       $N00063                    1002aeac     PhysXCooking_32.exp
+ 0002:00003ee6       $N00064                    1002aee6     PhysXCooking_32.exp
+ 0002:00003f2c       $N00065                    1002af2c     PhysXCooking_32.exp
+ 0002:00003f7a       $N00066                    1002af7a     PhysXCooking_32.exp
+ 0002:00003fac       $N00067                    1002afac     PhysXCooking_32.exp
+ 0002:00003fdf       $N00068                    1002afdf     PhysXCooking_32.exp
+ 0002:00004014       $N00069                    1002b014     PhysXCooking_32.exp
+ 0002:0000403a       $N00070                    1002b03a     PhysXCooking_32.exp
+ 0002:00004080       $N00071                    1002b080     PhysXCooking_32.exp
+ 0002:000040c5       $N00072                    1002b0c5     PhysXCooking_32.exp
+ 0002:0000411c       $N00073                    1002b11c     PhysXCooking_32.exp
+ 0002:00004162       $N00074                    1002b162     PhysXCooking_32.exp
+ 0002:0000418c       $N00075                    1002b18c     PhysXCooking_32.exp
+ 0002:000041ba       $N00076                    1002b1ba     PhysXCooking_32.exp
+ 0002:00004208       $N00077                    1002b208     PhysXCooking_32.exp
+ 0002:000042b2       $N00078                    1002b2b2     PhysXCooking_32.exp
+ 0002:0000430e       $N00079                    1002b30e     PhysXCooking_32.exp
+ 0002:00004339       $N00080                    1002b339     PhysXCooking_32.exp
+ 0002:00004364       $N00081                    1002b364     PhysXCooking_32.exp
+ 0002:00004398       $N00082                    1002b398     PhysXCooking_32.exp
+ 0002:000043c0       $N00083                    1002b3c0     PhysXCooking_32.exp
+ 0002:000043fb       $N00084                    1002b3fb     PhysXCooking_32.exp
+ 0002:00004426       $N00085                    1002b426     PhysXCooking_32.exp
+ 0002:00004457       $N00086                    1002b457     PhysXCooking_32.exp
+ 0002:000044a2       $N00087                    1002b4a2     PhysXCooking_32.exp
+ 0002:000044d3       $N00088                    1002b4d3     PhysXCooking_32.exp
+ 0002:0000450a       $N00089                    1002b50a     PhysXCooking_32.exp
+ 0002:00004541       $N00090                    1002b541     PhysXCooking_32.exp
+ 0002:0000457c       $N00091                    1002b57c     PhysXCooking_32.exp
+ 0002:000045be       $N00092                    1002b5be     PhysXCooking_32.exp
+ 0002:000045ec       $N00093                    1002b5ec     PhysXCooking_32.exp
+ 0002:00004663       $N00094                    1002b663     PhysXCooking_32.exp
+ 0002:000046be       $N00095                    1002b6be     PhysXCooking_32.exp
+ 0002:000046e9       $N00096                    1002b6e9     PhysXCooking_32.exp
+ 0002:0000471c       $N00097                    1002b71c     PhysXCooking_32.exp
+ 0002:00004754       $N00098                    1002b754     PhysXCooking_32.exp
+ 0002:00004790       $N00099                    1002b790     PhysXCooking_32.exp
+ 0002:000047c4       $N00100                    1002b7c4     PhysXCooking_32.exp
+ 0002:000047f0       $N00101                    1002b7f0     PhysXCooking_32.exp
+ 0002:0000481c       $N00102                    1002b81c     PhysXCooking_32.exp
+ 0002:00004845       $N00103                    1002b845     PhysXCooking_32.exp
+ 0002:0000486f       $N00104                    1002b86f     PhysXCooking_32.exp
+ 0002:0000489b       $N00105                    1002b89b     PhysXCooking_32.exp
+ 0002:000048ba       $N00106                    1002b8ba     PhysXCooking_32.exp
+ 0002:000048f4       $N00107                    1002b8f4     PhysXCooking_32.exp
+ 0002:00004924       $N00108                    1002b924     PhysXCooking_32.exp
+ 0002:00004955       $N00109                    1002b955     PhysXCooking_32.exp
+ 0002:00004995       $N00110                    1002b995     PhysXCooking_32.exp
+ 0002:000049c1       $N00111                    1002b9c1     PhysXCooking_32.exp
+ 0002:000049e4       $N00112                    1002b9e4     PhysXCooking_32.exp
+ 0002:00004a12       $N00113                    1002ba12     PhysXCooking_32.exp
+ 0002:00004a43       $N00114                    1002ba43     PhysXCooking_32.exp
+ 0002:00004a68       $N00115                    1002ba68     PhysXCooking_32.exp
+ 0002:00004a94       $N00116                    1002ba94     PhysXCooking_32.exp
+ 0002:00004abb       $N00117                    1002babb     PhysXCooking_32.exp
+ 0002:00004ada       $N00118                    1002bada     PhysXCooking_32.exp
+ 0002:00004b1e       $N00119                    1002bb1e     PhysXCooking_32.exp
+ 0002:00004b5a       $N00120                    1002bb5a     PhysXCooking_32.exp
+ 0002:00004b96       $N00121                    1002bb96     PhysXCooking_32.exp
+ 0002:00004bc7       $N00122                    1002bbc7     PhysXCooking_32.exp
+ 0002:00004bd7       $N00123                    1002bbd7     PhysXCooking_32.exp
+ 0002:00004d54       .idata$6                   1002bd54     kernel32:KERNEL32.dll
+ 0002:00004dde       .idata$6                   1002bdde     vcruntime:VCRUNTIME140.dll
+ 0002:00004f3e       .idata$6                   1002bf3e     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:00004f5e       .idata$6                   1002bf5e     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00004f7e       .idata$6                   1002bf7e     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0003:00000000       ?MAXDOT_MINANG@local@@3MB  1002d000     ConvexHullUtils.obj
+ 0003:00000004       ?MAXDOT_MINANG@local@@3MB  1002d004     QuickHullConvexHullLib.obj
+ 0003:000005e0       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d5e0     Cooking.obj
+ 0003:000005f0       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d5f0     Cooking.obj
+ 0003:00000600       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d600     Cooking.obj
+ 0003:00000610       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d610     Cooking.obj
+ 0003:00000620       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d620     Cooking.obj
+ 0003:00000630       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d630     Cooking.obj
+ 0003:00000640       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d640     BVHStructureBuilder.obj
+ 0003:00000650       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d650     BVHStructureBuilder.obj
+ 0003:00000660       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d660     BVHStructureBuilder.obj
+ 0003:00000670       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d670     BVHStructureBuilder.obj
+ 0003:00000680       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d680     BVHStructureBuilder.obj
+ 0003:00000690       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d690     BVHStructureBuilder.obj
+ 0003:000006a0       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d6a0     RTreeCooking.obj
+ 0003:000006b0       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d6b0     RTreeCooking.obj
+ 0003:000006c0       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d6c0     RTreeCooking.obj
+ 0003:000006d0       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d6d0     RTreeCooking.obj
+ 0003:000006e0       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d6e0     RTreeCooking.obj
+ 0003:000006f0       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d6f0     RTreeCooking.obj
+ 0003:00000700       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d700     MeshBuilder.obj
+ 0003:00000710       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d710     MeshBuilder.obj
+ 0003:00000720       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d720     MeshBuilder.obj
+ 0003:00000730       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d730     MeshBuilder.obj
+ 0003:00000740       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d740     MeshBuilder.obj
+ 0003:00000750       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d750     MeshBuilder.obj
+ 0003:00000760       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d760     TriangleMeshBuilder.obj
+ 0003:00000770       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d770     TriangleMeshBuilder.obj
+ 0003:00000780       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d780     TriangleMeshBuilder.obj
+ 0003:00000790       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d790     TriangleMeshBuilder.obj
+ 0003:000007a0       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d7a0     TriangleMeshBuilder.obj
+ 0003:000007b0       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d7b0     TriangleMeshBuilder.obj
+ 0003:000007c0       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d7c0     BigConvexDataBuilder.obj
+ 0003:000007d0       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d7d0     BigConvexDataBuilder.obj
+ 0003:000007e0       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d7e0     BigConvexDataBuilder.obj
+ 0003:000007f0       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d7f0     BigConvexDataBuilder.obj
+ 0003:00000800       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d800     BigConvexDataBuilder.obj
+ 0003:00000810       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d810     BigConvexDataBuilder.obj
+ 0003:00000820       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d820     ConvexHullBuilder.obj
+ 0003:00000830       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d830     ConvexHullBuilder.obj
+ 0003:00000840       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d840     ConvexHullBuilder.obj
+ 0003:00000850       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d850     ConvexHullBuilder.obj
+ 0003:00000860       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d860     ConvexHullBuilder.obj
+ 0003:00000870       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d870     ConvexHullBuilder.obj
+ 0003:00000880       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d880     ConvexHullUtils.obj
+ 0003:00000890       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d890     ConvexHullUtils.obj
+ 0003:000008a0       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d8a0     ConvexHullUtils.obj
+ 0003:000008b0       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d8b0     ConvexHullUtils.obj
+ 0003:000008c0       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d8c0     ConvexHullUtils.obj
+ 0003:000008d0       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d8d0     ConvexHullUtils.obj
+ 0003:000008e0       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d8e0     ConvexMeshBuilder.obj
+ 0003:000008f0       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d8f0     ConvexMeshBuilder.obj
+ 0003:00000900       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d900     ConvexMeshBuilder.obj
+ 0003:00000910       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d910     ConvexMeshBuilder.obj
+ 0003:00000920       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d920     ConvexMeshBuilder.obj
+ 0003:00000930       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d930     ConvexMeshBuilder.obj
+ 0003:00000940       ?maxV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d940     VolumeIntegration.obj
+ 0003:00000950       ?minFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d950     VolumeIntegration.obj
+ 0003:00000960       ?maxV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d960     VolumeIntegration.obj
+ 0003:00000970       ?minV4Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d970     VolumeIntegration.obj
+ 0003:00000980       ?minV3Error@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d980     VolumeIntegration.obj
+ 0003:00000990       ?maxFError@_VecMathTests@aos@shdfnd@physx@@3T__m128@@B 1002d990     VolumeIntegration.obj
+ 0003:000009a0       ?gCookingDelayLoadHook@@3PBVPxDelayLoadHook@physx@@B 1002d9a0     WindowsCookingDelayLoadHook.obj
+ 0003:000009d0       ?__proc_attached@@3HA      1002d9d0     MSVCRT:dll_dllmain.obj
+ 0003:000009dc       ?module_local_atexit_table@@3U_onexit_table_t@@A 1002d9dc     MSVCRT:utility.obj
+ 0003:000009e8       ?module_local_at_quick_exit_table@@3U_onexit_table_t@@A 1002d9e8     MSVCRT:utility.obj
+ 0003:000009f4       ?is_initialized_as_dll@@3_NA 1002d9f4     MSVCRT:utility.obj
+ 0003:00000a10       _GS_ExceptionRecord        1002da10     MSVCRT:gs_report.obj
+ 0003:00000a60       _GS_ContextRecord          1002da60     MSVCRT:gs_report.obj
+ 0004:00000000       __guard_fids__             1002e000     MSVCRT:std_type_info_static.obj
+ 0004:00000004       __guard_fids_?dllmain_crt_process_attach@@YAHQAUHINSTANCE__@@QAX@Z 1002e004     MSVCRT:dll_dllmain.obj
+ 0004:0000000c       __guard_fids_?dllmain_dispatch@@YAHQAUHINSTANCE__@@KQAX@Z 1002e00c     MSVCRT:dll_dllmain.obj
+ 0004:00000010       __guard_fids__             1002e010     MSVCRT:guard_support.obj
+ 0004:00000014       __guard_fids___guard_icall_checks_enforced 1002e014     MSVCRT:guard_support.obj
+ 0004:00000018       __guard_fids____scrt_set_unhandled_exception_filter 1002e018     MSVCRT:utility_desktop.obj
+ 0004:0000001c       __guard_fids___except_handler4 1002e01c     MSVCRT:_chandler4gs_.obj
+ 0005:000000a0       $R000000                   1002f0a0     PhysXCooking.res
+ 0005:000003d0       $R000330                   1002f3d0     PhysXCooking.res

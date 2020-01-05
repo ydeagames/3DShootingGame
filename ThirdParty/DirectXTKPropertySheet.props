@@ -11,7 +11,8 @@
   <!-- 共有設定 -->
   <PropertyGroup>
     <IncludePath>$(SolutionDir)ThirdParty/DirectXTK/Inc;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty/DirectXTK/Bin/$(Platform)/$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="!('$(RuntimeLibraryType)'=='LIB')">$(SolutionDir)ThirdParty/DirectXTK/Bin/MD/$(Platform)/$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(RuntimeLibraryType)'=='LIB'">$(SolutionDir)ThirdParty/DirectXTK/Bin/MT/$(Platform)/$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
