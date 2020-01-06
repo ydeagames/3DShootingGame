@@ -4,25 +4,25 @@
 
   <!-- マクロ -->
   <PropertyGroup Label="UserMacros">
-    <RuntimeLibraryType>LIB</RuntimeLibraryType>
+    <RuntimeLibraryType>DLL</RuntimeLibraryType>
   </PropertyGroup>
 
   <!-- 表示名 -->
   <PropertyGroup>
-    <_PropertySheetDisplayName>RuntimeLibraryMT</_PropertySheetDisplayName>
+    <_PropertySheetDisplayName>RuntimeLibraryMD</_PropertySheetDisplayName>
   </PropertyGroup>
 
   <!-- デバッグ -->
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
 
   <!-- リリース -->
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
 </Project>
