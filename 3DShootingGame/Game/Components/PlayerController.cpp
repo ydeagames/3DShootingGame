@@ -29,8 +29,9 @@ void PlayerController::Update()
 		if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
 		{
 			m_beginDrag = Input::GetMousePosition();
+			m_dragging = true;
 		}
-		if (Input::GetMouseButton(Input::Buttons::MouseLeft))
+		if (m_dragging)
 		{
 			m_endDrag = Input::GetMousePosition();
 
@@ -55,6 +56,7 @@ void PlayerController::Update()
 		}
 		if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
 		{
+			m_dragging = false;
 			rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power);
 			rigid.Apply();
 		}
@@ -72,6 +74,8 @@ void PlayerController::RenderStart()
 	m_basicEffect->SetVertexColorEnabled(true);
 	// プリミティブオブジェクト生成
 	m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>(context);
+	// スプライトバッチ
+	m_spriteBatch = std::make_unique<SpriteBatch>(context);
 	// インプットレイアウト生成
 	void const* shaderByteCode;
 	size_t byteCodeLength;
@@ -80,6 +84,16 @@ void PlayerController::RenderStart()
 		DirectX::VertexPositionColor::InputElementCount,
 		shaderByteCode, byteCodeLength,
 		m_pInputLayout.ReleaseAndGetAddressOf()));
+	// テクスチャ
+	DX::ThrowIfFailed(CreateWICTextureFromFile(
+		device, context,
+		L"Resources/Textures/Play/Control/Launch/Arrow.png", nullptr, m_textureArrow.ReleaseAndGetAddressOf()));
+	DX::ThrowIfFailed(CreateWICTextureFromFile(
+		device, context,
+		L"Resources/Textures/Play/Control/Launch/Circle.png", nullptr, m_textureCircle.ReleaseAndGetAddressOf()));
+	DX::ThrowIfFailed(CreateWICTextureFromFile(
+		device, context,
+		L"Resources/Textures/Play/Control/Launch/Base.png", nullptr, m_textureBase.ReleaseAndGetAddressOf()));
 }
 
 void PlayerController::Render(GameCamera& camera)
@@ -104,6 +118,26 @@ void PlayerController::Render(GameCamera& camera)
 	m_primitiveBatch->Begin();
 	m_primitiveBatch->DrawLine(VertexPositionColor(Vector3::Zero, Colors::Yellow), VertexPositionColor(Vector3::Forward, Colors::Yellow));
 	m_primitiveBatch->End();
+}
+
+void PlayerController::RenderGui(GameCamera& camera)
+{
+	if (m_dragging)
+	{
+		m_spriteBatch->Begin(SpriteSortMode_Deferred, GameContext::Get<CommonStates>().NonPremultiplied());
+
+		auto color = Color(1, 1, 1, .5f);
+		m_spriteBatch->Draw(m_textureArrow.Get(), static_cast<Vector2>(Vector3::Lerp(m_beginDrag, m_endDrag, -3/3.f)),nullptr, color,
+			std::atan2(m_endDrag.y - m_beginDrag.y, m_endDrag.x - m_beginDrag.x) - XM_PIDIV2, Vector2(32, 32), color);
+		m_spriteBatch->Draw(m_textureCircle.Get(), static_cast<Vector2>(Vector3::Lerp(m_beginDrag, m_endDrag, -2/3.f)) - Vector2(16, 16), color);
+		m_spriteBatch->Draw(m_textureCircle.Get(), static_cast<Vector2>(Vector3::Lerp(m_beginDrag, m_endDrag, -1/3.f)) - Vector2(16, 16), color);
+		m_spriteBatch->Draw(m_textureCircle.Get(), static_cast<Vector2>(Vector3::Lerp(m_beginDrag, m_endDrag, 0/3.f)) - Vector2(16, 16), color);
+		m_spriteBatch->Draw(m_textureCircle.Get(), static_cast<Vector2>(Vector3::Lerp(m_beginDrag, m_endDrag, 1/3.f)) - Vector2(16, 16), color);
+		m_spriteBatch->Draw(m_textureCircle.Get(), static_cast<Vector2>(Vector3::Lerp(m_beginDrag, m_endDrag, 2/3.f)) - Vector2(16, 16), color);
+		m_spriteBatch->Draw(m_textureBase.Get(), static_cast<Vector2>(Vector3::Lerp(m_beginDrag, m_endDrag, 3/3.f)) - Vector2(64, 64), color);
+
+		m_spriteBatch->End();
+	}
 }
 
 void PlayerController::EditorGui()

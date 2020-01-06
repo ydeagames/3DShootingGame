@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "Background.h"
 #include <Framework/ECS/GameContext.h>
+#include <Framework/Context/GameCamera.h>
+#include <Framework/Components/Transform.h>
+#include <Framework/Context/WindowHandler.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -31,7 +34,19 @@ void Background::RenderStart()
 void Background::Render(GameCamera& camera)
 {
 	if (m_texture)
-		m_plane->Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity, Colors::White, m_texture.Get());
+		if (fullScreen)
+		{
+			m_plane->Draw(gameObject.GetComponent<Transform>().GetMatrix() * Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity, Colors::White, m_texture.Get());
+		}
+		else if (uiSpace)
+		{
+			auto s = GameContext::Get<WindowHandler>().GetSize();
+			m_plane->Draw(gameObject.GetComponent<Transform>().GetMatrix() * Matrix::CreateScale(2 / s.x, 2 / s.y, 1), Matrix::Identity, Matrix::Identity, Colors::White, m_texture.Get());
+		}
+		else
+		{
+			m_plane->Draw(gameObject.GetComponent<Transform>().GetMatrix(), camera.view, camera.projection, Colors::White, m_texture.Get());
+		}
 }
 
 void Background::EditorGui()
@@ -43,4 +58,7 @@ void Background::EditorGui()
 		texture = std::string(tmpname.c_str());
 		RenderStart();
 	}
+
+	ImGui::Checkbox("Full Screen", &fullScreen);
+	ImGui::Checkbox("UI Space", &uiSpace);
 }

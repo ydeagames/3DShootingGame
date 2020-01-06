@@ -27,8 +27,16 @@ private:
 	// プリミティブバッチ
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_primitiveBatch;
 
+	// スプライトバッチ
+	std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
+
 	// インプットレイアウト
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
+
+	// テクスチャ
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_textureArrow;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_textureCircle;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_textureBase;
 
 	// カメラ
 	GameCamera* m_camera = nullptr;
@@ -38,11 +46,15 @@ private:
 	// 終点
 	DirectX::SimpleMath::Vector3 m_endDrag;
 
+	// ドラッグ中
+	bool m_dragging = false;
+
 public:
 	void Start();
 	void Update();
 	void RenderStart();
 	void Render(GameCamera& camera);
+	void RenderGui(GameCamera& camera);
 
 public:
 	template<class Archive>

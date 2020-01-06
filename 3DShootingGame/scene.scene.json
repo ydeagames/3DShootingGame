@@ -71,7 +71,9 @@
             {
                 "id": 0,
                 "component": {
-                    "texture": "Resources/Textures/Title/Background.png"
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "fullScreen": true,
+                    "uiSpace": true
                 }
             }
         ],
@@ -82,6 +84,8 @@
             }
         ],
         "PlayMenu": [],
+        "ResultMenu": [],
+        "PauseMenu": [],
         "FPSCamera": [],
         "InfinityGridFloor": [],
         "FontRenderer": [
@@ -98,6 +102,12 @@
                     }
                 }
             }
-        ]
+        ],
+        "PlayerController": [],
+        "TranslateFollower": [],
+        "RotateFollower": [],
+        "TrackingFollower": [],
+        "RainbowEffect": [],
+        "Goal": []
     }
 }

@@ -1,6 +1,7 @@
 {
     "entities": {
         "created": [
+            15,
             14,
             13,
             12,
@@ -55,12 +56,12 @@
                 "id": 1,
                 "component": {
                     "name": "Camera",
-                    "parent": 4294967295,
+                    "parent": 15,
                     "isStatic": false,
                     "localPosition": {
-                        "x": -19.399999618530275,
+                        "x": -10.399999618530274,
                         "y": 5.900000095367432,
-                        "z": 2.4000000953674318
+                        "z": 4.800000190734863
                     },
                     "localRotation": {
                         "x": -0.1812438815832138,
@@ -386,6 +387,30 @@
                         "z": 1.0
                     }
                 }
+            },
+            {
+                "id": 15,
+                "component": {
+                    "name": "CameraWrapper",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": -7.400000095367432,
+                        "y": 1.5,
+                        "z": -0.20000000298023225
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
             }
         ],
         "PhysXScene": [
@@ -600,6 +625,7 @@
             }
         ],
         "ResultMenu": [],
+        "PauseMenu": [],
         "FPSCamera": [],
         "InfinityGridFloor": [
             {
@@ -629,19 +655,17 @@
                 }
             }
         ],
-        "TranslateFollower": [],
-        "RotateFollower": [],
-        "TrackingFollower": [
+        "TranslateFollower": [
             {
-                "id": 1,
+                "id": 15,
                 "component": {
                     "movePercent": 0.5,
-                    "target": 0,
-                    "radius": 10.0,
-                    "height": 5.0
+                    "target": 0
                 }
             }
         ],
+        "RotateFollower": [],
+        "TrackingFollower": [],
         "RainbowEffect": [
             {
                 "id": 1048585,

@@ -16,6 +16,8 @@ public:
 
 public:
 	std::string texture = "Resources/Textures/Title/Background.png";
+	bool fullScreen = true;
+	bool uiSpace = true;
 
 private:
 	std::unique_ptr<DirectX::GeometricPrimitive> m_plane;
@@ -29,7 +31,7 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(CEREAL_OPTIONAL_NVP(texture));
+		archive(CEREAL_OPTIONAL_NVP(texture), CEREAL_OPTIONAL_NVP(fullScreen), CEREAL_OPTIONAL_NVP(uiSpace));
 	}
 
 	void EditorGui();
