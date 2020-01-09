@@ -11,8 +11,10 @@ public:
 public:
 	std::string name;
 	std::string location;
+	std::function<void(entt::registry&)> action;
 
 public:
+	SceneInfo();
 	SceneInfo(const std::string& name, const std::string& location);
 	static SceneInfo CreateFromLocation(const std::string& location);
 	static SceneInfo CreateFromName(const std::string& name);

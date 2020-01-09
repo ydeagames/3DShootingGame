@@ -590,7 +590,6 @@
     <ClInclude Include="Framework\PhysX\PhysXRenderer.h" />
     <ClInclude Include="Framework\PhysX\PhysXScene.h" />
     <ClInclude Include="Framework\Physics\Rigidbody.h" />
-    <ClInclude Include="Framework\SceneManagement\SceneTransition.h" />
     <ClInclude Include="Framework\SceneManagement\SceneTransitions.h" />
     <ClInclude Include="Game\Components\AllComponents.h" />
     <ClInclude Include="Game\Components\FontRenderer.h" />
@@ -698,14 +697,6 @@
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="Resources\settings.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <MeshContentTask Include="Resources\Models\Assets\igaguri.fbx">
-      <FileType>Document</FileType>
-    </MeshContentTask>
-    <MeshContentTask Include="Resources\Models\Assets\target.fbx">
-      <FileType>Document</FileType>
-    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\manual.html" />

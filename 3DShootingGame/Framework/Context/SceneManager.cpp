@@ -7,9 +7,14 @@ SceneManager::SceneManager()
 	scenes.emplace_back(std::make_unique<Scene>());
 }
 
-int SceneManager::GetSceneCount()
+int SceneManager::GetSceneCount() const
 {
 	return scenes.size();
+}
+
+std::deque<std::unique_ptr<Scene>>& SceneManager::GetScenes()
+{
+	return scenes;
 }
 
 Scene* SceneManager::GetSceneOrNull(void* sceneptr)
@@ -53,4 +58,14 @@ void SceneManager::Apply()
 void SceneManager::LoadScene(const SceneInfo& info, LoadSceneMode mode)
 {
 	m_loadQueue.push(LoadSceneInfo{ info, mode });
+}
+
+void SceneManager::LoadSceneTransition(const SceneInfo& info, const Transition& transition)
+{
+	auto tempScene = SceneInfo::CreateFromName("");
+	tempScene.action = [=](entt::registry& reg)
+	{
+		transition(info, reg);
+	};
+	LoadScene(tempScene, LoadSceneMode::Additive);
 }

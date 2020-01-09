@@ -173,9 +173,6 @@
     <ClInclude Include="Framework\SceneManagement\SceneTransitions.h">
       <Filter>Framework\SceneManagement</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\SceneManagement\SceneTransition.h">
-      <Filter>Framework\SceneManagement</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\HashedString.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -1475,12 +1472,6 @@
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Resources\Models\Assets\igaguri.fbx">
-      <Filter>Assets\Models</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Resources\Models\Assets\target.fbx">
-      <Filter>Assets\Models</Filter>
-    </MeshContentTask>
     <MeshContentTask Include="Resources\Models\Assets\Terrain.obj">
       <Filter>Assets\Models</Filter>
     </MeshContentTask>

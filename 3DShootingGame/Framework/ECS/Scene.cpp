@@ -5,6 +5,12 @@
 #include "Project.h"
 #include <Utilities/WindowsUtils.h>
 
+SceneInfo::SceneInfo()
+	: name("")
+	, location("")
+{
+}
+
 SceneInfo::SceneInfo(const std::string& name, const std::string& location)
 	: name(name)
 	, location(location)
@@ -56,7 +62,15 @@ bool Scene::Load(const std::string& location)
 
 bool Scene::Load()
 {
-	return Load(info.location);
+	registry.reset();
+	context = {};
+	auto action = info.action;
+	return ECS::AllComponents::LoadScene(info.location, registry, [action](auto& registry) {
+		ECS::AllComponents::InitializeDependency(registry);
+		ECS::AllComponents::InitializeLifecycleEvents(registry);
+		if (action)
+			action(registry);
+		});
 }
 
 bool Scene::Save(const std::string& location) const

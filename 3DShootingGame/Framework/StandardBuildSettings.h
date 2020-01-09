@@ -8,6 +8,7 @@
 #include <Framework/Physics/Rigidbody.h>
 #include <Framework/Physics/Collider.h>
 #include <Framework/Physics/Collidable.h>
+#include <Framework/SceneManagement/SceneTransitions.h>
 
 namespace StandardBuildSettings
 {
@@ -18,7 +19,9 @@ namespace StandardBuildSettings
 		SphereCollider,
 		BoxCollider,
 		CapsuleCollider,
-		PlaneCollider
+		PlaneCollider,
+		SceneTransitions::FadeTransition,
+		SceneTransitions::RuleTransition
 	>;
 
 	using Tags = std::tuple<

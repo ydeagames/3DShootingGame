@@ -28,7 +28,8 @@ public:
 	SceneManager();
 
 public:
-	int GetSceneCount();
+	int GetSceneCount() const;
+	std::deque<std::unique_ptr<Scene>>& GetScenes();
 	Scene* GetSceneOrNull(void* sceneptr);
 	Scene* GetSceneOrNullRegistry(void* sceneptr);
 	Scene& GetActiveScene() const;
@@ -47,6 +48,9 @@ public:
 			func(*(*itr));
 	}
 
+	using Transition = std::function<void(const SceneInfo& info, entt::registry& reg)>;
+
 	void Apply();
 	void LoadScene(const SceneInfo& info, LoadSceneMode mode = LoadSceneMode::Single);
+	void LoadSceneTransition(const SceneInfo& info, const Transition& transition);
 };

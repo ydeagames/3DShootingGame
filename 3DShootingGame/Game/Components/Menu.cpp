@@ -5,6 +5,7 @@
 #include <Framework/Context/SceneManager.h>
 #include <Utilities/Input.h>
 #include <Framework/Context/ApplicationHandler.h>
+#include <Framework/SceneManagement/SceneTransitions.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -22,7 +23,7 @@ void TitleMenu::RenderGui(GameCamera& camera)
 	ImGui::Begin(u8"スリングヒーローズ", nullptr/*, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize*/);
 	if (ImGui::Button(u8"ゲームスタート", ImVec2(200, 50)))
 	{
-		GameContext::Get<SceneManager>().LoadScene(SceneInfo::CreateFromName("PlayScene")); // LoadSceneWithTransition(L"PlayScene", SceneTransitions::CreateRuleTransition(3));
+		GameContext::Get<SceneManager>().LoadSceneTransition(SceneInfo::CreateFromName("PlayScene"), SceneTransitions::CreateRuleTransition(3));
 	}
 	if (ImGui::Button(u8"オプション", ImVec2(200, 50)))
 	{
