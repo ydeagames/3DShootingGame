@@ -26,18 +26,26 @@ namespace SceneTransitions
 
 	void FadeTransition::Update()
 	{
+		auto& manager = GameContext::Get<SceneManager>();
+
 		time += float(GameContext::Get<DX::StepTimer>().GetElapsedSeconds());
 		if (!m_changed && time >= totalTime / 2)
 		{
-			auto& manager = GameContext::Get<SceneManager>();
 			auto& scenes = manager.GetScenes();
-			if (scenes.size() > 2)
-				Scene::Destroy(*scenes[1]);
-			manager.LoadScene(info, LoadSceneMode::Additive);
+			if (scenes.size() > 1)
+			{
+				scenes[1]->info = info;
+				scenes[1]->Load();
+			}
+			//manager.LoadScene(info, LoadSceneMode::Additive);
 			m_changed = true;
 		}
 		if (time > totalTime)
-			GameObject::Destroy(gameObject);
+		{
+			// GameObject::Destroy(gameObject);
+			const auto scene = manager.GetSceneOrNullRegistry(gameObject.registry);
+			Scene::Destroy(scene);
+		}
 	}
 
 	void FadeTransition::Render(GameCamera& camera)
@@ -45,6 +53,12 @@ namespace SceneTransitions
 		float alpha = std::abs((time / totalTime - .5f) * 2);
 		alpha = 1 - alpha * alpha;
 		m_plane->Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity, Colors::Black * alpha);
+	}
+
+	void FadeTransition::EditorGui()
+	{
+		ImGui::SliderFloat("Time", &time, 0, totalTime);
+		ImGui::DragFloat("Total Time", &totalTime);
 	}
 
 #pragma warning(push)
@@ -104,9 +118,12 @@ namespace SceneTransitions
 		if (!m_changed && time >= totalTime / 2)
 		{
 			auto& scenes = manager.GetScenes();
-			if (scenes.size() > 2)
-				Scene::Destroy(*scenes[1]);
-			manager.LoadScene(info, LoadSceneMode::Additive);
+			if (scenes.size() > 1)
+			{
+				scenes[1]->info = info;
+				scenes[1]->Load();
+			}
+			//manager.LoadScene(info, LoadSceneMode::Additive);
 			m_changed = true;
 		}
 		if (time > totalTime)
@@ -182,6 +199,12 @@ namespace SceneTransitions
 			//ctx->GSSetShader(nullptr, nullptr, 0);
 		};
 		Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity);
+	}
+
+	void RuleTransition::EditorGui()
+	{
+		ImGui::SliderFloat("Time", &time, 0, totalTime);
+		ImGui::DragFloat("Total Time", &totalTime);
 	}
 
 	SceneManager::Transition CreateFadeTransition(float duration)

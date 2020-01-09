@@ -24,6 +24,15 @@ namespace SceneTransitions
 		void RenderStart();
 		void Update();
 		void Render(GameCamera& camera);
+
+	public:
+		template<class Archive>
+		void serialize(Archive& archive)
+		{
+			archive(CEREAL_OPTIONAL_NVP(time), CEREAL_OPTIONAL_NVP(totalTime));
+		}
+
+		void EditorGui();
 	};
 
 	// フェード実装
@@ -59,6 +68,15 @@ namespace SceneTransitions
 		void RenderStart();
 		void Update();
 		void Render(GameCamera& camera);
+
+	public:
+		template<class Archive>
+		void serialize(Archive& archive)
+		{
+			archive(CEREAL_OPTIONAL_NVP(time), CEREAL_OPTIONAL_NVP(totalTime));
+		}
+
+		void EditorGui();
 	};
 
 	SceneManager::Transition CreateFadeTransition(float duration);
