@@ -601,6 +601,7 @@
     <ClInclude Include="Game\Components\PlayerController.h" />
     <ClInclude Include="Game\Components\PrimitiveRenderer.h" />
     <ClInclude Include="Game\Components\RainbowEffect.h" />
+    <ClInclude Include="Game\Components\ShaderArt.h" />
     <ClInclude Include="Game\Events\AllEvents.h" />
     <ClInclude Include="Game\Tags\AllTags.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
@@ -672,6 +673,7 @@
     <ClCompile Include="Game\Components\PlayerController.cpp" />
     <ClCompile Include="Game\Components\PrimitiveRenderer.cpp" />
     <ClCompile Include="Game\Components\RainbowEffect.cpp" />
+    <ClCompile Include="Game\Components\ShaderArt.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\Components\InfinityGridFloor.cpp" />
@@ -701,7 +703,12 @@
   <ItemGroup>
     <None Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\manual.html" />
     <None Include="..\ThirdParty\DirectXTK\Inc\SimpleMath.inl" />
+    <None Include="Resources\Shaders\Assets\Common.fxh" />
+    <None Include="Resources\Shaders\Assets\Lighting.fxh" />
     <None Include="Resources\Shaders\Assets\RuleTransition.hlsli" />
+    <None Include="Resources\Shaders\Assets\ShaderArt.fxh" />
+    <None Include="Resources\Shaders\Assets\Structures.fxh" />
+    <None Include="Resources\Shaders\Assets\Utilities.fxh" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\Assets\RuleTransitionPS.hlsl">
@@ -715,6 +722,12 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\ShaderArt.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PSBasicTx</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PSBasicTx</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PSBasicTx</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PSBasicTx</EntryPointName>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

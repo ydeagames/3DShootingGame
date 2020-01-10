@@ -1316,6 +1316,9 @@
     <ClInclude Include="..\ThirdParty\PhysX\Inc\geometry\PxTriangleMeshGeometry.h">
       <Filter>ThirdParty\PhysX</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\ShaderArt.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -1455,6 +1458,9 @@
     <ClCompile Include="Game\Components\Goal.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Components\ShaderArt.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">
@@ -1483,6 +1489,9 @@
     <FxCompile Include="Resources\Shaders\Assets\RuleTransitionVS.hlsl">
       <Filter>Assets\Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\ShaderArt.fx">
+      <Filter>Assets\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Assets\RuleTransition.hlsli">
@@ -1493,6 +1502,21 @@
     </None>
     <None Include="..\ThirdParty\DirectXTK\Inc\SimpleMath.inl">
       <Filter>ThirdParty\DirectXTK</Filter>
+    </None>
+    <None Include="Resources\Shaders\Assets\ShaderArt.fxh">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Assets\Structures.fxh">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Assets\Utilities.fxh">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Assets\Common.fxh">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Assets\Lighting.fxh">
+      <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
