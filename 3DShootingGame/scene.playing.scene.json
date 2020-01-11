@@ -110,6 +110,14 @@
         "RotateFollower": [],
         "TrackingFollower": [],
         "RainbowEffect": [],
-        "Goal": []
+        "Goal": [],
+        "ShaderArt": [
+            {
+                "id": 0,
+                "component": {
+                    "time": 0.0
+                }
+            }
+        ]
     }
 }

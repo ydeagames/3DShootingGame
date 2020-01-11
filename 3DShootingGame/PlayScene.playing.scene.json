@@ -520,6 +520,8 @@
                 "component": {}
             }
         ],
+        "SceneTransitions::FadeTransition": [],
+        "SceneTransitions::RuleTransition": [],
         "PrimitiveRenderer": [
             {
                 "id": 0,
@@ -688,6 +690,7 @@
                     "target": 0
                 }
             }
-        ]
+        ],
+        "ShaderArt": []
     }
 }

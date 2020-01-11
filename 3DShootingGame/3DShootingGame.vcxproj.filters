@@ -1489,7 +1489,10 @@
     <FxCompile Include="Resources\Shaders\Assets\RuleTransitionVS.hlsl">
       <Filter>Assets\Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="Resources\Shaders\Assets\ShaderArt.fx">
+    <FxCompile Include="Resources\Shaders\Assets\ShaderArtPS.hlsl">
+      <Filter>Assets\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\ShaderArtVS.hlsl">
       <Filter>Assets\Shaders</Filter>
     </FxCompile>
   </ItemGroup>
@@ -1503,9 +1506,6 @@
     <None Include="..\ThirdParty\DirectXTK\Inc\SimpleMath.inl">
       <Filter>ThirdParty\DirectXTK</Filter>
     </None>
-    <None Include="Resources\Shaders\Assets\ShaderArt.fxh">
-      <Filter>Assets\Shaders</Filter>
-    </None>
     <None Include="Resources\Shaders\Assets\Structures.fxh">
       <Filter>Assets\Shaders</Filter>
     </None>
@@ -1516,6 +1516,9 @@
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="Resources\Shaders\Assets\Lighting.fxh">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Assets\ShaderArt.hlsli">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>

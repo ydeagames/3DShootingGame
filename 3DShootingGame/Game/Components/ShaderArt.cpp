@@ -19,14 +19,20 @@ void ShaderArt::RenderStart()
 	// プリミティブオブジェクト生成
 	m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>>(ctx);
 
+	// ベーシックエフェクト
+	m_basicEffect = std::make_unique<BasicEffect>(device);
+
 	// コンパイルされたシェーダファイルを読み込み
-	BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/RuleTransitionVS.cso");
-	BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/RuleTransitionPS.cso");
+	BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ShaderArtVS.cso");
+	BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/ShaderArtPS.cso");
 
 	// インプットレイアウト生成
+	void const* shaderByteCode;
+	size_t byteCodeLength;
+	m_basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 	DX::ThrowIfFailed(device->CreateInputLayout(VertexPositionTexture::InputElements,
 		UINT(VertexPositionTexture::InputElementCount),
-		VSData.GetData(), VSData.GetSize(),
+		shaderByteCode, byteCodeLength,
 		m_inputLayout.ReleaseAndGetAddressOf()));
 	// 頂点シェーダ作成
 	DX::ThrowIfFailed(device->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_VertexShader.ReleaseAndGetAddressOf()));
@@ -71,21 +77,26 @@ void ShaderArt::Render(GameCamera& camera)
 		ID3D11SamplerState* sampler[1] = { state.LinearClamp() };
 		ctx->PSSetSamplers(0, 1, sampler);
 
+		m_basicEffect->SetWorld(world);
+		m_basicEffect->SetView(view);
+		m_basicEffect->SetProjection(proj);
+
+		m_basicEffect->Apply(ctx);
 		ctx->IASetInputLayout(m_inputLayout.Get());
 
 		// 定数バッファ更新
 		ConstBuffer cbuff;
 		auto& timer = GameContext::Get<DX::StepTimer>();
-		cbuff.time = Vector4(timer.GetTotalSeconds(), timer.GetElapsedSeconds(), time, 1);
+		cbuff.time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), time, 1);
 
 		// 定数バッファの内容更新
 		ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
 
 		// 定数バッファ反映
 		ID3D11Buffer* cb[1] = { m_CBuffer.Get() };
-		ctx->VSSetConstantBuffers(0, 1, cb);
-		//ctx->GSSetConstantBuffers(0, 1, cb);
-		ctx->PSSetConstantBuffers(0, 1, cb);
+		ctx->VSSetConstantBuffers(1, 1, cb);
+		//ctx->GSSetConstantBuffers(1, 1, cb);
+		ctx->PSSetConstantBuffers(1, 1, cb);
 
 		// 描画
 		ctx->VSSetShader(m_VertexShader.Get(), nullptr, 0);

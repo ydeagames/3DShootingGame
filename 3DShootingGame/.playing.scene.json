@@ -65,6 +65,7 @@
         "RotateFollower": [],
         "TrackingFollower": [],
         "RainbowEffect": [],
-        "Goal": []
+        "Goal": [],
+        "ShaderArt": []
     }
 }

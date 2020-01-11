@@ -24,8 +24,9 @@ private:
 	// テクスチャハンドル
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture2;
+	// ベーシックエフェクト
+	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
 
-	std::unique_ptr<DirectX::GeometricPrimitive> m_plane;
 	bool m_changed = false;
 	struct ConstBuffer;
 

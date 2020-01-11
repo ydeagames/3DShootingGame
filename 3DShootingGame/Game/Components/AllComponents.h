@@ -11,6 +11,7 @@
 #include "PlayerCamera.h"
 #include "RainbowEffect.h"
 #include "Goal.h"
+#include "ShaderArt.h"
 
 namespace BuildSettings
 {
@@ -31,6 +32,7 @@ namespace BuildSettings
 		RotateFollower,
 		TrackingFollower,
 		RainbowEffect,
-		Goal
+		Goal,
+		ShaderArt
 	>;
 }
