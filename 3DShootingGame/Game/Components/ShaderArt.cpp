@@ -2,13 +2,15 @@
 #include "ShaderArt.h"
 #include "Utilities/BinaryFile.h"
 #include "Framework/ECS/GameContext.h"
+#include "Framework/Components/Transform.h"
+#include "Framework/Context/GameCamera.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 struct ShaderArt::ConstBuffer
 {
-	Vector4 time;
+	Vector4 Time;
 };
 
 void ShaderArt::RenderStart()
@@ -21,18 +23,16 @@ void ShaderArt::RenderStart()
 
 	// ベーシックエフェクト
 	m_basicEffect = std::make_unique<BasicEffect>(device);
+	m_basicEffect->SetTextureEnabled(true);
 
 	// コンパイルされたシェーダファイルを読み込み
 	BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ShaderArtVS.cso");
 	BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/ShaderArtPS.cso");
 
 	// インプットレイアウト生成
-	void const* shaderByteCode;
-	size_t byteCodeLength;
-	m_basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 	DX::ThrowIfFailed(device->CreateInputLayout(VertexPositionTexture::InputElements,
 		UINT(VertexPositionTexture::InputElementCount),
-		shaderByteCode, byteCodeLength,
+		VSData.GetData(), VSData.GetSize(),
 		m_inputLayout.ReleaseAndGetAddressOf()));
 	// 頂点シェーダ作成
 	DX::ThrowIfFailed(device->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_VertexShader.ReleaseAndGetAddressOf()));
@@ -77,6 +77,7 @@ void ShaderArt::Render(GameCamera& camera)
 		ID3D11SamplerState* sampler[1] = { state.LinearClamp() };
 		ctx->PSSetSamplers(0, 1, sampler);
 
+		m_basicEffect->SetTexture(m_texture.Get());
 		m_basicEffect->SetWorld(world);
 		m_basicEffect->SetView(view);
 		m_basicEffect->SetProjection(proj);
@@ -87,7 +88,7 @@ void ShaderArt::Render(GameCamera& camera)
 		// 定数バッファ更新
 		ConstBuffer cbuff;
 		auto& timer = GameContext::Get<DX::StepTimer>();
-		cbuff.time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), time, 1);
+		cbuff.Time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), time, 1);
 
 		// 定数バッファの内容更新
 		ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
@@ -101,7 +102,6 @@ void ShaderArt::Render(GameCamera& camera)
 		// 描画
 		ctx->VSSetShader(m_VertexShader.Get(), nullptr, 0);
 		ctx->PSSetShader(m_PixelShader.Get(), nullptr, 0);
-		ctx->PSSetShaderResources(0, 1, m_texture.GetAddressOf());
 		ctx->PSSetShaderResources(1, 1, m_texture2.GetAddressOf());
 		static std::vector<VertexPositionTexture> vertices = {
 			VertexPositionTexture(Vector3(+0.5f, +0.5f, 0.0f), Vector2(1.0f, 0.0f)),
@@ -121,10 +121,11 @@ void ShaderArt::Render(GameCamera& camera)
 		ctx->PSSetShader(nullptr, nullptr, 0);
 		//ctx->GSSetShader(nullptr, nullptr, 0);
 	};
-	Draw(Matrix::CreateScale(2), Matrix::Identity, Matrix::Identity);
+	// Draw(gameObject.GetComponent<Transform>().GetMatrix(), camera.view, camera.projection);
+	Draw(gameObject.GetComponent<Transform>().GetMatrix(), Matrix::Identity, Matrix::Identity);
 }
 
 void ShaderArt::EditorGui()
 {
-	ImGui::DragFloat("Time", &time);
+	ImGui::DragFloat("Time", &time, 0.01f);
 }

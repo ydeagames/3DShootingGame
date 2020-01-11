@@ -1,10 +1,15 @@
 #include "ShaderArt.hlsli"
 #include "Structures.fxh"
+#include "Common.fxh"
 
-VSOutputTx VSBasicVc(VSInputTx input)
+VSOutputTx VSBasicVc(VSInputTx vin)
 {
-	VSOutputTx output = (VSOutputTx) 0;
-	output.TexCoord = input.TexCoord;
-	output.PositionPS = input.Position;
-	return output;
+    VSOutputTx vout;
+
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
+    SetCommonVSOutputParams;
+
+    vout.TexCoord = vin.TexCoord;
+
+    return vout;
 }

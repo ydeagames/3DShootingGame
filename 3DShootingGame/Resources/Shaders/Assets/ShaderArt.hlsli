@@ -21,5 +21,5 @@ cbuffer Parameters : register(b0)
 
 cbuffer ConstBuffer	: register(b1)
 {
-	float Time;
+	float4 Time;
 };
