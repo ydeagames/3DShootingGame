@@ -34,24 +34,15 @@ void PlayerController::Update()
 		if (m_dragging)
 		{
 			m_endDrag = Input::GetMousePosition();
+			auto drag = m_endDrag - m_beginDrag;
+			drag = Vector3::Transform(drag,
+				Matrix::CreateRotationX(XM_PIDIV2) *
+				Matrix::CreateFromQuaternion(m_camera->GetRotation()));
+			drag.y = 0;
+			drag.Normalize();
 
-			auto getpos = [&](Vector3 pos)
-			{
-				float dist;
-				auto ray = m_camera->ScreenPointToRay(pos);
-				Plane plane(transform.position, Vector3::Up);
-				if (ray.Intersects(plane, dist))
-				{
-					return ray.position + ray.direction * dist;
-				}
-				return Vector3::Zero;
-			};
-
-			auto begin = getpos(m_beginDrag);
-			auto end = getpos(m_endDrag);
-
-			if (m_beginDrag != m_endDrag)
-				transform.rotation = Math3DUtils::LookAt(end, begin + Vector3::Up);
+			if (drag.LengthSquared() > 0)
+				transform.rotation = Math3DUtils::LookAt(Vector3::Zero, drag);
 			rigid.Apply();
 		}
 		if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
