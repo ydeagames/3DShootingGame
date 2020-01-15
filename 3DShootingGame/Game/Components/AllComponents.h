@@ -12,6 +12,7 @@
 #include "RainbowEffect.h"
 #include "Goal.h"
 #include "ShaderArt.h"
+#include "BubbleEffect.h"
 
 namespace BuildSettings
 {
@@ -33,6 +34,7 @@ namespace BuildSettings
 		TrackingFollower,
 		RainbowEffect,
 		Goal,
-		ShaderArt
+		ShaderArt,
+		BubbleEffect
 	>;
 }

@@ -1,4 +1,4 @@
-#include "ShaderArt.hlsli"
+#include "Parameter.hlsli"
 #include "Structures.fxh"
 
 Texture2D<float4> Texture : register(t0);

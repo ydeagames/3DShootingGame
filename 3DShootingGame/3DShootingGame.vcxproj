@@ -566,6 +566,7 @@
     <ClInclude Include="Framework\StandardBuildSettings.h" />
     <ClInclude Include="Framework\Tags\Tags.h" />
     <ClInclude Include="Game\Components\Background.h" />
+    <ClInclude Include="Game\Components\BubbleEffect.h" />
     <ClInclude Include="Game\Components\CameraComponent.h" />
     <ClInclude Include="Framework\Context\GameCamera.h" />
     <ClInclude Include="Framework\Context\PauseHandler.h" />
@@ -645,6 +646,7 @@
     <ClCompile Include="Framework\Context\ApplicationHandler.cpp" />
     <ClCompile Include="Framework\ImGui\WidgetDND.cpp" />
     <ClCompile Include="Game\Components\Background.cpp" />
+    <ClCompile Include="Game\Components\BubbleEffect.cpp" />
     <ClCompile Include="Game\Components\CameraComponent.cpp" />
     <ClCompile Include="Framework\Context\GameCamera.cpp" />
     <ClCompile Include="Framework\Context\PauseHandler.cpp" />
@@ -710,7 +712,7 @@
     <None Include="Resources\Shaders\Assets\Common.fxh" />
     <None Include="Resources\Shaders\Assets\Lighting.fxh" />
     <None Include="Resources\Shaders\Assets\RuleTransition.hlsli" />
-    <None Include="Resources\Shaders\Assets\ShaderArt.hlsli" />
+    <None Include="Resources\Shaders\Assets\Parameter.hlsli" />
     <None Include="Resources\Shaders\Assets\Structures.fxh" />
     <None Include="Resources\Shaders\Assets\Utilities.fxh" />
   </ItemGroup>

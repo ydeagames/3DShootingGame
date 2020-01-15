@@ -1,4 +1,4 @@
-#include "ShaderArt.hlsli"
+#include "Parameter.hlsli"
 #include "Structures.fxh"
 #include "Common.fxh"
 

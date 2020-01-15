@@ -16,6 +16,8 @@ public:
 	DirectX::SimpleMath::Vector3 GetPosition() const;
 	// 回転取得
 	DirectX::SimpleMath::Quaternion GetRotation() const;
+	// 画面のサイズ
+	DirectX::SimpleMath::Vector3 GetWindowSize() const;
 
 	// スクリーン座標からRayに変換
 	DirectX::SimpleMath::Ray ScreenPointToRay(const DirectX::SimpleMath::Vector3& point) const;

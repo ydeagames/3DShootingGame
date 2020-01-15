@@ -17,6 +17,11 @@ DirectX::SimpleMath::Quaternion GameCamera::GetRotation() const
 	return _r;
 }
 
+DirectX::SimpleMath::Vector3 GameCamera::GetWindowSize() const
+{
+	return ViewportToScreenPoint(Vector3(1, -1, 0));
+}
+
 DirectX::SimpleMath::Ray GameCamera::ScreenPointToRay(const DirectX::SimpleMath::Vector3& point) const
 {
 	return ViewportPointToRay(ScreenToViewportPoint(point));

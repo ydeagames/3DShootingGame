@@ -1319,6 +1319,9 @@
     <ClInclude Include="Game\Components\ShaderArt.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\BubbleEffect.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -1461,6 +1464,9 @@
     <ClCompile Include="Game\Components\ShaderArt.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Components\BubbleEffect.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">
@@ -1518,7 +1524,7 @@
     <None Include="Resources\Shaders\Assets\Lighting.fxh">
       <Filter>Assets\Shaders</Filter>
     </None>
-    <None Include="Resources\Shaders\Assets\ShaderArt.hlsli">
+    <None Include="Resources\Shaders\Assets\Parameter.hlsli">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>
