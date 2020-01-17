@@ -19,6 +19,10 @@ public:
 public:
 	float power = 1;
 	float sensitivity = 1;
+	float lineGravity = 9.8f;
+	int lineCount = 12;
+	int lineCountDiv = 2;
+	float linePowerScale = .5f;
 
 private:
 	// エフェクト
@@ -29,6 +33,9 @@ private:
 
 	// スプライトバッチ
 	std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
+
+	// 球
+	std::unique_ptr<DirectX::GeometricPrimitive> m_sphereModel;
 
 	// インプットレイアウト
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
@@ -46,6 +53,10 @@ private:
 	// 終点
 	DirectX::SimpleMath::Vector3 m_endDrag;
 
+	// 点
+	DirectX::SimpleMath::Vector3 m_lastPos;
+	DirectX::SimpleMath::Quaternion m_lastRot;
+
 	// ドラッグ中
 	bool m_dragging = false;
 
@@ -61,6 +72,7 @@ public:
 	void serialize(Archive& archive)
 	{
 		archive(CEREAL_OPTIONAL_NVP(power), CEREAL_OPTIONAL_NVP(sensitivity));
+		archive(CEREAL_OPTIONAL_NVP(lineGravity), CEREAL_OPTIONAL_NVP(lineCount), CEREAL_OPTIONAL_NVP(lineCountDiv), CEREAL_OPTIONAL_NVP(linePowerScale));
 	}
 
 	void EditorGui();

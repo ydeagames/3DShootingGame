@@ -652,8 +652,12 @@
             {
                 "id": 0,
                 "component": {
-                    "power": 1380.0,
-                    "sensitivity": 0.009999999776482582
+                    "power": 1500.0,
+                    "sensitivity": 0.009999999776482582,
+                    "lineGravity": -0.9800000190734863,
+                    "lineCount": 12,
+                    "lineCountDiv": 1,
+                    "linePowerScale": 5.0
                 }
             }
         ],

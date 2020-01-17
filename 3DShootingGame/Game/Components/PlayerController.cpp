@@ -33,12 +33,18 @@ void PlayerController::Update()
 		}
 		if (m_dragging)
 		{
+			m_lastPos = transform.position;
+			m_lastRot = transform.rotation;
+			
 			m_endDrag = Input::GetMousePosition();
 			auto drag = m_endDrag - m_beginDrag;
 			drag = Vector3::Transform(drag,
 				Matrix::CreateRotationX(XM_PIDIV2) *
-				Matrix::CreateFromQuaternion(m_camera->GetRotation()));
+				Matrix::CreateFromQuaternion(m_camera->GetRotation()) *
+				Matrix::CreateRotationY(XM_PI));
 			drag.y = 0;
+			drag.Normalize();
+			drag.y = drag.Length();
 			drag.Normalize();
 
 			if (drag.LengthSquared() > 0)
@@ -48,6 +54,9 @@ void PlayerController::Update()
 		if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
 		{
 			m_dragging = false;
+		}
+		if (Input::GetMouseButtonUp(Input::Buttons::MouseRight))
+		{
 			rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power);
 			rigid.Apply();
 		}
@@ -67,6 +76,8 @@ void PlayerController::RenderStart()
 	m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>(context);
 	// スプライトバッチ
 	m_spriteBatch = std::make_unique<SpriteBatch>(context);
+	// 球
+	m_sphereModel = DirectX::GeometricPrimitive::CreateTetrahedron(context);
 	// インプットレイアウト生成
 	void const* shaderByteCode;
 	size_t byteCodeLength;
@@ -94,21 +105,39 @@ void PlayerController::Render(GameCamera& camera)
 	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
 	auto context = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 	auto& states = GameContext::Get<DirectX::CommonStates>();
+	auto& transform = gameObject.GetComponent<Transform>();
 
 	context->OMSetBlendState(states.Opaque(), nullptr, 0xFFFFFFFF);
 	context->OMSetDepthStencilState(states.DepthDefault(), 0);
 
-	m_basicEffect->SetWorld(gameObject.GetComponent<Transform>().GetMatrix());
+	m_basicEffect->SetWorld(transform.GetMatrix());
 	m_basicEffect->SetView(camera.view);
 	m_basicEffect->SetProjection(camera.projection);
 
 	m_basicEffect->Apply(context);
 	context->IASetInputLayout(m_pInputLayout.Get());
 
-	auto& transform = gameObject.GetComponent<Transform>();
-	m_primitiveBatch->Begin();
-	m_primitiveBatch->DrawLine(VertexPositionColor(Vector3::Zero, Colors::Yellow), VertexPositionColor(Vector3::Forward, Colors::Yellow));
-	m_primitiveBatch->End();
+
+	if (lineCountDiv > 0)
+	{
+		auto acc = Vector3(0, lineGravity, 0);
+		auto vel = Vector3::Transform(Vector3::Forward, m_lastRot) * linePowerScale * (power / 1380);
+		auto pos = m_lastPos;
+		for (int i = 0; i < lineCount * lineCountDiv; i++)
+		{
+			pos += vel / float(lineCountDiv);
+			vel += acc / float(lineCountDiv);
+			m_sphereModel->Draw(
+				Matrix::CreateRotationX(-XM_PIDIV2) *
+				Matrix::CreateScale(Vector3(.5f, 1.5f, .5f)) *
+				Matrix::CreateFromQuaternion(Math3DUtils::FromToRotation(Vector3::Up, vel)) *
+				Matrix::CreateTranslation(pos),
+				camera.view, camera.projection, Color(1, 1, 1, .5f));
+				m_primitiveBatch->Begin();
+				m_primitiveBatch->DrawLine(VertexPositionColor(Vector3::Zero, Colors::Yellow), VertexPositionColor(Vector3::Up, Colors::Yellow));
+				m_primitiveBatch->End();
+		}
+	}
 }
 
 void PlayerController::RenderGui(GameCamera& camera)
@@ -135,4 +164,9 @@ void PlayerController::EditorGui()
 {
 	ImGui::DragFloat("Power", &power);
 	ImGui::DragFloat("Sensitivity", &sensitivity);
+	ImGui::DragFloat("Line Gravity", &lineGravity);
+	ImGui::DragInt("Line Count", &lineCount);
+	ImGui::DragInt("Line Count Div", &lineCountDiv);
+	lineCountDiv = std::max(1, lineCountDiv);
+	ImGui::DragFloat("Line Power Scale", &linePowerScale);
 }

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Math3DUtils.h"
+#include "MathUtils.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -57,6 +58,20 @@ namespace Math3DUtils
 		m.Decompose(s, r, t);
 
 		return r;
+	}
+
+	float Angle(const DirectX::SimpleMath::Vector3& from, const DirectX::SimpleMath::Vector3& to)
+	{
+		return std::acos(MathUtils::Clamp(Normalized(from).Dot(Normalized(to)), -1.f, 1.f));
+	}
+
+	DirectX::SimpleMath::Quaternion FromToRotation(const DirectX::SimpleMath::Vector3& from, const DirectX::SimpleMath::Vector3& to)
+	{
+		const auto axis = from.Cross(to);
+		if (axis.LengthSquared() <= 0)
+			return Quaternion::Identity;
+		const auto angle = Angle(from, to);
+		return Quaternion::CreateFromAxisAngle(Normalized(axis), angle);
 	}
 
 	DirectX::SimpleMath::Vector3 Normalized(const DirectX::SimpleMath::Vector3& vec)
