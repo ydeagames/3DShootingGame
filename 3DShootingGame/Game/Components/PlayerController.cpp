@@ -24,41 +24,54 @@ void PlayerController::Update()
 	if (m_camera)
 	{
 		auto& rigid = gameObject.GetComponent<Rigidbody>();
-		auto& transform = rigid.Fetch();
 
-		if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
+		if (m_moving && rigid.GetVelocity().LengthSquared() < stopSpeed * stopSpeed)
 		{
-			m_beginDrag = Input::GetMousePosition();
-			m_dragging = true;
+			rigid.SetVelocity(Vector3::Zero);
+			m_moving = false;
+			m_movable = true;
 		}
-		if (m_dragging)
-		{
-			m_lastPos = transform.position;
-			m_lastRot = transform.rotation;
-			
-			m_endDrag = Input::GetMousePosition();
-			auto drag = m_endDrag - m_beginDrag;
-			drag = Vector3::Transform(drag,
-				Matrix::CreateRotationX(XM_PIDIV2) *
-				Matrix::CreateFromQuaternion(m_camera->GetRotation()) *
-				Matrix::CreateRotationY(XM_PI));
-			drag.y = 0;
-			drag.Normalize();
-			drag.y = drag.Length();
-			drag.Normalize();
 
-			if (drag.LengthSquared() > 0)
-				transform.rotation = Math3DUtils::LookAt(Vector3::Zero, drag);
-			rigid.Apply();
-		}
-		if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
+		if (m_movable)
 		{
-			m_dragging = false;
-		}
-		if (Input::GetMouseButtonUp(Input::Buttons::MouseRight))
-		{
-			rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power);
-			rigid.Apply();
+			auto& transform = rigid.Fetch();
+
+			if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
+			{
+				m_beginDrag = Input::GetMousePosition();
+				m_dragging = true;
+			}
+			if (m_dragging)
+			{
+				m_lastPos = transform.position;
+				m_lastRot = transform.rotation;
+
+				m_endDrag = Input::GetMousePosition();
+				auto drag = m_endDrag - m_beginDrag;
+				drag = Vector3::Transform(drag,
+					Matrix::CreateRotationX(XM_PIDIV2) *
+					Matrix::CreateFromQuaternion(m_camera->GetRotation()) *
+					Matrix::CreateRotationY(XM_PI));
+				drag.y = 0;
+				drag.Normalize();
+				drag.y = drag.Length();
+				drag.Normalize();
+
+				if (drag.LengthSquared() > 0)
+					transform.rotation = Math3DUtils::LookAt(Vector3::Zero, drag);
+				rigid.Apply();
+			}
+			if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
+			{
+				m_dragging = false;
+				m_movable = false;
+				m_moving = true;
+				//}
+				//if (Input::GetMouseButtonUp(Input::Buttons::MouseRight))
+				//{
+				rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power);
+				rigid.Apply();
+			}
 		}
 	}
 }
@@ -164,6 +177,7 @@ void PlayerController::EditorGui()
 {
 	ImGui::DragFloat("Power", &power);
 	ImGui::DragFloat("Sensitivity", &sensitivity);
+	ImGui::DragFloat("Stop Speed", &stopSpeed);
 	ImGui::DragFloat("Line Gravity", &lineGravity);
 	ImGui::DragInt("Line Count", &lineCount);
 	ImGui::DragInt("Line Count Div", &lineCountDiv);

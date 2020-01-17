@@ -32,8 +32,9 @@ public:
 	void Update();
 	void OnDestroy();
 
-	void AddForce(DirectX::SimpleMath::Vector3 force);
-	void SetVelocity(DirectX::SimpleMath::Vector3 velocity);
+	void AddForce(const DirectX::SimpleMath::Vector3& force);
+	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity);
+	DirectX::SimpleMath::Vector3 GetVelocity() const;
 
 	Transform& Fetch();
 	void Apply();

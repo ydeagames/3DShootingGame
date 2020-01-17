@@ -73,18 +73,25 @@ void Rigidbody::OnDestroy()
 	}
 }
 
-void Rigidbody::AddForce(DirectX::SimpleMath::Vector3 force)
+void Rigidbody::AddForce(const DirectX::SimpleMath::Vector3& force)
 {
 	preForce = physx::toPhysX(force);
 	if (rigid && rigid->is<physx::PxRigidBody>())
 		rigid->is<physx::PxRigidBody>()->addForce(physx::toPhysX(force));
 }
 
-void Rigidbody::SetVelocity(DirectX::SimpleMath::Vector3 velocity)
+void Rigidbody::SetVelocity(const DirectX::SimpleMath::Vector3& velocity)
 {
 	preVelocity = physx::toPhysX(velocity);
 	if (rigid && rigid->is<physx::PxRigidBody>())
 		rigid->is<physx::PxRigidBody>()->setLinearVelocity(physx::toPhysX(velocity));
+}
+
+DirectX::SimpleMath::Vector3 Rigidbody::GetVelocity() const
+{
+	if (rigid && rigid->is<physx::PxRigidBody>())
+		return physx::fromPhysX(rigid->is<physx::PxRigidBody>()->getLinearVelocity());
+	return DirectX::SimpleMath::Vector3();
 }
 
 Transform& Rigidbody::Fetch()

@@ -19,6 +19,7 @@ public:
 public:
 	float power = 1;
 	float sensitivity = 1;
+	float stopSpeed = 1;
 	float lineGravity = 9.8f;
 	int lineCount = 12;
 	int lineCountDiv = 2;
@@ -59,6 +60,10 @@ private:
 
 	// ドラッグ中
 	bool m_dragging = false;
+	// 移動可能
+	bool m_movable = true;
+	// 移動中
+	bool m_moving = false;
 
 public:
 	void Start();
@@ -71,7 +76,7 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(CEREAL_OPTIONAL_NVP(power), CEREAL_OPTIONAL_NVP(sensitivity));
+		archive(CEREAL_OPTIONAL_NVP(power), CEREAL_OPTIONAL_NVP(sensitivity), CEREAL_OPTIONAL_NVP(stopSpeed));
 		archive(CEREAL_OPTIONAL_NVP(lineGravity), CEREAL_OPTIONAL_NVP(lineCount), CEREAL_OPTIONAL_NVP(lineCountDiv), CEREAL_OPTIONAL_NVP(linePowerScale));
 	}
 
