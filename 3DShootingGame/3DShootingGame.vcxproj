@@ -617,6 +617,7 @@
     <ClInclude Include="Game\Components\PrimitiveRenderer.h" />
     <ClInclude Include="Game\Components\RainbowEffect.h" />
     <ClInclude Include="Game\Components\ShaderArt.h" />
+    <ClInclude Include="Game\Components\ShootGauge.h" />
     <ClInclude Include="Game\Events\AllEvents.h" />
     <ClInclude Include="Game\Tags\AllTags.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
@@ -692,6 +693,7 @@
     <ClCompile Include="Game\Components\PrimitiveRenderer.cpp" />
     <ClCompile Include="Game\Components\RainbowEffect.cpp" />
     <ClCompile Include="Game\Components\ShaderArt.cpp" />
+    <ClCompile Include="Game\Components\ShootGauge.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\Components\InfinityGridFloor.cpp" />

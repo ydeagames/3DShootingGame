@@ -150,9 +150,9 @@ void PlayerController::Render(GameCamera& camera)
 				Matrix::CreateFromQuaternion(Math3DUtils::FromToRotation(Vector3::Up, vel)) *
 				Matrix::CreateTranslation(pos),
 				camera.view, camera.projection, Color(1, 1, 1, .5f));
-				m_primitiveBatch->Begin();
-				m_primitiveBatch->DrawLine(VertexPositionColor(Vector3::Zero, Colors::Yellow), VertexPositionColor(Vector3::Up, Colors::Yellow));
-				m_primitiveBatch->End();
+				// m_primitiveBatch->Begin();
+				// m_primitiveBatch->DrawLine(VertexPositionColor(Vector3::Zero, Colors::Yellow), VertexPositionColor(Vector3::Up, Colors::Yellow));
+				// m_primitiveBatch->End();
 		}
 	}
 }

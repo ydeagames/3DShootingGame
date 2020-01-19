@@ -1325,6 +1325,9 @@
     <ClInclude Include="Game\Components\BubbleEffect.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\ShootGauge.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
     <ClInclude Include="Framework\FMOD\SoundSystem.h">
       <Filter>Framework\FMOD</Filter>
     </ClInclude>
@@ -1474,6 +1477,9 @@
       <Filter>Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\BubbleEffect.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\ShootGauge.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Framework\FMOD\SoundSystem.cpp">

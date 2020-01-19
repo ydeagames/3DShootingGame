@@ -1,0 +1,92 @@
+{
+    "entities": {
+        "created": [
+            17,
+            18,
+            16
+        ]
+    },
+    "objects": [
+        {
+            "Transform": {
+                "name": "Gauge",
+                "parent": 14,
+                "isStatic": false,
+                "localPosition": {
+                    "x": -0.6000000238418579,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "localRotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "localScale": {
+                    "x": 0.30000001192092898,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "Transform": {
+                "name": "GaugeBack",
+                "parent": 17,
+                "isStatic": false,
+                "localPosition": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "localRotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "localScale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            },
+            "ShootGauge": {
+                "texture": "Resources/Textures/Play/Gauge/Back.png",
+                "time": 0.0,
+                "percent": 1.0,
+                "speed": 0.800000011920929
+            }
+        },
+        {
+            "Transform": {
+                "name": "GaugeFrame",
+                "parent": 17,
+                "isStatic": false,
+                "localPosition": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "localRotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "localScale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            },
+            "ShootGauge": {
+                "texture": "Resources/Textures/Play/Gauge/Front.png",
+                "time": 0.0,
+                "percent": 1.0,
+                "speed": 0.0
+            }
+        }
+    ]
+}

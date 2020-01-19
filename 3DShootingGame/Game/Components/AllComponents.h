@@ -13,6 +13,7 @@
 #include "Goal.h"
 #include "ShaderArt.h"
 #include "BubbleEffect.h"
+#include "ShootGauge.h"
 #include "AudioSource.h"
 
 namespace BuildSettings
@@ -37,6 +38,7 @@ namespace BuildSettings
 		Goal,
 		ShaderArt,
 		BubbleEffect,
+		ShootGauge,
 		AudioSource
 	>;
 }
