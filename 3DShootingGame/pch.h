@@ -6,7 +6,7 @@
 #pragma once
 
 #include <WinSDKVer.h>
-#define _WIN32_WINNT 0x0600
+#define _WIN32_WINNT 0x0602
 #include <SDKDDKVer.h>
 
 // Use the C++ standard templated min/max
@@ -138,6 +138,11 @@ namespace entt
 // FMOD
 #include "fmod.hpp"
 #include "fmod_errors.h" // Only if you want error checking
+
+// Effekseer
+#include <Effekseer.h>
+#include <EffekseerRendererDX11.h>
+#include <EffekseerSoundXAudio2.h>
 
 namespace DX
 {
