@@ -135,6 +135,10 @@ namespace entt
 // PhysX
 #include <PxPhysicsAPI.h>
 
+// FMOD
+#include "fmod.hpp"
+#include "fmod_errors.h" // Only if you want error checking
+
 namespace DX
 {
 	// Helper class for COM exceptions

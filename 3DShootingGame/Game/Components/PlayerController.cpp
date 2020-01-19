@@ -6,6 +6,7 @@
 #include <Framework/Context/GameCamera.h>
 #include <Framework/Physics/Rigidbody.h>
 #include <Utilities/Math3DUtils.h>
+#include "AudioSource.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -71,6 +72,9 @@ void PlayerController::Update()
 				//{
 				rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power);
 				rigid.Apply();
+
+				if (gameObject.HasComponent<AudioSource>())
+					gameObject.GetComponent<AudioSource>().Play();
 			}
 		}
 	}

@@ -15,7 +15,7 @@
 #include <Utilities/FPS.h>
 #include <Utilities/Input.h>
 #include <Game/BuildSettings.h>
-#include <Framework/ECS/Project.h>
+#include <Framework/FMOD/SoundSystem.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -62,6 +62,8 @@ MyGame::MyGame()
 	GameContext::Register<PhysXManager>();
 	// ÉVÅ[Éì
 	GameContext::Register<SceneManager>().LoadScene(SceneInfo::CreateFromName("scene"));
+	// âπ
+	GameContext::Register<SoundSystem>();
 
 	// Transform
 	GameContext::Register<TransformResolverContext>();
@@ -70,6 +72,7 @@ MyGame::MyGame()
 MyGame::~MyGame()
 {
 	GameContext::Remove<TransformResolverContext>();
+	GameContext::Remove<SoundSystem>();
 	GameContext::Remove<SceneManager>();
 	GameContext::Remove<PhysXManager>();
 	GameContext::Remove<SaveHandler>();

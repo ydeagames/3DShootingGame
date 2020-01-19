@@ -89,6 +89,9 @@
     <Filter Include="ThirdParty\PhysX">
       <UniqueIdentifier>{73e3565f-2ab2-447a-a66d-68a1d9aec542}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\FMOD">
+      <UniqueIdentifier>{d7cf42c8-2c2c-41b8-9e24-3b4cf1e5e6b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -1322,6 +1325,12 @@
     <ClInclude Include="Game\Components\BubbleEffect.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\FMOD\SoundSystem.h">
+      <Filter>Framework\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\AudioSource.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -1467,6 +1476,10 @@
     <ClCompile Include="Game\Components\BubbleEffect.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\FMOD\SoundSystem.cpp">
+      <Filter>Framework\FMOD</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\AudioSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">
