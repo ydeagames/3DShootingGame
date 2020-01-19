@@ -1,6 +1,16 @@
 {
     "entities": {
         "created": [
+            26,
+            25,
+            24,
+            23,
+            22,
+            21,
+            20,
+            19,
+            1048594,
+            17,
             16,
             15,
             14,
@@ -36,9 +46,9 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": -7.400000095367432,
-                        "y": 1.5,
-                        "z": -0.20000000298023225
+                        "x": -9.899999618530274,
+                        "y": 6.400000095367432,
+                        "z": 3.0999999046325685
                     },
                     "localRotation": {
                         "x": -7.811194109308417e-7,
@@ -84,15 +94,15 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": -4.699999809265137,
-                        "y": -3.9000000953674318,
-                        "z": -23.799999237060548
+                        "x": 5.699999809265137,
+                        "y": 2.9000000953674318,
+                        "z": 2.700000047683716
                     },
                     "localRotation": {
-                        "x": -9.367038842356124e-7,
-                        "y": 0.9995549321174622,
-                        "z": -9.367038842356124e-7,
-                        "w": -0.02983197383582592
+                        "x": 0.0,
+                        "y": 0.7071067690849304,
+                        "z": 0.0,
+                        "w": 0.7071067690849304
                     },
                     "localScale": {
                         "x": 0.009999999776482582,
@@ -156,9 +166,9 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": -0.000001463901185161376,
-                        "y": 7.499999523162842,
-                        "z": -44.5
+                        "x": 16.799999237060548,
+                        "y": 7.599999904632568,
+                        "z": 2.700000047683716
                     },
                     "localRotation": {
                         "x": -9.367038842356124e-7,
@@ -167,9 +177,9 @@
                         "w": -0.02983197383582592
                     },
                     "localScale": {
-                        "x": 0.25,
-                        "y": 0.25,
-                        "z": 0.25
+                        "x": 0.07500000298023224,
+                        "y": 0.07500000298023224,
+                        "z": 0.07500000298023224
                     }
                 }
             },
@@ -239,9 +249,9 @@
                         "w": 1.0
                     },
                     "localScale": {
-                        "x": 15.0,
-                        "y": 15.0,
-                        "z": 15.0
+                        "x": 55.0,
+                        "y": 55.0,
+                        "z": 55.0
                     }
                 }
             },
@@ -252,9 +262,9 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": 18.899999618530275,
-                        "y": 10.100000381469727,
-                        "z": -14.199999809265137
+                        "x": -2.4000000953674318,
+                        "y": 20.0,
+                        "z": -25.100000381469728
                     },
                     "localRotation": {
                         "x": 0.0,
@@ -276,7 +286,7 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": 23.200000762939454,
+                        "x": 22.700000762939454,
                         "y": 6.599999904632568,
                         "z": 2.299999952316284
                     },
@@ -300,9 +310,9 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": 7.800000190734863,
-                        "y": 0.0,
-                        "z": 0.0
+                        "x": 5.199999809265137,
+                        "y": 0.5,
+                        "z": 1.100000023841858
                     },
                     "localRotation": {
                         "x": 0.0,
@@ -324,9 +334,9 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": 18.600000381469728,
+                        "x": 20.600000381469728,
                         "y": 6.599999904632568,
-                        "z": -14.699999809265137
+                        "z": -25.200000762939454
                     },
                     "localRotation": {
                         "x": 0.0,
@@ -348,8 +358,8 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": 17.600000381469728,
-                        "y": 3.9000000953674318,
+                        "x": 17.100000381469728,
+                        "y": 3.5,
                         "z": 2.799999952316284
                     },
                     "localRotation": {
@@ -396,15 +406,15 @@
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
-                        "x": -7.400000095367432,
-                        "y": 1.5,
-                        "z": -0.20000000298023225
-                    },
-                    "localRotation": {
                         "x": 0.0,
                         "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0000010620789225868066,
+                        "y": -0.18566660583019257,
+                        "z": 0.0000010620789225868066,
+                        "w": 0.9826127886772156
                     },
                     "localScale": {
                         "x": 1.0,
@@ -434,6 +444,246 @@
                         "x": 1.0,
                         "y": 1.0,
                         "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 17,
+                "component": {
+                    "name": "City",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 116.80000305175781,
+                        "y": -0.8999999761581421,
+                        "z": 9.5
+                    },
+                    "localRotation": {
+                        "x": -0.7071067690849304,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 0.7071067690849304
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1048594,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": -0.800000011920929,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1000.0,
+                        "y": 1.0,
+                        "z": 1000.0
+                    }
+                }
+            },
+            {
+                "id": 19,
+                "component": {
+                    "name": "City",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 1.399999976158142,
+                        "y": -0.800000011920929,
+                        "z": -97.5999984741211
+                    },
+                    "localRotation": {
+                        "x": -0.7071067690849304,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 0.7071067690849304
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 20,
+                "component": {
+                    "name": "City",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 116.80000305175781,
+                        "y": -0.8999999761581421,
+                        "z": -97.5999984741211
+                    },
+                    "localRotation": {
+                        "x": -0.7071067690849304,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 0.7071067690849304
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 21,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": -9.0,
+                        "y": 2.0,
+                        "z": 2.799999952316284
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 10.199999809265137,
+                        "y": 5.699999809265137,
+                        "z": 11.399999618530274
+                    }
+                }
+            },
+            {
+                "id": 22,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 0.8999999761581421,
+                        "y": 4.300000190734863,
+                        "z": 8.899999618530274
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 20.700000762939454,
+                        "y": 5.699999809265137,
+                        "z": 1.399999976158142
+                    }
+                }
+            },
+            {
+                "id": 23,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 0.8999999761581421,
+                        "y": 4.300000190734863,
+                        "z": -3.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 20.700000762939454,
+                        "y": 5.699999809265137,
+                        "z": 1.399999976158142
+                    }
+                }
+            },
+            {
+                "id": 24,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 20.5,
+                        "y": 9.100000381469727,
+                        "z": -30.200000762939454
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 8.800000190734864,
+                        "y": 7.599999904632568,
+                        "z": 1.399999976158142
+                    }
+                }
+            },
+            {
+                "id": 25,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": -0.8999999761581421,
+                        "y": 14.100000381469727,
+                        "z": -25.200000762939454
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 9.199999809265137,
+                        "y": 2.5999999046325685,
+                        "z": 9.0
+                    }
+                }
+            },
+            {
+                "id": 26,
+                "component": {
+                    "name": "TargetCollider",
+                    "parent": 2,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 200.0,
+                        "y": 200.0,
+                        "z": 200.0
                     }
                 }
             }
@@ -508,6 +758,62 @@
                         "flags": 1
                     }
                 }
+            },
+            {
+                "id": 1048594,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 21,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 22,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 23,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 24,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 25,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "component": {
+                    "lockFlags": {
+                        "flags": 0
+                    }
+                }
             }
         ],
         "SphereCollider": [
@@ -535,6 +841,34 @@
             },
             {
                 "id": 13,
+                "component": {}
+            },
+            {
+                "id": 1048594,
+                "component": {}
+            },
+            {
+                "id": 21,
+                "component": {}
+            },
+            {
+                "id": 22,
+                "component": {}
+            },
+            {
+                "id": 23,
+                "component": {}
+            },
+            {
+                "id": 24,
+                "component": {}
+            },
+            {
+                "id": 25,
+                "component": {}
+            },
+            {
+                "id": 26,
                 "component": {}
             }
         ],
@@ -617,6 +951,66 @@
                     "cullfront": false,
                     "textureEnabled": false
                 }
+            },
+            {
+                "id": 1048594,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 21,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 22,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 23,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 24,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 25,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
             }
         ],
         "ModelRenderer": [
@@ -625,7 +1019,7 @@
                 "component": {
                     "model": "Resources/Models/target.cmo",
                     "cullfront": false,
-                    "wireframe": true
+                    "wireframe": false
                 }
             },
             {
@@ -633,7 +1027,31 @@
                 "component": {
                     "model": "Resources/Models/igaguri.cmo",
                     "cullfront": false,
-                    "wireframe": true
+                    "wireframe": false
+                }
+            },
+            {
+                "id": 17,
+                "component": {
+                    "model": "Resources/Models/city.cmo",
+                    "cullfront": false,
+                    "wireframe": false
+                }
+            },
+            {
+                "id": 19,
+                "component": {
+                    "model": "Resources/Models/city.cmo",
+                    "cullfront": false,
+                    "wireframe": false
+                }
+            },
+            {
+                "id": 20,
+                "component": {
+                    "model": "Resources/Models/city.cmo",
+                    "cullfront": false,
+                    "wireframe": false
                 }
             }
         ],

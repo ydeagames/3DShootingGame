@@ -27,6 +27,7 @@ void BoxCollider::AddCollider(physx::PxRigidActor& rigid) const
 	auto mat = manager.CreateMaterial(material);
 	auto& transform = gameObject.GetComponent<Transform>();
 	auto size = transform.lossyScale;
+	size = Vector3(std::abs(size.x), std::abs(size.y), std::abs(size.z));
 
 	auto geo = physx::PxBoxGeometry(physx::toPhysX(size) / 2);
 	auto shape = manager.GetPhysics()->createShape(geo, *mat);
