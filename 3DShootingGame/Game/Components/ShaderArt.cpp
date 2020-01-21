@@ -11,6 +11,8 @@ using namespace DirectX::SimpleMath;
 struct ShaderArt::ConstBuffer
 {
 	Vector4 Time;
+	Matrix LightView;
+	Vector4 LightPosition;
 };
 
 void ShaderArt::RenderStart()
@@ -89,7 +91,16 @@ void ShaderArt::Render(GameCamera& camera)
 		ConstBuffer cbuff;
 		auto& timer = GameContext::Get<DX::StepTimer>();
 		cbuff.Time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), time, 1);
+		{
+			// Point light at (20, 15, 20), pointed at the origin. POV up-vector is along the y-axis.
+			static const Vector3 eye = Vector3(20.0f, 15.0f, 20.0f);
+			static const Vector3 at = Vector3(0.0f, 0.0f, 0.0f);
+			static const Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
 
+			cbuff.LightView = Matrix::CreateLookAt(eye, at, up);
+			cbuff.LightPosition = Vector4(eye);
+		}
+		
 		// 定数バッファの内容更新
 		ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
 

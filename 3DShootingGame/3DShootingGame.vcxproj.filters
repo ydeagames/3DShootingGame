@@ -1485,7 +1485,9 @@
     <ClCompile Include="Framework\FMOD\SoundSystem.cpp">
       <Filter>Framework\FMOD</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Components\AudioSource.cpp" />
+    <ClCompile Include="Game\Components\AudioSource.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">

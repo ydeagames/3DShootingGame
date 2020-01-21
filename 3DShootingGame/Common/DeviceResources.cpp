@@ -54,6 +54,7 @@ DeviceResources::DeviceResources(
 	D3D_FEATURE_LEVEL minFeatureLevel,
 	unsigned int flags) noexcept :
 	m_screenViewport{},
+	m_shadowViewport{},
 	m_backBufferFormat(backBufferFormat),
 	m_depthBufferFormat(depthBufferFormat),
 	m_shadowMapBufferFormat(DXGI_FORMAT_R24G8_TYPELESS),
@@ -430,6 +431,16 @@ void DeviceResources::CreateWindowSizeDependentResources()
 		0.0f,
 		static_cast<float>(backBufferWidth),
 		static_cast<float>(backBufferHeight)
+	);
+
+	// Init viewport for shadow rendering
+	m_shadowViewport = CD3D11_VIEWPORT(
+		0.0f,
+		0.0f,
+		static_cast<float>(m_shadowMapDimension),
+		static_cast<float>(m_shadowMapDimension),
+		0.f,
+		1.f
 	);
 }
 

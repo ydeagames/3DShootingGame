@@ -47,10 +47,13 @@ namespace DX
         ID3D11Texture2D*        GetDepthStencil() const                 { return m_depthStencil.Get(); }
         ID3D11RenderTargetView*	GetRenderTargetView() const             { return m_d3dRenderTargetView.Get(); }
         ID3D11DepthStencilView* GetDepthStencilView() const             { return m_d3dDepthStencilView.Get(); }
+        ID3D11DepthStencilView* GetShadowMapDepthStencilView() const    { return m_shadowMapDepthStencilView.Get(); }
+        ID3D11ShaderResourceView*   GetShadowMapShaderResourceView() const  { return m_shadowMapShaderResourceView.Get(); }
         DXGI_FORMAT             GetBackBufferFormat() const             { return m_backBufferFormat; }
         DXGI_FORMAT             GetDepthBufferFormat() const            { return m_depthBufferFormat; }
         DXGI_FORMAT             GetShadowMapBufferFormat() const        { return m_shadowMapBufferFormat; }
         D3D11_VIEWPORT          GetScreenViewport() const               { return m_screenViewport; }
+        D3D11_VIEWPORT          GetShadowViewport() const               { return m_shadowViewport; }
         UINT                    GetBackBufferCount() const              { return m_backBufferCount; }
         DXGI_COLOR_SPACE_TYPE   GetColorSpace() const                   { return m_colorSpace; }
         unsigned int            GetDeviceOptions() const                { return m_options; }
@@ -92,6 +95,7 @@ namespace DX
         Microsoft::WRL::ComPtr<ID3D11DepthStencilView>      m_shadowMapDepthStencilView;
         Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>    m_shadowMapShaderResourceView;
         D3D11_VIEWPORT                                      m_screenViewport;
+        D3D11_VIEWPORT                                      m_shadowViewport;
 
         // Direct3D properties.
         DXGI_FORMAT                                     m_backBufferFormat;
