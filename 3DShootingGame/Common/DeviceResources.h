@@ -55,6 +55,7 @@ namespace DX
         D3D11_VIEWPORT          GetScreenViewport() const               { return m_screenViewport; }
         D3D11_VIEWPORT          GetShadowViewport() const               { return m_shadowViewport; }
         UINT                    GetBackBufferCount() const              { return m_backBufferCount; }
+        UINT                    GetShadowMapDimension() const           { return m_shadowMapDimension; }
         DXGI_COLOR_SPACE_TYPE   GetColorSpace() const                   { return m_colorSpace; }
         unsigned int            GetDeviceOptions() const                { return m_options; }
 

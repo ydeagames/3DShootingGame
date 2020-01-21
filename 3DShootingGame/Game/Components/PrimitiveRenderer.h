@@ -62,7 +62,9 @@ public:
 	struct ConstBuffer
 	{
 		DirectX::SimpleMath::Vector4 Time;
+		DirectX::SimpleMath::Matrix LightModel;
 		DirectX::SimpleMath::Matrix LightView;
+		DirectX::SimpleMath::Matrix LightProjection;
 		DirectX::SimpleMath::Vector4 LightPosition;
 	};
 

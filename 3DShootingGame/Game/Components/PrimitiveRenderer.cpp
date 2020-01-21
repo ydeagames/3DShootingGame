@@ -168,7 +168,9 @@ void PrimitiveRenderer::RenderShadowMap(GameCamera& camera)
 					static const Vector3 at = Vector3(0.0f, 0.0f, 0.0f);
 					static const Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
 
+					cbuff.LightProjection = Matrix::CreateOrthographic(dr.GetShadowMapDimension(), dr.GetShadowMapDimension(), 0.001f, 100.f);
 					cbuff.LightView = Matrix::CreateLookAt(eye, at, up);
+					cbuff.LightModel = Matrix::CreateTranslation(eye);
 					cbuff.LightPosition = Vector4(eye);
 				}
 

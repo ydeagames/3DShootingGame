@@ -11,7 +11,9 @@ using namespace DirectX::SimpleMath;
 struct ShaderArt::ConstBuffer
 {
 	Vector4 Time;
+	Matrix LightModel;
 	Matrix LightView;
+	Matrix LightProjection;
 	Vector4 LightPosition;
 };
 

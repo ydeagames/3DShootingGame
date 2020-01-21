@@ -22,6 +22,8 @@ cbuffer Parameters : register(b0)
 cbuffer ConstBuffer	: register(b1)
 {
 	float4 Time;
+    float4x4 LightModel;
     float4x4 LightView;
+    float4x4 LightProjection;
     float4 LightPosition;
 };
