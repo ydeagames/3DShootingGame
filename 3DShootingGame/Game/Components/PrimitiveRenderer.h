@@ -58,6 +58,14 @@ public:
 	bool cullfront = false;
 	bool textureEnabled = true;
 
+public:
+	struct ConstBuffer
+	{
+		DirectX::SimpleMath::Vector4 Time;
+		DirectX::SimpleMath::Matrix LightView;
+		DirectX::SimpleMath::Vector4 LightPosition;
+	};
+
 private:
 	// エフェクト
 	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
@@ -71,9 +79,17 @@ private:
 	// テクスチャ
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 
+	// 頂点シェーダ
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_ShadowVertexShader;
+	// ピクセルシェーダ
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_ShadowPixelShader;
+	// バッファ
+	Microsoft::WRL::ComPtr<ID3D11Buffer> m_CBuffer;
+
 public:
 	void RenderStart();
 	void Render(GameCamera& camera);
+	void RenderShadowMap(GameCamera& camera);
 
 public:
 	template<class Archive>

@@ -4,6 +4,7 @@
 #include <Framework/Components/Transform.h>
 #include <Framework/Context/GameCamera.h>
 #include <Utilities/StringCast.h>
+#include "Utilities/BinaryFile.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -42,47 +43,43 @@ void PrimitiveRenderer::RenderStart()
 			? models.at(model).GetOrCreateInverted(dr.GetD3DDeviceContext())
 			: models.at(model).GetOrCreate(dr.GetD3DDeviceContext());
 
-		if (textureEnabled)
-		{
-			auto texture_str = string_cast<std::wstring>(texture);
+		// ポリゴン用エフェクト作成
+		m_basicEffect = std::make_unique<BasicEffect>(dr.GetD3DDevice());
+		m_basicEffect->SetTextureEnabled(textureEnabled);
 
-			if (FAILED(CreateWICTextureFromFile(
-				dr.GetD3DDevice(), dr.GetD3DDeviceContext(),
-				texture_str.c_str(), nullptr, m_texture.ReleaseAndGetAddressOf())))
-				m_texture = nullptr;
-			else
-			{
-				// ポリゴン用エフェクト作成
-				m_basicEffect = std::make_unique<BasicEffect>(dr.GetD3DDevice());
-				m_basicEffect->SetTextureEnabled(true);
+		// ライト有効
+		m_basicEffect->SetLightingEnabled(lighting);
+		// 環境光の色を設定
+		m_basicEffect->SetAmbientLightColor(SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
+		// 拡散反射光の素材色を設定
+		m_basicEffect->SetDiffuseColor(SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
 
-				// ライト有効
-				m_basicEffect->SetLightingEnabled(lighting);
-				// 環境光の色を設定
-				m_basicEffect->SetAmbientLightColor(SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
-				// 拡散反射光の素材色を設定
-				m_basicEffect->SetDiffuseColor(SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
+		// シェーダー取得
+		m_model->CreateInputLayout(m_basicEffect.get(), m_pInputLayout.ReleaseAndGetAddressOf());
 
-				// シェーダー取得
-				m_model->CreateInputLayout(m_basicEffect.get(), m_pInputLayout.ReleaseAndGetAddressOf());
-			}
-		}
-		else
-		{
-			// ポリゴン用エフェクト作成
-			m_basicEffect = std::make_unique<BasicEffect>(dr.GetD3DDevice());
-			m_basicEffect->SetTextureEnabled(false);
+		auto texture_str = string_cast<std::wstring>(texture);
+		if (!textureEnabled || FAILED(CreateWICTextureFromFile(
+			dr.GetD3DDevice(), dr.GetD3DDeviceContext(),
+			texture_str.c_str(), nullptr, m_texture.ReleaseAndGetAddressOf())))
+			m_texture = nullptr;
 
-			// ライト有効
-			m_basicEffect->SetLightingEnabled(lighting);
-			// 環境光の色を設定
-			m_basicEffect->SetAmbientLightColor(SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
-			// 拡散反射光の素材色を設定
-			m_basicEffect->SetDiffuseColor(SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
+		// コンパイルされたシェーダファイルを読み込み
+		BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowVS.cso");
+		BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowPS.cso");
 
-			// シェーダー取得
-			m_model->CreateInputLayout(m_basicEffect.get(), m_pInputLayout.ReleaseAndGetAddressOf());
-		}
+		// 頂点シェーダ作成
+		DX::ThrowIfFailed(dr.GetD3DDevice()->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_ShadowVertexShader.ReleaseAndGetAddressOf()));
+		// ピクセルシェーダ作成
+		DX::ThrowIfFailed(dr.GetD3DDevice()->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_ShadowPixelShader.ReleaseAndGetAddressOf()));
+
+		// バッファの作成
+		D3D11_BUFFER_DESC bd;
+		ZeroMemory(&bd, sizeof(bd));
+		bd.Usage = D3D11_USAGE_DEFAULT;
+		bd.ByteWidth = sizeof(ConstBuffer);
+		bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		bd.CPUAccessFlags = 0;
+		DX::ThrowIfFailed(dr.GetD3DDevice()->CreateBuffer(&bd, nullptr, &m_CBuffer));
 	}
 }
 
@@ -102,19 +99,96 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 		m_basicEffect->SetProjection(camera.projection);
 		// エフェクトの設定
 		m_basicEffect->Apply(ctx);
-		// 深度ステンシルステートの設定
-		ctx->OMSetDepthStencilState(commonStates.DepthDefault(), 0);
-		// ブレンドステートの設定
-		ctx->OMSetBlendState(commonStates.AlphaBlend(), nullptr, 0xffffffff);
-		// ラスタライザステートを設定
-		ctx->RSSetState(commonStates.CullClockwise());
-		// 入力レイアウトの設定
-		ctx->IASetInputLayout(m_pInputLayout.Get());
 
 		if (textureEnabled)
 			m_basicEffect->SetTexture(m_texture.Get());
 
-		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get());
+		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get(),
+			false, false,
+			[&]()
+			{
+				// 深度ステンシルステートの設定
+				ctx->OMSetDepthStencilState(commonStates.DepthDefault(), 0);
+				// ブレンドステートの設定
+				ctx->OMSetBlendState(commonStates.AlphaBlend(), nullptr, 0xffffffff);
+				// ラスタライザステートを設定
+				ctx->RSSetState(commonStates.CullCounterClockwise());
+			});
+	}
+}
+
+void PrimitiveRenderer::RenderShadowMap(GameCamera& camera)
+{
+	if (m_model)
+	{
+		auto& dr = GameContext::Get<DX::DeviceResources>();
+		auto& commonStates = GameContext::Get<CommonStates>();
+
+		auto ctx = dr.GetD3DDeviceContext();
+		// ワールド行列設定
+		m_basicEffect->SetWorld(gameObject.GetComponent<Transform>().GetMatrix());
+		// ビュー行列設定
+		m_basicEffect->SetView(camera.view);
+		// プロジェクション行列設定
+		m_basicEffect->SetProjection(camera.projection);
+		// エフェクトの設定
+		m_basicEffect->Apply(ctx);
+
+		if (textureEnabled)
+			m_basicEffect->SetTexture(m_texture.Get());
+
+		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get(),
+			false, false,
+			[&]()
+			{
+				// 深度ステンシルステートの設定
+				ctx->OMSetDepthStencilState(commonStates.DepthDefault(), 0);
+				// ブレンドステートの設定
+				ctx->OMSetBlendState(commonStates.AlphaBlend(), nullptr, 0xffffffff);
+				// ラスタライザステートを設定
+				ctx->RSSetState(commonStates.CullClockwise());
+
+				// Note that starting with the second frame, the previous call will display
+				// warnings in VS debug output about forcing an unbind of the pixel shader
+				// resource. This warning can be safely ignored when using shadow buffers
+				// as demonstrated in this sample.
+
+				// Set rendering state.
+				ctx->RSSetState(commonStates.CullClockwise());
+				auto viewport = dr.GetScreenViewport();
+				ctx->RSSetViewports(1, &viewport);
+
+				// 定数バッファ更新
+				ConstBuffer cbuff;
+				auto& timer = GameContext::Get<DX::StepTimer>();
+				cbuff.Time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), 0, 1);
+				{
+					// Point light at (20, 15, 20), pointed at the origin. POV up-vector is along the y-axis.
+					static const Vector3 eye = Vector3(20.0f, 15.0f, 20.0f);
+					static const Vector3 at = Vector3(0.0f, 0.0f, 0.0f);
+					static const Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
+
+					cbuff.LightView = Matrix::CreateLookAt(eye, at, up);
+					cbuff.LightPosition = Vector4(eye);
+				}
+
+				// 定数バッファの内容更新
+				ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
+
+				// 定数バッファ反映
+				ID3D11Buffer* cb[1] = { m_CBuffer.Get() };
+				ctx->VSSetConstantBuffers(1, 1, cb);
+				ctx->PSSetConstantBuffers(1, 1, cb);
+
+				// In some configurations, it's possible to avoid setting a pixel shader
+				// (or set PS to nullptr). Not all drivers are tolerant of this, so to be
+				// safe set a minimal shader here.
+				//
+				// Direct3D will discard output from this shader because the render target
+				// view is unbound.
+				ctx->VSSetShader(m_ShadowVertexShader.Get(), nullptr, 0);
+				ctx->PSSetShader(m_ShadowPixelShader.Get(), nullptr, 0);
+			});
 	}
 }
 

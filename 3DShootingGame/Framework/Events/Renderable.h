@@ -27,6 +27,13 @@ private:
 		ECS::EventBus<Renderable, 1, GameCamera>::Register<T>(&T::Render);
 	}
 
+	template<typename T> static void RegisterShadowMap0(...) {}
+	template<typename T, typename = decltype(&T::RenderShadowMap)>
+	static void RegisterShadowMap0()
+	{
+		ECS::EventBus<Renderable, 4, GameCamera>::Register<T>(&T::RenderShadowMap);
+	}
+
 	template<typename T> static void RegisterGui0(...) {}
 	template<typename T, typename = decltype(&T::RenderGui)>
 	static void RegisterGui0()
@@ -54,6 +61,12 @@ public:
 		ECS::EventBus<Renderable, 0>::Post(registry);
 		ECS::EventBus<Renderable, 3, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
 		ECS::EventBus<Renderable, 1, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
+	}
+
+	static void RenderShadowMap(entt::registry& registry, GameCamera&& camera)
+	{
+		ECS::EventBus<Renderable, 0>::Post(registry);
+		ECS::EventBus<Renderable, 4, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
 	}
 
 	static void RenderGui(entt::registry& registry, GameCamera&& camera)

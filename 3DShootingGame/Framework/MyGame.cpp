@@ -137,6 +137,9 @@ void MyGame::Render(GameCamera& camera)
 {
 	static int bench = Bench();
 
+	auto& dr = GameContext::Get<DX::DeviceResources>();
+	auto ctx = dr.GetD3DDeviceContext();
+
 	// トランスフォームのキャッシュをクリア
 	GameContext::Get<TransformResolverContext>().ClearCache();
 
@@ -144,7 +147,29 @@ void MyGame::Render(GameCamera& camera)
 	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
 	{
 		// 描画イベント
-		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::Render(scene.registry, std::forward<GameCamera>(camera)); });
+		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene)
+			{
+				Renderable::Render(scene.registry, std::forward<GameCamera>(camera));
+			});
+
+		{
+			// Render all the objects in the scene that can cast shadows onto themselves or onto other objects.
+			auto renderTarget = dr.GetRenderTargetView();
+			auto depthStencil = dr.GetDepthStencilView();
+			auto shadowMapDepthStencil = dr.GetShadowMapDepthStencilView();
+
+			// Only bind the ID3D11DepthStencilView for output.
+			ctx->OMSetRenderTargets(0, nullptr, shadowMapDepthStencil);
+
+			// 描画イベント
+			GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene)
+				{
+					Renderable::RenderShadowMap(scene.registry, std::forward<GameCamera>(camera));
+				});
+
+			// ターゲットビューを戻す
+			ctx->OMSetRenderTargets(1, &renderTarget, depthStencil);
+		}
 	}
 	else
 	{
