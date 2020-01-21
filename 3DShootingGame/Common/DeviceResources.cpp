@@ -56,6 +56,8 @@ DeviceResources::DeviceResources(
 	m_screenViewport{},
 	m_backBufferFormat(backBufferFormat),
 	m_depthBufferFormat(depthBufferFormat),
+	m_shadowMapBufferFormat(DXGI_FORMAT_R24G8_TYPELESS),
+	m_shadowMapDimension(512),
 	m_backBufferCount(backBufferCount),
 	m_d3dMinFeatureLevel(minFeatureLevel),
 	m_window(nullptr),
@@ -377,6 +379,48 @@ void DeviceResources::CreateWindowSizeDependentResources()
 			m_depthStencil.Get(),
 			&depthStencilViewDesc,
 			m_d3dDepthStencilView.ReleaseAndGetAddressOf()
+		));
+	}
+
+	if (m_shadowMapBufferFormat != DXGI_FORMAT_UNKNOWN)
+	{
+		// Create a depth stencil view for use with 3D rendering if needed.
+		CD3D11_TEXTURE2D_DESC shadowMapDesc(
+			m_shadowMapBufferFormat,
+			m_shadowMapDimension,
+			m_shadowMapDimension,
+			1, // This depth stencil view has only one texture.
+			1, // Use a single mipmap level.
+			D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_DEPTH_STENCIL
+		);
+		shadowMapDesc.SampleDesc = sampleDesc;
+
+		ThrowIfFailed(m_d3dDevice->CreateTexture2D(
+			&shadowMapDesc,
+			nullptr,
+			m_shadowMap.ReleaseAndGetAddressOf()
+		));
+
+		CD3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc(
+			D3D11_DSV_DIMENSION_TEXTURE2DMS,
+			DXGI_FORMAT_D24_UNORM_S8_UINT
+		);
+		ThrowIfFailed(m_d3dDevice->CreateDepthStencilView(
+			m_shadowMap.Get(),
+			&depthStencilViewDesc,
+			m_shadowMapDepthStencilView.ReleaseAndGetAddressOf()
+		));
+		
+		CD3D11_SHADER_RESOURCE_VIEW_DESC shaderResourceViewDesc(
+			D3D11_SRV_DIMENSION_TEXTURE2DMS,
+			DXGI_FORMAT_R24_UNORM_X8_TYPELESS,
+			0,
+			1
+		);
+		ThrowIfFailed(m_d3dDevice->CreateShaderResourceView(
+			m_shadowMap.Get(),
+			&shaderResourceViewDesc,
+			m_shadowMapShaderResourceView.ReleaseAndGetAddressOf()
 		));
 	}
 
