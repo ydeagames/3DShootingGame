@@ -11,7 +11,7 @@ using namespace DirectX::SimpleMath;
 
 void FPSCamera::Start()
 {
-	Input::SetMouseMode(Mouse::Mode::MODE_RELATIVE);
+	// Input::SetMouseMode(Mouse::Mode::MODE_RELATIVE);
 }
 
 void FPSCamera::OnDestroy()
@@ -21,12 +21,16 @@ void FPSCamera::OnDestroy()
 
 void FPSCamera::OnPreRender(GameCamera& camera)
 {
-	if (!Input::GetMouseButton(Input::Buttons::MouseRight))
-		if (Input::GetMouseMode() == DirectX::Mouse::Mode::MODE_RELATIVE)
-		{
-			auto move = Input::GetMousePosition();
-			Move(float(move.x), float(move.y));
-		}
+	if (Input::GetMouseButtonDown(Input::Buttons::MouseRight))
+		Input::SetMouseMode(Mouse::MODE_RELATIVE);
+	if (Input::GetMouseButtonUp(Input::Buttons::MouseRight))
+		Input::SetMouseMode(Mouse::MODE_ABSOLUTE);
+
+	if (Input::GetMouseMode() == DirectX::Mouse::Mode::MODE_RELATIVE)
+	{
+		auto move = Input::GetMousePosition();
+		Move(float(move.x), float(move.y));
+	}
 
 	m_xAngle = MathUtils::Clamp(m_xAngle, -XM_PIDIV2, XM_PIDIV2);
 
@@ -50,7 +54,7 @@ void FPSCamera::Move(float dx, float dy)
 		// ‚wŽ²‚Ì‰ñ“]
 		float xAngle = XMConvertToRadians(dy);
 
-		m_xAngle += xAngle;
+		//m_xAngle += xAngle;
 		m_yAngle += yAngle;
 	}
 }

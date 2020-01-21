@@ -1,10 +1,6 @@
 {
     "entities": {
         "created": [
-            5,
-            4,
-            3,
-            2,
             1,
             0
         ],
@@ -31,9 +27,9 @@
                         "w": 1.0
                     },
                     "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
+                        "x": 2.0,
+                        "y": 2.0,
+                        "z": 2.0
                     }
                 }
             },
@@ -46,102 +42,6 @@
                     "localPosition": {
                         "x": 8.5,
                         "y": 10.399999618530274,
-                        "z": 0.0
-                    },
-                    "localRotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
-                    }
-                }
-            },
-            {
-                "id": 2,
-                "component": {
-                    "name": "Test",
-                    "parent": 4294967295,
-                    "isStatic": false,
-                    "localPosition": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0
-                    },
-                    "localRotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "localScale": {
-                        "x": 2.0,
-                        "y": 2.0,
-                        "z": 2.0
-                    }
-                }
-            },
-            {
-                "id": 3,
-                "component": {
-                    "name": "Shape1",
-                    "parent": 0,
-                    "isStatic": false,
-                    "localPosition": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0
-                    },
-                    "localRotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
-                    }
-                }
-            },
-            {
-                "id": 4,
-                "component": {
-                    "name": "Shape2",
-                    "parent": 0,
-                    "isStatic": false,
-                    "localPosition": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0
-                    },
-                    "localRotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
-                    }
-                }
-            },
-            {
-                "id": 5,
-                "component": {
-                    "name": "Shape3",
-                    "parent": 0,
-                    "isStatic": false,
-                    "localPosition": {
-                        "x": 0.0,
-                        "y": 0.0,
                         "z": 0.0
                     },
                     "localRotation": {
@@ -169,16 +69,7 @@
         "PrimitiveRenderer": [],
         "ModelRenderer": [],
         "CameraComponent": [],
-        "Background": [
-            {
-                "id": 0,
-                "component": {
-                    "texture": "Resources/Textures/Title/Background.png",
-                    "fullScreen": true,
-                    "uiSpace": true
-                }
-            }
-        ],
+        "Background": [],
         "TitleMenu": [
             {
                 "id": 0,
@@ -213,41 +104,14 @@
         "Goal": [],
         "ShaderArt": [
             {
-                "id": 2,
+                "id": 0,
                 "component": {
-                    "time": 85.28754425048828
+                    "time": 0.0
                 }
             }
         ],
-        "BubbleEffect": [
-            {
-                "id": 3,
-                "component": {
-                    "texture": "Resources/Textures/Title/Back/Shape1.png",
-                    "time": 84.35758209228516,
-                    "count": 12,
-                    "seed": 173
-                }
-            },
-            {
-                "id": 4,
-                "component": {
-                    "texture": "Resources/Textures/Title/Back/Shape2.png",
-                    "time": 84.35758209228516,
-                    "count": 12,
-                    "seed": 235
-                }
-            },
-            {
-                "id": 5,
-                "component": {
-                    "texture": "Resources/Textures/Title/Back/Shape3.png",
-                    "time": 84.35758209228516,
-                    "count": 12,
-                    "seed": 837
-                }
-            }
-        ],
-        "ShootGauge": []
+        "BubbleEffect": [],
+        "ShootGauge": [],
+        "AudioSource": []
     }
 }

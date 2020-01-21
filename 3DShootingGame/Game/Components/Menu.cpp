@@ -68,43 +68,43 @@ void PlayMenu::Update()
 
 void PlayMenu::RenderGui(GameCamera& camera)
 {
-	ImGui::SetNextWindowPos(ImVec2(10, 10));
-	ImGui::Begin(u8"パラメータ", nullptr);
-	//ImGui::SliderFloat(u8"的サイズ", targetScale.GetWeakPtr().lock().get(), 0, .003f, u8"%.6f");
-	//ImGui::SliderFloat(u8"Y", targetY.GetWeakPtr().lock().get(), 0, 6, u8"%.2f");
-	if (ImGui::Button(u8"リセットいがぐり"))
-	{
-		//auto find = gameObject.registry.FindAll(L"Bullet");
-		//for (auto& f : find)
-		//	Destroy(**f);
-	}
-	if (ImGui::Button(u8"リセットターゲット"))
-	{
-		//auto find = scene.FindAll(L"Target");
-		//for (auto& f : find)
-		//	Destroy(**f);
-	}
-	ImGui::End();
+	// ImGui::SetNextWindowPos(ImVec2(10, 10));
+	// ImGui::Begin(u8"パラメータ", nullptr);
+	// //ImGui::SliderFloat(u8"的サイズ", targetScale.GetWeakPtr().lock().get(), 0, .003f, u8"%.6f");
+	// //ImGui::SliderFloat(u8"Y", targetY.GetWeakPtr().lock().get(), 0, 6, u8"%.2f");
+	// if (ImGui::Button(u8"リセットいがぐり"))
+	// {
+	// 	//auto find = gameObject.registry.FindAll(L"Bullet");
+	// 	//for (auto& f : find)
+	// 	//	Destroy(**f);
+	// }
+	// if (ImGui::Button(u8"リセットターゲット"))
+	// {
+	// 	//auto find = scene.FindAll(L"Target");
+	// 	//for (auto& f : find)
+	// 	//	Destroy(**f);
+	// }
+	// ImGui::End();
 
-	ImGui::SetNextWindowPos(ImVec2(300, 10));
-	ImGui::Begin(u8"スコア", nullptr);
-	ImGui::Text(u8"スコア: 00000032435 (未実装)");
-	ImGui::End();
+	// ImGui::SetNextWindowPos(ImVec2(300, 10));
+	// ImGui::Begin(u8"スコア", nullptr);
+	// ImGui::Text(u8"スコア: 00000032435 (未実装)");
+	// ImGui::End();
 
-	ImGui::SetNextWindowPos(ImVec2(10, 500));
-	ImGui::Begin(u8"タイム", nullptr);
-	ImGui::Text(u8"タイム: %.2f秒", float(GameContext::Get<DX::StepTimer>().GetTotalSeconds()) - last);
-	ImGui::End();
+	// ImGui::SetNextWindowPos(ImVec2(10, 500));
+	// ImGui::Begin(u8"タイム", nullptr);
+	// ImGui::Text(u8"タイム: %.2f秒", float(GameContext::Get<DX::StepTimer>().GetTotalSeconds()) - last);
+	// ImGui::End();
 
 	ImGui::SetNextWindowPos(ImVec2(10, 300));
 	ImGui::Begin(u8"目標", nullptr);
-	ImGui::Text(u8"一番てっぺんに登れ (仮)");
+	ImGui::Text(u8"キラキラ光るゴールを目指そう");
 	ImGui::End();
 
 	ImGui::SetNextWindowPos(ImVec2(10, 700));
 	ImGui::Begin(u8"操作説明", nullptr);
-	ImGui::Text(u8"1. 右クリック長押しで力をためる");
-	ImGui::Text(u8"2. 右クリックを離してスリングジャーンプ！");
+	ImGui::Text(u8"1. 左クリック長押しで方向を決める");
+	ImGui::Text(u8"2. 左クリックを離してスリングジャーンプ！");
 	ImGui::End();
 }
 

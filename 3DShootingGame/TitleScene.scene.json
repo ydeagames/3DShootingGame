@@ -27,9 +27,9 @@
                         "w": 1.0
                     },
                     "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
+                        "x": 2.0,
+                        "y": 2.0,
+                        "z": 2.0
                     }
                 }
             },
@@ -64,17 +64,12 @@
         "BoxCollider": [],
         "CapsuleCollider": [],
         "PlaneCollider": [],
+        "SceneTransitions::FadeTransition": [],
+        "SceneTransitions::RuleTransition": [],
         "PrimitiveRenderer": [],
         "ModelRenderer": [],
         "CameraComponent": [],
-        "Background": [
-            {
-                "id": 0,
-                "component": {
-                    "texture": "Resources/Textures/Title/Background.png"
-                }
-            }
-        ],
+        "Background": [],
         "TitleMenu": [
             {
                 "id": 0,
@@ -83,6 +78,7 @@
         ],
         "PlayMenu": [],
         "ResultMenu": [],
+        "PauseMenu": [],
         "FPSCamera": [],
         "InfinityGridFloor": [],
         "FontRenderer": [
@@ -105,6 +101,17 @@
         "RotateFollower": [],
         "TrackingFollower": [],
         "RainbowEffect": [],
-        "Goal": []
+        "Goal": [],
+        "ShaderArt": [
+            {
+                "id": 0,
+                "component": {
+                    "time": 0.0
+                }
+            }
+        ],
+        "BubbleEffect": [],
+        "ShootGauge": [],
+        "AudioSource": []
     }
 }
