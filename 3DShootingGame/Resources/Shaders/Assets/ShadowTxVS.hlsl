@@ -2,12 +2,14 @@
 #include "Structures.fxh"
 #include "Common.fxh"
 
-VSOutput VSBasic(VSInput vin)
+VSOutputTx VSBasicVc(VSInputTx vin)
 {
-    VSOutput vout;
+    VSOutputTx vout;
 
     CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParams;
+
+    vout.TexCoord = vin.TexCoord;
 
     return vout;
 }

@@ -1534,6 +1534,12 @@
     <FxCompile Include="Resources\Shaders\Assets\ShadeVS.hlsl">
       <Filter>Assets\Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\ShadowTxVS.hlsl">
+      <Filter>Assets\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\ShadowTxPS.hlsl">
+      <Filter>Assets\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Assets\RuleTransition.hlsli">
@@ -1558,6 +1564,9 @@
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="Resources\Shaders\Assets\Parameter.hlsli">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Assets\Shade.hlsli">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>

@@ -54,24 +54,36 @@ void PrimitiveRenderer::RenderStart()
 		// 拡散反射光の素材色を設定
 		m_basicEffect->SetDiffuseColor(SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
 
-		// シェーダー取得
-		m_model->CreateInputLayout(m_basicEffect.get(), m_pInputLayout.ReleaseAndGetAddressOf());
-
 		auto texture_str = string_cast<std::wstring>(texture);
 		if (!textureEnabled || FAILED(CreateWICTextureFromFile(
 			dr.GetD3DDevice(), dr.GetD3DDeviceContext(),
 			texture_str.c_str(), nullptr, m_texture.ReleaseAndGetAddressOf())))
 			m_texture = nullptr;
 
-		// コンパイルされたシェーダファイルを読み込み
-		BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowVS.cso");
-		BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowPS.cso");
+		// シェーダー取得
+		m_model->CreateInputLayout(m_basicEffect.get(), m_pInputLayout.ReleaseAndGetAddressOf());
 
-		// 頂点シェーダ作成
-		DX::ThrowIfFailed(dr.GetD3DDevice()->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_ShadowVertexShader.ReleaseAndGetAddressOf()));
-		// ピクセルシェーダ作成
-		DX::ThrowIfFailed(dr.GetD3DDevice()->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_ShadowPixelShader.ReleaseAndGetAddressOf()));
+		{
+			// コンパイルされたシェーダファイルを読み込み
+			BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowVS.cso");
+			BinaryFile VsTxData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowTxVS.cso");
 
+			// 頂点シェーダ作成
+			DX::ThrowIfFailed(dr.GetD3DDevice()->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_ShadowVertexShader.ReleaseAndGetAddressOf()));
+			// ピクセルシェーダ作成
+			DX::ThrowIfFailed(dr.GetD3DDevice()->CreateVertexShader(VsTxData.GetData(), VsTxData.GetSize(), NULL, m_ShadowVertexTxShader.ReleaseAndGetAddressOf()));
+		}
+		{
+			// コンパイルされたシェーダファイルを読み込み
+			BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadeVS.cso");
+			BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadePS.cso");
+
+			// 頂点シェーダ作成
+			DX::ThrowIfFailed(dr.GetD3DDevice()->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_ShadeVertexShader.ReleaseAndGetAddressOf()));
+			// ピクセルシェーダ作成
+			DX::ThrowIfFailed(dr.GetD3DDevice()->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_ShadePixelShader.ReleaseAndGetAddressOf()));
+		}
+		
 		// バッファの作成
 		D3D11_BUFFER_DESC bd;
 		ZeroMemory(&bd, sizeof(bd));
@@ -113,6 +125,49 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 				ctx->OMSetBlendState(commonStates.AlphaBlend(), nullptr, 0xffffffff);
 				// ラスタライザステートを設定
 				ctx->RSSetState(commonStates.CullCounterClockwise());
+
+				// Note that starting with the second frame, the previous call will display
+				// warnings in VS debug output about forcing an unbind of the pixel shader
+				// resource. This warning can be safely ignored when using shadow buffers
+				// as demonstrated in this sample.
+
+				// 定数バッファ更新
+				ConstBuffer cbuff;
+				auto& timer = GameContext::Get<DX::StepTimer>();
+				cbuff.Time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), 0, 1);
+				{
+					// Point light at (20, 15, 20), pointed at the origin. POV up-vector is along the y-axis.
+					static const Vector3 eye = Vector3(20.0f, 15.0f, 20.0f);
+					static const Vector3 at = Vector3(0.0f, 0.0f, 0.0f);
+					static const Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
+
+					cbuff.LightProjection = Matrix::CreateOrthographic(float(dr.GetShadowMapDimension()), float(dr.GetShadowMapDimension()), 0.001f, 100.f);
+					cbuff.LightView = Matrix::CreateLookAt(eye, at, up);
+					cbuff.LightModel = Matrix::CreateTranslation(eye);
+					cbuff.LightPosition = Vector4(eye);
+					cbuff.AmbientColor = Color(0, 0, 0, 0);
+				}
+
+				// シャドーマップ
+				auto shadowTexture = dr.GetShadowMapShaderResourceView();
+				ctx->PSSetShaderResources(2, 1, &shadowTexture);
+
+				// 定数バッファの内容更新
+				ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
+
+				// 定数バッファ反映
+				ID3D11Buffer* cb[1] = { m_CBuffer.Get() };
+				ctx->VSSetConstantBuffers(1, 1, cb);
+				ctx->PSSetConstantBuffers(1, 1, cb);
+
+				// In some configurations, it's possible to avoid setting a pixel shader
+				// (or set PS to nullptr). Not all drivers are tolerant of this, so to be
+				// safe set a minimal shader here.
+				//
+				// Direct3D will discard output from this shader because the render target
+				// view is unbound.
+				ctx->VSSetShader(m_ShadeVertexShader.Get(), nullptr, 0);
+				ctx->PSSetShader(m_ShadePixelShader.Get(), nullptr, 0);
 			});
 	}
 }
@@ -148,48 +203,14 @@ void PrimitiveRenderer::RenderShadowMap(GameCamera& camera)
 				// ラスタライザステートを設定
 				ctx->RSSetState(commonStates.CullClockwise());
 
-				// Note that starting with the second frame, the previous call will display
-				// warnings in VS debug output about forcing an unbind of the pixel shader
-				// resource. This warning can be safely ignored when using shadow buffers
-				// as demonstrated in this sample.
-
-				// Set rendering state.
-				ctx->RSSetState(commonStates.CullClockwise());
-				auto viewport = dr.GetScreenViewport();
-				ctx->RSSetViewports(1, &viewport);
-
-				// 定数バッファ更新
-				ConstBuffer cbuff;
-				auto& timer = GameContext::Get<DX::StepTimer>();
-				cbuff.Time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), 0, 1);
-				{
-					// Point light at (20, 15, 20), pointed at the origin. POV up-vector is along the y-axis.
-					static const Vector3 eye = Vector3(20.0f, 15.0f, 20.0f);
-					static const Vector3 at = Vector3(0.0f, 0.0f, 0.0f);
-					static const Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
-
-					cbuff.LightProjection = Matrix::CreateOrthographic(dr.GetShadowMapDimension(), dr.GetShadowMapDimension(), 0.001f, 100.f);
-					cbuff.LightView = Matrix::CreateLookAt(eye, at, up);
-					cbuff.LightModel = Matrix::CreateTranslation(eye);
-					cbuff.LightPosition = Vector4(eye);
-				}
-
-				// 定数バッファの内容更新
-				ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
-
-				// 定数バッファ反映
-				ID3D11Buffer* cb[1] = { m_CBuffer.Get() };
-				ctx->VSSetConstantBuffers(1, 1, cb);
-				ctx->PSSetConstantBuffers(1, 1, cb);
-
 				// In some configurations, it's possible to avoid setting a pixel shader
 				// (or set PS to nullptr). Not all drivers are tolerant of this, so to be
 				// safe set a minimal shader here.
 				//
 				// Direct3D will discard output from this shader because the render target
 				// view is unbound.
-				ctx->VSSetShader(m_ShadowVertexShader.Get(), nullptr, 0);
-				ctx->PSSetShader(m_ShadowPixelShader.Get(), nullptr, 0);
+				ctx->VSSetShader(/*textureEnabled ? m_ShadowVertexTxShader.Get() : */m_ShadowVertexShader.Get(), nullptr, 0);
+				ctx->PSSetShader(nullptr, nullptr, 0);
 			});
 	}
 }

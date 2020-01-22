@@ -66,6 +66,7 @@ public:
 		DirectX::SimpleMath::Matrix LightView;
 		DirectX::SimpleMath::Matrix LightProjection;
 		DirectX::SimpleMath::Vector4 LightPosition;
+		DirectX::SimpleMath::Vector4 AmbientColor;
 	};
 
 private:
@@ -84,7 +85,11 @@ private:
 	// 頂点シェーダ
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_ShadowVertexShader;
 	// ピクセルシェーダ
-	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_ShadowPixelShader;
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_ShadowVertexTxShader;
+	// 頂点シェーダ
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_ShadeVertexShader;
+	// ピクセルシェーダ
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_ShadePixelShader;
 	// バッファ
 	Microsoft::WRL::ComPtr<ID3D11Buffer> m_CBuffer;
 

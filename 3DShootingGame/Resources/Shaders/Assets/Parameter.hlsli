@@ -26,4 +26,5 @@ cbuffer ConstBuffer	: register(b1)
     float4x4 LightView;
     float4x4 LightProjection;
     float4 LightPosition;
+    float4 AmbientColor;
 };

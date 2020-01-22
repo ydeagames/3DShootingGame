@@ -15,6 +15,7 @@ struct ShaderArt::ConstBuffer
 	Matrix LightView;
 	Matrix LightProjection;
 	Vector4 LightPosition;
+	Vector4 AmbientColor;
 };
 
 void ShaderArt::RenderStart()

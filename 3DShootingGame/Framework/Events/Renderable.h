@@ -48,6 +48,7 @@ public:
 		RegisterFirst0<T>();
 		RegisterPre0<T>();
 		Register0<T>();
+		RegisterShadowMap0<T>();
 		RegisterGui0<T>();
 	}
 

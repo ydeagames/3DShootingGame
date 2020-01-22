@@ -161,11 +161,19 @@ void MyGame::Render(GameCamera& camera)
 			// Only bind the ID3D11DepthStencilView for output.
 			ctx->OMSetRenderTargets(0, nullptr, shadowMapDepthStencil);
 
+			// Shadow Viewport
+			auto shadowViewport = dr.GetShadowViewport();
+			ctx->RSSetViewports(1, &shadowViewport);
+
 			// 描画イベント
 			GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene)
 				{
 					Renderable::RenderShadowMap(scene.registry, std::forward<GameCamera>(camera));
 				});
+
+			// ビューポートを戻す
+			auto viewport = dr.GetScreenViewport();
+			ctx->RSSetViewports(1, &viewport);
 
 			// ターゲットビューを戻す
 			ctx->OMSetRenderTargets(1, &renderTarget, depthStencil);
