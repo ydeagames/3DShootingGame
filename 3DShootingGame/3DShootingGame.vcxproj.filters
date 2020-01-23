@@ -1563,5 +1563,8 @@
     <None Include="Resources\Shaders\Assets\Shade.hlsli">
       <Filter>Assets\Shaders</Filter>
     </None>
+    <None Include="Resources\Shaders\Assets\Shadow.hlsli">
+      <Filter>Assets\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

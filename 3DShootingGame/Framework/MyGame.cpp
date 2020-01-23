@@ -156,10 +156,11 @@ void MyGame::Render(GameCamera& camera)
 			// Render all the objects in the scene that can cast shadows onto themselves or onto other objects.
 			auto renderTarget = dr.GetRenderTargetView();
 			auto depthStencil = dr.GetDepthStencilView();
+			auto shadowMapRenderTarget = dr.GetShadowMapRenderTargetView();
 			auto shadowMapDepthStencil = dr.GetShadowMapDepthStencilView();
 
 			// Only bind the ID3D11DepthStencilView for output.
-			ctx->OMSetRenderTargets(0, nullptr, shadowMapDepthStencil);
+			ctx->OMSetRenderTargets(1, &shadowMapRenderTarget, shadowMapDepthStencil);
 
 			// Shadow Viewport
 			auto shadowViewport = dr.GetShadowViewport();
@@ -174,7 +175,7 @@ void MyGame::Render(GameCamera& camera)
 			// ビューポートを戻す
 			auto viewport = dr.GetScreenViewport();
 			ctx->RSSetViewports(1, &viewport);
-
+			
 			// ターゲットビューを戻す
 			ctx->OMSetRenderTargets(1, &renderTarget, depthStencil);
 		}
@@ -202,6 +203,11 @@ void MyGame::Render(GameCamera& camera)
 
 		// GUI描画イベント
 		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::RenderGui(scene.registry, std::forward<GameCamera>(camera)); });
+
+		// Shadow
+		ImGui::Begin("Shadow");
+		ImGui::Image(ImTextureID(dr.GetShadowMapShaderResourceView()), ImVec2(512, 512));
+		ImGui::End();
 
 		// Widgets
 		Widgets::AllWidgets::Render();

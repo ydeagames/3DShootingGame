@@ -9,7 +9,7 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-auto PrimitiveRenderer::primitiveModels() -> std::unordered_map<std::string, PrimitiveModel> &
+auto PrimitiveRenderer::primitiveModels() -> std::unordered_map<std::string, PrimitiveModel>&
 {
 	static std::unordered_map<std::string, PrimitiveModel> data = (
 		[]() {
@@ -45,7 +45,6 @@ void PrimitiveRenderer::RenderStart()
 
 		// ポリゴン用エフェクト作成
 		m_basicEffect = std::make_unique<BasicEffect>(dr.GetD3DDevice());
-		m_basicEffect->SetTextureEnabled(textureEnabled);
 
 		// ライト有効
 		m_basicEffect->SetLightingEnabled(lighting);
@@ -54,8 +53,10 @@ void PrimitiveRenderer::RenderStart()
 		// 拡散反射光の素材色を設定
 		m_basicEffect->SetDiffuseColor(SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
 
-		auto texture_str = string_cast<std::wstring>(texture);
-		if (!textureEnabled || FAILED(CreateWICTextureFromFile(
+		// テクスチャ
+		m_basicEffect->SetTextureEnabled(true);
+		auto texture_str = textureEnabled ? string_cast<std::wstring>(texture) : L"Resources/Textures/GridBox_Default.png";
+		if (FAILED(CreateWICTextureFromFile(
 			dr.GetD3DDevice(), dr.GetD3DDeviceContext(),
 			texture_str.c_str(), nullptr, m_texture.ReleaseAndGetAddressOf())))
 			m_texture = nullptr;
@@ -83,7 +84,7 @@ void PrimitiveRenderer::RenderStart()
 			// ピクセルシェーダ作成
 			DX::ThrowIfFailed(dr.GetD3DDevice()->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_ShadePixelShader.ReleaseAndGetAddressOf()));
 		}
-		
+
 		// バッファの作成
 		D3D11_BUFFER_DESC bd;
 		ZeroMemory(&bd, sizeof(bd));
@@ -92,6 +93,21 @@ void PrimitiveRenderer::RenderStart()
 		bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		bd.CPUAccessFlags = 0;
 		DX::ThrowIfFailed(dr.GetD3DDevice()->CreateBuffer(&bd, nullptr, &m_CBuffer));
+
+		{
+			// Point light at (20, 15, 20), pointed at the origin. POV up-vector is along the y-axis.
+			static const Vector3 eye = Vector3(0, 20, 1);// Vector3(20.0f, 15.0f, 20.0f);
+			static const Vector3 at = Vector3(0.0f, 0.0f, 0.0f);
+			static const Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
+
+			// Setup field of view and screen aspect for a square light source.
+			float fieldOfView = XM_PI / 2.0f;
+			float screenAspect = 1.0f;
+
+			light.view = Matrix::CreateLookAt(eye, at, up);
+			light.projection = Matrix::CreatePerspectiveFieldOfView(fieldOfView, screenAspect, 0.001f, 100.f);
+			light.position = eye;
+		}
 	}
 }
 
@@ -109,13 +125,11 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 		m_basicEffect->SetView(camera.view);
 		// プロジェクション行列設定
 		m_basicEffect->SetProjection(camera.projection);
+		// テクスチャ
+		m_basicEffect->SetTexture(m_texture.Get());
 		// エフェクトの設定
 		m_basicEffect->Apply(ctx);
 
-		if (textureEnabled)
-			m_basicEffect->SetTexture(m_texture.Get());
-
-		
 		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get(),
 			false, false,
 			[&]()
@@ -134,24 +148,9 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 
 				// 定数バッファ更新
 				ConstBuffer cbuff;
-				auto& timer = GameContext::Get<DX::StepTimer>();
-				cbuff.Time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), 0, 1);
-				{
-					// Point light at (20, 15, 20), pointed at the origin. POV up-vector is along the y-axis.
-					static const Vector3 eye = Vector3(20.0f, 15.0f, 20.0f);
-					static const Vector3 at = Vector3(0.0f, 0.0f, 0.0f);
-					static const Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
-
-					cbuff.LightProjection = Matrix::CreateOrthographic(float(dr.GetShadowMapDimension()), float(dr.GetShadowMapDimension()), 0.001f, 100.f);
-					cbuff.LightView = Matrix::CreateLookAt(eye, at, up);
-					cbuff.LightModel = Matrix::CreateTranslation(eye);
-					cbuff.LightPosition = Vector4(eye);
-					cbuff.AmbientColor = Color(0, 0, 0, 0);
-				}
-
-				// シャドーマップ
-				auto shadowTexture = dr.GetShadowMapShaderResourceView();
-				ctx->PSSetShaderResources(1, 1, &shadowTexture);
+				cbuff.WorldViewProj2 = (camera.view * camera.projection).Transpose();
+				cbuff.LightViewProj = (light.view * light.projection).Transpose();
+				cbuff.LightPosition = light.position;
 
 				// 定数バッファの内容更新
 				ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
@@ -160,6 +159,10 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 				ID3D11Buffer* cb[1] = { m_CBuffer.Get() };
 				ctx->VSSetConstantBuffers(1, 1, cb);
 				ctx->PSSetConstantBuffers(1, 1, cb);
+
+				// シャドーマップ
+				auto shadowTexture = dr.GetShadowMapShaderResourceView();
+				ctx->PSSetShaderResources(1, 1, &shadowTexture);
 
 				// In some configurations, it's possible to avoid setting a pixel shader
 				// (or set PS to nullptr). Not all drivers are tolerant of this, so to be
@@ -172,6 +175,10 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 					ctx->VSSetShader(m_ShadeVertexShader.Get(), nullptr, 0);
 					ctx->PSSetShader(m_ShadePixelShader.Get(), nullptr, 0);
 				}
+
+				// シャドーマップ
+				ID3D11ShaderResourceView* null[] = { nullptr };
+				ctx->PSSetShaderResources(1, 1, null);
 			});
 	}
 }
@@ -187,9 +194,9 @@ void PrimitiveRenderer::RenderShadowMap(GameCamera& camera)
 		// ワールド行列設定
 		m_basicEffect->SetWorld(gameObject.GetComponent<Transform>().GetMatrix());
 		// ビュー行列設定
-		m_basicEffect->SetView(camera.view);
+		m_basicEffect->SetView(light.view);
 		// プロジェクション行列設定
-		m_basicEffect->SetProjection(camera.projection);
+		m_basicEffect->SetProjection(light.projection);
 		// エフェクトの設定
 		m_basicEffect->Apply(ctx);
 
@@ -202,7 +209,26 @@ void PrimitiveRenderer::RenderShadowMap(GameCamera& camera)
 				// ブレンドステートの設定
 				ctx->OMSetBlendState(commonStates.AlphaBlend(), nullptr, 0xffffffff);
 				// ラスタライザステートを設定
-				ctx->RSSetState(commonStates.CullClockwise());
+				ctx->RSSetState(commonStates.CullCounterClockwise());
+
+				// Note that starting with the second frame, the previous call will display
+				// warnings in VS debug output about forcing an unbind of the pixel shader
+				// resource. This warning can be safely ignored when using shadow buffers
+				// as demonstrated in this sample.
+
+				// 定数バッファ更新
+				ConstBuffer cbuff;
+				cbuff.WorldViewProj2 = (camera.view * camera.projection).Transpose();
+				cbuff.LightViewProj = (light.view * light.projection).Transpose();
+				cbuff.LightPosition = light.position;
+
+				// 定数バッファの内容更新
+				ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
+
+				// 定数バッファ反映
+				ID3D11Buffer* cb[1] = { m_CBuffer.Get() };
+				ctx->VSSetConstantBuffers(1, 1, cb);
+				ctx->PSSetConstantBuffers(1, 1, cb);
 
 				// In some configurations, it's possible to avoid setting a pixel shader
 				// (or set PS to nullptr). Not all drivers are tolerant of this, so to be
@@ -211,7 +237,7 @@ void PrimitiveRenderer::RenderShadowMap(GameCamera& camera)
 				// Direct3D will discard output from this shader because the render target
 				// view is unbound.
 				ctx->VSSetShader(m_ShadowVertexShader.Get(), nullptr, 0);
-				ctx->PSSetShader(nullptr/*m_ShadowPixelShader.Get()*/, nullptr, 0);
+				ctx->PSSetShader(m_ShadowPixelShader.Get(), nullptr, 0);
 			});
 	}
 }

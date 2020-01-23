@@ -25,11 +25,11 @@
             0
         ],
         "destroyed": [
-            2097170,
-            1048584,
-            1048581,
+            1048578,
             1048602,
-            1048578
+            1048581,
+            1048584,
+            2097170
         ]
     },
     "tags": {
@@ -48,7 +48,7 @@
                     "isStatic": false,
                     "localPosition": {
                         "x": -10.5,
-                        "y": 18.700000762939454,
+                        "y": 12.699999809265137,
                         "z": 3.0999999046325685
                     },
                     "localRotation": {
@@ -673,7 +673,12 @@
                 }
             }
         ],
-        "SphereCollider": [],
+        "SphereCollider": [
+            {
+                "id": 0,
+                "component": {}
+            }
+        ],
         "BoxCollider": [
             {
                 "id": 10,
@@ -712,12 +717,7 @@
                 "component": {}
             }
         ],
-        "CapsuleCollider": [
-            {
-                "id": 0,
-                "component": {}
-            }
-        ],
+        "CapsuleCollider": [],
         "PlaneCollider": [
             {
                 "id": 7,
@@ -730,7 +730,7 @@
             {
                 "id": 0,
                 "component": {
-                    "model": "Cylinder",
+                    "model": "Teapot",
                     "texture": "Resources/Textures/Title/Background.png",
                     "lighting": true,
                     "cullfront": false,

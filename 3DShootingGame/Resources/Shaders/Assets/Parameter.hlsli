@@ -21,10 +21,13 @@ cbuffer Parameters : register(b0)
 
 cbuffer ConstBuffer	: register(b1)
 {
+    float4x4 WorldViewProj2;
+    float4x4 LightViewProj;
+    float3 LightPosition;
+    float Padding;
+};
+
+cbuffer ConstBuffer	: register(b2)
+{
 	float4 Time;
-    float4x4 LightModel;
-    float4x4 LightView;
-    float4x4 LightProjection;
-    float4 LightPosition;
-    float4 AmbientColor;
 };

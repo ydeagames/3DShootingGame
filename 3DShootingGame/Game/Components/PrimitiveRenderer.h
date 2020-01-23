@@ -61,13 +61,23 @@ public:
 public:
 	struct ConstBuffer
 	{
-		DirectX::SimpleMath::Vector4 Time;
-		DirectX::SimpleMath::Matrix LightModel;
-		DirectX::SimpleMath::Matrix LightView;
-		DirectX::SimpleMath::Matrix LightProjection;
-		DirectX::SimpleMath::Vector4 LightPosition;
-		DirectX::SimpleMath::Vector4 AmbientColor;
+		DirectX::SimpleMath::Matrix WorldViewProj2;
+		DirectX::SimpleMath::Matrix LightViewProj;
+		DirectX::SimpleMath::Vector3 LightPosition;
+		float Padding;
 	};
+
+	class Light
+	{
+	public:
+		// ビュー行列
+		DirectX::SimpleMath::Matrix view;
+		// プロジェクション行列
+		DirectX::SimpleMath::Matrix projection;
+		// 位置
+		DirectX::SimpleMath::Vector3 position;
+	};
+	Light light;
 
 private:
 	// エフェクト
