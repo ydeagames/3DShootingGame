@@ -2,7 +2,7 @@
 #include "Structures.fxh"
 #include "Shade.hlsli"
 
-Texture2D shadowMap : register(t1);
+Texture2D shadowMap : register(t2);
 SamplerComparisonState	shadowSampler	: register(s8);
 
 float3 DplusS(float3 N, float3 L, float NdotL, float3 view)
@@ -26,7 +26,7 @@ float3 DplusS(float3 N, float3 L, float NdotL, float3 view)
     return (diffuse + specular);
 }
 
-float4 PSBasic(VSOutputShadow input) : SV_TARGET
+float4 PSBasicTx(VSOutputShadowTx input) : SV_TARGET
 {
     // Compute texture coordinates for the current point's location on the shadow map.
     float2 shadowTexCoords;

@@ -66,12 +66,12 @@ void PrimitiveRenderer::RenderStart()
 		{
 			// コンパイルされたシェーダファイルを読み込み
 			BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowVS.cso");
-			BinaryFile VsTxData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowTxVS.cso");
+			BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/ShadowPS.cso");
 
 			// 頂点シェーダ作成
 			DX::ThrowIfFailed(dr.GetD3DDevice()->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_ShadowVertexShader.ReleaseAndGetAddressOf()));
 			// ピクセルシェーダ作成
-			DX::ThrowIfFailed(dr.GetD3DDevice()->CreateVertexShader(VsTxData.GetData(), VsTxData.GetSize(), NULL, m_ShadowVertexTxShader.ReleaseAndGetAddressOf()));
+			DX::ThrowIfFailed(dr.GetD3DDevice()->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_ShadowPixelShader.ReleaseAndGetAddressOf()));
 		}
 		{
 			// コンパイルされたシェーダファイルを読み込み
@@ -115,6 +115,7 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 		if (textureEnabled)
 			m_basicEffect->SetTexture(m_texture.Get());
 
+		
 		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get(),
 			false, false,
 			[&]()
@@ -150,7 +151,7 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 
 				// シャドーマップ
 				auto shadowTexture = dr.GetShadowMapShaderResourceView();
-				ctx->PSSetShaderResources(2, 1, &shadowTexture);
+				ctx->PSSetShaderResources(1, 1, &shadowTexture);
 
 				// 定数バッファの内容更新
 				ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
@@ -166,8 +167,11 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 				//
 				// Direct3D will discard output from this shader because the render target
 				// view is unbound.
-				ctx->VSSetShader(m_ShadeVertexShader.Get(), nullptr, 0);
-				ctx->PSSetShader(m_ShadePixelShader.Get(), nullptr, 0);
+				if (lighting)
+				{
+					ctx->VSSetShader(m_ShadeVertexShader.Get(), nullptr, 0);
+					ctx->PSSetShader(m_ShadePixelShader.Get(), nullptr, 0);
+				}
 			});
 	}
 }
@@ -189,9 +193,6 @@ void PrimitiveRenderer::RenderShadowMap(GameCamera& camera)
 		// エフェクトの設定
 		m_basicEffect->Apply(ctx);
 
-		if (textureEnabled)
-			m_basicEffect->SetTexture(m_texture.Get());
-
 		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get(),
 			false, false,
 			[&]()
@@ -209,8 +210,8 @@ void PrimitiveRenderer::RenderShadowMap(GameCamera& camera)
 				//
 				// Direct3D will discard output from this shader because the render target
 				// view is unbound.
-				ctx->VSSetShader(/*textureEnabled ? m_ShadowVertexTxShader.Get() : */m_ShadowVertexShader.Get(), nullptr, 0);
-				ctx->PSSetShader(nullptr, nullptr, 0);
+				ctx->VSSetShader(m_ShadowVertexShader.Get(), nullptr, 0);
+				ctx->PSSetShader(nullptr/*m_ShadowPixelShader.Get()*/, nullptr, 0);
 			});
 	}
 }

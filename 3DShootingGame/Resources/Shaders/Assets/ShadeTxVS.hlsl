@@ -4,9 +4,9 @@
 #include "Shade.hlsli"
 #include "Lighting.fxh"
 
-VSOutputShadow VSBasicVc(VSInputNm vin)
+VSOutputShadowTx VSBasicVc(VSInputNmTx vin)
 {
-	VSOutputShadow vout;
+	VSOutputShadowTx vout;
 
 	CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 3);
 	SetCommonVSOutputParams;
@@ -26,7 +26,7 @@ VSOutputShadow VSBasicVc(VSInputNm vin)
 	vout.Normal = norm.xyz;
 
 	// Pass through the color and texture coordinates without modification.
-	//vout.TexCoord = vin.TexCoord;
+	vout.TexCoord = vin.TexCoord;
 
 	return vout;
 }

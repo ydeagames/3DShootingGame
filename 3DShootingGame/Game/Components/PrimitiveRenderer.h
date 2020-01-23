@@ -85,7 +85,7 @@ private:
 	// 頂点シェーダ
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_ShadowVertexShader;
 	// ピクセルシェーダ
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_ShadowVertexTxShader;
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_ShadowPixelShader;
 	// 頂点シェーダ
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_ShadeVertexShader;
 	// ピクセルシェーダ
