@@ -1,6 +1,8 @@
 {
     "entities": {
         "created": [
+            3,
+            2,
             1,
             0
         ],
@@ -56,6 +58,54 @@
                         "z": 1.0
                     }
                 }
+            },
+            {
+                "id": 2,
+                "component": {
+                    "name": "Title",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": -0.8999999761581421
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "component": {
+                    "name": "ShaderArt",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
             }
         ],
         "PhysXScene": [],
@@ -69,7 +119,16 @@
         "PrimitiveRenderer": [],
         "ModelRenderer": [],
         "CameraComponent": [],
-        "Background": [],
+        "Background": [
+            {
+                "id": 2,
+                "component": {
+                    "texture": "Resources/Textures/Title/Title.png",
+                    "fullScreen": true,
+                    "uiSpace": true
+                }
+            }
+        ],
         "TitleMenu": [
             {
                 "id": 0,
@@ -102,14 +161,7 @@
         "TrackingFollower": [],
         "RainbowEffect": [],
         "Goal": [],
-        "ShaderArt": [
-            {
-                "id": 0,
-                "component": {
-                    "time": 0.0
-                }
-            }
-        ],
+        "ShaderArt": [],
         "BubbleEffect": [],
         "ShootGauge": [],
         "AudioSource": []
