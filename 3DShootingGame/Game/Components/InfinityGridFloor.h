@@ -34,7 +34,7 @@ public:
 	DirectX::SimpleMath::Vector2 size = DirectX::SimpleMath::Vector2(200, 200);
 
 	// 色
-	DirectX::XMVECTOR color = DirectX::Colors::Gray;
+	DirectX::SimpleMath::Color color = DirectX::Colors::Gray;
 
 public:
 	// 描画初期化

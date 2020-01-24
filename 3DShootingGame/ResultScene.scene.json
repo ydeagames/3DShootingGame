@@ -1,6 +1,7 @@
 {
     "entities": {
         "created": [
+            2,
             1,
             0
         ],
@@ -56,6 +57,30 @@
                         "z": 1.0
                     }
                 }
+            },
+            {
+                "id": 2,
+                "component": {
+                    "name": "Back",
+                    "parent": 0,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 2.0,
+                        "y": 2.0,
+                        "z": 2.0
+                    }
+                }
             }
         ],
         "PhysXScene": [],
@@ -64,6 +89,8 @@
         "BoxCollider": [],
         "CapsuleCollider": [],
         "PlaneCollider": [],
+        "SceneTransitions::FadeTransition": [],
+        "SceneTransitions::RuleTransition": [],
         "PrimitiveRenderer": [],
         "ModelRenderer": [],
         "CameraComponent": [],
@@ -71,7 +98,9 @@
             {
                 "id": 0,
                 "component": {
-                    "texture": "Resources/Textures/Title/Background.png"
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "fullScreen": true,
+                    "uiSpace": true
                 }
             }
         ],
@@ -83,6 +112,7 @@
                 "component": {}
             }
         ],
+        "PauseMenu": [],
         "FPSCamera": [],
         "InfinityGridFloor": [],
         "FontRenderer": [
@@ -92,10 +122,10 @@
                     "fontName": "Resources/Fonts/logofont.spritefont",
                     "text": "Game Clear",
                     "color": {
-                        "r": 0.33061283826828005,
-                        "g": 1.0,
-                        "b": 0.05699479579925537,
-                        "a": 1.0
+                        "x": 0.33061283826828005,
+                        "y": 1.0,
+                        "z": 0.05699479579925537,
+                        "w": 1.0
                     }
                 }
             }
@@ -105,6 +135,17 @@
         "RotateFollower": [],
         "TrackingFollower": [],
         "RainbowEffect": [],
-        "Goal": []
+        "Goal": [],
+        "ShaderArt": [
+            {
+                "id": 2,
+                "component": {
+                    "time": 0.0
+                }
+            }
+        ],
+        "BubbleEffect": [],
+        "ShootGauge": [],
+        "AudioSource": []
     }
 }

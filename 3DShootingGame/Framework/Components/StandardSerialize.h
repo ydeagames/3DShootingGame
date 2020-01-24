@@ -34,17 +34,9 @@ namespace DirectX
 		// Color: x, y, z, w
 		template<typename Archive>
 		void serialize(Archive& archive, Color& color) {
-			archive(cereal::make_nvp("r", color.x), cereal::make_nvp("g", color.y), cereal::make_nvp("b", color.z), cereal::make_nvp("a", color.w));
+			archive(cereal::make_nvp("x", color.x), cereal::make_nvp("y", color.y), cereal::make_nvp("z", color.z), cereal::make_nvp("w", color.w));
 		}
 	}
-}
-
-// XMVector(Vector4)
-template<typename Archive>
-void serialize(Archive& archive, __m128& vector) {
-	auto smath = DirectX::SimpleMath::Vector4(vector);
-	DirectX::SimpleMath::serialize(archive, smath);
-	vector = smath;
 }
 
 // PhysXシリアライズ

@@ -25,11 +25,11 @@
             0
         ],
         "destroyed": [
-            2097170,
-            1048584,
-            1048581,
+            1048578,
             1048602,
-            1048578
+            1048581,
+            1048584,
+            2097170
         ]
     },
     "tags": {
@@ -673,7 +673,12 @@
                 }
             }
         ],
-        "SphereCollider": [],
+        "SphereCollider": [
+            {
+                "id": 0,
+                "component": {}
+            }
+        ],
         "BoxCollider": [
             {
                 "id": 10,
@@ -712,12 +717,7 @@
                 "component": {}
             }
         ],
-        "CapsuleCollider": [
-            {
-                "id": 0,
-                "component": {}
-            }
-        ],
+        "CapsuleCollider": [],
         "PlaneCollider": [
             {
                 "id": 7,
@@ -730,7 +730,7 @@
             {
                 "id": 0,
                 "component": {
-                    "model": "Cylinder",
+                    "model": "Teapot",
                     "texture": "Resources/Textures/Title/Background.png",
                     "lighting": true,
                     "cullfront": false,
@@ -901,93 +901,17 @@
                 }
             }
         ],
-        "InfinityGridFloor": [
-            {
-                "id": 3,
-                "component": {
-                    "cellsize": 2.0,
-                    "size": {
-                        "x": 200.0,
-                        "y": 200.0
-                    },
-                    "color": {
-                        "x": 0.501960813999176,
-                        "y": 0.501960813999176,
-                        "z": 0.501960813999176,
-                        "w": 1.0
-                    }
-                }
-            }
-        ],
+        "InfinityGridFloor": [],
         "FontRenderer": [],
-        "PlayerController": [
-            {
-                "id": 0,
-                "component": {
-                    "power": 1500.0,
-                    "sensitivity": 0.009999999776482582,
-                    "stopSpeed": 1.0,
-                    "lineGravity": -0.9800000190734863,
-                    "lineCount": 12,
-                    "lineCountDiv": 1,
-                    "linePowerScale": 5.0
-                }
-            }
-        ],
-        "TranslateFollower": [
-            {
-                "id": 15,
-                "component": {
-                    "movePercent": 0.5,
-                    "target": 0
-                }
-            }
-        ],
+        "PlayerController": [],
+        "TranslateFollower": [],
         "RotateFollower": [],
         "TrackingFollower": [],
-        "RainbowEffect": [
-            {
-                "id": 1048585,
-                "component": {
-                    "seed": 0,
-                    "isColorful": true,
-                    "color": {
-                        "r": 0.501960813999176,
-                        "g": 0.501960813999176,
-                        "b": 0.501960813999176,
-                        "a": 1.0
-                    }
-                }
-            }
-        ],
-        "Goal": [
-            {
-                "id": 1048585,
-                "component": {
-                    "target": 0
-                }
-            }
-        ],
+        "RainbowEffect": [],
+        "Goal": [],
         "ShaderArt": [],
         "BubbleEffect": [],
         "ShootGauge": [],
-        "AudioSource": [
-            {
-                "id": 0,
-                "component": {
-                    "audioClip": "Resources/Audio/Shot.mp3",
-                    "playOnAwake": false,
-                    "loop": false
-                }
-            },
-            {
-                "id": 16,
-                "component": {
-                    "audioClip": "Resources/Audio/BGM.mp3",
-                    "playOnAwake": true,
-                    "loop": true
-                }
-            }
-        ]
+        "AudioSource": []
     }
 }

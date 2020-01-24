@@ -82,6 +82,6 @@ void InfinityGridFloor::EditorGui()
 {
 	ImGui::DragFloat("Cell Size", &cellsize);
 	ImGui::DragFloat2("Size", &size.x);
-	ImGui::ColorEdit4("Color", color.m128_f32);
+	ImGui::ColorEdit4("Color", &color.x);
 }
 
