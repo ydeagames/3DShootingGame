@@ -572,6 +572,7 @@
     <ClInclude Include="Framework\ImGui\WidgetDND.h" />
     <ClInclude Include="Framework\Physics\Collidable.h" />
     <ClInclude Include="Framework\FMOD\SoundSystem.h" />
+    <ClInclude Include="Framework\Shadow\ShadowMap.h" />
     <ClInclude Include="Framework\StandardBuildSettings.h" />
     <ClInclude Include="Framework\Tags\Tags.h" />
     <ClInclude Include="Game\Components\AudioSource.h" />
@@ -622,6 +623,7 @@
     <ClInclude Include="Game\Tags\AllTags.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
     <ClInclude Include="Utilities\StringCast.h" />
+    <ClInclude Include="Utilities\wavefrontobj.h" />
     <ClInclude Include="Utilities\WindowsUtils.h" />
     <ClInclude Include="Game\BuildSettings.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -657,6 +659,7 @@
     <ClCompile Include="Framework\Context\ApplicationHandler.cpp" />
     <ClCompile Include="Framework\ImGui\WidgetDND.cpp" />
     <ClCompile Include="Framework\FMOD\SoundSystem.cpp" />
+    <ClCompile Include="Framework\Shadow\ShadowMap.cpp" />
     <ClCompile Include="Game\Components\AudioSource.cpp" />
     <ClCompile Include="Game\Components\Background.cpp" />
     <ClCompile Include="Game\Components\BubbleEffect.cpp" />
@@ -695,6 +698,7 @@
     <ClCompile Include="Game\Components\ShaderArt.cpp" />
     <ClCompile Include="Game\Components\ShootGauge.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
+    <ClCompile Include="Utilities\wavefrontobj.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\Components\InfinityGridFloor.cpp" />
     <ClCompile Include="Framework\ImGui\ImGuiStyles.cpp" />

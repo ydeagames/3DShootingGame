@@ -20,9 +20,9 @@ SamplerState smpBorder : register(s1);
 
 // 頂点シェーダの入力データ定義
 struct VS_INPUT {
-    float3 Pos  : POSITION;  // 頂点座標(モデル座標系)
+    float3 Pos  : SV_Position;  // 頂点座標(モデル座標系)
     float3 Norm : NORMAL;    // 法線ベクトル(モデル座標系)
-    float2 Tex  : TEXTURE;   // テクスチャ座標
+    float2 Tex  : TEXCOORD;   // テクスチャ座標
 };
 
 // ピクセル シェーダの入力データ定義

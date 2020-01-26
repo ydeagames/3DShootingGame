@@ -92,6 +92,9 @@
     <Filter Include="Framework\FMOD">
       <UniqueIdentifier>{d7cf42c8-2c2c-41b8-9e24-3b4cf1e5e6b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Shadow">
+      <UniqueIdentifier>{16d489f0-3704-48fb-9c4b-762f43427600}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -1334,6 +1337,12 @@
     <ClInclude Include="Game\Components\AudioSource.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Shadow\ShadowMap.h">
+      <Filter>Framework\Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\wavefrontobj.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -1485,7 +1494,15 @@
     <ClCompile Include="Framework\FMOD\SoundSystem.cpp">
       <Filter>Framework\FMOD</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Components\AudioSource.cpp" />
+    <ClCompile Include="Framework\Shadow\ShadowMap.cpp">
+      <Filter>Framework\Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\AudioSource.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\wavefrontobj.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc">
