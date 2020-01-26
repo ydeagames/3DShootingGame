@@ -16,6 +16,7 @@
 #include <Utilities/Input.h>
 #include <Game/BuildSettings.h>
 #include <Framework/FMOD/SoundSystem.h>
+#include "Shadow/ShadowMap.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -169,6 +170,10 @@ void MyGame::Render(GameCamera& camera)
 
 		// GUI•`‰æƒCƒxƒ“ƒg
 		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::RenderGui(scene.registry, std::forward<GameCamera>(camera)); });
+
+		ImGui::Begin("Shadow");
+		ImGui::Image(ImTextureID(GameContext::Get<ShadowMap>().GetShadowMapSRView()), ImVec2(512, 512));
+		ImGui::End();
 
 		// Widgets
 		Widgets::AllWidgets::Render();

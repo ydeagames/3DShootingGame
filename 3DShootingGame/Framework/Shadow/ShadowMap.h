@@ -71,6 +71,9 @@ private:
 	CWavefrontObj       g_wfObjKuma;
 	CWavefrontMtl       g_wfMtl;     // マテリアル
 
+public:
+	ID3D11ShaderResourceView* GetShadowMapSRView() const { return g_pShadowMapSRView.Get(); };
+
 private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> modelTexture;
 	std::vector<DirectX::VertexPositionNormalTexture> modelVertices;

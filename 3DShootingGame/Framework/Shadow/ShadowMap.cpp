@@ -459,8 +459,7 @@ void ShadowMap::Render(GameCamera& camera)
 		20.0f);						// 後方投影面までの距離
 	g_cbCBuffer.Projection = matProj.Transpose();
 	// 点光源座標
-	XMVECTOR vec = XMVector3TransformCoord(XMLoadFloat3(&g_vLightPos), matView);
-	XMStoreFloat3(&g_cbCBuffer.Light, vec);
+	g_cbCBuffer.Light = Vector3::Transform(g_vLightPos, matView);
 
 	//// ***************************************
 	//// 描画ターゲットのクリア
