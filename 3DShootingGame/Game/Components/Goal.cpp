@@ -6,6 +6,7 @@
 #include <Framework/Physics/Rigidbody.h>
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Context/SceneManager.h>
+#include "Framework/SceneManagement/SceneTransitions.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -27,7 +28,11 @@ void Goal::Update()
 			BoundingBox boundsTarget(transformTarget.position, transformTarget.localScale);
 
 			if (bounds.Intersects(boundsTarget))
-				GameContext::Get<SceneManager>().LoadScene(SceneInfo::CreateFromName("ResultScene"));
+				if (!m_goaled)
+				{
+					m_goaled = true;
+					GameContext::Get<SceneManager>().LoadSceneTransition(SceneInfo::CreateFromName("ResultScene"), SceneTransitions::CreateRuleTransition(3));
+				}
 		}
 	}
 }

@@ -19,6 +19,9 @@ public:
 	// 追尾ターゲット
 	entt::entity target = entt::null;
 
+private:
+	bool m_goaled = false;
+
 public:
 	void Start();
 	void Update();

@@ -7,6 +7,7 @@
 #include <Framework/Physics/Rigidbody.h>
 #include <Utilities/Math3DUtils.h>
 #include "AudioSource.h"
+#include "Framework/Context/WindowHandler.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -51,23 +52,25 @@ void PlayerController::Update()
 
 					m_endDrag = Input::GetMousePosition();
 					auto drag = m_endDrag - m_beginDrag;
-					drag = Vector3::Transform(drag,
+					auto vec = Vector3::Transform(drag,
 						Matrix::CreateRotationX(XM_PIDIV2) *
 						Matrix::CreateFromQuaternion(m_camera->GetRotation()) *
 						Matrix::CreateRotationY(XM_PI));
-					drag.y = 0;
-					drag.Normalize();
-					drag.y = drag.Length();
-					drag.Normalize();
+					vec.y = 0;
+					vec.Normalize();
+					vec.y = drag.Length() / (GameContext::Get<WindowHandler>().GetSize().y / 2);
+					vec.Normalize();
 
-					if (drag.LengthSquared() > 0)
-						transform.rotation = Math3DUtils::LookAt(Vector3::Zero, drag);
+					if (drag.LengthSquared() > .25f)
+						transform.rotation = Math3DUtils::LookAt(Vector3::Zero, vec);
 					rigid.Apply();
 				}
 				if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
 				{
 					m_dragging = false;
-					powerTime = 0;
+					auto drag = m_endDrag - m_beginDrag;
+					if (drag.LengthSquared() > .25f)
+						powerTime = 0;
 				}
 			}
 			else
@@ -88,7 +91,7 @@ void PlayerController::Update()
 						gameObject.GetComponent<AudioSource>().Play();
 				}
 				powerTime += float(GameContext::Get<DX::StepTimer>().GetElapsedSeconds()) * speed;
-				percent = 1 - std::abs(std::sin(powerTime * 2));
+				percent = 1 - std::abs(std::cos(powerTime * 2));
 			}
 		}
 	}
@@ -173,7 +176,7 @@ void PlayerController::Render(GameCamera& camera)
 
 void PlayerController::RenderGui(GameCamera& camera)
 {
-	if (m_dragging)
+	if (m_dragging && Vector3::DistanceSquared(m_beginDrag, m_endDrag) > .25f)
 	{
 		m_spriteBatch->Begin(SpriteSortMode_Deferred, GameContext::Get<CommonStates>().NonPremultiplied());
 
