@@ -54,7 +54,7 @@ void ShadowMap::CreateShaderObj()
 	D3D11_RASTERIZER_DESC RSDesc;
 	RSDesc.FillMode = D3D11_FILL_SOLID;   // 普通に描画する
 	RSDesc.CullMode = D3D11_CULL_BACK;    // 表面を描画する
-	RSDesc.FrontCounterClockwise = FALSE; // 時計回りが表面
+	RSDesc.FrontCounterClockwise = TRUE; // 時計回りが表面
 	RSDesc.DepthBias = 0;
 	RSDesc.DepthBiasClamp = 0;
 	RSDesc.SlopeScaledDepthBias = 0;
@@ -84,7 +84,7 @@ void ShadowMap::CreateShaderShadow()
 	D3D11_RASTERIZER_DESC RSDesc;
 	RSDesc.FillMode = D3D11_FILL_SOLID;   // 普通に描画する
 	RSDesc.CullMode = D3D11_CULL_FRONT;   // 表面を描画する
-	RSDesc.FrontCounterClockwise = FALSE; // 時計回りが表面
+	RSDesc.FrontCounterClockwise = TRUE; // 時計回りが表面
 	RSDesc.DepthBias = 0;
 	RSDesc.DepthBiasClamp = 0;
 	RSDesc.SlopeScaledDepthBias = 0;
@@ -400,11 +400,11 @@ void ShadowMap::Render(GameCamera& camera)
 		// ビュー変換行列(光源から見る)
 		XMVECTORF32 focusPosition = { 0.0f, 0.0f,  0.0f };  // 注視点
 		XMVECTORF32 upDirection = { 0.0f, 1.0f,  0.0f };  // カメラの上方向
-		XMMATRIX matShadowMapView = XMMatrixLookAtLH(XMLoadFloat3(&g_vLightPos), focusPosition, upDirection);
+		XMMATRIX matShadowMapView = XMMatrixLookAtRH(XMLoadFloat3(&g_vLightPos), focusPosition, upDirection);
 		XMStoreFloat4x4(&g_cbCBuffer.View, XMMatrixTranspose(matShadowMapView));
 
 		// 射影変換行列(パースペクティブ(透視法)射影)
-		XMMATRIX matShadowMapProj = XMMatrixPerspectiveFovLH(
+		XMMATRIX matShadowMapProj = XMMatrixPerspectiveFovRH(
 			XMConvertToRadians(45.0f),		// 視野角45°
 			g_ViewPortShadowMap[0].Width / g_ViewPortShadowMap[0].Height,	// アスペクト比
 			1.0f,							// 前方投影面までの距離
@@ -434,8 +434,8 @@ void ShadowMap::Render(GameCamera& camera)
 		RenderObj(true);
 
 		// シャドウマップの設定
-		XMMATRIX mat = XMMatrixTranspose(matWorld * matShadowMapView * matShadowMapProj);
-		XMStoreFloat4x4(&g_cbCBuffer.SMWorldViewProj, mat);
+		XMMATRIX mat = XMMatrixTranspose(matShadowMapView * matShadowMapProj);
+		XMStoreFloat4x4(&g_cbCBuffer.SMViewProj, mat);
 	}
 
 	// ***************************************
@@ -449,17 +449,19 @@ void ShadowMap::Render(GameCamera& camera)
 	Vector4 eyePosition = { 0.0f, g_fEye, -g_fEye, 1.0f };  // 視点(カメラの位置)
 	Vector4 focusPosition = { 0.0f, 0.0f,  0.0f, 1.0f };  // 注視点
 	Vector4 upDirection = { 0.0f, 1.0f,  0.0f, 1.0f };  // カメラの上方向
-	Matrix matView = XMMatrixLookAtLH(eyePosition, focusPosition, upDirection);
+	Matrix matView = XMMatrixLookAtRH(eyePosition, focusPosition, upDirection);
 	g_cbCBuffer.View = matView.Transpose();
 	// 射影変換行列(パースペクティブ(透視法)射影)
-	Matrix matProj = XMMatrixPerspectiveFovLH(
+	Matrix matProj = XMMatrixPerspectiveFovRH(
 		XMConvertToRadians(30.0f),		// 視野角30°
 		g_ViewPort[0].Width / g_ViewPort[0].Height,	// アスペクト比
 		1.0f,							// 前方投影面までの距離
 		20.0f);						// 後方投影面までの距離
 	g_cbCBuffer.Projection = matProj.Transpose();
 	// 点光源座標
-	g_cbCBuffer.Light = Vector3::Transform(g_vLightPos, matView);
+	g_cbCBuffer.Light = g_vLightPos;
+	g_cbCBuffer.Light = Vector3::Transform(g_cbCBuffer.Light, matView);
+	// g_cbCBuffer.Light = Vector3::Transform(g_cbCBuffer.Light, matProj);
 
 	//// ***************************************
 	//// 描画ターゲットのクリア

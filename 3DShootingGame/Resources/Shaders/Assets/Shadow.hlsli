@@ -1,9 +1,9 @@
 matrix World;           // ワールド変換行列
 matrix View;            // ビュー変換行列
 matrix Projection;      // 透視変換行列
-matrix SMWorldViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
+matrix SMViewProj;      // ワールド×ビュー×透視変換行列(シャドウマップ用)
 float4 Diffuse;         // ディフューズ色
-float3 Light;           // 光源座標(ビュー座標系)
+float3 Light;           // 光源座標(透視座標系)
 
 
 // テクスチャ
@@ -43,7 +43,8 @@ PS_INPUT VS(VS_INPUT input) {
     pos4 = mul(pos4, World);
     pos4 = mul(pos4, View);
     output.PosView = pos4.xyz / pos4.w;
-    output.Pos = mul(pos4, Projection);
+	pos4 = mul(pos4, Projection);
+	output.Pos = pos4;
 
     // 法線ベクトル　モデル座標系→ビュー座標系
     float3 Norm = mul(input.Norm, (float3x3)World);
@@ -53,7 +54,9 @@ PS_INPUT VS(VS_INPUT input) {
     output.Tex = input.Tex;
 
     // 頂点座標　モデル座標系→透視座標系(シャドウマップ)
-    pos4 = mul(float4(input.Pos, 1.0), SMWorldViewProj);
+    pos4 = float4(input.Pos, 1.0);
+    pos4 = mul(pos4, World);
+    pos4 = mul(pos4, SMViewProj);
     pos4.xyz = pos4.xyz / pos4.w;
     output.PosSM.x = (pos4.x + 1.0) / 2.0;
     output.PosSM.y = (-pos4.y + 1.0) / 2.0;

@@ -58,7 +58,7 @@ private:
 		DirectX::SimpleMath::Matrix World;		// ワールド変換行列
 		DirectX::SimpleMath::Matrix View;		// ビュー変換行列
 		DirectX::SimpleMath::Matrix Projection;	// 透視変換行列
-		DirectX::SimpleMath::Matrix SMWorldViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
+		DirectX::SimpleMath::Matrix SMViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
 		DirectX::SimpleMath::Vector4   Diffuse;		// ディフューズ色
 		DirectX::SimpleMath::Vector3   Light;		// 光源座標(ワールド座標系)
 		float      dummy;		// ダミー
