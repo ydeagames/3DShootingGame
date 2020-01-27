@@ -1,6 +1,9 @@
 {
     "entities": {
         "created": [
+            6,
+            5,
+            4,
             3,
             2,
             1,
@@ -29,9 +32,9 @@
                         "w": 1.0
                     },
                     "localScale": {
-                        "x": 2.0,
-                        "y": 2.0,
-                        "z": 2.0
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
                     }
                 }
             },
@@ -62,13 +65,13 @@
             {
                 "id": 2,
                 "component": {
-                    "name": "Title",
+                    "name": "Test",
                     "parent": 4294967295,
                     "isStatic": false,
                     "localPosition": {
                         "x": 0.0,
                         "y": 0.0,
-                        "z": -0.8999999761581421
+                        "z": 0.0
                     },
                     "localRotation": {
                         "x": 0.0,
@@ -77,17 +80,17 @@
                         "w": 1.0
                     },
                     "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
+                        "x": 2.0,
+                        "y": 2.0,
+                        "z": 2.0
                     }
                 }
             },
             {
                 "id": 3,
                 "component": {
-                    "name": "ShaderArt",
-                    "parent": 4294967295,
+                    "name": "Shape1",
+                    "parent": 0,
                     "isStatic": false,
                     "localPosition": {
                         "x": 0.0,
@@ -106,6 +109,78 @@
                         "z": 1.0
                     }
                 }
+            },
+            {
+                "id": 4,
+                "component": {
+                    "name": "Shape2",
+                    "parent": 0,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 5,
+                "component": {
+                    "name": "Shape3",
+                    "parent": 0,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 6,
+                "component": {
+                    "name": "Title",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 2.0,
+                        "y": 2.0,
+                        "z": 2.0
+                    }
+                }
             }
         ],
         "PhysXScene": [],
@@ -121,9 +196,9 @@
         "CameraComponent": [],
         "Background": [
             {
-                "id": 2,
+                "id": 0,
                 "component": {
-                    "texture": "Resources/Textures/Title/Title.png",
+                    "texture": "Resources/Textures/Title/Background.png",
                     "fullScreen": true,
                     "uiSpace": true
                 }
@@ -161,9 +236,52 @@
         "TrackingFollower": [],
         "RainbowEffect": [],
         "Goal": [],
-        "ShaderArt": [],
-        "BubbleEffect": [],
-        "ShootGauge": [],
+        "ShaderArt": [
+            {
+                "id": 2,
+                "component": {
+                    "time": 85.28754425048828
+                }
+            }
+        ],
+        "BubbleEffect": [
+            {
+                "id": 3,
+                "component": {
+                    "texture": "Resources/Textures/Title/Back/Shape1.png",
+                    "time": 84.35758209228516,
+                    "count": 12,
+                    "seed": 173
+                }
+            },
+            {
+                "id": 4,
+                "component": {
+                    "texture": "Resources/Textures/Title/Back/Shape2.png",
+                    "time": 84.35758209228516,
+                    "count": 12,
+                    "seed": 235
+                }
+            },
+            {
+                "id": 5,
+                "component": {
+                    "texture": "Resources/Textures/Title/Back/Shape3.png",
+                    "time": 84.35758209228516,
+                    "count": 12,
+                    "seed": 837
+                }
+            }
+        ],
+        "ShootGauge": [
+            {
+                "id": 6,
+                "component": {
+                    "texture": "Resources/Textures/Title/Title.png",
+                    "player": 0
+                }
+            }
+        ],
         "AudioSource": []
     }
 }

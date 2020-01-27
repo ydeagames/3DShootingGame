@@ -5,6 +5,8 @@
 #include <Framework/Context/GameCamera.h>
 #include "Utilities/StringCast.h"
 #include "Utilities/MathUtils.h"
+#include "Framework/ImGui/WidgetDND.h"
+#include "PlayerController.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -13,6 +15,24 @@ void ShootGauge::Update()
 {
 	time += float(GameContext::Get<DX::StepTimer>().GetElapsedSeconds()) * speed;
 	percent = 1 - std::abs(std::sin(time * 2));
+	if (gameObject.registry->valid(player))
+	{
+		auto playerObj = gameObject.Wrap(player);
+		if (playerObj.HasComponent<PlayerController>())
+		{
+			auto& playerCtrl = playerObj.GetComponent<PlayerController>();
+			if (playerCtrl.powerTime > 0)
+			{
+				time = playerCtrl.powerTime;
+				percent = playerCtrl.percent;
+			}
+			else
+			{
+				time = 0;
+				percent = 0;
+			}
+		}
+	}
 }
 
 void ShootGauge::RenderStart()
@@ -92,4 +112,27 @@ void ShootGauge::EditorGui()
 	ImGui::DragFloat("Speed", &speed, .01f);
 	ImGui::DragFloat("Time", &time, .01f);
 	ImGui::DragFloat("Percent", &percent, .01f, 0, 1);
+	{
+		auto& reg = *gameObject.registry;
+		auto& e = player;
+		int iid = (e == entt::null) ? -1 : int(reg.entity(e));
+		if (ImGui::InputInt("Player", &iid))
+			if (iid < 0)
+				e = entt::null;
+			else
+			{
+				auto id = entt::entity(iid);
+				e = id < reg.size() ? (id | reg.current(id) << entt::entt_traits<entt::entity>::entity_shift) : id;
+			}
+
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const auto* data = Widgets::WidgetDND::AcceptDragDropPayload())
+			{
+				if (data->regptr == &reg)
+					e = data->entity;
+			}
+			ImGui::EndDragDropTarget();
+		}
+	}
 }

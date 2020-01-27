@@ -37,44 +37,58 @@ void PlayerController::Update()
 		{
 			auto& transform = rigid.Fetch();
 
-			if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
+			if (powerTime < 0)
 			{
-				m_beginDrag = Input::GetMousePosition();
-				m_dragging = true;
+				if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
+				{
+					m_beginDrag = Input::GetMousePosition();
+					m_dragging = true;
+				}
+				if (m_dragging)
+				{
+					m_lastPos = transform.position;
+					m_lastRot = transform.rotation;
+
+					m_endDrag = Input::GetMousePosition();
+					auto drag = m_endDrag - m_beginDrag;
+					drag = Vector3::Transform(drag,
+						Matrix::CreateRotationX(XM_PIDIV2) *
+						Matrix::CreateFromQuaternion(m_camera->GetRotation()) *
+						Matrix::CreateRotationY(XM_PI));
+					drag.y = 0;
+					drag.Normalize();
+					drag.y = drag.Length();
+					drag.Normalize();
+
+					if (drag.LengthSquared() > 0)
+						transform.rotation = Math3DUtils::LookAt(Vector3::Zero, drag);
+					rigid.Apply();
+				}
+				if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
+				{
+					m_dragging = false;
+					powerTime = 0;
+				}
 			}
-			if (m_dragging)
+			else
 			{
-				m_lastPos = transform.position;
-				m_lastRot = transform.rotation;
+				if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
+				{
+					m_movable = false;
+					m_moving = true;
+					powerTime = -1;
+					//}
+					//if (Input::GetMouseButtonUp(Input::Buttons::MouseRight))
+					//{
 
-				m_endDrag = Input::GetMousePosition();
-				auto drag = m_endDrag - m_beginDrag;
-				drag = Vector3::Transform(drag,
-					Matrix::CreateRotationX(XM_PIDIV2) *
-					Matrix::CreateFromQuaternion(m_camera->GetRotation()) *
-					Matrix::CreateRotationY(XM_PI));
-				drag.y = 0;
-				drag.Normalize();
-				drag.y = drag.Length();
-				drag.Normalize();
+					rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power * percent);
+					rigid.Apply();
 
-				if (drag.LengthSquared() > 0)
-					transform.rotation = Math3DUtils::LookAt(Vector3::Zero, drag);
-				rigid.Apply();
-			}
-			if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
-			{
-				m_dragging = false;
-				m_movable = false;
-				m_moving = true;
-				//}
-				//if (Input::GetMouseButtonUp(Input::Buttons::MouseRight))
-				//{
-				rigid.AddForce(Vector3::Transform(Vector3::Forward, transform.rotation) * power);
-				rigid.Apply();
-
-				if (gameObject.HasComponent<AudioSource>())
-					gameObject.GetComponent<AudioSource>().Play();
+					if (gameObject.HasComponent<AudioSource>())
+						gameObject.GetComponent<AudioSource>().Play();
+				}
+				powerTime += float(GameContext::Get<DX::StepTimer>().GetElapsedSeconds()) * speed;
+				percent = 1 - std::abs(std::sin(powerTime * 2));
 			}
 		}
 	}
@@ -187,4 +201,7 @@ void PlayerController::EditorGui()
 	ImGui::DragInt("Line Count Div", &lineCountDiv);
 	lineCountDiv = std::max(1, lineCountDiv);
 	ImGui::DragFloat("Line Power Scale", &linePowerScale);
+	ImGui::DragFloat("Speed", &speed, .01f);
+	ImGui::DragFloat("Time", &powerTime, .01f);
+	ImGui::DragFloat("Percent", &percent, .01f, 0, 1);
 }

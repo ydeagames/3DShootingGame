@@ -24,6 +24,9 @@ public:
 	int lineCount = 12;
 	int lineCountDiv = 2;
 	float linePowerScale = .5f;
+	float powerTime = -1;
+	float percent = 0;
+	float speed = 1;
 
 private:
 	// エフェクト
@@ -78,6 +81,7 @@ public:
 	{
 		archive(CEREAL_OPTIONAL_NVP(power), CEREAL_OPTIONAL_NVP(sensitivity), CEREAL_OPTIONAL_NVP(stopSpeed));
 		archive(CEREAL_OPTIONAL_NVP(lineGravity), CEREAL_OPTIONAL_NVP(lineCount), CEREAL_OPTIONAL_NVP(lineCountDiv), CEREAL_OPTIONAL_NVP(linePowerScale));
+		archive(CEREAL_OPTIONAL_NVP(powerTime), CEREAL_OPTIONAL_NVP(percent), CEREAL_OPTIONAL_NVP(speed));
 	}
 
 	void EditorGui();

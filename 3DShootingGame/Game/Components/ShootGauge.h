@@ -19,6 +19,7 @@ public:
 	float time = 0;
 	float percent = 0;
 	float speed = 0;
+	entt::entity player = entt::null;
 
 private:
 	// エフェクト
@@ -42,7 +43,7 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(CEREAL_OPTIONAL_NVP(texture), CEREAL_OPTIONAL_NVP(time), CEREAL_OPTIONAL_NVP(percent), CEREAL_OPTIONAL_NVP(speed));
+		archive(CEREAL_OPTIONAL_NVP(texture), CEREAL_OPTIONAL_NVP(player));
 	}
 
 	void EditorGui();

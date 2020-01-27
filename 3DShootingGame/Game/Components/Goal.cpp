@@ -23,7 +23,7 @@ void Goal::Update()
 		{
 			auto& transform = gameObject.GetComponent<Transform>();
 			auto& transformTarget = obj.GetComponent<Transform>();
-			BoundingBox bounds(transform.position, transform.localScale);
+			BoundingBox bounds(transform.position, transform.localScale * .5f);
 			BoundingBox boundsTarget(transformTarget.position, transformTarget.localScale);
 
 			if (bounds.Intersects(boundsTarget))

@@ -1,6 +1,7 @@
 {
     "entities": {
         "created": [
+            6,
             5,
             4,
             3,
@@ -156,6 +157,30 @@
                         "z": 1.0
                     }
                 }
+            },
+            {
+                "id": 6,
+                "component": {
+                    "name": "Title",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 2.0,
+                        "y": 2.0,
+                        "z": 2.0
+                    }
+                }
             }
         ],
         "PhysXScene": [],
@@ -247,6 +272,18 @@
                     "seed": 837
                 }
             }
-        ]
+        ],
+        "ShootGauge": [
+            {
+                "id": 6,
+                "component": {
+                    "texture": "Resources/Textures/Title/Title.png",
+                    "time": 0.0,
+                    "percent": 1.0,
+                    "speed": 0.0
+                }
+            }
+        ],
+        "AudioSource": []
     }
 }

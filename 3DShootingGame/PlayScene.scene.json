@@ -6,8 +6,8 @@
             23,
             22,
             21,
-            20,
             19,
+            3145746,
             17,
             16,
             15,
@@ -17,19 +17,19 @@
             11,
             10,
             1048585,
+            1048584,
             7,
             6,
+            1048581,
             4,
             3,
             1,
             0
         ],
         "destroyed": [
-            2097170,
-            1048584,
-            1048581,
             1048602,
-            1048578
+            1048578,
+            1048596
         ]
     },
     "tags": {
@@ -455,7 +455,7 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": 116.80000305175781,
+                        "x": 112.5999984741211,
                         "y": -0.8999999761581421,
                         "z": 9.5
                     },
@@ -503,32 +503,8 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": 1.399999976158142,
+                        "x": 32.0,
                         "y": -0.800000011920929,
-                        "z": -97.5999984741211
-                    },
-                    "localRotation": {
-                        "x": -0.7071067690849304,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 0.7071067690849304
-                    },
-                    "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
-                    }
-                }
-            },
-            {
-                "id": 20,
-                "component": {
-                    "name": "City",
-                    "parent": 4294967295,
-                    "isStatic": true,
-                    "localPosition": {
-                        "x": 116.80000305175781,
-                        "y": -0.8999999761581421,
                         "z": -97.5999984741211
                     },
                     "localRotation": {
@@ -565,6 +541,78 @@
                         "x": 10.199999809265137,
                         "y": 5.699999809265137,
                         "z": 11.399999618530274
+                    }
+                }
+            },
+            {
+                "id": 3145746,
+                "component": {
+                    "name": "Gauge",
+                    "parent": 14,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": -0.6000000238418579,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 0.30000001192092898,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1048584,
+                "component": {
+                    "name": "GaugeBack",
+                    "parent": 3145746,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1048581,
+                "component": {
+                    "name": "GaugeFrame",
+                    "parent": 3145746,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
                     }
                 }
             }
@@ -858,14 +906,6 @@
                 }
             },
             {
-                "id": 20,
-                "component": {
-                    "model": "Resources/Models/city.cmo",
-                    "cullfront": false,
-                    "wireframe": false
-                }
-            },
-            {
                 "id": 17,
                 "component": {
                     "model": "Resources/Models/city.cmo",
@@ -930,7 +970,10 @@
                     "lineGravity": -0.9800000190734863,
                     "lineCount": 12,
                     "lineCountDiv": 1,
-                    "linePowerScale": 5.0
+                    "linePowerScale": 5.0,
+                    "powerTime": -1.0,
+                    "percent": 0.0,
+                    "speed": 1.0
                 }
             }
         ],
@@ -970,7 +1013,22 @@
         ],
         "ShaderArt": [],
         "BubbleEffect": [],
-        "ShootGauge": [],
+        "ShootGauge": [
+            {
+                "id": 1048584,
+                "component": {
+                    "texture": "Resources/Textures/Play/Gauge/Back.png",
+                    "player": 0
+                }
+            },
+            {
+                "id": 1048581,
+                "component": {
+                    "texture": "Resources/Textures/Play/Gauge/Front.png",
+                    "player": 0
+                }
+            }
+        ],
         "AudioSource": [
             {
                 "id": 0,
