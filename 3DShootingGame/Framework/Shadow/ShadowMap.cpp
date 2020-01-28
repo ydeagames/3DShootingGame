@@ -303,6 +303,8 @@ void ShadowMap::RenderStart()
 	modelVertices.insert(modelVertices.end(), model2Vertices.begin(), model2Vertices.end());
 	modelIndices.insert(modelIndices.end(), model2Indices.begin(), model2Indices.end());
 	// DirectX::ComputeTeapot(modelVertices, modelIndices, 1, 8, true);
+	basicEffect = std::make_unique<BasicEffect>(g_pD3DDevice);
+	basicEffect->SetLightingEnabled(true);
 }
 
 void ShadowMap::Begin()
@@ -332,6 +334,7 @@ void ShadowMap::DrawObj(bool drawShadowMap)
 		g_cbCBuffer.Diffuse.y = pMtl->Kd[1];
 		g_cbCBuffer.Diffuse.z = pMtl->Kd[2];
 		g_cbCBuffer.Diffuse.w = pMtl->d;
+		basicEffect->SetDiffuseColor(Color(pMtl->Kd[0], pMtl->Kd[1], pMtl->Kd[2], pMtl->d));
 
 		// 定数バッファの内容更新
 		g_pImmediateContext->UpdateSubresource(g_pCBuffer.Get(), 0, NULL, &g_cbCBuffer, 0, 0);
@@ -389,8 +392,9 @@ void ShadowMap::Render(GameCamera& camera)
 	// 定数バッファを更新
 	// ワールド変換行列
 	FLOAT rotate = (FLOAT)(XM_PI * GameContext::Get<DX::StepTimer>().GetTotalSeconds()) / 15.0f;
-	XMMATRIX matWorld = Matrix::CreateRotationY(rotate);
-	XMStoreFloat4x4(&g_cbCBuffer.World, XMMatrixTranspose(matWorld));
+	Matrix matWorld = Matrix::CreateRotationY(rotate);
+	g_cbCBuffer.World = matWorld.Transpose();
+	basicEffect->SetWorld(matWorld);
 
 	// ***************************************
 	// シャドウ マップの描画
@@ -400,11 +404,11 @@ void ShadowMap::Render(GameCamera& camera)
 		// ビュー変換行列(光源から見る)
 		XMVECTORF32 focusPosition = { 0.0f, 0.0f,  0.0f };  // 注視点
 		XMVECTORF32 upDirection = { 0.0f, 1.0f,  0.0f };  // カメラの上方向
-		XMMATRIX matShadowMapView = XMMatrixLookAtRH(XMLoadFloat3(&g_vLightPos), focusPosition, upDirection);
+		Matrix matShadowMapView = XMMatrixLookAtRH(XMLoadFloat3(&g_vLightPos), focusPosition, upDirection);
 		XMStoreFloat4x4(&g_cbCBuffer.View, XMMatrixTranspose(matShadowMapView));
 
 		// 射影変換行列(パースペクティブ(透視法)射影)
-		XMMATRIX matShadowMapProj = XMMatrixPerspectiveFovRH(
+		Matrix matShadowMapProj = XMMatrixPerspectiveFovRH(
 			XMConvertToRadians(45.0f),		// 視野角45°
 			g_ViewPortShadowMap[0].Width / g_ViewPortShadowMap[0].Height,	// アスペクト比
 			1.0f,							// 前方投影面までの距離
@@ -414,11 +418,18 @@ void ShadowMap::Render(GameCamera& camera)
 		// 深度/ステンシルのクリア
 		g_pImmediateContext->ClearDepthStencilView(g_pShadowMapDSView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
 
+		// basicEffect->SetTexture(srv[0]);
+		//basicEffect->SetWorld(g_cbCBuffer.World);
+		basicEffect->SetView(matShadowMapView);
+		basicEffect->SetProjection(matShadowMapProj);
+
+		basicEffect->Apply(g_pImmediateContext);
+
 		// VSに定数バッファを設定
-		g_pImmediateContext->VSSetConstantBuffers(0, 1, g_pCBuffer.GetAddressOf());
+		g_pImmediateContext->VSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 
 		// PSに定数バッファを設定
-		g_pImmediateContext->PSSetConstantBuffers(0, 1, g_pCBuffer.GetAddressOf());
+		g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 		// PSにサンプラーを設定
 		ID3D11SamplerState* samplers[2] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get() };
 		g_pImmediateContext->PSSetSamplers(0, 2, samplers);
@@ -480,10 +491,10 @@ void ShadowMap::Render(GameCamera& camera)
 	g_pImmediateContext->ClearState();
 
 	// VSに定数バッファを設定
-	g_pImmediateContext->VSSetConstantBuffers(0, 1, g_pCBuffer.GetAddressOf());
+	g_pImmediateContext->VSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 
 	// PSに定数バッファを設定
-	g_pImmediateContext->PSSetConstantBuffers(0, 1, g_pCBuffer.GetAddressOf());
+	g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 	// PSにサンプラーを設定
 	ID3D11SamplerState* samplers[2] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get() };
 	g_pImmediateContext->PSSetSamplers(0, 2, samplers);

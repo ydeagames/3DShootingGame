@@ -55,13 +55,13 @@ private:
 
 	// 定数バッファのデータ定義
 	struct cbCBuffer {
-		DirectX::SimpleMath::Matrix World;		// ワールド変換行列
 		DirectX::SimpleMath::Matrix View;		// ビュー変換行列
 		DirectX::SimpleMath::Matrix Projection;	// 透視変換行列
 		DirectX::SimpleMath::Matrix SMViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
-		DirectX::SimpleMath::Vector4   Diffuse;		// ディフューズ色
 		DirectX::SimpleMath::Vector3   Light;		// 光源座標(ワールド座標系)
 		float      dummy;		// ダミー
+		DirectX::SimpleMath::Matrix World;		// ワールド変換行列
+		DirectX::SimpleMath::Vector4   Diffuse;		// ディフューズ色
 	};
 
 	// 定数バッファのデータ
@@ -79,6 +79,7 @@ private:
 	std::vector<DirectX::VertexPositionNormalTexture> modelVertices;
 	std::vector<uint16_t> modelIndices;
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionNormalTexture>> primitiveBatch;
+	std::unique_ptr<DirectX::BasicEffect> basicEffect;
 
 private:
 	void CreateShaderObj();

@@ -1,10 +1,34 @@
-matrix World;           // ワールド変換行列
-matrix View;            // ビュー変換行列
-matrix Projection;      // 透視変換行列
-matrix SMViewProj;      // ワールド×ビュー×透視変換行列(シャドウマップ用)
-float4 Diffuse;         // ディフューズ色
-float3 Light;           // 光源座標(透視座標系)
+cbuffer Parameters : register(b0)
+{
+    float4 DiffuseColor0             : packoffset(c0);
+    float3 EmissiveColor            : packoffset(c1);
+    float3 SpecularColor            : packoffset(c2);
+    float  SpecularPower : packoffset(c2.w);
 
+    float3 LightDirection[3]        : packoffset(c3);
+    float3 LightDiffuseColor[3]     : packoffset(c6);
+    float3 LightSpecularColor[3]    : packoffset(c9);
+
+    float3 EyePosition              : packoffset(c12);
+
+    float3 FogColor                 : packoffset(c13);
+    float4 FogVector                : packoffset(c14);
+
+    float4x4 World                  : packoffset(c15);
+    float3x3 WorldInverseTranspose  : packoffset(c19);
+    float4x4 WorldViewProj          : packoffset(c22);
+};
+
+cbuffer ShadowParameters : register(b1)
+{
+    float4x4 View;          // ビュー変換行列
+    float4x4 Projection;    // 透視変換行列
+    float4x4 SMViewProj;    // ワールド×ビュー×透視変換行列(シャドウマップ用)
+    float3 Light;           // 光源座標(透視座標系)
+    float dummy;
+    float4x4 World0;
+    float4 DiffuseColor;
+};
 
 // テクスチャ
 Texture2D Tex2D : register(t0);
@@ -99,6 +123,8 @@ float lighting(PSInputPixelLightingTx pin)
 // ピクセル シェーダの関数
 float4 PS(PSInputPixelLightingTx pin) : SV_TARGET
 {
+    //return float4(World0._11,World0._22,World0._33,1);
+    //return float4(World._11,World._22,World._33,1);
     // ライティング計算
     float bright = lighting(pin);
 
@@ -110,7 +136,7 @@ float4 PS(PSInputPixelLightingTx pin) : SV_TARGET
     float sma = (pin.PositionSM.z < sm) ? 1.0 : 0.5;
 
     // 色
-    return saturate(bright * texCol * Diffuse * sma);
+    return saturate(bright * texCol * DiffuseColor * sma);
 }
 
 // **************************************************
@@ -127,7 +153,7 @@ float4 PS_NOSM(PSInputPixelLightingTx pin) : SV_TARGET
     float4 texCol = Tex2D.Sample(smpWrap, pin.TexCoord);         // テクセル読み込み
 
     // 色
-    return saturate(bright * texCol * Diffuse);
+    return saturate(bright * texCol * DiffuseColor);
 }
 
 // **************************************************
