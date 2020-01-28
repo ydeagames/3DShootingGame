@@ -490,6 +490,11 @@ void ShadowMap::Render(GameCamera& camera)
 // ***************************************
 	g_pImmediateContext->ClearState();
 
+	basicEffect->SetWorld(matWorld);
+	basicEffect->SetView(matView);
+	basicEffect->SetProjection(matProj);
+
+	basicEffect->Apply(g_pImmediateContext);
 	// VSに定数バッファを設定
 	g_pImmediateContext->VSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 
