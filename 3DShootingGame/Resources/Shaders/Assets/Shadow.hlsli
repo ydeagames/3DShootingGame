@@ -1,23 +1,7 @@
-cbuffer Parameters : register(b0)
-{
-    float4 DiffuseColor0             : packoffset(c0);
-    float3 EmissiveColor            : packoffset(c1);
-    float3 SpecularColor            : packoffset(c2);
-    float  SpecularPower : packoffset(c2.w);
-
-    float3 LightDirection[3]        : packoffset(c3);
-    float3 LightDiffuseColor[3]     : packoffset(c6);
-    float3 LightSpecularColor[3]    : packoffset(c9);
-
-    float3 EyePosition              : packoffset(c12);
-
-    float3 FogColor                 : packoffset(c13);
-    float4 FogVector                : packoffset(c14);
-
-    float4x4 World                  : packoffset(c15);
-    float3x3 WorldInverseTranspose  : packoffset(c19);
-    float4x4 WorldViewProj          : packoffset(c22);
-};
+#include "Parameter.hlsli"
+#include "Structures.fxh"
+#include "Common.fxh"
+#include "Lighting.fxh"
 
 cbuffer ShadowParameters : register(b1)
 {
@@ -27,7 +11,7 @@ cbuffer ShadowParameters : register(b1)
     float3 Light;           // 光源座標(透視座標系)
     float dummy;
     float4x4 World0;
-    float4 DiffuseColor;
+    float4 DiffuseColor0;
 };
 
 // テクスチャ
@@ -42,47 +26,19 @@ SamplerState smpBorder : register(s1);
 // 3Dオブジェクトの描画
 // **************************************************
 
-// 頂点シェーダの入力データ定義
-struct VSInputNmTx {
-    float3 Position  : SV_Position;  // 頂点座標(モデル座標系)
-    float3 Normal : NORMAL;    // 法線ベクトル(モデル座標系)
-    float2 TexCoord  : TEXCOORD;   // テクスチャ座標
-};
-
 // ピクセル シェーダの入力データ定義
-struct VSOutputPixelLightingTx {
-    float2 TexCoord     : TEXCOORD0;    // テクスチャ座標
-    float4 PositionWS   : TEXCOORD1;    // 頂点座標(ビュー座標系)
-    float3 NormalWS     : TEXCOORD2;    // 法線ベクトル(ビュー座標系)
-    float4 Diffuse      : COLOR0;
-    float4 PositionPS   : SV_POSITION;  // 頂点座標(透視座標系)
+struct VSOutputPixelLightingTxSM : VSOutputPixelLightingTx {
     float3 PositionSM   : TEXCOORD3;    // 頂点座標(シャドウマップの透視座標系)
 };
-struct PSInputPixelLightingTx {
-    float2 TexCoord     : TEXCOORD0;    // テクスチャ座標
-    float4 PositionWS   : TEXCOORD1;    // 頂点座標(ビュー座標系)
-    float3 NormalWS     : TEXCOORD2;    // 法線ベクトル(ビュー座標系)
-    float4 Diffuse      : COLOR0;
-    float4 PositionPS   : SV_POSITION;  // 頂点座標(透視座標系)
-    float3 PositionSM   : TEXCOORD3;    // 頂点座標(シャドウマップの透視座標系)
+struct PSInputPixelLightingTxSM : VSOutputPixelLightingTxSM {
 };
-/*
-struct VSOutputPixelLightingTx
-{
-    float2 TexCoord   : TEXCOORD0;
-    float4 PositionWS : TEXCOORD1;
-    float3 NormalWS   : TEXCOORD2;
-    float4 Diffuse    : COLOR0;
-    float4 PositionPS : SV_Position;
-};
-*/
 
 // 頂点シェーダの関数
-VSOutputPixelLightingTx VS(VSInputNmTx vin) {
-    VSOutputPixelLightingTx vout;
+VSOutputPixelLightingTxSM VS(VSInputNmTx vin) {
+    VSOutputPixelLightingTxSM vout;
 
     // 頂点座標　モデル座標系→透視座標系
-    float4 pos4 = float4(vin.Position, 1.0);
+    float4 pos4 = vin.Position;
     pos4 = mul(pos4, World);
     pos4 = mul(pos4, View);
     vout.PositionWS = float4(pos4.xyz / pos4.w, 1);
@@ -97,7 +53,7 @@ VSOutputPixelLightingTx VS(VSInputNmTx vin) {
     vout.TexCoord = vin.TexCoord;
 
     // 頂点座標　モデル座標系→透視座標系(シャドウマップ)
-    pos4 = float4(vin.Position, 1.0);
+    pos4 = vin.Position;
     pos4 = mul(pos4, World);
     pos4 = mul(pos4, SMViewProj);
     pos4.xyz = pos4.xyz / pos4.w;
@@ -110,10 +66,10 @@ VSOutputPixelLightingTx VS(VSInputNmTx vin) {
 }
 
 // ライティング計算
-float lighting(PSInputPixelLightingTx pin)
+float lighting(PSInputPixelLightingTxSM pin)
 {
     // 光源ベクトル
-    float3 light = Light - pin.PositionWS;
+    float3 light = Light - pin.PositionWS.xyz;
     // 距離
     float  leng = length(light);
     // 明るさ
@@ -121,7 +77,7 @@ float lighting(PSInputPixelLightingTx pin)
 }
 
 // ピクセル シェーダの関数
-float4 PS(PSInputPixelLightingTx pin) : SV_TARGET
+float4 PS(PSInputPixelLightingTxSM pin) : SV_TARGET
 {
     //return float4(World0._11,World0._22,World0._33,1);
     //return float4(World._11,World._22,World._33,1);
@@ -144,7 +100,7 @@ float4 PS(PSInputPixelLightingTx pin) : SV_TARGET
 // **************************************************
 
 // ピクセル シェーダの関数
-float4 PS_NOSM(PSInputPixelLightingTx pin) : SV_TARGET
+float4 PS_NOSM(PSInputPixelLightingTxSM pin) : SV_TARGET
 {
     // ライティング計算
     float bright = lighting(pin);
@@ -163,7 +119,7 @@ float4 PS_NOSM(PSInputPixelLightingTx pin) : SV_TARGET
 // 頂点シェーダの関数
 float4 VS_SM(VSInputNmTx vin) : SV_POSITION {
     // 頂点座標　モデル座標系→透視座標系
-    float4 pos4 = float4(vin.Position, 1.0);
+    float4 pos4 = vin.Position;
     pos4 = mul(pos4, World);
     pos4 = mul(pos4, View);
     return mul(pos4, Projection);
