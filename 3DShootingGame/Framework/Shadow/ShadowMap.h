@@ -52,16 +52,14 @@ private:
 
 	float g_fEye = 2.5f;                       // 視点までの距離
 	DirectX::SimpleMath::Vector3 g_vLightPos = { 3.0f, 3.0f, -3.0f };   // 光源座標(ワールド座標系)
+	DirectX::SimpleMath::Matrix matShadowMapView;
+	DirectX::SimpleMath::Matrix matShadowMapProj;
 
 	// 定数バッファのデータ定義
 	struct cbCBuffer {
-		DirectX::SimpleMath::Matrix View;		// ビュー変換行列
-		DirectX::SimpleMath::Matrix Projection;	// 透視変換行列
-		DirectX::SimpleMath::Matrix SMViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
+		DirectX::SimpleMath::Matrix SMWorldViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
 		DirectX::SimpleMath::Vector3   Light;		// 光源座標(ワールド座標系)
 		float      dummy;		// ダミー
-		DirectX::SimpleMath::Matrix World;		// ワールド変換行列
-		DirectX::SimpleMath::Vector4   Diffuse;		// ディフューズ色
 	};
 
 	// 定数バッファのデータ

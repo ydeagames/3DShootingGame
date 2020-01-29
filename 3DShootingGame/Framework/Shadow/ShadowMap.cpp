@@ -120,11 +120,11 @@ void ShadowMap::InitBackBuffer()
 
 	// 定数バッファを更新
 	// 射影変換行列(パースペクティブ(透視法)射影)
-	g_cbCBuffer.Projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(
-		XMConvertToRadians(30.0f),		// 視野角30°
-		(float)descBackBuffer.Width / (float)descBackBuffer.Height,	// アスペクト比
-		1.0f,							// 前方投影面までの距離
-		400.0f);						// 後方投影面までの距離
+	//g_cbCBuffer.Projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(
+	//	XMConvertToRadians(30.0f),		// 視野角30°
+	//	(float)descBackBuffer.Width / (float)descBackBuffer.Height,	// アスペクト比
+	//	1.0f,							// 前方投影面までの距離
+	//	400.0f);						// 後方投影面までの距離
 
 	//サイズを保存
 	g_sizeWindow.cx = descBackBuffer.Width;
@@ -330,10 +330,6 @@ void ShadowMap::DrawObj(bool drawShadowMap)
 		srv[0] = g_wfMtl.GetTextureDefault(pMtl->map_Kd);
 		srv[1] = drawShadowMap ? NULL : g_pShadowMapSRView.Get();
 
-		g_cbCBuffer.Diffuse.x = pMtl->Kd[0];
-		g_cbCBuffer.Diffuse.y = pMtl->Kd[1];
-		g_cbCBuffer.Diffuse.z = pMtl->Kd[2];
-		g_cbCBuffer.Diffuse.w = pMtl->d;
 		basicEffect->SetDiffuseColor(Color(pMtl->Kd[0], pMtl->Kd[1], pMtl->Kd[2], pMtl->d));
 
 		// 定数バッファの内容更新
@@ -393,7 +389,8 @@ void ShadowMap::Render(GameCamera& camera)
 	// ワールド変換行列
 	FLOAT rotate = (FLOAT)(XM_PI * GameContext::Get<DX::StepTimer>().GetTotalSeconds()) / 15.0f;
 	Matrix matWorld = Matrix::CreateRotationY(rotate);
-	g_cbCBuffer.World = matWorld.Transpose();
+	// g_cbCBuffer.World = matWorld.Transpose();
+	g_cbCBuffer.SMWorldViewProj = (matWorld * matShadowMapView * matShadowMapProj).Transpose();
 	basicEffect->SetWorld(matWorld);
 
 	// ***************************************
@@ -404,16 +401,16 @@ void ShadowMap::Render(GameCamera& camera)
 		// ビュー変換行列(光源から見る)
 		XMVECTORF32 focusPosition = { 0.0f, 0.0f,  0.0f };  // 注視点
 		XMVECTORF32 upDirection = { 0.0f, 1.0f,  0.0f };  // カメラの上方向
-		Matrix matShadowMapView = XMMatrixLookAtRH(XMLoadFloat3(&g_vLightPos), focusPosition, upDirection);
-		XMStoreFloat4x4(&g_cbCBuffer.View, XMMatrixTranspose(matShadowMapView));
+		matShadowMapView = XMMatrixLookAtRH(XMLoadFloat3(&g_vLightPos), focusPosition, upDirection);
+		// XMStoreFloat4x4(&g_cbCBuffer.View, XMMatrixTranspose(matShadowMapView));
 
 		// 射影変換行列(パースペクティブ(透視法)射影)
-		Matrix matShadowMapProj = XMMatrixPerspectiveFovRH(
+		matShadowMapProj = XMMatrixPerspectiveFovRH(
 			XMConvertToRadians(45.0f),		// 視野角45°
 			g_ViewPortShadowMap[0].Width / g_ViewPortShadowMap[0].Height,	// アスペクト比
 			1.0f,							// 前方投影面までの距離
 			400.0f);						// 後方投影面までの距離
-		XMStoreFloat4x4(&g_cbCBuffer.Projection, XMMatrixTranspose(matShadowMapProj));
+		//XMStoreFloat4x4(&g_cbCBuffer.Projection, XMMatrixTranspose(matShadowMapProj));
 
 		// 深度/ステンシルのクリア
 		g_pImmediateContext->ClearDepthStencilView(g_pShadowMapDSView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
@@ -445,8 +442,9 @@ void ShadowMap::Render(GameCamera& camera)
 		RenderObj(true);
 
 		// シャドウマップの設定
-		XMMATRIX mat = XMMatrixTranspose(matShadowMapView * matShadowMapProj);
-		XMStoreFloat4x4(&g_cbCBuffer.SMViewProj, mat);
+		//XMMATRIX mat = XMMatrixTranspose(matShadowMapView * matShadowMapProj);
+		//XMStoreFloat4x4(&g_cbCBuffer.SMViewProj, mat);
+		g_cbCBuffer.SMWorldViewProj = (matWorld * matShadowMapView * matShadowMapProj).Transpose();
 	}
 
 	// ***************************************
@@ -461,14 +459,14 @@ void ShadowMap::Render(GameCamera& camera)
 	Vector4 focusPosition = { 0.0f, 0.0f,  0.0f, 1.0f };  // 注視点
 	Vector4 upDirection = { 0.0f, 1.0f,  0.0f, 1.0f };  // カメラの上方向
 	Matrix matView = XMMatrixLookAtRH(eyePosition, focusPosition, upDirection);
-	g_cbCBuffer.View = matView.Transpose();
+	// g_cbCBuffer.View = matView.Transpose();
 	// 射影変換行列(パースペクティブ(透視法)射影)
 	Matrix matProj = XMMatrixPerspectiveFovRH(
 		XMConvertToRadians(30.0f),		// 視野角30°
 		g_ViewPort[0].Width / g_ViewPort[0].Height,	// アスペクト比
 		1.0f,							// 前方投影面までの距離
 		20.0f);						// 後方投影面までの距離
-	g_cbCBuffer.Projection = matProj.Transpose();
+	//g_cbCBuffer.Projection = matProj.Transpose();
 	// 点光源座標
 	g_cbCBuffer.Light = g_vLightPos;
 	g_cbCBuffer.Light = Vector3::Transform(g_cbCBuffer.Light, matView);
