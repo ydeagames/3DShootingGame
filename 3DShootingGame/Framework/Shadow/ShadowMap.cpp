@@ -4,6 +4,7 @@
 #include "Utilities/BinaryFile.h"
 #include "Framework/Context/GameCamera.h"
 #include "Utilities/wavefrontobj.h"
+#include "Utilities/Math3DUtils.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -403,7 +404,7 @@ void ShadowMap::Render(GameCamera& camera)
 		XMVECTORF32 upDirection = { 0.0f, 1.0f,  0.0f };  // カメラの上方向
 		matShadowMapView = XMMatrixLookAtRH(XMLoadFloat3(&g_vLightPos), focusPosition, upDirection);
 		// XMStoreFloat4x4(&g_cbCBuffer.View, XMMatrixTranspose(matShadowMapView));
-
+		basicEffect->SetLightDirection(0, Math3DUtils::Normalized(focusPosition - g_vLightPos));
 		// 射影変換行列(パースペクティブ(透視法)射影)
 		matShadowMapProj = XMMatrixPerspectiveFovRH(
 			XMConvertToRadians(45.0f),		// 視野角45°
@@ -455,21 +456,11 @@ void ShadowMap::Render(GameCamera& camera)
 	// // 点光源座標
 	// g_cbCBuffer.Light = Vector3::Transform(g_vLightPos, g_cbCBuffer.View);
 		// ビュー変換行列
-	Vector4 eyePosition = { 0.0f, g_fEye, -g_fEye, 1.0f };  // 視点(カメラの位置)
-	Vector4 focusPosition = { 0.0f, 0.0f,  0.0f, 1.0f };  // 注視点
-	Vector4 upDirection = { 0.0f, 1.0f,  0.0f, 1.0f };  // カメラの上方向
-	Matrix matView = XMMatrixLookAtRH(eyePosition, focusPosition, upDirection);
-	// g_cbCBuffer.View = matView.Transpose();
+	Matrix matView = camera.view;
 	// 射影変換行列(パースペクティブ(透視法)射影)
-	Matrix matProj = XMMatrixPerspectiveFovRH(
-		XMConvertToRadians(30.0f),		// 視野角30°
-		g_ViewPort[0].Width / g_ViewPort[0].Height,	// アスペクト比
-		1.0f,							// 前方投影面までの距離
-		20.0f);						// 後方投影面までの距離
+	Matrix matProj = camera.projection;
 	//g_cbCBuffer.Projection = matProj.Transpose();
 	// 点光源座標
-	g_cbCBuffer.Light = g_vLightPos;
-	g_cbCBuffer.Light = Vector3::Transform(g_cbCBuffer.Light, matView);
 	// g_cbCBuffer.Light = Vector3::Transform(g_cbCBuffer.Light, matProj);
 
 	//// ***************************************

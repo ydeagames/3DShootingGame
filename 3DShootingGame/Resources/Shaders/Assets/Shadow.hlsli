@@ -7,8 +7,6 @@
 cbuffer ShadowParameters : register(b1)
 {
     float4x4 SMWorldViewProj;    // ワールド×ビュー×透視変換行列(シャドウマップ用)
-    float3 Light;           // 光源座標(透視座標系)
-    float dummy;
 };
 
 // テクスチャ

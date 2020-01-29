@@ -58,8 +58,6 @@ private:
 	// 定数バッファのデータ定義
 	struct cbCBuffer {
 		DirectX::SimpleMath::Matrix SMWorldViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
-		DirectX::SimpleMath::Vector3   Light;		// 光源座標(ワールド座標系)
-		float      dummy;		// ダミー
 	};
 
 	// 定数バッファのデータ
