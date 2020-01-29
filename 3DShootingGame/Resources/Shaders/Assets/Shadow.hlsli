@@ -16,6 +16,7 @@ Texture2D ShadowMap : register(t1); // シャドウマップ
 // テクスチャ・サンプラ
 SamplerState Sampler   : register(s0);
 SamplerState smpBorder : register(s1);
+SamplerComparisonState smpCompare : register(s2);
 
 // **************************************************
 // 3Dオブジェクトの描画
@@ -60,11 +61,28 @@ float4 PS(PSInputTxEnvMap pin) : SV_TARGET
     float4 texCol = PS_NOSM(pin);
 
     // シャドウマップ
-    float sm = ShadowMap.Sample(smpBorder, pin.EnvCoord.xy).x;
-    float sma = (pin.EnvCoord.z < sm) ? 1.0 : 0.5;
+    //float sm = ShadowMap.Sample(smpBorder, pin.EnvCoord.xy).x;
+    //float sma = (pin.EnvCoord.z < sm) ? 1.0 : 0.5;
+
+	float3 shadowCoord = pin.EnvCoord;
+	
+	// 最大深度傾斜を求める.
+	float  maxDepthSlope = max( abs( ddx( shadowCoord.z ) ), abs( ddy( shadowCoord.z ) ) );
+	
+	float  shadowThreshold = 1.0f;      // シャドウにするかどうかの閾値です.
+	float  bias            = 0.01f;     // 固定バイアスです.
+	float  slopeScaledBias = 0.01f;     // 深度傾斜.
+	float  depthBiasClamp  = 0.1f;      // バイアスクランプ値.
+	
+	float  shadowBias = bias + slopeScaledBias * maxDepthSlope;
+	shadowBias = min( shadowBias, depthBiasClamp );
+	
+	float shadowColor     = 0.25f;
+	shadowThreshold = ShadowMap.SampleCmpLevelZero(smpCompare, shadowCoord.xy, shadowCoord.z - shadowBias );
+	shadowColor     = lerp( shadowColor, 1.0f, shadowThreshold );
 
     // 色
-    return saturate(texCol * sma);
+    return saturate(texCol * shadowColor);
 }
 
 // **************************************************

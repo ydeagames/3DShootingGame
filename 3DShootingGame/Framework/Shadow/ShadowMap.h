@@ -32,7 +32,7 @@ private:
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> g_pCBuffer = NULL;		// 定数バッファ
 
-	Microsoft::WRL::ComPtr<ID3D11SamplerState> g_pTextureSampler[2] = { NULL, NULL };		// サンプラー
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> g_pTextureSampler[3] = { NULL, NULL, NULL };		// サンプラー
 
 	// シャドウ・マッピング用
 	bool g_bShadowMappingMode = true;
