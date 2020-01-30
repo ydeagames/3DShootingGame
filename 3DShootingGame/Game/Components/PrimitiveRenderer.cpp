@@ -90,8 +90,7 @@ void PrimitiveRenderer::RenderShadow(GameCamera& camera, bool shadowMode)
 		// エフェクトの設定
 		m_basicEffect->Apply(ctx);
 
-		if (!shadowMode)
-			m_basicEffect->SetTexture(m_texture.Get());
+		m_basicEffect->SetTexture(shadowMode ? nullptr : m_texture.Get());
 
 		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get(), false, false,
 			[&]()

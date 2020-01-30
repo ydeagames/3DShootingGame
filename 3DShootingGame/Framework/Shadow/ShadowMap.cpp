@@ -3,8 +3,7 @@
 #include "Framework/ECS/GameContext.h"
 #include "Utilities/BinaryFile.h"
 #include "Framework/Context/GameCamera.h"
-#include "Utilities/wavefrontobj.h"
-#include "Utilities/Math3DUtils.h"
+#include "Framework/Shadow/Light.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -119,14 +118,6 @@ void ShadowMap::InitBackBuffer()
 	// ビューポートの設定
 	g_ViewPort[0] = dr.GetScreenViewport();
 
-	// 定数バッファを更新
-	// 射影変換行列(パースペクティブ(透視法)射影)
-	//g_cbCBuffer.Projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(
-	//	XMConvertToRadians(30.0f),		// 視野角30°
-	//	(float)descBackBuffer.Width / (float)descBackBuffer.Height,	// アスペクト比
-	//	1.0f,							// 前方投影面までの距離
-	//	400.0f);						// 後方投影面までの距離
-
 	//サイズを保存
 	g_sizeWindow.cx = descBackBuffer.Width;
 	g_sizeWindow.cy = descBackBuffer.Height;
@@ -170,7 +161,7 @@ void ShadowMap::InitShadowMap()
 	srDesc.Format = DXGI_FORMAT_R32_FLOAT; // フォーマット
 	srDesc.ViewDimension = D3D_SRV_DIMENSION_TEXTURE2D;  // 2Dテクスチャ
 	srDesc.Texture2D.MostDetailedMip = 0;   // 最初のミップマップ レベル
-	srDesc.Texture2D.MipLevels = -1;  // すべてのミップマップ レベル
+	srDesc.Texture2D.MipLevels = UINT(-1);  // すべてのミップマップ レベル
 	DX::ThrowIfFailed(g_pD3DDevice->CreateShaderResourceView(
 		g_pShadowMap.Get(),          // アクセスするテクスチャ リソース
 		&srDesc,               // シェーダ リソース ビューの設定
@@ -249,13 +240,6 @@ void ShadowMap::RenderStart()
 	DX::ThrowIfFailed(g_pD3DDevice->CreateDepthStencilState(&DepthStencil, &g_pDepthStencilState));
 
 	// **********************************************************
-	// Waveform OBJファイルの読み込み
-	char mtlFileName[80];
-	DX::ThrowIfFailed(g_wfObjKuma.Load(g_pD3DDevice, g_pImmediateContext, "Resources/Models/kuma.obj", mtlFileName, sizeof(mtlFileName)));
-	// MTLファイルの読み込み
-	DX::ThrowIfFailed(g_wfMtl.Load(g_pD3DDevice, g_pImmediateContext, mtlFileName, "Resources/Models/default.bmp"));
-
-	// **********************************************************
 	// サンプラーの作成
 	D3D11_SAMPLER_DESC descSampler;
 	descSampler.Filter = D3D11_FILTER_ANISOTROPIC;
@@ -315,18 +299,6 @@ void ShadowMap::RenderStart()
 	basicEffect = std::make_unique<BasicEffect>(g_pD3DDevice);
 	basicEffect->SetTextureEnabled(true);
 	basicEffect->SetLightingEnabled(true);
-
-	// View Proj
-	// ビュー変換行列(光源から見る)
-	Vector3 focusPosition = { 0.0f, 0.0f,  0.0f };  // 注視点
-	Vector3 upDirection = { 0.0f, 1.0f,  0.0f };  // カメラの上方向
-	matShadowMapView = Matrix::CreateLookAt(g_vLightPos, focusPosition, upDirection);
-	// 射影変換行列(パースペクティブ(透視法)射影)
-	matShadowMapProj = Matrix::CreatePerspectiveFieldOfView(
-		XMConvertToRadians(45.0f),		// 視野角45°
-		g_ViewPortShadowMap[0].Width / g_ViewPortShadowMap[0].Height,	// アスペクト比
-		1.0f,							// 前方投影面までの距離
-		400.0f);						// 後方投影面までの距離
 }
 
 void ShadowMap::SetShadowMode()
@@ -354,6 +326,13 @@ void ShadowMap::SetRenderMode()
 	// RSにビューポートを設定
 	g_pImmediateContext->RSSetViewports(1, g_ViewPort);
 
+	// ShaderResourceViewバインドを解除
+	ID3D11ShaderResourceView* srv[] = { NULL };
+	g_pImmediateContext->PSSetShaderResources(
+		1,              // 設定する最初のスロット番号
+		1,              // 設定するシェーダ・リソース・ビューの数
+		srv);			// 設定するシェーダ・リソース・ビューの配列
+
 	// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
 	g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, g_bDepthMode ? g_pDepthStencilView : NULL);
 }
@@ -366,7 +345,7 @@ void ShadowMap::ApplyMode(bool shadowMode)
 	ID3D11SamplerState* samplers[2] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get() };
 	g_pImmediateContext->PSSetSamplers(0, 2, samplers);
 
-	ID3D11ShaderResourceView* srv[] = { g_pShadowMapSRView.Get() };
+	ID3D11ShaderResourceView* srv[] = { shadowMode ? NULL : g_pShadowMapSRView.Get() };
 	g_pImmediateContext->PSSetShaderResources(
 		1,              // 設定する最初のスロット番号
 		1,              // 設定するシェーダ・リソース・ビューの数
@@ -385,7 +364,8 @@ void ShadowMap::ApplyMode(bool shadowMode)
 	g_pImmediateContext->VSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 
 	// PSに定数バッファを設定
-	g_cbCBuffer.SMViewProj = (matShadowMapView * matShadowMapProj).Transpose();
+	auto& light = GameContext::Get<Light>();
+	g_cbCBuffer.SMViewProj = (light.view * light.projection).Transpose();
 	g_pImmediateContext->UpdateSubresource(g_pCBuffer.Get(), 0, NULL, &g_cbCBuffer, 0, 0);
 	g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 
@@ -404,10 +384,6 @@ void ShadowMap::ApplyShadowMode()
 void ShadowMap::ApplyRenderMode()
 {
 	ApplyMode(false);
-}
-
-void ShadowMap::Begin()
-{
 }
 
 /*--------------------------------------------
@@ -460,8 +436,4 @@ void ShadowMap::Render(GameCamera& camera)
 
 	// 物体の描画
 	RenderObj(false);
-}
-
-void ShadowMap::End()
-{
 }

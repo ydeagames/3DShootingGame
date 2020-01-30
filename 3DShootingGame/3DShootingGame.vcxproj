@@ -572,6 +572,7 @@
     <ClInclude Include="Framework\ImGui\WidgetDND.h" />
     <ClInclude Include="Framework\Physics\Collidable.h" />
     <ClInclude Include="Framework\FMOD\SoundSystem.h" />
+    <ClInclude Include="Framework\Shadow\Light.h" />
     <ClInclude Include="Framework\Shadow\ShadowMap.h" />
     <ClInclude Include="Framework\StandardBuildSettings.h" />
     <ClInclude Include="Framework\Tags\Tags.h" />
@@ -659,6 +660,7 @@
     <ClCompile Include="Framework\Context\ApplicationHandler.cpp" />
     <ClCompile Include="Framework\ImGui\WidgetDND.cpp" />
     <ClCompile Include="Framework\FMOD\SoundSystem.cpp" />
+    <ClCompile Include="Framework\Shadow\Light.cpp" />
     <ClCompile Include="Framework\Shadow\ShadowMap.cpp" />
     <ClCompile Include="Game\Components\AudioSource.cpp" />
     <ClCompile Include="Game\Components\Background.cpp" />

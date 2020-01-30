@@ -17,6 +17,7 @@
 #include <Game/BuildSettings.h>
 #include <Framework/FMOD/SoundSystem.h>
 #include "Shadow/ShadowMap.h"
+#include "Shadow/Light.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -65,6 +66,8 @@ MyGame::MyGame()
 	GameContext::Register<SceneManager>().LoadScene(SceneInfo::CreateFromName("scene"));
 	// ‰¹
 	GameContext::Register<SoundSystem>();
+	// ƒ‰ƒCƒg
+	GameContext::Register<Light>();
 	// ‰e
 	GameContext::Register<ShadowMap>();
 
@@ -76,6 +79,7 @@ MyGame::~MyGame()
 {
 	GameContext::Remove<TransformResolverContext>();
 	GameContext::Remove<ShadowMap>();
+	GameContext::Remove<Light>();
 	GameContext::Remove<SoundSystem>();
 	GameContext::Remove<SceneManager>();
 	GameContext::Remove<PhysXManager>();
@@ -133,7 +137,7 @@ void MyGame::Update()
 void MyGame::RenderStart()
 {
 	m_imgui = std::make_unique<ImGuiPtr>();
-
+	GameContext::Get<ShadowMap>().RenderStart();
 	GameContext::Get<SceneManager>().ForEachScenes([](auto& scene) { Renderable::RenderStart(scene.registry); });
 }
 

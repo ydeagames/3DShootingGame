@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "Utilities/wavefrontobj.h"
 
 class GameCamera;
 
@@ -44,17 +43,6 @@ private:
 	// 深度バッファのモード
 	bool g_bDepthMode = true;
 
-	// スタンバイモード
-	bool g_bStandbyMode = false;
-
-	// 描画ターゲットをクリアする値(RGBA)
-	float g_ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
-
-	float g_fEye = 2.5f;                       // 視点までの距離
-	DirectX::SimpleMath::Vector3 g_vLightPos = { 3.0f, 3.0f, -3.0f };   // 光源座標(ワールド座標系)
-	DirectX::SimpleMath::Matrix matShadowMapView;
-	DirectX::SimpleMath::Matrix matShadowMapProj;
-
 	// 定数バッファのデータ定義
 	struct cbCBuffer {
 		DirectX::SimpleMath::Matrix SMViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
@@ -62,10 +50,6 @@ private:
 
 	// 定数バッファのデータ
 	struct cbCBuffer g_cbCBuffer;
-
-	// メッシュ情報
-	CWavefrontObj       g_wfObjKuma;
-	CWavefrontMtl       g_wfMtl;     // マテリアル
 
 public:
 	ID3D11ShaderResourceView* GetShadowMapSRView() const { return g_pShadowMapSRView.Get(); };
@@ -94,9 +78,6 @@ public:
 	void ApplyMode(bool shadowMode);
 	void ApplyShadowMode();
 	void ApplyRenderMode();
-	void Begin();
-	void DrawObj(bool drawShadowMap);
 	void RenderObj(bool drawShadowMap);
 	void Render(GameCamera& camera);
-	void End();
 };

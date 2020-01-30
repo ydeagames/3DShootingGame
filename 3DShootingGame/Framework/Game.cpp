@@ -207,7 +207,6 @@ void Game::CreateDeviceDependentResources()
     // TODO: Initialize device dependent objects here (independent of window size).
     device;
 
-	GameContext::Get<ShadowMap>().RenderStart();
 	m_myGame->RenderStart();
 }
 
