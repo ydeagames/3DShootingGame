@@ -34,12 +34,20 @@ private:
 		ECS::EventBus<Renderable, 2, GameCamera>::Register<T>(&T::RenderGui);
 	}
 
+	template<typename T> static void RegisterShadow0(...) {}
+	template<typename T, typename = decltype(&T::RenderShadow)>
+	static void RegisterShadow0()
+	{
+		ECS::EventBus<Renderable, 4, GameCamera, bool>::Register<T>(&T::RenderShadow);
+	}
+
 public:
 	template<typename T>
 	static void Register()
 	{
 		RegisterFirst0<T>();
 		RegisterPre0<T>();
+		RegisterShadow0<T>();
 		Register0<T>();
 		RegisterGui0<T>();
 	}
@@ -60,5 +68,11 @@ public:
 	{
 		ECS::EventBus<Renderable, 0>::Post(registry);
 		ECS::EventBus<Renderable, 2, GameCamera>::Post(registry, std::forward<GameCamera>(camera));
+	}
+
+	static void RenderShadow(entt::registry& registry, GameCamera&& camera, bool&& shadowMode)
+	{
+		ECS::EventBus<Renderable, 0>::Post(registry);
+		ECS::EventBus<Renderable, 4, GameCamera, bool>::Post(registry, std::forward<GameCamera>(camera), std::forward<bool>(shadowMode));
 	}
 };

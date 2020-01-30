@@ -4,11 +4,12 @@
 #include <Framework/Components/Transform.h>
 #include <Framework/Context/GameCamera.h>
 #include <Utilities/StringCast.h>
+#include "Framework/Shadow/ShadowMap.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-auto PrimitiveRenderer::primitiveModels() -> std::unordered_map<std::string, PrimitiveModel> &
+auto PrimitiveRenderer::primitiveModels() -> std::unordered_map<std::string, PrimitiveModel>&
 {
 	static std::unordered_map<std::string, PrimitiveModel> data = (
 		[]() {
@@ -42,36 +43,19 @@ void PrimitiveRenderer::RenderStart()
 			? models.at(model).GetOrCreateInverted(dr.GetD3DDeviceContext())
 			: models.at(model).GetOrCreate(dr.GetD3DDeviceContext());
 
+		std::wstring texture_str = L"Resources/Textures/GridBox_Default.png";
 		if (textureEnabled)
-		{
-			auto texture_str = string_cast<std::wstring>(texture);
+			texture_str = string_cast<std::wstring>(texture);
 
-			if (FAILED(CreateWICTextureFromFile(
-				dr.GetD3DDevice(), dr.GetD3DDeviceContext(),
-				texture_str.c_str(), nullptr, m_texture.ReleaseAndGetAddressOf())))
-				m_texture = nullptr;
-			else
-			{
-				// ポリゴン用エフェクト作成
-				m_basicEffect = std::make_unique<BasicEffect>(dr.GetD3DDevice());
-				m_basicEffect->SetTextureEnabled(true);
-
-				// ライト有効
-				m_basicEffect->SetLightingEnabled(lighting);
-				// 環境光の色を設定
-				m_basicEffect->SetAmbientLightColor(SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
-				// 拡散反射光の素材色を設定
-				m_basicEffect->SetDiffuseColor(SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
-
-				// シェーダー取得
-				m_model->CreateInputLayout(m_basicEffect.get(), m_pInputLayout.ReleaseAndGetAddressOf());
-			}
-		}
+		if (FAILED(CreateWICTextureFromFile(
+			dr.GetD3DDevice(), dr.GetD3DDeviceContext(),
+			texture_str.c_str(), nullptr, m_texture.ReleaseAndGetAddressOf())))
+			m_texture = nullptr;
 		else
 		{
 			// ポリゴン用エフェクト作成
 			m_basicEffect = std::make_unique<BasicEffect>(dr.GetD3DDevice());
-			m_basicEffect->SetTextureEnabled(false);
+			m_basicEffect->SetTextureEnabled(true);
 
 			// ライト有効
 			m_basicEffect->SetLightingEnabled(lighting);
@@ -86,8 +70,11 @@ void PrimitiveRenderer::RenderStart()
 	}
 }
 
-void PrimitiveRenderer::Render(GameCamera& camera)
+void PrimitiveRenderer::RenderShadow(GameCamera& camera, bool shadowMode)
 {
+	if (!lighting && shadowMode)
+		return;
+
 	if (m_model)
 	{
 		auto& dr = GameContext::Get<DX::DeviceResources>();
@@ -102,19 +89,16 @@ void PrimitiveRenderer::Render(GameCamera& camera)
 		m_basicEffect->SetProjection(camera.projection);
 		// エフェクトの設定
 		m_basicEffect->Apply(ctx);
-		// 深度ステンシルステートの設定
-		ctx->OMSetDepthStencilState(commonStates.DepthDefault(), 0);
-		// ブレンドステートの設定
-		ctx->OMSetBlendState(commonStates.AlphaBlend(), nullptr, 0xffffffff);
-		// ラスタライザステートを設定
-		ctx->RSSetState(commonStates.CullClockwise());
-		// 入力レイアウトの設定
-		ctx->IASetInputLayout(m_pInputLayout.Get());
 
-		if (textureEnabled)
+		if (!shadowMode)
 			m_basicEffect->SetTexture(m_texture.Get());
 
-		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get());
+		m_model->Draw(m_basicEffect.get(), m_pInputLayout.Get(), false, false,
+			[&]()
+			{
+				if (lighting)
+					GameContext::Get<ShadowMap>().ApplyMode(shadowMode);
+			});
 	}
 }
 

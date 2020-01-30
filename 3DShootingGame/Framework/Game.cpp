@@ -51,8 +51,6 @@ void Game::Initialize(HWND window, int width, int height)
 	GameContext::Register<WindowHandler>(m_deviceResources, window);
 	// É|Å[ÉY
 	GameContext::Register<PauseHandler>();
-	// âe
-	GameContext::Register<ShadowMap>();
 
 	CreateDeviceDependentResources();
     CreateWindowSizeDependentResources();
@@ -68,7 +66,6 @@ void Game::Initialize(HWND window, int width, int height)
 
 void Game::Finalize()
 {
-	GameContext::Remove<ShadowMap>();
 	GameContext::Remove<PauseHandler>();
 	GameContext::Remove<WindowHandler>();
 	GameContext::Remove<ApplicationHandler>();
@@ -117,7 +114,6 @@ void Game::Render()
 
     // TODO: Add your rendering code here.
 
-	GameContext::Get<ShadowMap>().Render(*m_mainCamera);
 	m_myGame->Render(*m_mainCamera);
 
 	// Ç±Ç±Ç‹Ç≈ï`âÊ

@@ -69,6 +69,8 @@ private:
 
 public:
 	ID3D11ShaderResourceView* GetShadowMapSRView() const { return g_pShadowMapSRView.Get(); };
+	void SetEnabled(bool enabled) { g_bShadowMappingMode = enabled; };
+	bool IsEnabled() const { return g_bShadowMappingMode; };
 
 private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> modelTexture;
@@ -82,8 +84,6 @@ private:
 	void CreateShaderShadow();
 	void InitBackBuffer();
 	void InitShadowMap();
-	void SetMode(bool shadowMode);
-	void ApplyMode(bool shadowMode);
 
 public:
 	// 生成
@@ -91,6 +91,7 @@ public:
 	// 描画
 	void SetShadowMode();
 	void SetRenderMode();
+	void ApplyMode(bool shadowMode);
 	void ApplyShadowMode();
 	void ApplyRenderMode();
 	void Begin();

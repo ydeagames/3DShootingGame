@@ -65,6 +65,8 @@ MyGame::MyGame()
 	GameContext::Register<SceneManager>().LoadScene(SceneInfo::CreateFromName("scene"));
 	// ‰¹
 	GameContext::Register<SoundSystem>();
+	// ‰e
+	GameContext::Register<ShadowMap>();
 
 	// Transform
 	GameContext::Register<TransformResolverContext>();
@@ -73,6 +75,7 @@ MyGame::MyGame()
 MyGame::~MyGame()
 {
 	GameContext::Remove<TransformResolverContext>();
+	GameContext::Remove<ShadowMap>();
 	GameContext::Remove<SoundSystem>();
 	GameContext::Remove<SceneManager>();
 	GameContext::Remove<PhysXManager>();
@@ -144,8 +147,24 @@ void MyGame::Render(GameCamera& camera)
 	auto& physics = GameContext::Get<PhysXManager>();
 	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
 	{
+		auto& shadow = GameContext::Get<ShadowMap>();
+
+		if (shadow.IsEnabled())
+		{
+			shadow.SetShadowMode();
+
+			// •`‰æƒCƒxƒ“ƒg
+			GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::RenderShadow(scene.registry, std::forward<GameCamera>(camera), true); });
+
+			shadow.SetRenderMode();
+		}
+		
 		// •`‰æƒCƒxƒ“ƒg
-		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::Render(scene.registry, std::forward<GameCamera>(camera)); });
+		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene)
+		{
+			Renderable::Render(scene.registry, std::forward<GameCamera>(camera));
+			Renderable::RenderShadow(scene.registry, std::forward<GameCamera>(camera), false);
+		});
 	}
 	else
 	{

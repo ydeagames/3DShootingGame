@@ -329,50 +329,33 @@ void ShadowMap::RenderStart()
 		400.0f);						// 後方投影面までの距離
 }
 
-void ShadowMap::SetMode(bool shadowMode)
-{
-	auto g_pImmediateContext = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
-
-	if (shadowMode)
-		// 深度/ステンシルのクリア
-		g_pImmediateContext->ClearDepthStencilView(g_pShadowMapDSView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
-	else
-		// 深度/ステンシルのクリア
-		g_pImmediateContext->ClearDepthStencilView(
-			g_pDepthStencilView, // クリアする深度/ステンシル・ビュー
-			D3D11_CLEAR_DEPTH,   // 深度値だけをクリアする
-			1.0f,                // 深度バッファをクリアする値
-			0);                  // ステンシル・バッファをクリアする値(この場合、無関係)
-
-	g_pImmediateContext->ClearState();
-
-	// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
-	if (shadowMode)
-	{
-		// RSにビューポートを設定
-		g_pImmediateContext->RSSetViewports(1, g_ViewPortShadowMap);
-
-		ID3D11RenderTargetView* pRender[1] = { NULL };
-		g_pImmediateContext->OMSetRenderTargets(1, pRender, g_pShadowMapDSView.Get());
-	}
-	else
-	{
-		// RSにビューポートを設定
-		g_pImmediateContext->RSSetViewports(1, g_ViewPort);
-
-		// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
-		g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, g_bDepthMode ? g_pDepthStencilView : NULL);
-	}
-}
-
 void ShadowMap::SetShadowMode()
 {
-	SetMode(true);
+	auto g_pImmediateContext = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
+	
+	// 深度/ステンシルのクリア
+	g_pImmediateContext->ClearDepthStencilView(g_pShadowMapDSView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+	
+	g_pImmediateContext->ClearState();
+	
+	// RSにビューポートを設定
+	g_pImmediateContext->RSSetViewports(1, g_ViewPortShadowMap);
+
+	ID3D11RenderTargetView* pRender[1] = { NULL };
+	g_pImmediateContext->OMSetRenderTargets(1, pRender, g_pShadowMapDSView.Get());
 }
 
 void ShadowMap::SetRenderMode()
 {
-	SetMode(false);
+	auto g_pImmediateContext = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
+
+	g_pImmediateContext->ClearState();
+
+	// RSにビューポートを設定
+	g_pImmediateContext->RSSetViewports(1, g_ViewPort);
+
+	// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
+	g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, g_bDepthMode ? g_pDepthStencilView : NULL);
 }
 
 void ShadowMap::ApplyMode(bool shadowMode)
