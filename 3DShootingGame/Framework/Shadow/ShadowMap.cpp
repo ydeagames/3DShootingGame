@@ -280,7 +280,7 @@ void ShadowMap::RenderStart()
 	descSampler.BorderColor[1] = 1.0f;
 	descSampler.BorderColor[2] = 1.0f;
 	descSampler.BorderColor[3] = 1.0f;
-	DX::ThrowIfFailed(g_pD3DDevice->CreateSamplerState(&descSampler, &g_pTextureSampler[1]));
+	// DX::ThrowIfFailed(g_pD3DDevice->CreateSamplerState(&descSampler, &g_pTextureSampler[1]));
 
 	descSampler.ComparisonFunc = D3D11_COMPARISON_LESS_EQUAL;
 	descSampler.Filter = D3D11_FILTER_COMPARISON_MIN_MAG_MIP_LINEAR;
@@ -288,7 +288,7 @@ void ShadowMap::RenderStart()
 	descSampler.MipLODBias = 0;
 	descSampler.MinLOD = -FLT_MAX;
 	descSampler.MaxLOD = +FLT_MAX;
-	DX::ThrowIfFailed(g_pD3DDevice->CreateSamplerState(&descSampler, &g_pTextureSampler[2]));
+	DX::ThrowIfFailed(g_pD3DDevice->CreateSamplerState(&descSampler, &g_pTextureSampler[1]));
 
 	// **********************************************************
 	// バック バッファの初期化
@@ -399,7 +399,7 @@ void ShadowMap::Render(GameCamera& camera)
 	FLOAT rotate = (FLOAT)(XM_PI * GameContext::Get<DX::StepTimer>().GetTotalSeconds()) / 15.0f;
 	Matrix matWorld = Matrix::CreateRotationY(rotate);
 	// g_cbCBuffer.World = matWorld.Transpose();
-	g_cbCBuffer.SMWorldViewProj = (matWorld * matShadowMapView * matShadowMapProj).Transpose();
+	g_cbCBuffer.SMViewProj = (matWorld * matShadowMapView * matShadowMapProj).Transpose();
 	basicEffect->SetWorld(matWorld);
 
 	// ***************************************
@@ -437,8 +437,8 @@ void ShadowMap::Render(GameCamera& camera)
 		// PSに定数バッファを設定
 		g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 		// PSにサンプラーを設定
-		ID3D11SamplerState* samplers[3] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get(), g_pTextureSampler[2].Get() };
-		g_pImmediateContext->PSSetSamplers(0, 3, samplers);
+		ID3D11SamplerState* samplers[2] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get() };
+		g_pImmediateContext->PSSetSamplers(0, 2, samplers);
 
 		// RSにビューポートを設定
 		g_pImmediateContext->RSSetViewports(1, g_ViewPortShadowMap);
@@ -453,7 +453,7 @@ void ShadowMap::Render(GameCamera& camera)
 		// シャドウマップの設定
 		//XMMATRIX mat = XMMatrixTranspose(matShadowMapView * matShadowMapProj);
 		//XMStoreFloat4x4(&g_cbCBuffer.SMViewProj, mat);
-		g_cbCBuffer.SMWorldViewProj = (matWorld * matShadowMapView * matShadowMapProj).Transpose();
+		g_cbCBuffer.SMViewProj = (matWorld * matShadowMapView * matShadowMapProj).Transpose();
 	}
 
 	// ***************************************
@@ -498,8 +498,8 @@ void ShadowMap::Render(GameCamera& camera)
 	// PSに定数バッファを設定
 	g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 	// PSにサンプラーを設定
-	ID3D11SamplerState* samplers[3] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get(), g_pTextureSampler[2].Get() };
-	g_pImmediateContext->PSSetSamplers(0, 3, samplers);
+	ID3D11SamplerState* samplers[2] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get() };
+	g_pImmediateContext->PSSetSamplers(0, 2, samplers);
 
 	// RSにビューポートを設定
 	g_pImmediateContext->RSSetViewports(1, g_ViewPort);

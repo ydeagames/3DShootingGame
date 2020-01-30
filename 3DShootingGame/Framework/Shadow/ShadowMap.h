@@ -32,7 +32,7 @@ private:
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> g_pCBuffer = NULL;		// 定数バッファ
 
-	Microsoft::WRL::ComPtr<ID3D11SamplerState> g_pTextureSampler[3] = { NULL, NULL, NULL };		// サンプラー
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> g_pTextureSampler[2] = { NULL, NULL };		// サンプラー
 
 	// シャドウ・マッピング用
 	bool g_bShadowMappingMode = true;
@@ -57,7 +57,7 @@ private:
 
 	// 定数バッファのデータ定義
 	struct cbCBuffer {
-		DirectX::SimpleMath::Matrix SMWorldViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
+		DirectX::SimpleMath::Matrix SMViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
 	};
 
 	// 定数バッファのデータ
