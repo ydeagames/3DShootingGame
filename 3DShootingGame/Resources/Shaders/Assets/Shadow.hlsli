@@ -70,9 +70,9 @@ float4 PS(PSInputTxEnvMap pin) : SV_TARGET
 	float  maxDepthSlope = max( abs( ddx( shadowCoord.z ) ), abs( ddy( shadowCoord.z ) ) );
 	
 	float  shadowThreshold = 1.0f;      // シャドウにするかどうかの閾値です.
-	float  bias            = 0.01f;     // 固定バイアスです.
-	float  slopeScaledBias = 0.01f;     // 深度傾斜.
-	float  depthBiasClamp  = 0.1f;      // バイアスクランプ値.
+	float  bias            = 0.001f;     // 固定バイアスです.
+	float  slopeScaledBias = 1.0f;     // 深度傾斜.
+	float  depthBiasClamp  = 1.0f;      // バイアスクランプ値.
 	
 	float  shadowBias = bias + slopeScaledBias * maxDepthSlope;
 	shadowBias = min( shadowBias, depthBiasClamp );
