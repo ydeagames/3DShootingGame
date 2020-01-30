@@ -31,6 +31,7 @@ VSOutputTxEnvMap VS(VSInputNmTx vin) {
 
     // 頂点座標　モデル座標系→透視座標系(シャドウマップ)
     float4 pos4 = vin.Position;
+    pos4 = mul(pos4, World);
     pos4 = mul(pos4, SMViewProj);
     pos4.xyz = pos4.xyz / pos4.w;
     vout.EnvCoord.x = (pos4.x + 1.0) / 2.0;

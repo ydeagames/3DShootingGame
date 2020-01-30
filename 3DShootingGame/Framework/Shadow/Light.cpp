@@ -11,7 +11,7 @@ Light::Light()
 	SetProjection(Matrix::CreateOrthographic(
 		30,
 		30,
-		1.00f,
+		.01f,
 		500.0f
 	));
 }
