@@ -5,6 +5,7 @@
 #include <Framework/Context/GameCamera.h>
 #include <Utilities/StringCast.h>
 #include "Framework/Shadow/ShadowMap.h"
+#include "Framework/Shadow/Light.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -96,7 +97,10 @@ void PrimitiveRenderer::RenderShadow(GameCamera& camera, bool shadowMode)
 			[&]()
 			{
 				if (lighting)
+				{
+					m_basicEffect->SetLightDirection(0, GameContext::Get<Light>().direction);
 					GameContext::Get<ShadowMap>().ApplyMode(shadowMode);
+				}
 			});
 	}
 }

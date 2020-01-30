@@ -7,20 +7,27 @@ using namespace DirectX::SimpleMath;
 
 Light::Light()
 {
-	SetLookAt(Vector3(3.0f, 3.0f, -3.0f), Vector3::Zero, Vector3::Up);
+	SetLook(Vector3(3.0f, 3.0f, -3.0f), Vector3(-1.f, -1.f, 1.f), Vector3::Up);
 	SetProjection(Matrix::CreateOrthographic(
 		30,
 		30,
 		.01f,
-		500.0f
+		200.0f
 	));
 }
 
-void Light::SetLookAt(const DirectX::SimpleMath::Vector3& pos, const DirectX::SimpleMath::Vector3& target, const DirectX::SimpleMath::Vector3& up)
+void Light::SetLook(const DirectX::SimpleMath::Vector3& positionVec, const DirectX::SimpleMath::Vector3& directionVec, const DirectX::SimpleMath::Vector3& upVec)
 {
-	position = pos;
-	direction = Math3DUtils::Normalized(target - pos);
-	view = Matrix::CreateLookAt(pos, target, up);
+	position = positionVec;
+	direction = Math3DUtils::Normalized(directionVec);
+	up = upVec;
+	view = Matrix::CreateLookAt(position, position + direction, up);
+}
+
+void Light::SetPosition(const DirectX::SimpleMath::Vector3& positionVec)
+{
+	position = positionVec;
+	view = Matrix::CreateLookAt(position, position + direction, up);
 }
 
 void Light::SetProjection(const DirectX::SimpleMath::Matrix& proj)
