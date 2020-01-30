@@ -35,7 +35,7 @@ auto PrimitiveRenderer::primitiveModels() -> std::unordered_map<std::string, Pri
 void PrimitiveRenderer::RenderStart()
 {
 	// m_model = GeometricPrimitive::CreateTeapot(GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext());
-	// m_model = GeometricPrimitive::CreateGeoSphere(dr.GetD3DDeviceContext(), 1.f, 3U, false);
+	// m_model = GeometricPrimitive::CreateGeoSphere(m_deviceResources.GetD3DDeviceContext(), 1.f, 3U, false);
 	auto& models = primitiveModels();
 	if (models.find(model) != models.end())
 	{

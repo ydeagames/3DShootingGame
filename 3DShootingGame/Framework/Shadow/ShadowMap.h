@@ -5,43 +5,36 @@ class GameCamera;
 class ShadowMap
 {
 private:
-	// 起動時の描画領域サイズ
-	SIZE		g_sizeWindow = { 640, 480 };		// ウインドウのクライアント領域
+	DX::DeviceResources* m_deviceResources;
+	ID3D11Device* device;
+	ID3D11DeviceContext* context;
 
-	// インターフェイス
-	ID3D11RenderTargetView* g_pRenderTargetView = NULL; // 描画ターゲット・ビュー
-	D3D11_VIEWPORT          g_ViewPort[1];				// ビューポート
-
-	ID3D11Texture2D* g_pDepthStencil = NULL;		// 深度/ステンシル
-	ID3D11DepthStencilView* g_pDepthStencilView = NULL;	// 深度/ステンシル・ビュー
-
-	Microsoft::WRL::ComPtr<ID3D11InputLayout> g_pInputLayout = NULL;            // 入力レイアウト・オブジェクト
-
+public:
+	ShadowMap();
+	
+private:
 	// 3Dオブジェクト描画用
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> g_pVertexShader = NULL;		// 頂点シェーダ
-	Microsoft::WRL::ComPtr<ID3D11PixelShader> g_pPixelShader = NULL;		// ピクセル・シェーダ
-	Microsoft::WRL::ComPtr<ID3D11PixelShader> g_pPixelShaderNoSM = NULL;	// ピクセル・シェーダ(シャドウ マップなし)
-	Microsoft::WRL::ComPtr<ID3D11BlendState> g_pBlendState = NULL;			// ブレンド・ステート・オブジェクト
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState> g_pRasterizerState = NULL;	// ラスタライザ・ステート・オブジェクト
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> g_pDepthStencilState = NULL;	// 深度/ステンシル・ステート・オブジェクト
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vertexShader = nullptr;		// 頂点シェーダ
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShader = nullptr;		// ピクセル・シェーダ
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShaderNoSM = nullptr;	// ピクセル・シェーダ(シャドウ マップなし)
+	Microsoft::WRL::ComPtr<ID3D11BlendState> m_blendState = nullptr;			// ブレンド・ステート・オブジェクト
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_rasterizerState = nullptr;	// ラスタライザ・ステート・オブジェクト
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_depthStencilState = nullptr;	// 深度/ステンシル・ステート・オブジェクト
 
 	// シャドウ マップ描画用
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> g_pVertexShaderShadow = NULL;		// 頂点シェーダ
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState> g_pRasterizerStateShadow = NULL;	// ラスタライザ・ステート・オブジェクト
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vertexShaderShadow = nullptr;		// 頂点シェーダ
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_rasterizerStateShadow = nullptr;	// ラスタライザ・ステート・オブジェクト
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer> g_pCBuffer = NULL;		// 定数バッファ
+	Microsoft::WRL::ComPtr<ID3D11Buffer> g_pCBuffer = nullptr;		// 定数バッファ
 
-	Microsoft::WRL::ComPtr<ID3D11SamplerState> g_pTextureSampler[2] = { NULL, NULL };		// サンプラー
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> m_textureSampler[2] = { nullptr, nullptr };		// サンプラー
 
 	// シャドウ・マッピング用
-	bool g_bShadowMappingMode = true;
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> g_pShadowMap = NULL;			// シャドウ・マップ
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> g_pShadowMapDSView = NULL;	// 深度/ステンシル・ビュー
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> g_pShadowMapSRView = NULL;	// シェーダ・リソース・ビュー
-	D3D11_VIEWPORT            g_ViewPortShadowMap[1];       // ビューポート
-
-	// 深度バッファのモード
-	bool g_bDepthMode = true;
+	bool m_shadowMappingEnabled = true;
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_shadowMap = nullptr;			// シャドウ・マップ
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_shadowMapDSView = nullptr;	// 深度/ステンシル・ビュー
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_shadowMapSRView = nullptr;	// シェーダ・リソース・ビュー
+	D3D11_VIEWPORT            m_viewPortShadowMap[1] = {};       // ビューポート
 
 	// 定数バッファのデータ定義
 	struct cbCBuffer {
@@ -49,25 +42,17 @@ private:
 	};
 
 	// 定数バッファのデータ
-	struct cbCBuffer g_cbCBuffer;
+	struct cbCBuffer m_constBuffer;
 
 public:
-	ID3D11ShaderResourceView* GetShadowMapSRView() const { return g_pShadowMapSRView.Get(); };
-	void SetEnabled(bool enabled) { g_bShadowMappingMode = enabled; };
-	bool IsEnabled() const { return g_bShadowMappingMode; };
-
-private:
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> modelTexture;
-	std::vector<DirectX::VertexPositionNormalTexture> modelVertices;
-	std::vector<uint16_t> modelIndices;
-	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionNormalTexture>> primitiveBatch;
-	std::unique_ptr<DirectX::BasicEffect> basicEffect;
+	ID3D11ShaderResourceView* GetShadowMapSRView() const { return m_shadowMapSRView.Get(); };
+	void SetEnabled(bool enabled) { m_shadowMappingEnabled = enabled; };
+	bool IsEnabled() const { return m_shadowMappingEnabled; };
 
 private:
 	void CreateShaderObj();
 	void CreateShaderShadow();
-	void InitBackBuffer();
-	void InitShadowMap();
+	void InitShadowMap(int dimension);
 
 public:
 	// 生成
@@ -78,6 +63,4 @@ public:
 	void ApplyMode(bool shadowMode);
 	void ApplyShadowMode();
 	void ApplyRenderMode();
-	void RenderObj(bool drawShadowMap);
-	void Render(GameCamera& camera);
 };
