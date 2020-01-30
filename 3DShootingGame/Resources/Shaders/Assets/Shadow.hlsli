@@ -84,8 +84,12 @@ float4 PS(PSInputTxEnvMap pin) : SV_TARGET
 // **************************************************
 
 // 頂点シェーダの関数
-float4 VS_SM(VSInputNmTx vin) : SV_POSITION {
+float4 VS_SM(VSInputNmTx vin) : SV_POSITION
+{
     // 頂点座標　モデル座標系→透視座標系
-    return mul(vin.Position, WorldViewProj);
+    float4 pos4 = vin.Position;
+    pos4 = mul(pos4, World);
+    pos4 = mul(pos4, SMViewProj);
+    return pos4;
 }
 

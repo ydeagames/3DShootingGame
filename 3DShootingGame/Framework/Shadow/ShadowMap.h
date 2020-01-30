@@ -82,11 +82,17 @@ private:
 	void CreateShaderShadow();
 	void InitBackBuffer();
 	void InitShadowMap();
+	void SetMode(bool shadowMode);
+	void ApplyMode(bool shadowMode);
 
 public:
 	// 生成
 	void RenderStart();
 	// 描画
+	void SetShadowMode();
+	void SetRenderMode();
+	void ApplyShadowMode();
+	void ApplyRenderMode();
 	void Begin();
 	void DrawObj(bool drawShadowMap);
 	void RenderObj(bool drawShadowMap);

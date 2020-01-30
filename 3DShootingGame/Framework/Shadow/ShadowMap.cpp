@@ -315,39 +315,116 @@ void ShadowMap::RenderStart()
 	basicEffect = std::make_unique<BasicEffect>(g_pD3DDevice);
 	basicEffect->SetTextureEnabled(true);
 	basicEffect->SetLightingEnabled(true);
+
+	// View Proj
+	// ビュー変換行列(光源から見る)
+	Vector3 focusPosition = { 0.0f, 0.0f,  0.0f };  // 注視点
+	Vector3 upDirection = { 0.0f, 1.0f,  0.0f };  // カメラの上方向
+	matShadowMapView = Matrix::CreateLookAt(g_vLightPos, focusPosition, upDirection);
+	// 射影変換行列(パースペクティブ(透視法)射影)
+	matShadowMapProj = Matrix::CreatePerspectiveFieldOfView(
+		XMConvertToRadians(45.0f),		// 視野角45°
+		g_ViewPortShadowMap[0].Width / g_ViewPortShadowMap[0].Height,	// アスペクト比
+		1.0f,							// 前方投影面までの距離
+		400.0f);						// 後方投影面までの距離
+}
+
+void ShadowMap::SetMode(bool shadowMode)
+{
+	auto g_pImmediateContext = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
+
+	if (shadowMode)
+		// 深度/ステンシルのクリア
+		g_pImmediateContext->ClearDepthStencilView(g_pShadowMapDSView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+	else
+		// 深度/ステンシルのクリア
+		g_pImmediateContext->ClearDepthStencilView(
+			g_pDepthStencilView, // クリアする深度/ステンシル・ビュー
+			D3D11_CLEAR_DEPTH,   // 深度値だけをクリアする
+			1.0f,                // 深度バッファをクリアする値
+			0);                  // ステンシル・バッファをクリアする値(この場合、無関係)
+
+	g_pImmediateContext->ClearState();
+
+	// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
+	if (shadowMode)
+	{
+		// RSにビューポートを設定
+		g_pImmediateContext->RSSetViewports(1, g_ViewPort);
+		
+		// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
+		g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, g_bDepthMode ? g_pDepthStencilView : NULL);
+	}
+	else
+	{
+		// RSにビューポートを設定
+		g_pImmediateContext->RSSetViewports(1, g_ViewPortShadowMap);
+
+		ID3D11RenderTargetView* pRender[1] = { NULL };
+		g_pImmediateContext->OMSetRenderTargets(1, pRender, g_pShadowMapDSView.Get());
+	}
+}
+
+void ShadowMap::SetShadowMode()
+{
+	SetMode(true);
+}
+
+void ShadowMap::SetRenderMode()
+{
+	SetMode(false);
+}
+
+void ShadowMap::ApplyMode(bool shadowMode)
+{
+	auto g_pImmediateContext = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
+
+	// PSにサンプラーを設定
+	ID3D11SamplerState* samplers[2] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get() };
+	g_pImmediateContext->PSSetSamplers(0, 2, samplers);
+
+	ID3D11ShaderResourceView* srv[] = { g_pShadowMapSRView.Get() };
+	g_pImmediateContext->PSSetShaderResources(
+		1,              // 設定する最初のスロット番号
+		1,              // 設定するシェーダ・リソース・ビューの数
+		srv);			// 設定するシェーダ・リソース・ビューの配列
+
+	// VSに頂点シェーダを設定
+	g_pImmediateContext->VSSetShader(shadowMode ? g_pVertexShaderShadow.Get() : g_pVertexShader.Get(), NULL, 0);
+
+	// RSにラスタライザ・ステート・オブジェクトを設定
+	g_pImmediateContext->RSSetState(shadowMode ? g_pRasterizerStateShadow.Get() : g_pRasterizerState.Get());
+
+	// PSにピクセル・シェーダを設定
+	g_pImmediateContext->PSSetShader(shadowMode ? NULL : (g_bShadowMappingMode ? g_pPixelShader.Get() : g_pPixelShaderNoSM.Get()), NULL, 0);
+
+	// VSに定数バッファを設定
+	g_pImmediateContext->VSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
+
+	// PSに定数バッファを設定
+	g_cbCBuffer.SMViewProj = (matShadowMapView * matShadowMapProj).Transpose();
+	g_pImmediateContext->UpdateSubresource(g_pCBuffer.Get(), 0, NULL, &g_cbCBuffer, 0, 0);
+	g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
+	
+	// OMにブレンド・ステート・オブジェクトを設定
+	FLOAT BlendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	g_pImmediateContext->OMSetBlendState(g_pBlendState.Get(), BlendFactor, 0xffffffff);
+	// OMに深度/ステンシル・ステート・オブジェクトを設定
+	g_pImmediateContext->OMSetDepthStencilState(g_pDepthStencilState.Get(), 0);
+}
+
+void ShadowMap::ApplyShadowMode()
+{
+	ApplyMode(true);
+}
+
+void ShadowMap::ApplyRenderMode()
+{
+	ApplyMode(false);
 }
 
 void ShadowMap::Begin()
 {
-}
-
-/*--------------------------------------------
-	Objの描画処理
---------------------------------------------*/
-void ShadowMap::DrawObj(bool drawShadowMap)
-{
-	auto g_pImmediateContext = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
-	// 定数バッファの内容更新
-	g_pImmediateContext->UpdateSubresource(g_pCBuffer.Get(), 0, NULL, &g_cbCBuffer, 0, 0);
-	// basicEffect->SetTexture(modelTexture.Get());
-	// basicEffect->Apply(g_pImmediateContext);
-	// PSにシェーダ・リソース・ビューを設定
-	// ID3D11ShaderResourceView* srv[] = { g_pShadowMapSRView.Get() };
-	// g_pImmediateContext->PSSetShaderResources(
-	// 	1,              // 設定する最初のスロット番号
-	// 	1,              // 設定するシェーダ・リソース・ビューの数
-	// 	srv);			// 設定するシェーダ・リソース・ビューの配列
-	ID3D11ShaderResourceView* srv[2];
-	srv[0] = modelTexture.Get();
-	srv[1] = drawShadowMap ? NULL : g_pShadowMapSRView.Get();
-	// PSにシェーダ・リソース・ビューを設定
-	g_pImmediateContext->PSSetShaderResources(
-		0,              // 設定する最初のスロット番号
-		2,              // 設定するシェーダ・リソース・ビューの数
-		srv);			// 設定するシェーダ・リソース・ビューの配列
-	primitiveBatch->Begin();
-	primitiveBatch->DrawIndexed(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST, modelIndices.data(), modelIndices.size(), modelVertices.data(), modelVertices.size());
-	primitiveBatch->End();
 }
 
 /*--------------------------------------------
@@ -356,30 +433,19 @@ void ShadowMap::DrawObj(bool drawShadowMap)
 void ShadowMap::RenderObj(bool drawShadowMap)
 {
 	auto g_pImmediateContext = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
-	// **********************************************************
-	// IAにOBJファイルの頂点バッファ/インデックス・バッファを設定
-	g_wfObjKuma.SetIA();
+
 	// IAに入力レイアウト・オブジェクトを設定
 	g_pImmediateContext->IASetInputLayout(g_pInputLayout.Get());
 
-	// VSに頂点シェーダを設定
-	g_pImmediateContext->VSSetShader(drawShadowMap ? g_pVertexShaderShadow.Get() : g_pVertexShader.Get(), NULL, 0);
+	basicEffect->SetTexture(modelTexture.Get());
+	basicEffect->Apply(g_pImmediateContext);
 
-	// RSにラスタライザ・ステート・オブジェクトを設定
-	g_pImmediateContext->RSSetState(drawShadowMap ? g_pRasterizerStateShadow.Get() : g_pRasterizerState.Get());
+	ApplyMode(drawShadowMap);
 
-	// PSにピクセル・シェーダを設定
-	g_pImmediateContext->PSSetShader(drawShadowMap ? NULL : (g_bShadowMappingMode ? g_pPixelShader.Get() : g_pPixelShaderNoSM.Get()), NULL, 0);
-
-	// OMにブレンド・ステート・オブジェクトを設定
-	FLOAT BlendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-	g_pImmediateContext->OMSetBlendState(g_pBlendState.Get(), BlendFactor, 0xffffffff);
-	// OMに深度/ステンシル・ステート・オブジェクトを設定
-	g_pImmediateContext->OMSetDepthStencilState(g_pDepthStencilState.Get(), 0);
-
-	// ***************************************
 	// 3Dオブジェクトを描画
-	DrawObj(drawShadowMap);
+	primitiveBatch->Begin();
+	primitiveBatch->DrawIndexed(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST, modelIndices.data(), modelIndices.size(), modelVertices.data(), modelVertices.size());
+	primitiveBatch->End();
 }
 
 /*--------------------------------------------
