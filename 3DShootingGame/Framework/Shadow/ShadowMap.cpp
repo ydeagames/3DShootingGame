@@ -55,7 +55,7 @@ void ShadowMap::CreateShaderObj()
 	D3D11_RASTERIZER_DESC RSDesc;
 	RSDesc.FillMode = D3D11_FILL_SOLID;   // 普通に描画する
 	RSDesc.CullMode = D3D11_CULL_BACK;    // 表面を描画する
-	RSDesc.FrontCounterClockwise = TRUE; // 時計回りが表面
+	RSDesc.FrontCounterClockwise = FALSE; // 時計回りが表面
 	RSDesc.DepthBias = 0;
 	RSDesc.DepthBiasClamp = 0;
 	RSDesc.SlopeScaledDepthBias = 0;
@@ -85,7 +85,7 @@ void ShadowMap::CreateShaderShadow()
 	D3D11_RASTERIZER_DESC RSDesc;
 	RSDesc.FillMode = D3D11_FILL_SOLID;   // 普通に描画する
 	RSDesc.CullMode = D3D11_CULL_FRONT;   // 表面を描画する
-	RSDesc.FrontCounterClockwise = TRUE; // 時計回りが表面
+	RSDesc.FrontCounterClockwise = FALSE; // 時計回りが表面
 	RSDesc.DepthBias = 0;
 	RSDesc.DepthBiasClamp = 0;
 	RSDesc.SlopeScaledDepthBias = 0;
@@ -313,6 +313,7 @@ void ShadowMap::RenderStart()
 	modelIndices.insert(modelIndices.end(), model2Indices.begin(), model2Indices.end());
 	// DirectX::ComputeTeapot(modelVertices, modelIndices, 1, 8, true);
 	basicEffect = std::make_unique<BasicEffect>(g_pD3DDevice);
+	basicEffect->SetTextureEnabled(true);
 	basicEffect->SetLightingEnabled(true);
 }
 
@@ -326,33 +327,27 @@ void ShadowMap::Begin()
 void ShadowMap::DrawObj(bool drawShadowMap)
 {
 	auto g_pImmediateContext = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
-
-	WFOBJ_GROUP* pGroup = g_wfObjKuma.GetGroup();
-	int countGroup = g_wfObjKuma.GetCountGroup();
-	for (int g = 0; g < countGroup; ++g) {
-		if (pGroup[g].countIndex <= 0)
-			continue;
-
-		// マテリアル設定
-		WFOBJ_MTL* pMtl = g_wfMtl.GetMaterial(pGroup[g].mtl);
-		ID3D11ShaderResourceView* srv[2];
-		srv[0] = g_wfMtl.GetTextureDefault(pMtl->map_Kd);
-		srv[1] = drawShadowMap ? NULL : g_pShadowMapSRView.Get();
-
-		basicEffect->SetDiffuseColor(Color(pMtl->Kd[0], pMtl->Kd[1], pMtl->Kd[2], pMtl->d));
-
-		// 定数バッファの内容更新
-		g_pImmediateContext->UpdateSubresource(g_pCBuffer.Get(), 0, NULL, &g_cbCBuffer, 0, 0);
-
-		// PSにシェーダ・リソース・ビューを設定
-		g_pImmediateContext->PSSetShaderResources(
-			0,              // 設定する最初のスロット番号
-			2,              // 設定するシェーダ・リソース・ビューの数
-			srv);			// 設定するシェーダ・リソース・ビューの配列
-
-		// メッシュを描画
-		g_wfObjKuma.Draw(g);
-	}
+	// 定数バッファの内容更新
+	g_pImmediateContext->UpdateSubresource(g_pCBuffer.Get(), 0, NULL, &g_cbCBuffer, 0, 0);
+	// basicEffect->SetTexture(modelTexture.Get());
+	// basicEffect->Apply(g_pImmediateContext);
+	// PSにシェーダ・リソース・ビューを設定
+	// ID3D11ShaderResourceView* srv[] = { g_pShadowMapSRView.Get() };
+	// g_pImmediateContext->PSSetShaderResources(
+	// 	1,              // 設定する最初のスロット番号
+	// 	1,              // 設定するシェーダ・リソース・ビューの数
+	// 	srv);			// 設定するシェーダ・リソース・ビューの配列
+	ID3D11ShaderResourceView* srv[2];
+	srv[0] = modelTexture.Get();
+	srv[1] = drawShadowMap ? NULL : g_pShadowMapSRView.Get();
+	// PSにシェーダ・リソース・ビューを設定
+	g_pImmediateContext->PSSetShaderResources(
+		0,              // 設定する最初のスロット番号
+		2,              // 設定するシェーダ・リソース・ビューの数
+		srv);			// 設定するシェーダ・リソース・ビューの配列
+	primitiveBatch->Begin();
+	primitiveBatch->DrawIndexed(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST, modelIndices.data(), modelIndices.size(), modelVertices.data(), modelVertices.size());
+	primitiveBatch->End();
 }
 
 /*--------------------------------------------
