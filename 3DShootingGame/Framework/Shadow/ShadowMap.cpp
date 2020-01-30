@@ -350,18 +350,18 @@ void ShadowMap::SetMode(bool shadowMode)
 	if (shadowMode)
 	{
 		// RSにビューポートを設定
-		g_pImmediateContext->RSSetViewports(1, g_ViewPort);
-		
-		// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
-		g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, g_bDepthMode ? g_pDepthStencilView : NULL);
-	}
-	else
-	{
-		// RSにビューポートを設定
 		g_pImmediateContext->RSSetViewports(1, g_ViewPortShadowMap);
 
 		ID3D11RenderTargetView* pRender[1] = { NULL };
 		g_pImmediateContext->OMSetRenderTargets(1, pRender, g_pShadowMapDSView.Get());
+	}
+	else
+	{
+		// RSにビューポートを設定
+		g_pImmediateContext->RSSetViewports(1, g_ViewPort);
+
+		// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
+		g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, g_bDepthMode ? g_pDepthStencilView : NULL);
 	}
 }
 
@@ -405,7 +405,7 @@ void ShadowMap::ApplyMode(bool shadowMode)
 	g_cbCBuffer.SMViewProj = (matShadowMapView * matShadowMapProj).Transpose();
 	g_pImmediateContext->UpdateSubresource(g_pCBuffer.Get(), 0, NULL, &g_cbCBuffer, 0, 0);
 	g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
-	
+
 	// OMにブレンド・ステート・オブジェクトを設定
 	FLOAT BlendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 	g_pImmediateContext->OMSetBlendState(g_pBlendState.Get(), BlendFactor, 0xffffffff);
@@ -459,124 +459,24 @@ void ShadowMap::Render(GameCamera& camera)
 	// ワールド変換行列
 	FLOAT rotate = (FLOAT)(XM_PI * GameContext::Get<DX::StepTimer>().GetTotalSeconds()) / 15.0f;
 	Matrix matWorld = Matrix::CreateRotationY(rotate);
-	// g_cbCBuffer.World = matWorld.Transpose();
-	g_cbCBuffer.SMViewProj = (matWorld * matShadowMapView * matShadowMapProj).Transpose();
+	basicEffect->SetView(camera.view);
+	basicEffect->SetProjection(camera.projection);
 	basicEffect->SetWorld(matWorld);
+	basicEffect->Apply(g_pImmediateContext);
 
 	// ***************************************
 	// シャドウ マップの描画
 	if (g_bShadowMappingMode) {
-		g_pImmediateContext->ClearState();
-
-		// ビュー変換行列(光源から見る)
-		XMVECTORF32 focusPosition = { 0.0f, 0.0f,  0.0f };  // 注視点
-		XMVECTORF32 upDirection = { 0.0f, 1.0f,  0.0f };  // カメラの上方向
-		matShadowMapView = XMMatrixLookAtRH(XMLoadFloat3(&g_vLightPos), focusPosition, upDirection);
-		// XMStoreFloat4x4(&g_cbCBuffer.View, XMMatrixTranspose(matShadowMapView));
-		basicEffect->SetLightDirection(0, Math3DUtils::Normalized(focusPosition - g_vLightPos));
-		// 射影変換行列(パースペクティブ(透視法)射影)
-		matShadowMapProj = XMMatrixPerspectiveFovRH(
-			XMConvertToRadians(45.0f),		// 視野角45°
-			g_ViewPortShadowMap[0].Width / g_ViewPortShadowMap[0].Height,	// アスペクト比
-			1.0f,							// 前方投影面までの距離
-			400.0f);						// 後方投影面までの距離
-		//XMStoreFloat4x4(&g_cbCBuffer.Projection, XMMatrixTranspose(matShadowMapProj));
-
-		// 深度/ステンシルのクリア
-		g_pImmediateContext->ClearDepthStencilView(g_pShadowMapDSView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
-
-		// basicEffect->SetTexture(srv[0]);
-		//basicEffect->SetWorld(g_cbCBuffer.World);
-		basicEffect->SetView(matShadowMapView);
-		basicEffect->SetProjection(matShadowMapProj);
-
-		basicEffect->Apply(g_pImmediateContext);
-
-		// VSに定数バッファを設定
-		g_pImmediateContext->VSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
-
-		// PSに定数バッファを設定
-		g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
-		// PSにサンプラーを設定
-		ID3D11SamplerState* samplers[2] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get() };
-		g_pImmediateContext->PSSetSamplers(0, 2, samplers);
-
-		// RSにビューポートを設定
-		g_pImmediateContext->RSSetViewports(1, g_ViewPortShadowMap);
-
-		// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
-		ID3D11RenderTargetView* pRender[1] = { NULL };
-		g_pImmediateContext->OMSetRenderTargets(1, pRender, g_pShadowMapDSView.Get());
+		SetShadowMode();
 
 		// 物体の描画
 		RenderObj(true);
-
-		// シャドウマップの設定
-		//XMMATRIX mat = XMMatrixTranspose(matShadowMapView * matShadowMapProj);
-		//XMStoreFloat4x4(&g_cbCBuffer.SMViewProj, mat);
-		g_cbCBuffer.SMViewProj = (matWorld * matShadowMapView * matShadowMapProj).Transpose();
 	}
 
-	// ***************************************
-	// // ビュー変換行列
-	// g_cbCBuffer.View = camera.view.Transpose();
-	// // 射影変換行列(パースペクティブ(透視法)射影)
-	// g_cbCBuffer.Projection = camera.projection.Transpose();
-	// // 点光源座標
-	// g_cbCBuffer.Light = Vector3::Transform(g_vLightPos, g_cbCBuffer.View);
-		// ビュー変換行列
-	Matrix matView = camera.view;
-	// 射影変換行列(パースペクティブ(透視法)射影)
-	Matrix matProj = camera.projection;
-	//g_cbCBuffer.Projection = matProj.Transpose();
-	// 点光源座標
-	// g_cbCBuffer.Light = Vector3::Transform(g_cbCBuffer.Light, matProj);
-
-	//// ***************************************
-	//// 描画ターゲットのクリア
-	//g_pImmediateContext->ClearRenderTargetView(
-	//	g_pRenderTargetView, // クリアする描画ターゲット
-	//	g_ClearColor);         // クリアする値
-
-// 深度/ステンシルのクリア
-	g_pImmediateContext->ClearDepthStencilView(
-		g_pDepthStencilView, // クリアする深度/ステンシル・ビュー
-		D3D11_CLEAR_DEPTH,   // 深度値だけをクリアする
-		1.0f,                // 深度バッファをクリアする値
-		0);                  // ステンシル・バッファをクリアする値(この場合、無関係)
-
-// ***************************************
-	g_pImmediateContext->ClearState();
-
-	basicEffect->SetWorld(matWorld);
-	basicEffect->SetView(matView);
-	basicEffect->SetProjection(matProj);
-
-	basicEffect->Apply(g_pImmediateContext);
-	// VSに定数バッファを設定
-	g_pImmediateContext->VSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
-
-	// PSに定数バッファを設定
-	g_pImmediateContext->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
-	// PSにサンプラーを設定
-	ID3D11SamplerState* samplers[2] = { g_pTextureSampler[0].Get(), g_pTextureSampler[1].Get() };
-	g_pImmediateContext->PSSetSamplers(0, 2, samplers);
-
-	// RSにビューポートを設定
-	g_pImmediateContext->RSSetViewports(1, g_ViewPort);
-
-	// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
-	g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, g_bDepthMode ? g_pDepthStencilView : NULL);
+	SetRenderMode();
 
 	// 物体の描画
 	RenderObj(false);
-
-	// ***************************************
-	//// バック バッファの表示
-	//hr = g_pSwapChain->Present(0,	// 画面を直ぐに更新する
-	//	0);	// 画面を実際に更新する
-
-	//return hr;
 }
 
 void ShadowMap::End()
