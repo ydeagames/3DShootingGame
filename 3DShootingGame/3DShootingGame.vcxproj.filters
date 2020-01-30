@@ -1346,6 +1346,9 @@
     <ClInclude Include="Framework\Shadow\Light.h">
       <Filter>Framework\Shadow</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Components\LightComponent.h">
+      <Filter>Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -1508,6 +1511,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Shadow\Light.cpp">
       <Filter>Framework\Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\LightComponent.cpp">
+      <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

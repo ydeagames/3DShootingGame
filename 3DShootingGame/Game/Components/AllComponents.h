@@ -15,6 +15,7 @@
 #include "BubbleEffect.h"
 #include "ShootGauge.h"
 #include "AudioSource.h"
+#include "LightComponent.h"
 
 namespace BuildSettings
 {
@@ -39,6 +40,7 @@ namespace BuildSettings
 		ShaderArt,
 		BubbleEffect,
 		ShootGauge,
-		AudioSource
+		AudioSource,
+		LightComponent
 	>;
 }
