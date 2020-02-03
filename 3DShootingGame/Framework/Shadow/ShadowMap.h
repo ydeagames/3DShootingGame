@@ -37,12 +37,12 @@ private:
 	D3D11_VIEWPORT            m_viewPortShadowMap[1] = {};       // ビューポート
 
 	// 定数バッファのデータ定義
-	struct cbCBuffer {
+	struct ShadowParameters {
 		DirectX::SimpleMath::Matrix SMViewProj; // ワールド×ビュー×透視変換行列(シャドウマップ用)
 	};
 
 	// 定数バッファのデータ
-	struct cbCBuffer m_constBuffer;
+	struct ShadowParameters m_constBuffer;
 
 public:
 	ID3D11ShaderResourceView* GetShadowMapSRView() const { return m_shadowMapSRView.Get(); };

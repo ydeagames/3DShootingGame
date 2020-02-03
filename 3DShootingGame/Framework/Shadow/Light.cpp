@@ -9,8 +9,8 @@ Light::Light()
 {
 	SetLook(Vector3(3.0f, 3.0f, -3.0f), Vector3(-1.f, -1.f, 1.f), Vector3::Up);
 	SetProjection(Matrix::CreateOrthographic(
-		30,
-		30,
+		60,
+		60,
 		.01f,
 		200.0f
 	));

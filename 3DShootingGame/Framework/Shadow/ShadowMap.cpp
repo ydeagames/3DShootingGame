@@ -158,7 +158,7 @@ void ShadowMap::RenderStart()
 	cBufferDesc.StructureByteStride = 0;
 
 	// 定数バッファの作成
-	cBufferDesc.ByteWidth = sizeof(cbCBuffer); // バッファ・サイズ
+	cBufferDesc.ByteWidth = sizeof(ShadowParameters); // バッファ・サイズ
 	DX::ThrowIfFailed(device->CreateBuffer(&cBufferDesc, nullptr, g_pCBuffer.ReleaseAndGetAddressOf()));
 
 	// **********************************************************
@@ -229,7 +229,7 @@ void ShadowMap::RenderStart()
 
 	// **********************************************************
 	// シャドウ・マップの作成
-	InitShadowMap(512);
+	InitShadowMap(1024);
 }
 
 void ShadowMap::SetShadowMode()

@@ -77,7 +77,7 @@ float4 PS(PSInputTxEnvMap pin) : SV_TARGET
 	shadowColor     = lerp( shadowColor, 1.0f, shadowThreshold );
 
     // êF
-    return saturate(texCol * shadowColor);
+    return saturate(min(texCol, shadowColor));
 }
 
 // **************************************************

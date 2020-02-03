@@ -166,8 +166,13 @@ void MyGame::Render(GameCamera& camera)
 		// 描画イベント
 		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene)
 		{
-			Renderable::Render(scene.registry, std::forward<GameCamera>(camera));
 			Renderable::RenderShadow(scene.registry, std::forward<GameCamera>(camera), false);
+		});
+		
+		// 描画イベント
+		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene)
+		{
+			Renderable::Render(scene.registry, std::forward<GameCamera>(camera));
 		});
 	}
 	else
