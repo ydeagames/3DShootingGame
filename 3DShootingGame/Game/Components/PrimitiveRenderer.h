@@ -73,7 +73,7 @@ private:
 
 public:
 	void RenderStart();
-	void Render(GameCamera& camera);
+	void RenderShadow(GameCamera& camera, bool shadowMode);
 
 public:
 	template<class Archive>

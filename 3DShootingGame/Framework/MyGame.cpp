@@ -16,6 +16,8 @@
 #include <Utilities/Input.h>
 #include <Game/BuildSettings.h>
 #include <Framework/FMOD/SoundSystem.h>
+#include "Shadow/ShadowMap.h"
+#include "Shadow/Light.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -64,6 +66,10 @@ MyGame::MyGame()
 	GameContext::Register<SceneManager>().LoadScene(SceneInfo::CreateFromName("scene"));
 	// 音
 	GameContext::Register<SoundSystem>();
+	// ライト
+	GameContext::Register<Light>();
+	// 影
+	GameContext::Register<ShadowMap>();
 
 	// Transform
 	GameContext::Register<TransformResolverContext>();
@@ -72,6 +78,8 @@ MyGame::MyGame()
 MyGame::~MyGame()
 {
 	GameContext::Remove<TransformResolverContext>();
+	GameContext::Remove<ShadowMap>();
+	GameContext::Remove<Light>();
 	GameContext::Remove<SoundSystem>();
 	GameContext::Remove<SceneManager>();
 	GameContext::Remove<PhysXManager>();
@@ -129,7 +137,7 @@ void MyGame::Update()
 void MyGame::RenderStart()
 {
 	m_imgui = std::make_unique<ImGuiPtr>();
-
+	GameContext::Get<ShadowMap>().RenderStart();
 	GameContext::Get<SceneManager>().ForEachScenes([](auto& scene) { Renderable::RenderStart(scene.registry); });
 }
 
@@ -143,8 +151,29 @@ void MyGame::Render(GameCamera& camera)
 	auto& physics = GameContext::Get<PhysXManager>();
 	if (physics.debugMode & PhysXManager::IngamePvdMode::Game)
 	{
+		auto& shadow = GameContext::Get<ShadowMap>();
+
+		if (shadow.IsEnabled())
+		{
+			shadow.SetShadowMode();
+
+			// 描画イベント
+			GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::RenderShadow(scene.registry, std::forward<GameCamera>(camera), true); });
+
+			shadow.SetRenderMode();
+		}
+		
 		// 描画イベント
-		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::Render(scene.registry, std::forward<GameCamera>(camera)); });
+		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene)
+		{
+			Renderable::RenderShadow(scene.registry, std::forward<GameCamera>(camera), false);
+		});
+		
+		// 描画イベント
+		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene)
+		{
+			Renderable::Render(scene.registry, std::forward<GameCamera>(camera));
+		});
 	}
 	else
 	{
@@ -169,6 +198,10 @@ void MyGame::Render(GameCamera& camera)
 
 		// GUI描画イベント
 		GameContext::Get<SceneManager>().ForEachScenesInverted([&](auto& scene) { Renderable::RenderGui(scene.registry, std::forward<GameCamera>(camera)); });
+
+		ImGui::Begin("Shadow");
+		ImGui::Image(ImTextureID(GameContext::Get<ShadowMap>().GetShadowMapSRView()), ImVec2(512, 512));
+		ImGui::End();
 
 		// Widgets
 		Widgets::AllWidgets::Render();

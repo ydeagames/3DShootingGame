@@ -572,6 +572,8 @@
     <ClInclude Include="Framework\ImGui\WidgetDND.h" />
     <ClInclude Include="Framework\Physics\Collidable.h" />
     <ClInclude Include="Framework\FMOD\SoundSystem.h" />
+    <ClInclude Include="Framework\Shadow\Light.h" />
+    <ClInclude Include="Framework\Shadow\ShadowMap.h" />
     <ClInclude Include="Framework\StandardBuildSettings.h" />
     <ClInclude Include="Framework\Tags\Tags.h" />
     <ClInclude Include="Game\Components\AudioSource.h" />
@@ -610,6 +612,7 @@
     <ClInclude Include="Game\Components\FontRenderer.h" />
     <ClInclude Include="Game\Components\FPSCamera.h" />
     <ClInclude Include="Game\Components\Goal.h" />
+    <ClInclude Include="Game\Components\LightComponent.h" />
     <ClInclude Include="Game\Components\Menu.h" />
     <ClInclude Include="Game\Components\ModelRenderer.h" />
     <ClInclude Include="Game\Components\PlayerCamera.h" />
@@ -622,6 +625,7 @@
     <ClInclude Include="Game\Tags\AllTags.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
     <ClInclude Include="Utilities\StringCast.h" />
+    <ClInclude Include="Utilities\wavefrontobj.h" />
     <ClInclude Include="Utilities\WindowsUtils.h" />
     <ClInclude Include="Game\BuildSettings.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -657,6 +661,8 @@
     <ClCompile Include="Framework\Context\ApplicationHandler.cpp" />
     <ClCompile Include="Framework\ImGui\WidgetDND.cpp" />
     <ClCompile Include="Framework\FMOD\SoundSystem.cpp" />
+    <ClCompile Include="Framework\Shadow\Light.cpp" />
+    <ClCompile Include="Framework\Shadow\ShadowMap.cpp" />
     <ClCompile Include="Game\Components\AudioSource.cpp" />
     <ClCompile Include="Game\Components\Background.cpp" />
     <ClCompile Include="Game\Components\BubbleEffect.cpp" />
@@ -686,6 +692,7 @@
     <ClCompile Include="Game\Components\FontRenderer.cpp" />
     <ClCompile Include="Game\Components\FPSCamera.cpp" />
     <ClCompile Include="Game\Components\Goal.cpp" />
+    <ClCompile Include="Game\Components\LightComponent.cpp" />
     <ClCompile Include="Game\Components\Menu.cpp" />
     <ClCompile Include="Game\Components\ModelRenderer.cpp" />
     <ClCompile Include="Game\Components\PlayerCamera.cpp" />
@@ -695,6 +702,7 @@
     <ClCompile Include="Game\Components\ShaderArt.cpp" />
     <ClCompile Include="Game\Components\ShootGauge.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
+    <ClCompile Include="Utilities\wavefrontobj.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\Components\InfinityGridFloor.cpp" />
     <ClCompile Include="Framework\ImGui\ImGuiStyles.cpp" />
@@ -727,6 +735,7 @@
     <None Include="Resources\Shaders\Assets\Lighting.fxh" />
     <None Include="Resources\Shaders\Assets\RuleTransition.hlsli" />
     <None Include="Resources\Shaders\Assets\Parameter.hlsli" />
+    <None Include="Resources\Shaders\Assets\Shadow.hlsli" />
     <None Include="Resources\Shaders\Assets\Structures.fxh" />
     <None Include="Resources\Shaders\Assets\Utilities.fxh" />
   </ItemGroup>
@@ -770,6 +779,46 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VSBasicVc</EntryPointName>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VSBasicVc</EntryPointName>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VSBasicVc</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\Shadow_PS.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\Shadow_PS_NOSM.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PS_NOSM</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PS_NOSM</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS_NOSM</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS_NOSM</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\Shadow_VS.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Assets\Shadow_VS_SM.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VS_SM</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VS_SM</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS_SM</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS_SM</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

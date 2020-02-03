@@ -8,6 +8,7 @@
 #include <Framework/Context/WindowHandler.h>
 #include <Framework/Context/PauseHandler.h>
 #include <Framework/Context/GameCamera.h>
+#include <Framework/Shadow/ShadowMap.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

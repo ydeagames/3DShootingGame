@@ -1,6 +1,7 @@
 {
     "entities": {
         "created": [
+            1048602,
             25,
             24,
             23,
@@ -23,6 +24,7 @@
             1048581,
             4,
             3,
+            1048578,
             1,
             0
         ],
@@ -167,9 +169,9 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": -0.8999999761581421,
-                        "y": 14.100000381469727,
-                        "z": -25.200000762939454
+                        "x": 0.0,
+                        "y": -1.399999976158142,
+                        "z": 0.0
                     },
                     "localRotation": {
                         "x": 0.0,
@@ -178,9 +180,9 @@
                         "w": 1.0
                     },
                     "localScale": {
-                        "x": 9.199999809265137,
+                        "x": 100.0,
                         "y": 2.5999999046325685,
-                        "z": 9.0
+                        "z": 100.0
                     }
                 }
             },
@@ -615,6 +617,54 @@
                         "z": 1.0
                     }
                 }
+            },
+            {
+                "id": 1048578,
+                "component": {
+                    "name": "LightWrapper",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": -10.5,
+                        "y": 18.700000762939454,
+                        "z": 3.0999999046325685
+                    },
+                    "localRotation": {
+                        "x": -0.0000012779578355548438,
+                        "y": 0.7853331565856934,
+                        "z": -0.0000012779578355548438,
+                        "w": -0.6190733909606934
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1048602,
+                "component": {
+                    "name": "Light",
+                    "parent": 1048578,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": -50.900001525878909,
+                        "y": 12.300000190734864,
+                        "z": -25.299999237060548
+                    },
+                    "localRotation": {
+                        "x": -0.14092519879341126,
+                        "y": -0.8195481300354004,
+                        "z": -0.22805842757225038,
+                        "w": 0.5064288973808289
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
             }
         ],
         "PhysXScene": [
@@ -896,27 +946,14 @@
                 }
             }
         ],
-        "ModelRenderer": [
-            {
-                "id": 19,
-                "component": {
-                    "model": "Resources/Models/city.cmo",
-                    "cullfront": false,
-                    "wireframe": false
-                }
-            },
-            {
-                "id": 17,
-                "component": {
-                    "model": "Resources/Models/city.cmo",
-                    "cullfront": false,
-                    "wireframe": false
-                }
-            }
-        ],
+        "ModelRenderer": [],
         "CameraComponent": [
             {
                 "id": 1,
+                "component": {}
+            },
+            {
+                "id": 1048602,
                 "component": {}
             }
         ],
@@ -984,6 +1021,13 @@
                     "movePercent": 0.5,
                     "target": 0
                 }
+            },
+            {
+                "id": 1048578,
+                "component": {
+                    "movePercent": 0.5,
+                    "target": 0
+                }
             }
         ],
         "RotateFollower": [],
@@ -1045,6 +1089,12 @@
                     "playOnAwake": true,
                     "loop": true
                 }
+            }
+        ],
+        "LightComponent": [
+            {
+                "id": 1048602,
+                "component": {}
             }
         ]
     }

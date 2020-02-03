@@ -1,6 +1,7 @@
 {
     "entities": {
         "created": [
+            1048602,
             25,
             24,
             23,
@@ -21,15 +22,14 @@
             6,
             4,
             3,
+            1048578,
             1,
             0
         ],
         "destroyed": [
-            1048578,
-            1048602,
-            1048581,
+            2097170,
             1048584,
-            2097170
+            1048581
         ]
     },
     "tags": {
@@ -167,9 +167,9 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": -0.8999999761581421,
-                        "y": 14.100000381469727,
-                        "z": -25.200000762939454
+                        "x": 0.0,
+                        "y": -1.399999976158142,
+                        "z": 0.0
                     },
                     "localRotation": {
                         "x": 0.0,
@@ -178,9 +178,9 @@
                         "w": 1.0
                     },
                     "localScale": {
-                        "x": 9.199999809265137,
+                        "x": 100.0,
                         "y": 2.5999999046325685,
-                        "z": 9.0
+                        "z": 100.0
                     }
                 }
             },
@@ -567,6 +567,54 @@
                         "z": 11.399999618530274
                     }
                 }
+            },
+            {
+                "id": 1048578,
+                "component": {
+                    "name": "LightWrapper",
+                    "parent": 4294967295,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": -10.5,
+                        "y": 18.700000762939454,
+                        "z": 3.0999999046325685
+                    },
+                    "localRotation": {
+                        "x": -0.0000012779578355548438,
+                        "y": 0.7853331565856934,
+                        "z": -0.0000012779578355548438,
+                        "w": -0.6190733909606934
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1048602,
+                "component": {
+                    "name": "Light",
+                    "parent": 1048578,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": -50.900001525878909,
+                        "y": 12.300000190734864,
+                        "z": -25.299999237060548
+                    },
+                    "localRotation": {
+                        "x": -0.14092519879341126,
+                        "y": -0.8195481300354004,
+                        "z": -0.22805842757225038,
+                        "w": 0.5064288973808289
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
             }
         ],
         "PhysXScene": [
@@ -848,35 +896,14 @@
                 }
             }
         ],
-        "ModelRenderer": [
-            {
-                "id": 19,
-                "component": {
-                    "model": "Resources/Models/city.cmo",
-                    "cullfront": false,
-                    "wireframe": false
-                }
-            },
-            {
-                "id": 20,
-                "component": {
-                    "model": "Resources/Models/city.cmo",
-                    "cullfront": false,
-                    "wireframe": false
-                }
-            },
-            {
-                "id": 17,
-                "component": {
-                    "model": "Resources/Models/city.cmo",
-                    "cullfront": false,
-                    "wireframe": false
-                }
-            }
-        ],
+        "ModelRenderer": [],
         "CameraComponent": [
             {
                 "id": 1,
+                "component": {}
+            },
+            {
+                "id": 1048602,
                 "component": {}
             }
         ],
@@ -901,17 +928,106 @@
                 }
             }
         ],
-        "InfinityGridFloor": [],
+        "InfinityGridFloor": [
+            {
+                "id": 3,
+                "component": {
+                    "cellsize": 2.0,
+                    "size": {
+                        "x": 200.0,
+                        "y": 200.0
+                    },
+                    "color": {
+                        "x": 0.501960813999176,
+                        "y": 0.501960813999176,
+                        "z": 0.501960813999176,
+                        "w": 1.0
+                    }
+                }
+            }
+        ],
         "FontRenderer": [],
-        "PlayerController": [],
-        "TranslateFollower": [],
+        "PlayerController": [
+            {
+                "id": 0,
+                "component": {
+                    "power": 1500.0,
+                    "sensitivity": 0.009999999776482582,
+                    "stopSpeed": 1.0,
+                    "lineGravity": -0.9800000190734863,
+                    "lineCount": 12,
+                    "lineCountDiv": 1,
+                    "linePowerScale": 5.0
+                }
+            }
+        ],
+        "TranslateFollower": [
+            {
+                "id": 15,
+                "component": {
+                    "movePercent": 0.5,
+                    "target": 0
+                }
+            },
+            {
+                "id": 1048578,
+                "component": {
+                    "movePercent": 0.5,
+                    "target": 0
+                }
+            }
+        ],
         "RotateFollower": [],
         "TrackingFollower": [],
-        "RainbowEffect": [],
-        "Goal": [],
+        "RainbowEffect": [
+            {
+                "id": 1048585,
+                "component": {
+                    "seed": 0,
+                    "isColorful": true,
+                    "color": {
+                        "x": 0.501960813999176,
+                        "y": 0.501960813999176,
+                        "z": 0.501960813999176,
+                        "w": 1.0
+                    }
+                }
+            }
+        ],
+        "Goal": [
+            {
+                "id": 1048585,
+                "component": {
+                    "target": 0
+                }
+            }
+        ],
         "ShaderArt": [],
         "BubbleEffect": [],
         "ShootGauge": [],
-        "AudioSource": []
+        "AudioSource": [
+            {
+                "id": 0,
+                "component": {
+                    "audioClip": "Resources/Audio/Shot.mp3",
+                    "playOnAwake": false,
+                    "loop": false
+                }
+            },
+            {
+                "id": 16,
+                "component": {
+                    "audioClip": "Resources/Audio/BGM.mp3",
+                    "playOnAwake": true,
+                    "loop": true
+                }
+            }
+        ],
+        "LightComponent": [
+            {
+                "id": 1048602,
+                "component": {}
+            }
+        ]
     }
 }
