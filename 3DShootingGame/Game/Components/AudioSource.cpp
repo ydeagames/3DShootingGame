@@ -6,15 +6,13 @@
 void AudioSource::RenderStart()
 {
 	auto& soundSystem = GameContext::Get<SoundSystem>();
-	if (m_sound)
-	{
-		soundSystem.Release(m_sound);
-		m_sound = nullptr;
-	}
+	if (soundSystem.IsEventPlaying(event))
+		soundSystem.StopEvent(event);
 
+	soundSystem.LoadBank(bank, FMOD_STUDIO_LOAD_BANK_NORMAL);
+	soundSystem.LoadEvent(event);
 	if (GameContext::Get<ApplicationHandler>().IsPlaying())
 	{
-		soundSystem.Create(&m_sound, audioClip.c_str());
 		if (playOnAwake)
 			Play();
 	}
@@ -22,35 +20,41 @@ void AudioSource::RenderStart()
 
 void AudioSource::OnDestroy()
 {
+	if (!GameContext::Has<SoundSystem>())
+		return;
+
 	auto& soundSystem = GameContext::Get<SoundSystem>();
-	if (m_sound)
-	{
-		soundSystem.Release(m_sound);
-		m_sound = nullptr;
-	}
+	soundSystem.StopEvent(event);
 }
 
 void AudioSource::Play()
 {
 	auto& soundSystem = GameContext::Get<SoundSystem>();
-	if (m_sound)
-	{
-		soundSystem.Play(m_sound, loop);
-	}
+	soundSystem.PlayEvent(event);
 }
 
 void AudioSource::EditorGui()
 {
-	std::string tmpname = audioClip;
-	tmpname.resize(128);
-	if (ImGui::InputText("Texture", &tmpname[0], tmpname.size()))
 	{
-		audioClip = std::string(tmpname.c_str());
-		RenderStart();
+		std::string tmpname = bank;
+		tmpname.resize(128);
+		if (ImGui::InputText("Bank Name", &tmpname[0], tmpname.size()))
+		{
+			bank = std::string(tmpname.c_str());
+			RenderStart();
+		}
+	}
+
+	{
+		std::string tmpname = event;
+		tmpname.resize(128);
+		if (ImGui::InputText("Event Name", &tmpname[0], tmpname.size()))
+		{
+			event = std::string(tmpname.c_str());
+			RenderStart();
+		}
 	}
 
 	if (ImGui::Checkbox("Play On Awake", &playOnAwake))
-		RenderStart();
-	if (ImGui::Checkbox("Loop", &loop))
 		RenderStart();
 }

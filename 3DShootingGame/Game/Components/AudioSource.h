@@ -14,12 +14,9 @@ public:
 	}
 
 public:
-	std::string audioClip;
+	std::string bank;
+	std::string event;
 	bool playOnAwake = true;
-	bool loop = true;
-
-private:
-	Sound m_sound;
 
 public:
 	void RenderStart();
@@ -32,7 +29,7 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(CEREAL_OPTIONAL_NVP(audioClip), CEREAL_OPTIONAL_NVP(playOnAwake), CEREAL_OPTIONAL_NVP(loop));
+		archive(CEREAL_OPTIONAL_NVP(bank), CEREAL_OPTIONAL_NVP(event), CEREAL_OPTIONAL_NVP(playOnAwake));
 	}
 
 	void EditorGui();

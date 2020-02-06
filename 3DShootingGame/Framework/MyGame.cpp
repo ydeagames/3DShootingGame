@@ -22,6 +22,31 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
+class MyGame::ImGuiPtr
+{
+public:
+	ImGuiPtr()
+	{
+		// ImGuiコンテキスト
+		auto& imgui = GameContext::Register<ImGuiManager>();
+
+		// ImGui初期化
+		imgui.RenderStart();
+	}
+
+	~ImGuiPtr()
+	{
+		// ImGuiコンテキスト
+		auto& imgui = GameContext::Get<ImGuiManager>();
+
+		// ImGuiファイナライズ
+		imgui.RenderFinalize();
+
+		// ImGui削除
+		GameContext::Remove<ImGuiManager>();
+	}
+};
+
 int MyGame::Bench()
 {
 	//constexpr long count = 100'000'000L;
@@ -126,6 +151,9 @@ void MyGame::Update()
 	if (Input::GetKeyDown(Keyboard::Keys::F6))
 		Mouse::Get().SetMode(Mouse::Get().GetState().positionMode == Mouse::Mode::MODE_ABSOLUTE ? Mouse::Mode::MODE_RELATIVE : Mouse::Mode::MODE_ABSOLUTE);
 
+	// 音
+	GameContext::Get<SoundSystem>().Update();
+	
 	// Updateイベント
 	if (GameContext::Get<ApplicationHandler>().IsPlaying())
 		GameContext::Get<SceneManager>().ForEachScenes([](auto& scene) { Updatable::Update(scene.registry); });
@@ -220,28 +248,3 @@ void MyGame::Render(GameCamera& camera)
 		SetWindowTextW(GameContext::Get<WindowHandler>().GetHandle(), sb.str().c_str());
 	}
 }
-
-class MyGame::ImGuiPtr
-{
-public:
-	ImGuiPtr()
-	{
-		// ImGuiコンテキスト
-		auto& imgui = GameContext::Register<ImGuiManager>();
-
-		// ImGui初期化
-		imgui.RenderStart();
-	}
-
-	~ImGuiPtr()
-	{
-		// ImGuiコンテキスト
-		auto& imgui = GameContext::Get<ImGuiManager>();
-
-		// ImGuiファイナライズ
-		imgui.RenderFinalize();
-
-		// ImGui削除
-		GameContext::Remove<ImGuiManager>();
-	}
-};

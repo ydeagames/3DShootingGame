@@ -140,7 +140,7 @@ namespace entt
 #include "fmod_errors.h" // Only if you want error checking
 #include "fsbank.h"
 #include "fsbank_errors.h" // Only if you want error checking
-#include "fmod_studio.h"
+#include "fmod_studio.hpp"
 
 // Effekseer
 #include <Effekseer.h>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{9749a3f3-7718-43b6-9058-833b97efc4b2}">
+		<property name="assetPath">
+			<value>ポイ捨て.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.3248979591836734</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ca9f1d8f-30df-415f-9ecb-43b8851c3f34}</destination>
+		</relationship>
+	</object>
+</objects>

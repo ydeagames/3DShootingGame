@@ -1303,17 +1303,17 @@
             {
                 "id": 0,
                 "component": {
-                    "audioClip": "Resources/Audio/Shot.mp3",
-                    "playOnAwake": false,
-                    "loop": false
+                    "bank": "Resources/Audio/Master.bank",
+                    "event": "{d2bfa061-2036-4e5b-865d-2e957b5f5559}",
+                    "playOnAwake": false
                 }
             },
             {
                 "id": 16,
                 "component": {
-                    "audioClip": "Resources/Audio/BGM.mp3",
-                    "playOnAwake": true,
-                    "loop": true
+                    "bank": "Resources/Audio/Master.bank",
+                    "event": "{643ecfbd-6af9-4459-a1a6-b8156c3377f5}",
+                    "playOnAwake": true
                 }
             }
         ],
