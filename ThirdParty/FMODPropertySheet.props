@@ -15,7 +15,14 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies>fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)'=='Debug'">fmodL_vc.lib;fsbank_vc.lib;fmodstudioL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)'=='Release'">fmod_vc.lib;fsbank_vc.lib;fmodstudio_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+        xcopy /D /Y "$(SolutionDir)ThirdParty\FMOD\Bin\$(Platform)\$(Configuration)\*.dll" "$(OutDir)"
+        %(Command)
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
 </Project>

@@ -1,14 +1,19 @@
 {
     "entities": {
         "created": [
+            1048606,
+            29,
+            1048604,
+            27,
             1048602,
             25,
             24,
             23,
             22,
             21,
-            20,
+            1048596,
             19,
+            3145746,
             17,
             16,
             15,
@@ -18,19 +23,17 @@
             11,
             10,
             1048585,
+            1048584,
             7,
             6,
+            1048581,
             4,
             3,
             1048578,
             1,
             0
         ],
-        "destroyed": [
-            2097170,
-            1048584,
-            1048581
-        ]
+        "destroyed": []
     },
     "tags": {
         "PhysXSceneTag": {
@@ -413,9 +416,9 @@
                     },
                     "localRotation": {
                         "x": 0.0,
-                        "y": 0.0,
+                        "y": -0.3420215845108032,
                         "z": 0.0,
-                        "w": -1.0
+                        "w": -0.9396920800209045
                     },
                     "localScale": {
                         "x": 1.0,
@@ -455,7 +458,7 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": 116.80000305175781,
+                        "x": 112.5999984741211,
                         "y": -0.8999999761581421,
                         "z": 9.5
                     },
@@ -503,32 +506,8 @@
                     "parent": 4294967295,
                     "isStatic": true,
                     "localPosition": {
-                        "x": 1.399999976158142,
+                        "x": 32.0,
                         "y": -0.800000011920929,
-                        "z": -97.5999984741211
-                    },
-                    "localRotation": {
-                        "x": -0.7071067690849304,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 0.7071067690849304
-                    },
-                    "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
-                    }
-                }
-            },
-            {
-                "id": 20,
-                "component": {
-                    "name": "City",
-                    "parent": 4294967295,
-                    "isStatic": true,
-                    "localPosition": {
-                        "x": 116.80000305175781,
-                        "y": -0.8999999761581421,
                         "z": -97.5999984741211
                     },
                     "localRotation": {
@@ -569,7 +548,127 @@
                 }
             },
             {
+                "id": 3145746,
+                "component": {
+                    "name": "Gauge",
+                    "parent": 14,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": -0.6000000238418579,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 0.30000001192092898,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1048584,
+                "component": {
+                    "name": "GaugeBack",
+                    "parent": 3145746,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1048581,
+                "component": {
+                    "name": "GaugeFrame",
+                    "parent": 3145746,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
                 "id": 1048578,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 0.0,
+                        "y": -1.399999976158142,
+                        "z": 0.0
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "localScale": {
+                        "x": 100.0,
+                        "y": 2.5999999046325685,
+                        "z": 100.0
+                    }
+                }
+            },
+            {
+                "id": 1048602,
+                "component": {
+                    "name": "Light",
+                    "parent": 1048596,
+                    "isStatic": false,
+                    "localPosition": {
+                        "x": -50.900001525878909,
+                        "y": 12.300000190734864,
+                        "z": -25.299999237060548
+                    },
+                    "localRotation": {
+                        "x": -0.14092519879341126,
+                        "y": -0.8195481300354004,
+                        "z": -0.22805842757225038,
+                        "w": 0.5064288973808289
+                    },
+                    "localScale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            {
+                "id": 1048596,
                 "component": {
                     "name": "LightWrapper",
                     "parent": 4294967295,
@@ -593,26 +692,98 @@
                 }
             },
             {
-                "id": 1048602,
+                "id": 27,
                 "component": {
-                    "name": "Light",
-                    "parent": 1048578,
-                    "isStatic": false,
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
                     "localPosition": {
-                        "x": -50.900001525878909,
-                        "y": 12.300000190734864,
-                        "z": -25.299999237060548
+                        "x": 0.0,
+                        "y": -1.399999976158142,
+                        "z": 0.0
                     },
                     "localRotation": {
-                        "x": -0.14092519879341126,
-                        "y": -0.8195481300354004,
-                        "z": -0.22805842757225038,
-                        "w": 0.5064288973808289
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
                     },
                     "localScale": {
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
+                        "x": 100.0,
+                        "y": 2.5999999046325685,
+                        "z": 100.0
+                    }
+                }
+            },
+            {
+                "id": 1048604,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": 8.699999809265137,
+                        "y": 0.4000000059604645,
+                        "z": 2.799999952316284
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.07932904362678528,
+                        "w": 0.996848464012146
+                    },
+                    "localScale": {
+                        "x": 10.199999809265137,
+                        "y": 5.699999809265137,
+                        "z": 10.600000381469727
+                    }
+                }
+            },
+            {
+                "id": 29,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": -0.30000001192092898,
+                        "y": 0.4000000059604645,
+                        "z": 2.799999952316284
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": -0.18051913380622865,
+                        "w": 0.983571469783783
+                    },
+                    "localScale": {
+                        "x": 10.199999809265137,
+                        "y": 5.699999809265137,
+                        "z": 11.300000190734864
+                    }
+                }
+            },
+            {
+                "id": 1048606,
+                "component": {
+                    "name": "Obj",
+                    "parent": 4294967295,
+                    "isStatic": true,
+                    "localPosition": {
+                        "x": -19.799999237060548,
+                        "y": 1.100000023841858,
+                        "z": 2.799999952316284
+                    },
+                    "localRotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.1890954226255417,
+                        "w": 0.9819586873054504
+                    },
+                    "localScale": {
+                        "x": 13.800000190734864,
+                        "y": 3.0,
+                        "z": 11.5
                     }
                 }
             }
@@ -719,6 +890,46 @@
                         "flags": 1
                     }
                 }
+            },
+            {
+                "id": 1048578,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 27,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 1048604,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 29,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
+            },
+            {
+                "id": 1048606,
+                "component": {
+                    "lockFlags": {
+                        "flags": 1
+                    }
+                }
             }
         ],
         "SphereCollider": [
@@ -763,15 +974,30 @@
             {
                 "id": 24,
                 "component": {}
-            }
-        ],
-        "CapsuleCollider": [],
-        "PlaneCollider": [
+            },
             {
-                "id": 7,
+                "id": 1048578,
+                "component": {}
+            },
+            {
+                "id": 27,
+                "component": {}
+            },
+            {
+                "id": 1048604,
+                "component": {}
+            },
+            {
+                "id": 29,
+                "component": {}
+            },
+            {
+                "id": 1048606,
                 "component": {}
             }
         ],
+        "CapsuleCollider": [],
+        "PlaneCollider": [],
         "SceneTransitions::FadeTransition": [],
         "SceneTransitions::RuleTransition": [],
         "PrimitiveRenderer": [
@@ -894,6 +1120,56 @@
                     "cullfront": false,
                     "textureEnabled": false
                 }
+            },
+            {
+                "id": 1048578,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 27,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 1048604,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 29,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
+            },
+            {
+                "id": 1048606,
+                "component": {
+                    "model": "Cube",
+                    "texture": "Resources/Textures/Title/Background.png",
+                    "lighting": true,
+                    "cullfront": false,
+                    "textureEnabled": false
+                }
             }
         ],
         "ModelRenderer": [],
@@ -921,9 +1197,9 @@
             {
                 "id": 15,
                 "component": {
-                    "m_yAngle": 0.0,
+                    "m_yAngle": -0.69813472032547,
                     "m_xAngle": 0.0,
-                    "m_yAngleLast": 0.0,
+                    "m_yAngleLast": -0.6981347799301148,
                     "m_xAngleLast": 0.0
                 }
             }
@@ -957,7 +1233,10 @@
                     "lineGravity": -0.9800000190734863,
                     "lineCount": 12,
                     "lineCountDiv": 1,
-                    "linePowerScale": 5.0
+                    "linePowerScale": 5.0,
+                    "powerTime": -1.0,
+                    "percent": 0.0,
+                    "speed": 1.0
                 }
             }
         ],
@@ -970,7 +1249,7 @@
                 }
             },
             {
-                "id": 1048578,
+                "id": 1048596,
                 "component": {
                     "movePercent": 0.5,
                     "target": 0
@@ -1004,7 +1283,22 @@
         ],
         "ShaderArt": [],
         "BubbleEffect": [],
-        "ShootGauge": [],
+        "ShootGauge": [
+            {
+                "id": 1048584,
+                "component": {
+                    "texture": "Resources/Textures/Play/Gauge/Back.png",
+                    "player": 0
+                }
+            },
+            {
+                "id": 1048581,
+                "component": {
+                    "texture": "Resources/Textures/Play/Gauge/Front.png",
+                    "player": 0
+                }
+            }
+        ],
         "AudioSource": [
             {
                 "id": 0,

@@ -625,7 +625,6 @@
     <ClInclude Include="Game\Tags\AllTags.h" />
     <ClInclude Include="Utilities\Math3DUtils.h" />
     <ClInclude Include="Utilities\StringCast.h" />
-    <ClInclude Include="Utilities\wavefrontobj.h" />
     <ClInclude Include="Utilities\WindowsUtils.h" />
     <ClInclude Include="Game\BuildSettings.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -702,7 +701,6 @@
     <ClCompile Include="Game\Components\ShaderArt.cpp" />
     <ClCompile Include="Game\Components\ShootGauge.cpp" />
     <ClCompile Include="Utilities\Math3DUtils.cpp" />
-    <ClCompile Include="Utilities\wavefrontobj.cpp" />
     <ClCompile Include="Utilities\WindowsUtils.cpp" />
     <ClCompile Include="Game\Components\InfinityGridFloor.cpp" />
     <ClCompile Include="Framework\ImGui\ImGuiStyles.cpp" />

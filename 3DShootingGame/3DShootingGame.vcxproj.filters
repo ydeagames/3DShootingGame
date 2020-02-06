@@ -1340,9 +1340,6 @@
     <ClInclude Include="Framework\Shadow\ShadowMap.h">
       <Filter>Framework\Shadow</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\wavefrontobj.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Shadow\Light.h">
       <Filter>Framework\Shadow</Filter>
     </ClInclude>
@@ -1505,9 +1502,6 @@
     </ClCompile>
     <ClCompile Include="Game\Components\AudioSource.cpp">
       <Filter>Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\wavefrontobj.cpp">
-      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Shadow\Light.cpp">
       <Filter>Framework\Shadow</Filter>

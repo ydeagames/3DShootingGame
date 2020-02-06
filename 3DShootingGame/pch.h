@@ -138,6 +138,9 @@ namespace entt
 // FMOD
 #include "fmod.hpp"
 #include "fmod_errors.h" // Only if you want error checking
+#include "fsbank.h"
+#include "fsbank_errors.h" // Only if you want error checking
+#include "fmod_studio.h"
 
 // Effekseer
 #include <Effekseer.h>
