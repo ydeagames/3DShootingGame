@@ -1304,7 +1304,7 @@
                 "id": 0,
                 "component": {
                     "bank": "Resources/Audio/Master.bank",
-                    "event": "{d2bfa061-2036-4e5b-865d-2e957b5f5559}",
+                    "event": "event:/Jump",
                     "playOnAwake": false
                 }
             },
@@ -1312,7 +1312,7 @@
                 "id": 16,
                 "component": {
                     "bank": "Resources/Audio/Master.bank",
-                    "event": "{643ecfbd-6af9-4459-a1a6-b8156c3377f5}",
+                    "event": "event:/BGM",
                     "playOnAwake": true
                 }
             }

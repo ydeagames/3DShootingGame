@@ -19,7 +19,7 @@ public:
 	bool playOnAwake = true;
 
 public:
-	void RenderStart();
+	void Start();
 	void OnDestroy();
 
 public:

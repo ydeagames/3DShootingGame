@@ -21,7 +21,7 @@ void ApplicationHandler::SetPlaying(bool playing)
 						+ WindowsUtils::GetFileName(scene.info.location, SceneInfo::SceneExtension)
 						+ ".playing." + SceneInfo::SceneExtension;
 					scene.Save();
-					scene.Load();
+					//scene.Load();
 				});
 		}
 		else
