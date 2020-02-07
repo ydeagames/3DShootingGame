@@ -317,9 +317,6 @@
     <ClInclude Include="Game\Components\Goal.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\PhysX\PhysXScene.h">
-      <Filter>Framework\SceneManagement</Filter>
-    </ClInclude>
     <ClInclude Include="Game\BuildSettings.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -1345,6 +1342,9 @@
     </ClInclude>
     <ClInclude Include="Game\Components\LightComponent.h">
       <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\PhysX\PhysXScene.h">
+      <Filter>Framework\PhysX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

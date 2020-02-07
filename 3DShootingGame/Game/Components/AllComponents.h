@@ -41,6 +41,7 @@ namespace BuildSettings
 		BubbleEffect,
 		ShootGauge,
 		AudioSource,
+		Death,
 		LightComponent
 	>;
 }
