@@ -36,6 +36,9 @@ void PlayerController::Update()
 
 		if (m_movable)
 		{
+			if (Input::GetMouseButton(Input::Buttons::MouseRight))
+				m_dragging = false;
+			
 			auto& transform = rigid.Fetch();
 
 			if (powerTime < 0)
@@ -64,13 +67,13 @@ void PlayerController::Update()
 					if (drag.LengthSquared() > .25f)
 						transform.rotation = Math3DUtils::LookAt(Vector3::Zero, vec);
 					rigid.Apply();
-				}
-				if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
-				{
-					m_dragging = false;
-					auto drag = m_endDrag - m_beginDrag;
-					if (drag.LengthSquared() > .25f)
+					if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
+					{
+						m_dragging = false;
+						auto drag = m_endDrag - m_beginDrag;
+						//if (drag.LengthSquared() > .25f)
 						powerTime = 0;
+					}
 				}
 			}
 			else
@@ -91,7 +94,7 @@ void PlayerController::Update()
 						gameObject.GetComponent<AudioSource>().Play();
 				}
 				powerTime += float(GameContext::Get<DX::StepTimer>().GetElapsedSeconds()) * speed;
-				percent = 1 - std::abs(std::cos(powerTime * 2));
+				percent = 1 - std::abs(std::cos(powerTime * 2)) * .9f;
 			}
 		}
 	}

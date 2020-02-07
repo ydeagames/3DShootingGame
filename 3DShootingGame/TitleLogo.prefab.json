@@ -1,0 +1,36 @@
+{
+    "entities": {
+        "created": [
+            6
+        ]
+    },
+    "objects": [
+        {
+            "Transform": {
+                "name": "Title",
+                "parent": 4294967295,
+                "isStatic": false,
+                "localPosition": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "localRotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "localScale": {
+                    "x": 2.0,
+                    "y": 2.0,
+                    "z": 2.0
+                }
+            },
+            "ShootGauge": {
+                "texture": "Resources/Textures/Title/Title.png",
+                "player": 0
+            }
+        }
+    ]
+}

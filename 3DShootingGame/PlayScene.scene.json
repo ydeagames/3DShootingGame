@@ -246,7 +246,7 @@
                     "isStatic": true,
                     "localPosition": {
                         "x": 20.5,
-                        "y": 6.400000095367432,
+                        "y": 3.4000000953674318,
                         "z": -30.200000762939454
                     },
                     "localRotation": {
@@ -270,7 +270,7 @@
                     "isStatic": false,
                     "localPosition": {
                         "x": 19.799999237060548,
-                        "y": 11.0,
+                        "y": 8.0,
                         "z": -26.0
                     },
                     "localRotation": {
@@ -294,7 +294,7 @@
                     "isStatic": true,
                     "localPosition": {
                         "x": 22.700000762939454,
-                        "y": 6.599999904632568,
+                        "y": 6.900000095367432,
                         "z": 2.299999952316284
                     },
                     "localRotation": {
@@ -318,7 +318,7 @@
                     "isStatic": true,
                     "localPosition": {
                         "x": 5.199999809265137,
-                        "y": 1.100000023841858,
+                        "y": 1.7000000476837159,
                         "z": 1.100000023841858
                     },
                     "localRotation": {
@@ -342,7 +342,7 @@
                     "isStatic": true,
                     "localPosition": {
                         "x": 20.600000381469728,
-                        "y": 4.199999809265137,
+                        "y": 0.30000001192092898,
                         "z": -25.200000762939454
                     },
                     "localRotation": {
@@ -366,7 +366,7 @@
                     "isStatic": true,
                     "localPosition": {
                         "x": 17.100000381469728,
-                        "y": 1.399999976158142,
+                        "y": 1.7000000476837159,
                         "z": 2.799999952316284
                     },
                     "localRotation": {
@@ -486,7 +486,7 @@
                     "isStatic": true,
                     "localPosition": {
                         "x": 0.8999999761581421,
-                        "y": 4.300000190734863,
+                        "y": 5.5,
                         "z": 8.899999618530274
                     },
                     "localRotation": {
@@ -1099,7 +1099,7 @@
             {
                 "id": 0,
                 "component": {
-                    "model": "Teapot",
+                    "model": "GeoSphere",
                     "texture": "Resources/Textures/Title/Background.png",
                     "lighting": true,
                     "cullfront": false,
@@ -1332,7 +1332,7 @@
             {
                 "id": 0,
                 "component": {
-                    "power": 1500.0,
+                    "power": 1377.0,
                     "sensitivity": 0.009999999776482582,
                     "stopSpeed": 1.0,
                     "lineGravity": -0.9800000190734863,
@@ -1400,7 +1400,7 @@
                 "id": 1048581,
                 "component": {
                     "texture": "Resources/Textures/Play/Gauge/Front.png",
-                    "player": 0
+                    "player": 4294967295
                 }
             }
         ],
