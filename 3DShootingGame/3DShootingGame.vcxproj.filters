@@ -95,6 +95,9 @@
     <Filter Include="Framework\Shadow">
       <UniqueIdentifier>{16d489f0-3704-48fb-9c4b-762f43427600}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Effekseer">
+      <UniqueIdentifier>{c3e6b630-18d9-429f-b74c-dba22d78f822}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="Game\Components\Goal.h">
       <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\PhysX\PhysXScene.h">
+      <Filter>Framework\SceneManagement</Filter>
     </ClInclude>
     <ClInclude Include="Game\BuildSettings.h">
       <Filter>Game</Filter>
@@ -1343,8 +1349,11 @@
     <ClInclude Include="Game\Components\LightComponent.h">
       <Filter>Game\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\PhysX\PhysXScene.h">
-      <Filter>Framework\PhysX</Filter>
+    <ClInclude Include="Framework\Effekseer\EffekseerManager.h">
+      <Filter>Framework\Effekseer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\EffekseerEffect.h">
+      <Filter>Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1507,6 +1516,12 @@
       <Filter>Framework\Shadow</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\LightComponent.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Effekseer\EffekseerManager.cpp">
+      <Filter>Framework\Effekseer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\EffekseerEffect.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

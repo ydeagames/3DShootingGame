@@ -70,7 +70,7 @@ void PlayerController::Update()
 					if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
 					{
 						m_dragging = false;
-						auto drag = m_endDrag - m_beginDrag;
+						//auto drag = m_endDrag - m_beginDrag;
 						//if (drag.LengthSquared() > .25f)
 						powerTime = 0;
 					}

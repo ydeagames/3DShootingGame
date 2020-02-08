@@ -18,6 +18,7 @@
 #include <Framework/FMOD/SoundSystem.h>
 #include "Shadow/ShadowMap.h"
 #include "Shadow/Light.h"
+#include "Effekseer/EffekseerManager.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -95,6 +96,8 @@ MyGame::MyGame()
 	GameContext::Register<Light>();
 	// 影
 	GameContext::Register<ShadowMap>();
+	// エフェクト
+	GameContext::Register<EffekseerManager>();
 
 	// Transform
 	GameContext::Register<TransformResolverContext>();
@@ -103,6 +106,7 @@ MyGame::MyGame()
 MyGame::~MyGame()
 {
 	GameContext::Remove<TransformResolverContext>();
+	GameContext::Remove<EffekseerManager>();
 	GameContext::Remove<ShadowMap>();
 	GameContext::Remove<Light>();
 	GameContext::Remove<SoundSystem>();
