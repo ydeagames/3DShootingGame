@@ -45,6 +45,7 @@ void PlayerController::Update()
 			{
 				if (Input::GetMouseButtonDown(Input::Buttons::MouseLeft))
 				{
+					Input::SetMousePosition(GameContext::Get<WindowHandler>().GetSize() / 2);
 					m_beginDrag = Input::GetMousePosition();
 					m_dragging = true;
 				}
@@ -70,7 +71,7 @@ void PlayerController::Update()
 					if (Input::GetMouseButtonUp(Input::Buttons::MouseLeft))
 					{
 						m_dragging = false;
-						auto drag = m_endDrag - m_beginDrag;
+						//auto drag = m_endDrag - m_beginDrag;
 						//if (drag.LengthSquared() > .25f)
 						powerTime = 0;
 					}

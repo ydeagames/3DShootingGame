@@ -38,6 +38,7 @@ public:
 	static bool GetMouseButtonUp(Buttons button);
 
 	static DirectX::SimpleMath::Vector3 GetMousePosition();
+	static void SetMousePosition(const DirectX::SimpleMath::Vector3& pos);
 	static DirectX::SimpleMath::Vector2 GetMouseScrollDelta();
 
 	static DirectX::Mouse::State GetMouseState();

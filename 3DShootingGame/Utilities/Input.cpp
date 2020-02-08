@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Input.h"
+#include "Framework/ECS/GameContext.h"
+#include "Framework/Context/WindowHandler.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -55,6 +57,17 @@ DirectX::SimpleMath::Vector3 Input::GetMousePosition()
 {
 	auto state = m_mouseTracker.GetLastState();
 	return Vector3(float(state.x), float(state.y), 0.f);
+}
+
+void Input::SetMousePosition(const DirectX::SimpleMath::Vector3& pos)
+{
+	POINT p, p0;
+	p = p0 = POINT{ LONG(pos.x), LONG(pos.y) };
+	if (!ClientToScreen(GameContext::Get<WindowHandler>().GetHandle(), &p))
+		return;
+	SetCursorPos(int(p.x), int(p.y));
+	Mouse::ProcessMessage(WM_INPUT, 1, MAKELPARAM(p0.x, p0.y));
+	Update();
 }
 
 DirectX::SimpleMath::Vector2 Input::GetMouseScrollDelta()
