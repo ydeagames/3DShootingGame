@@ -66,7 +66,7 @@ void Input::SetMousePosition(const DirectX::SimpleMath::Vector3& pos)
 	if (!ClientToScreen(GameContext::Get<WindowHandler>().GetHandle(), &p))
 		return;
 	SetCursorPos(int(p.x), int(p.y));
-	Mouse::ProcessMessage(WM_INPUT, 1, MAKELPARAM(p0.x, p0.y));
+	Mouse::ProcessMessage(WM_MOUSEMOVE, 1, MAKELPARAM(p0.x, p0.y));
 	Update();
 }
 
