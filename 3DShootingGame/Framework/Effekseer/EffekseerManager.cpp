@@ -1,6 +1,10 @@
 ﻿#include "pch.h"
 #include "EffekseerManager.h"
 #include "Framework/ECS/GameContext.h"
+#include "Framework/Context/GameCamera.h"
+
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
 
 EffekseerManager::EffekseerManager()
 {
@@ -12,9 +16,9 @@ EffekseerManager::EffekseerManager()
 		GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext(),
 		NumSprites);
 	// サウンド管理インスタンスの生成
-	EffekseerSound::Sound* sound = ::EffekseerSound::Sound::Create(xAudio2.Get(), 32, 32);
+	sound = effekseer_unique_ptr<EffekseerSound::Sound>(EffekseerSound::Sound::Create(xAudio2.Get(), 32, 32));
 	// エフェクト管理用インスタンスの生成
-	Effekseer::Manager* manager = ::Effekseer::Manager::Create(NumSprites);
+	manager = effekseer_unique_ptr<Effekseer::Manager>(Effekseer::Manager::Create(NumSprites));
 	
 	// 描画方法を指定します。独自に拡張することもできます。
 	manager->SetSpriteRenderer(renderer->CreateSpriteRenderer());
@@ -34,4 +38,21 @@ EffekseerManager::EffekseerManager()
 
 	// 座標系の指定(RHで右手系、LHで左手系)
 	manager->SetCoordinateSystem(Effekseer::CoordinateSystem::RH);
+}
+
+void EffekseerManager::Render(GameCamera& camera)
+{
+	// 投影行列の更新
+	renderer->SetProjectionMatrix(ToEffekseer(camera.projection));
+	// カメラ行列の更新
+	renderer->SetCameraMatrix(ToEffekseer(camera.view));
+	// 3Dサウンド用リスナー設定の更新
+	sound->SetListener(ToEffekseer(camera.GetPosition()), ToEffekseer(Vector3::Transform(Vector3::Forward, camera.view.Invert())), ToEffekseer(Vector3::Up));
+	// 全てのエフェクトの更新
+	manager->Update();
+
+	// 描画
+	renderer->BeginRendering();
+	manager->Draw();
+	renderer->EndRendering();
 }

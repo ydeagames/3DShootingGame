@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+class GameCamera;
+
 template<typename T>
 inline void effekseer_release(T* t)
 {
@@ -28,6 +30,16 @@ struct effekseer_shared_ptr : public std::shared_ptr<T>
 	}
 };
 
+inline Effekseer::Vector3D ToEffekseer(const DirectX::SimpleMath::Vector3& vec)
+{
+	return Effekseer::Vector3D(vec.x, vec.y, vec.z);
+}
+
+inline Effekseer::Matrix44 ToEffekseer(const DirectX::SimpleMath::Matrix& mat)
+{
+	return reinterpret_cast<const Effekseer::Matrix44&>(mat);
+}
+
 class EffekseerManager
 {
 public:
@@ -41,4 +53,6 @@ public:
 
 public:
 	EffekseerManager();
+
+	void Render(GameCamera& camera);
 };

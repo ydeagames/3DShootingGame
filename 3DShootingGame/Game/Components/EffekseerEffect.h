@@ -30,8 +30,8 @@ public:
 public:
 	// 描画初期化
 	void RenderStart();
-	// 描画
-	void Render(GameCamera& camera);
+	// エフェクト再生
+	Effekseer::Handle Play(const DirectX::SimpleMath::Vector3& pos);
 
 public:
 	template<class Archive>
