@@ -726,6 +726,7 @@
   <ItemGroup>
     <None Include="..\ThirdParty\Cereal\Inc\cereal\external\rapidxml\manual.html" />
     <None Include="..\ThirdParty\DirectXTK\Inc\SimpleMath.inl" />
+    <None Include="3DShootingGame.licenseheader" />
     <None Include="Resources\Shaders\Assets\Common.fxh" />
     <None Include="Resources\Shaders\Assets\Lighting.fxh" />
     <None Include="Resources\Shaders\Assets\RuleTransition.hlsli" />

@@ -1584,5 +1584,6 @@
     <None Include="Resources\Shaders\Assets\Shadow.hlsli">
       <Filter>Assets\Shaders</Filter>
     </None>
+    <None Include="3DShootingGame.licenseheader" />
   </ItemGroup>
 </Project>
