@@ -47,7 +47,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
+#ifdef _DEBUG
 	CreateConsoleWindow();
+#endif
 
     if (!XMVerifyCPUSupport())
         return 1;
