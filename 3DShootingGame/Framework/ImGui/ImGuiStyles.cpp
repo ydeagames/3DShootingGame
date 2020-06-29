@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-21 07:01:31 +0900
+// Modified: 2019-12-02 18:33:26 +0900
+
 #include "pch.h"
 #include "ImGuiStyles.h"
 
@@ -175,3 +183,4 @@ namespace ImGuiStyles
 		style.Colors[ImGuiCol_ModalWindowDarkening] = ImVec4(1.00f, 0.98f, 0.95f, 0.73f);
 	}
 }
+

@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-01-20 08:46:50 +0900
+// Modified: 2020-01-27 14:06:31 +0900
+
 #include "pch.h"
 #include "ShootGauge.h"
 #include <Framework/Components/Transform.h>
@@ -136,3 +144,5 @@ void ShootGauge::EditorGui()
 		}
 	}
 }
+
+

@@ -1,4 +1,12 @@
-﻿#include "pch.h"
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-02-05 23:03:19 +0900
+// Modified: 2020-02-05 23:03:19 +0900
+
+#include "pch.h"
 #include "LightComponent.h"
 #include <Framework/Context/GameCamera.h>
 #include <Framework/ECS/GameContext.h>
@@ -15,3 +23,5 @@ void LightComponent::OnPreRender(GameCamera& camera)
 	gameObject.GetComponent<Transform>().GetMatrix().Decompose(s, r, t);
 	GameContext::Get<Light>().SetLook(t, Vector3::Transform(Vector3::Forward, r), Vector3::Up);
 }
+
+

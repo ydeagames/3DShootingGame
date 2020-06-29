@@ -1,30 +1,38 @@
-ï»¿#pragma once
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-01-11 04:11:16 +0900
+// Modified: 2020-01-11 16:10:42 +0900
+
+#pragma once
 #include "Framework/ECS/Scene.h"
 #include "Framework/ECS/Component.h"
 
 class GameCamera;
 
-// ãƒ•ã‚§ãƒ¼ãƒ‰å®Ÿè£…
+// ƒtƒF[ƒhÀ‘•
 class ShaderArt : public Component
 {
 public:
 	float time = 0;
 
 private:
-	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ãƒãƒƒãƒ
+	// ƒvƒŠƒ~ƒeƒBƒuƒoƒbƒ`
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>>	m_primitiveBatch;
-	// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
+	// ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒg
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
-	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
+	// ’¸“_ƒVƒF[ƒ_
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_VertexShader;
-	// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
+	// ƒsƒNƒZƒ‹ƒVƒF[ƒ_
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_PixelShader;
-	// ãƒãƒƒãƒ•ã‚¡
+	// ƒoƒbƒtƒ@
 	Microsoft::WRL::ComPtr<ID3D11Buffer> m_CBuffer;
-	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«
+	// ƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture2;
-	// ãƒ™ãƒ¼ã‚·ãƒƒã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	// ƒx[ƒVƒbƒNƒGƒtƒFƒNƒg
 	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
 
 	bool m_changed = false;
@@ -44,3 +52,5 @@ public:
 
 	void EditorGui();
 };
+
+

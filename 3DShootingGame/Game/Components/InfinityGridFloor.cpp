@@ -1,22 +1,30 @@
-ï»¿#include "pch.h"
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-22 07:48:16 +0900
+// Modified: 2020-01-24 14:01:41 +0900
+
+#include "pch.h"
 #include "InfinityGridFloor.h"
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Context/GameCamera.h>
 #include <Framework/Components/Transform.h>
 
-// æç”»åˆæœŸåŒ–
+// •`‰æ‰Šú‰»
 void InfinityGridFloor::RenderStart()
 {
 	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
 	auto context = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+	// ƒGƒtƒFƒNƒg‚Ì¶¬
 	m_basicEffect = std::make_unique<DirectX::BasicEffect>(device);
-	// é ‚ç‚¹ã‚«ãƒ©ãƒ¼(æœ‰åŠ¹)
+	// ’¸“_ƒJƒ‰[(—LŒø)
 	m_basicEffect->SetVertexColorEnabled(true);
-	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
+	// ƒvƒŠƒ~ƒeƒBƒuƒIƒuƒWƒFƒNƒg¶¬
 	m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>(context);
-	// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆç”Ÿæˆ
+	// ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒg¶¬
 	void const* shaderByteCode;
 	size_t byteCodeLength;
 	m_basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
@@ -26,7 +34,7 @@ void InfinityGridFloor::RenderStart()
 		m_pInputLayout.ReleaseAndGetAddressOf()));
 }
 
-// æç”»
+// •`‰æ
 void InfinityGridFloor::Render(GameCamera& camera)
 {
 	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
@@ -84,4 +92,6 @@ void InfinityGridFloor::EditorGui()
 	ImGui::DragFloat2("Size", &size.x);
 	ImGui::ColorEdit4("Color", &color.x);
 }
+
+
 

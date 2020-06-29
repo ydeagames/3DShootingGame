@@ -1,10 +1,18 @@
-ï»¿#pragma once
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-10 16:21:00 +0900
+// Modified: 2020-01-24 14:01:41 +0900
+
+#pragma once
 #include <Framework/ECS/Component.h>
 
 class GameContext;
 class GameCamera;
 
-// ãƒ‡ãƒãƒƒã‚°ã‚°ãƒªãƒƒãƒ‰åºŠã‚¯ãƒ©ã‚¹
+// ƒfƒoƒbƒOƒOƒŠƒbƒh°ƒNƒ‰ƒX
 class InfinityGridFloor : public Component
 {
 public:
@@ -17,29 +25,29 @@ public:
 	}
 
 private:
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	// ƒGƒtƒFƒNƒg
 	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
 
-	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ãƒãƒƒãƒ
+	// ƒvƒŠƒ~ƒeƒBƒuƒoƒbƒ`
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_primitiveBatch;
 
-	// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
+	// ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒg
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
 
 public:
-	// 1ãƒã‚¹ã®ä¸€è¾ºã®ã‚µã‚¤ã‚º
+	// 1ƒ}ƒX‚Ìˆê•Ó‚ÌƒTƒCƒY
 	float cellsize = 2.f;
 
-	// ã‚µã‚¤ã‚º
+	// ƒTƒCƒY
 	DirectX::SimpleMath::Vector2 size = DirectX::SimpleMath::Vector2(200, 200);
 
-	// è‰²
+	// F
 	DirectX::SimpleMath::Color color = DirectX::Colors::Gray;
 
 public:
-	// æç”»åˆæœŸåŒ–
+	// •`‰æ‰Šú‰»
 	void RenderStart();
-	// æç”»
+	// •`‰æ
 	void Render(GameCamera& camera);
 
 public:
@@ -51,3 +59,5 @@ public:
 
 	void EditorGui();
 };
+
+

@@ -1,6 +1,14 @@
-ï»¿//======================================================
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-07-19 15:29:42 +0900
+
+//======================================================
 // File Name	: GridFloor.h
-// Summary		: ãƒ‡ãƒãƒƒã‚°ã‚°ãƒªãƒƒãƒ‰åºŠ
+// Summary		: ƒfƒoƒbƒOƒOƒŠƒbƒh°
 // Date			: 2019/4/25
 // Author		: Takafumi Ban
 //======================================================
@@ -12,37 +20,39 @@
 #include "VertexTypes.h"
 #include "SimpleMath.h"
 
-// ãƒ‡ãƒãƒƒã‚°ã‚°ãƒªãƒƒãƒ‰åºŠã‚¯ãƒ©ã‚¹
+// ƒfƒoƒbƒOƒOƒŠƒbƒh°ƒNƒ‰ƒX
 class GridFloor
 {
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	// ƒGƒtƒFƒNƒg
 	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
 
-	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ãƒãƒƒãƒ
+	// ƒvƒŠƒ~ƒeƒBƒuƒoƒbƒ`
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_primitiveBatch;
 
-	// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
+	// ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒg
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
 
-	// ã‚³ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	// ƒRƒ‚ƒ“ƒXƒe[ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
 	DirectX::CommonStates* m_states;
 
-	// åºŠã®ä¸€è¾ºã®ã‚µã‚¤ã‚º
+	// °‚Ìˆê•Ó‚ÌƒTƒCƒY
 	float m_size;
 
-	// åˆ†å‰²æ•°
+	// •ªŠ„”
 	int m_divs;
 
 public:
-	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	GridFloor(ID3D11Device* device, ID3D11DeviceContext* context, DirectX::CommonStates* states, float size, int divs);
 
-	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// ƒfƒXƒgƒ‰ƒNƒ^
 	~GridFloor();
 
-	// æç”»
+	// •`‰æ
 	void draw(ID3D11DeviceContext* context, DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj, DirectX::GXMVECTOR color = DirectX::Colors::Gray);
 };
+
+
 
 
 

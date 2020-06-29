@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-21 07:01:31 +0900
+// Modified: 2019-08-05 05:14:05 +0900
+
 #pragma once
 
 namespace ImGuiStyles
@@ -10,3 +18,4 @@ namespace ImGuiStyles
 	void cyberTheme(ImGuiStyle& style);
 	void darkrichTheme(ImGuiStyle& style);
 }
+

@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2020-01-15 16:08:06 +0900
+
 #pragma once
 
 // カメラ
@@ -37,3 +45,4 @@ public:
 	// ビューポート座標からスクリーン座標に変換
 	DirectX::SimpleMath::Vector3 ViewportToScreenPoint(const DirectX::SimpleMath::Vector3& point) const;
 };
+

@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2020-02-08 23:19:27 +0900
+
 #include "pch.h"
 #include "Input.h"
 #include "Framework/ECS/GameContext.h"
@@ -145,3 +153,5 @@ DirectX::Keyboard::KeyboardStateTracker& Input::GetKeyboardTracker()
 {
 	return m_keyboardTracker;
 }
+
+

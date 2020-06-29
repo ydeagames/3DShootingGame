@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-15 06:40:16 +0900
+// Modified: 2020-01-09 18:30:53 +0900
+
 #pragma once
 #include <Framework/Components/StandardSerialize.h>
 #include <Framework/Events/Updatable.h>
@@ -34,3 +42,4 @@ namespace StandardBuildSettings
 		Collidable
 	>;
 }
+

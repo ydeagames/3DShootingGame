@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-12 20:06:33 +0900
+// Modified: 2019-12-16 06:37:33 +0900
+
 #include "pch.h"
 #include "ModelRenderer.h"
 #include <Framework/ECS/GameContext.h>
@@ -59,3 +67,5 @@ void ModelRenderer::EditorGui()
 			RenderStart();
 	}
 }
+
+

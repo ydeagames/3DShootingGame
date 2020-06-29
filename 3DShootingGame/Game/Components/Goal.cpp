@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-23 07:07:20 +0900
+// Modified: 2020-02-07 10:59:30 +0900
+
 #include "pch.h"
 #include "Goal.h"
 #include <Framework/Components/Transform.h>
@@ -124,3 +132,5 @@ void Death::EditorGui()
 		}
 	}
 }
+
+

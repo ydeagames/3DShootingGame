@@ -1,4 +1,12 @@
-ï»¿#pragma once
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-02-05 23:03:19 +0900
+// Modified: 2020-02-05 23:03:19 +0900
+
+#pragma once
 
 class GameCamera;
 
@@ -13,35 +21,35 @@ public:
 	ShadowMap();
 	
 private:
-	// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ç”¨
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vertexShader = nullptr;		// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
-	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShader = nullptr;		// ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€
-	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShaderNoSM = nullptr;	// ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€(ã‚·ãƒ£ãƒ‰ã‚¦ ãƒãƒƒãƒ—ãªã—)
-	Microsoft::WRL::ComPtr<ID3D11BlendState> m_blendState = nullptr;			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_rasterizerState = nullptr;	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_depthStencilState = nullptr;	// æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// 3DƒIƒuƒWƒFƒNƒg•`‰æ—p
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vertexShader = nullptr;		// ’¸“_ƒVƒF[ƒ_
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShader = nullptr;		// ƒsƒNƒZƒ‹EƒVƒF[ƒ_
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShaderNoSM = nullptr;	// ƒsƒNƒZƒ‹EƒVƒF[ƒ_(ƒVƒƒƒhƒE ƒ}ƒbƒv‚È‚µ)
+	Microsoft::WRL::ComPtr<ID3D11BlendState> m_blendState = nullptr;			// ƒuƒŒƒ“ƒhEƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_rasterizerState = nullptr;	// ƒ‰ƒXƒ^ƒ‰ƒCƒUEƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_depthStencilState = nullptr;	// [“x/ƒXƒeƒ“ƒVƒ‹EƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg
 
-	// ã‚·ãƒ£ãƒ‰ã‚¦ ãƒãƒƒãƒ—æç”»ç”¨
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vertexShaderShadow = nullptr;		// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_rasterizerStateShadow = nullptr;	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// ƒVƒƒƒhƒE ƒ}ƒbƒv•`‰æ—p
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vertexShaderShadow = nullptr;		// ’¸“_ƒVƒF[ƒ_
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_rasterizerStateShadow = nullptr;	// ƒ‰ƒXƒ^ƒ‰ƒCƒUEƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer> g_pCBuffer = nullptr;		// å®šæ•°ãƒãƒƒãƒ•ã‚¡
+	Microsoft::WRL::ComPtr<ID3D11Buffer> g_pCBuffer = nullptr;		// ’è”ƒoƒbƒtƒ@
 
-	Microsoft::WRL::ComPtr<ID3D11SamplerState> m_textureSampler[2] = { nullptr, nullptr };		// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> m_textureSampler[2] = { nullptr, nullptr };		// ƒTƒ“ƒvƒ‰[
 
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒ»ãƒãƒƒãƒ”ãƒ³ã‚°ç”¨
+	// ƒVƒƒƒhƒEEƒ}ƒbƒsƒ“ƒO—p
 	bool m_shadowMappingEnabled = true;
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_shadowMap = nullptr;			// ã‚·ãƒ£ãƒ‰ã‚¦ãƒ»ãƒãƒƒãƒ—
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_shadowMapDSView = nullptr;	// æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ãƒ“ãƒ¥ãƒ¼
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_shadowMapSRView = nullptr;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ»ãƒªã‚½ãƒ¼ã‚¹ãƒ»ãƒ“ãƒ¥ãƒ¼
-	D3D11_VIEWPORT            m_viewPortShadowMap[1] = {};       // ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆ
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_shadowMap = nullptr;			// ƒVƒƒƒhƒEEƒ}ƒbƒv
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_shadowMapDSView = nullptr;	// [“x/ƒXƒeƒ“ƒVƒ‹Eƒrƒ…[
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_shadowMapSRView = nullptr;	// ƒVƒF[ƒ_EƒŠƒ\[ƒXEƒrƒ…[
+	D3D11_VIEWPORT            m_viewPortShadowMap[1] = {};       // ƒrƒ…[ƒ|[ƒg
 
-	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ãƒ‡ãƒ¼ã‚¿å®šç¾©
+	// ’è”ƒoƒbƒtƒ@‚Ìƒf[ƒ^’è‹`
 	struct ShadowParameters {
-		DirectX::SimpleMath::Matrix SMViewProj; // ãƒ¯ãƒ¼ãƒ«ãƒ‰Ã—ãƒ“ãƒ¥ãƒ¼Ã—é€è¦–å¤‰æ›è¡Œåˆ—(ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ç”¨)
+		DirectX::SimpleMath::Matrix SMViewProj; // ƒ[ƒ‹ƒh~ƒrƒ…[~“§‹•ÏŠ·s—ñ(ƒVƒƒƒhƒEƒ}ƒbƒv—p)
 	};
 
-	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ãƒ‡ãƒ¼ã‚¿
+	// ’è”ƒoƒbƒtƒ@‚Ìƒf[ƒ^
 	struct ShadowParameters m_constBuffer;
 
 public:
@@ -55,12 +63,14 @@ private:
 	void InitShadowMap(int dimension);
 
 public:
-	// ç”Ÿæˆ
+	// ¶¬
 	void RenderStart();
-	// æç”»
+	// •`‰æ
 	void SetShadowMode();
 	void SetRenderMode();
 	void ApplyMode(bool shadowMode);
 	void ApplyShadowMode();
 	void ApplyRenderMode();
 };
+
+

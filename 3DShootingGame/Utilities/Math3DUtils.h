@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-03 17:52:30 +0900
+// Modified: 2020-01-17 10:45:52 +0900
+
 #pragma once
 
 namespace Math3DUtils
@@ -9,3 +17,5 @@ namespace Math3DUtils
 	DirectX::SimpleMath::Quaternion FromToRotation(const DirectX::SimpleMath::Vector3& from, const DirectX::SimpleMath::Vector3& to);
 	DirectX::SimpleMath::Vector3 Normalized(const DirectX::SimpleMath::Vector3& vec);
 }
+
+

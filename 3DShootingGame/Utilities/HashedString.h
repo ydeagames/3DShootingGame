@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-08-05 05:44:53 +0900
+// Modified: 2019-08-05 05:44:53 +0900
+
 #include <cstdint>
 
 // ゼロオーバーヘッド文字列ID
@@ -48,3 +56,5 @@ constexpr bool operator!=(const HashedString& lhs, const HashedString& rhs) noex
 constexpr HashedString operator"" _hs(const char* str, size_t) noexcept {
 	return HashedString{ str };
 }
+
+

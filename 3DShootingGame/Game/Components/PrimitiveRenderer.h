@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-09 14:22:32 +0900
+// Modified: 2020-02-05 23:03:19 +0900
+
 #pragma once
 #include <Framework/ECS/Component.h>
 
@@ -85,3 +93,5 @@ public:
 
 	void EditorGui();
 };
+
+

@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-21 04:04:28 +0900
+// Modified: 2019-12-23 11:40:37 +0900
+
 #include "pch.h"
 #include "PauseHandler.h"
 #include <Framework/ECS/GameContext.h>
@@ -51,3 +59,5 @@ void PauseHandler::SetPaused(bool pause)
 
 	paused = pause;
 }
+
+

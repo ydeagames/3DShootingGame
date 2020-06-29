@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2020-01-15 16:08:06 +0900
+
 #include "pch.h"
 #include "GameCamera.h"
 
@@ -71,3 +79,5 @@ DirectX::SimpleMath::Vector3 GameCamera::ViewportToScreenPoint(const DirectX::Si
 {
 	return Vector3::Transform(point, viewport);
 }
+
+

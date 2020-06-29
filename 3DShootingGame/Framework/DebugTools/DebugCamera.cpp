@@ -1,54 +1,62 @@
-ï»¿//======================================================
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-07-19 15:29:42 +0900
+
+//======================================================
 // File Name	: DebugCamera.cpp
-// Summary		: ãƒ‡ãƒãƒƒã‚°ã‚«ãƒ¡ãƒ©
+// Summary		: ƒfƒoƒbƒOƒJƒƒ‰
 // Date			: 2019/4/25
 // Author		: Takafumi Ban
 //======================================================
 #include "pch.h"
 #include "DebugCamera.h"
 
-// å®šæ•°
+// ’è”
 const float DebugCamera::DEFAULT_CAMERA_DISTANCE = 5.0f;
 
-// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 DebugCamera::DebugCamera()
 	: m_yAngle(0.0f), m_xAngle(0.0f), m_prevX(0), m_prevY(0), m_scrollWheelValue(0), m_zoom(-600)
 {
 }
 
-// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒfƒXƒgƒ‰ƒNƒ^
 DebugCamera::~DebugCamera()
 {
 }
 
-// æ›´æ–°
+// XV
 void DebugCamera::update()
 {
 	auto state = DirectX::Mouse::Get().GetState();
 
-	// ç›¸å¯¾ãƒ¢ãƒ¼ãƒ‰ãªã‚‰ä½•ã‚‚ã—ãªã„
+	// ‘Š‘Îƒ‚[ƒh‚È‚ç‰½‚à‚µ‚È‚¢
 	if (state.positionMode == DirectX::Mouse::MODE_RELATIVE) return;
 
 	m_tracker.Update(state);
 
-	// ãƒã‚¦ã‚¹ã®å·¦ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸ
+	// ƒ}ƒEƒX‚Ì¶ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½
 	if (m_tracker.leftButton == DirectX::Mouse::ButtonStateTracker::ButtonState::PRESSED)
 	{
-		// ãƒã‚¦ã‚¹ã®åº§æ¨™ã‚’å–å¾—
+		// ƒ}ƒEƒX‚ÌÀ•W‚ğæ“¾
 		m_prevX = state.x;
 		m_prevY = state.y;
 	}
 
-	// ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ãŸã‚‰ã‚«ãƒ¡ãƒ©ã‚’ç§»å‹•ã•ã›ã‚‹
+	// ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚çƒJƒƒ‰‚ğˆÚ“®‚³‚¹‚é
 	if (state.leftButton)
 	{
 		motion(state.x, state.y);
 	}
-	// ãƒã‚¦ã‚¹ã®åº§æ¨™ã‚’å‰å›ã®ã¨ã—ã¦ä¿å­˜
+	// ƒ}ƒEƒX‚ÌÀ•W‚ğ‘O‰ñ‚Ì‚Æ‚µ‚Ä•Û‘¶
 	m_prevX = state.x;
 	m_prevY = state.y;
 
-	// ãƒã‚¦ã‚¹ã®ãƒ•ã‚©ã‚¤ãƒ¼ãƒ«å€¤ã‚’å–å¾—
+	// ƒ}ƒEƒX‚ÌƒtƒHƒC[ƒ‹’l‚ğæ“¾
 	m_zoom += state.scrollWheelValue - m_scrollWheelValue;
 	if (m_zoom >= 500)
 	{
@@ -56,7 +64,7 @@ void DebugCamera::update()
 	}
 	m_scrollWheelValue = state.scrollWheelValue;
 
-	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ç®—å‡ºã™ã‚‹
+	// ƒrƒ…[s—ñ‚ğZo‚·‚é
 	DirectX::SimpleMath::Matrix rotY = DirectX::SimpleMath::Matrix::CreateRotationY(m_yAngle);
 	DirectX::SimpleMath::Matrix rotX = DirectX::SimpleMath::Matrix::CreateRotationX(m_xAngle);
 
@@ -76,22 +84,24 @@ void DebugCamera::update()
 	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(eye, target, up);
 }
 
-// è¡Œåˆ—ã®ç”Ÿæˆ
+// s—ñ‚Ì¶¬
 void DebugCamera::motion(int x, int y)
 {
-	// ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®å‰å›ã‹ã‚‰ã®å¤‰ä½
+	// ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚Ì‘O‰ñ‚©‚ç‚Ì•ÏˆÊ
 	float dx = static_cast<float>(x - m_prevX);
 	float dy = static_cast<float>(y - m_prevY);
 
 	if (dx != 0.0f || dy != 0.0f)
 	{
-		// ï¼¹è»¸ã®å›è»¢
+		// ‚x²‚Ì‰ñ“]
 		float yAngle = dx * DirectX::XM_PI / 180.0f;
-		// ï¼¸è»¸ã®å›è»¢
+		// ‚w²‚Ì‰ñ“]
 		float xAngle = dy * DirectX::XM_PI / 180.0f;
 
 		m_xAngle += xAngle;
 		m_yAngle += yAngle;
 	}
 }
+
+
 

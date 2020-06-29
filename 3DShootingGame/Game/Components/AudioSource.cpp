@@ -1,4 +1,12 @@
-﻿#include "pch.h"
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-01-20 07:31:53 +0900
+// Modified: 2020-02-07 08:55:28 +0900
+
+#include "pch.h"
 #include "AudioSource.h"
 #include "Framework/ECS/GameContext.h"
 #include "Framework/Context/ApplicationHandler.h"
@@ -62,3 +70,5 @@ void AudioSource::EditorGui()
 		if (isPlaying)
 			Start();
 }
+
+

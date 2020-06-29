@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-07-29 05:15:01 +0900
+
 #pragma once
 #include <xhash>
 
@@ -54,3 +62,5 @@ type_id_t type_id()
 	static const type_id_t value = type_id_family<type_id_t>::identifier++;
 	return value;
 }
+
+

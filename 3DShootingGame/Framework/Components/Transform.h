@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2020-01-05 22:47:30 +0900
+
 #pragma once
 #include <Framework/ECS/Component.h>
 
@@ -104,3 +112,4 @@ public:
 	// 親子関係解決クラスを取得
 	TransformResolver& GetResolver(entt::registry& registry);
 };
+

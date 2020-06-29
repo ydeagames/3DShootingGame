@@ -1,4 +1,12 @@
-ï»¿#include <Framework/ECS/Component.h>
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-12-08 01:27:19 +0900
+
+#include <Framework/ECS/Component.h>
 #include "DebugCamera.h"
 
 class DebugCamera;
@@ -7,18 +15,19 @@ class GameCamera;
 class DebugCameraWrapper : public Component
 {
 private:
-	// ãƒ‡ãƒãƒƒã‚°ã‚«ãƒ¡ãƒ©
+	// ƒfƒoƒbƒOƒJƒƒ‰
 	std::unique_ptr<DebugCamera> m_pDebugCamera;
-	// ã‚«ãƒ¡ãƒ©
+	// ƒJƒƒ‰
 	GameCamera* m_camera = nullptr;
 public:
 	DebugCameraWrapper();
 	// Get
 	DebugCamera& GetDebugCamera();
-	// ç”Ÿæˆ
+	// ¶¬
 	void Initialize();
-	// æç”»
+	// •`‰æ
 	void Render(GameCamera& camera);
-	// æ›´æ–°
+	// XV
 	void Update();
 };
+

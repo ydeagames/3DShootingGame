@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2020-02-08 23:01:03 +0900
+
 #pragma once
 
 // <入力デバイス>
@@ -58,3 +66,5 @@ public:
 	static DirectX::Keyboard::State GetKeyboardState();
 	static DirectX::Keyboard::KeyboardStateTracker& GetKeyboardTracker();
 };
+
+

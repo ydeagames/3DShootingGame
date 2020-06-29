@@ -1,4 +1,12 @@
-ï»¿//
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-07-19 15:29:42 +0900
+
+//
 // DeviceResources.cpp - A wrapper for the Direct3D 11 device and swapchain
 //                       (requires DirectX 11.1 Runtime)
 //
@@ -263,7 +271,7 @@ void DeviceResources::CreateWindowSizeDependentResources()
 	UINT backBufferHeight = std::max<UINT>(m_outputSize.bottom - m_outputSize.top, 1);
 	DXGI_FORMAT backBufferFormat = (m_options & (c_FlipPresent | c_AllowTearing | c_EnableHDR)) ? NoSRGB(m_backBufferFormat) : m_backBufferFormat;
 
-	// ç¾ç’°å¢ƒã§ä½¿ç”¨ã§ãã‚‹MSAAã‚’ãƒã‚§ãƒƒã‚¯
+	// Œ»ŠÂ‹«‚Åg—p‚Å‚«‚éMSAA‚ğƒ`ƒFƒbƒN
 	DXGI_SAMPLE_DESC sampleDesc = {};
 	for (int i = 1; i <= 4 /*D3D11_MAX_MULTISAMPLE_SAMPLE_COUNT*/; i <<= 1)
 	{
@@ -668,3 +676,5 @@ void DeviceResources::UpdateColorSpace()
 		}
 	}
 }
+
+

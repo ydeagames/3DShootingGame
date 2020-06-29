@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-09 17:14:07 +0900
+// Modified: 2020-01-21 09:42:10 +0900
+
 #include "pch.h"
 #include "Menu.h"
 #include <Framework/ECS/GameContext.h>
@@ -155,3 +163,5 @@ void PauseMenu::RenderGui(GameCamera& camera)
 	}
 	ImGui::End();
 }
+
+

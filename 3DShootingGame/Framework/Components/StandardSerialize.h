@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-10 16:21:00 +0900
+// Modified: 2020-01-24 14:01:41 +0900
+
 #pragma once
 
 // シリアライズ
@@ -50,3 +58,5 @@ namespace physx
 		flags = PxRigidBodyFlags(PxU8(flag));
 	}
 }
+
+

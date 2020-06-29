@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-16 22:40:30 +0900
+// Modified: 2019-12-16 22:40:30 +0900
+
 #include "pch.h"
 #include "FontRenderer.h"
 #include <Framework/ECS/GameContext.h>
@@ -55,3 +63,5 @@ void FontRenderer::EditorGui()
 
 	ImGui::ColorEdit4("Color", &color.x);
 }
+
+

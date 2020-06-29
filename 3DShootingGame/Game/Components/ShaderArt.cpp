@@ -1,4 +1,12 @@
-ï»¿#include "pch.h"
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-01-11 04:11:16 +0900
+// Modified: 2020-01-11 18:04:09 +0900
+
+#include "pch.h"
 #include "ShaderArt.h"
 #include "Utilities/BinaryFile.h"
 #include "Framework/ECS/GameContext.h"
@@ -18,32 +26,32 @@ void ShaderArt::RenderStart()
 	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
 	auto ctx = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 
-	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
+	// ƒvƒŠƒ~ƒeƒBƒuƒIƒuƒWƒFƒNƒg¶¬
 	m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>>(ctx);
 
-	// ãƒ™ãƒ¼ã‚·ãƒƒã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	// ƒx[ƒVƒbƒNƒGƒtƒFƒNƒg
 	m_basicEffect = std::make_unique<BasicEffect>(device);
 	m_basicEffect->SetTextureEnabled(true);
 
-	// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚ŒãŸã‚·ã‚§ãƒ¼ãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿
+	// ƒRƒ“ƒpƒCƒ‹‚³‚ê‚½ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ
 	BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/ShaderArtVS.cso");
 	BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/ShaderArtPS.cso");
 
-	// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆç”Ÿæˆ
+	// ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒg¶¬
 	DX::ThrowIfFailed(device->CreateInputLayout(VertexPositionTexture::InputElements,
 		UINT(VertexPositionTexture::InputElementCount),
 		VSData.GetData(), VSData.GetSize(),
 		m_inputLayout.ReleaseAndGetAddressOf()));
-	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ä½œæˆ
+	// ’¸“_ƒVƒF[ƒ_ì¬
 	DX::ThrowIfFailed(device->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_VertexShader.ReleaseAndGetAddressOf()));
-	// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ä½œæˆ
+	// ƒsƒNƒZƒ‹ƒVƒF[ƒ_ì¬
 	DX::ThrowIfFailed(device->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_PixelShader.ReleaseAndGetAddressOf()));
 
-	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ­ãƒ¼ãƒ‰
+	// ƒeƒNƒXƒ`ƒƒ‚Ìƒ[ƒh
 	DX::ThrowIfFailed(CreateWICTextureFromFile(device, L"Resources/Textures/Transition/RuleTransitionBack.png", nullptr, m_texture.ReleaseAndGetAddressOf()));
 	DX::ThrowIfFailed(CreateWICTextureFromFile(device, L"Resources/Textures/Transition/RuleTransitionRule.png", nullptr, m_texture2.ReleaseAndGetAddressOf()));
 
-	// ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
+	// ƒoƒbƒtƒ@‚Ìì¬
 	D3D11_BUFFER_DESC bd;
 	ZeroMemory(&bd, sizeof(bd));
 	bd.Usage = D3D11_USAGE_DEFAULT;
@@ -62,16 +70,16 @@ void ShaderArt::Render(GameCamera& camera)
 {
 	auto ctx = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 
-	// ã‚ªãƒ–ã‚¸ã‚§
+	// ƒIƒuƒWƒF
 	auto Draw = [&](const Matrix& world, const Matrix& view, const Matrix& proj)
 	{
 		auto& state = GameContext::Get<CommonStates>();
 		ID3D11BlendState* blendstate = state.NonPremultiplied();
-		// é€æ˜åˆ¤å®šå‡¦ç†
+		// “§–¾”»’èˆ—
 		ctx->OMSetBlendState(blendstate, nullptr, 0xFFFFFFFF);
-		// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã¿å‚ç…§ã™ã‚‹
+		// [“xƒoƒbƒtƒ@‚É‘‚«‚İQÆ‚·‚é
 		ctx->OMSetDepthStencilState(state.DepthRead(), 0);
-		// ã‚«ãƒªãƒ³ã‚°ã¯å³å‘¨ã‚Šï¼ˆæ™‚è¨ˆå›ã‚Šï¼‰
+		// ƒJƒŠƒ“ƒO‚Í‰Eü‚èiŒv‰ñ‚èj
 		ctx->RSSetState(state.CullClockwise());
 
 		ID3D11SamplerState* sampler[1] = { state.LinearClamp() };
@@ -85,21 +93,21 @@ void ShaderArt::Render(GameCamera& camera)
 		m_basicEffect->Apply(ctx);
 		ctx->IASetInputLayout(m_inputLayout.Get());
 
-		// å®šæ•°ãƒãƒƒãƒ•ã‚¡æ›´æ–°
+		// ’è”ƒoƒbƒtƒ@XV
 		ConstBuffer cbuff;
 		auto& timer = GameContext::Get<DX::StepTimer>();
 		cbuff.Time = Vector4(float(timer.GetTotalSeconds()), float(timer.GetElapsedSeconds()), time, 1);
 
-		// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹æ›´æ–°
+		// ’è”ƒoƒbƒtƒ@‚Ì“à—eXV
 		ctx->UpdateSubresource(m_CBuffer.Get(), 0, NULL, &cbuff, 0, 0);
 
-		// å®šæ•°ãƒãƒƒãƒ•ã‚¡åæ˜ 
+		// ’è”ƒoƒbƒtƒ@”½‰f
 		ID3D11Buffer* cb[1] = { m_CBuffer.Get() };
 		ctx->VSSetConstantBuffers(1, 1, cb);
 		//ctx->GSSetConstantBuffers(1, 1, cb);
 		ctx->PSSetConstantBuffers(1, 1, cb);
 
-		// æç”»
+		// •`‰æ
 		ctx->VSSetShader(m_VertexShader.Get(), nullptr, 0);
 		ctx->PSSetShader(m_PixelShader.Get(), nullptr, 0);
 		ctx->PSSetShaderResources(1, 1, m_texture2.GetAddressOf());
@@ -129,3 +137,5 @@ void ShaderArt::EditorGui()
 {
 	ImGui::DragFloat("Time", &time, 0.01f);
 }
+
+

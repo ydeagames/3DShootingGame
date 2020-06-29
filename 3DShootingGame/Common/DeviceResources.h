@@ -1,4 +1,12 @@
-﻿//
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-07-19 15:29:42 +0900
+
+//
 // DeviceResources.h - A wrapper for the Direct3D 11 device and swapchain
 //
 
@@ -110,3 +118,4 @@ namespace DX
         IDeviceNotify*                                  m_deviceNotify;
     };
 }
+

@@ -1,4 +1,12 @@
-ï»¿#include "pch.h"
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-22 23:13:56 +0900
+// Modified: 2019-12-23 10:56:15 +0900
+
+#include "pch.h"
 #include "RainbowEffect.h"
 #include <Framework/ECS/GameContext.h>
 #include <Framework/Context/GameCamera.h>
@@ -8,19 +16,19 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-// æç”»åˆæœŸåŒ–
+// •`‰æ‰Šú‰»
 void RainbowEffect::RenderStart()
 {
 	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
 	auto context = GameContext::Get<DX::DeviceResources>().GetD3DDeviceContext();
 
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+	// ƒGƒtƒFƒNƒg‚Ì¶¬
 	m_basicEffect = std::make_unique<DirectX::BasicEffect>(device);
-	// é ‚ç‚¹ã‚«ãƒ©ãƒ¼(æœ‰åŠ¹)
+	// ’¸“_ƒJƒ‰[(—LŒø)
 	m_basicEffect->SetVertexColorEnabled(true);
-	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
+	// ƒvƒŠƒ~ƒeƒBƒuƒIƒuƒWƒFƒNƒg¶¬
 	m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>(context);
-	// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆç”Ÿæˆ
+	// ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒg¶¬
 	void const* shaderByteCode;
 	size_t byteCodeLength;
 	m_basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
@@ -30,7 +38,7 @@ void RainbowEffect::RenderStart()
 		m_pInputLayout.ReleaseAndGetAddressOf()));
 }
 
-// æç”»
+// •`‰æ
 void RainbowEffect::Render(GameCamera& camera)
 {
 	auto device = GameContext::Get<DX::DeviceResources>().GetD3DDevice();
@@ -106,4 +114,6 @@ void RainbowEffect::EditorGui()
 	ImGui::Checkbox("Is Colorful", &isColorful);
 	ImGui::ColorEdit4("Color", &color.x);
 }
+
+
 

@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 19:20:01 +0900
+// Modified: 2019-12-16 05:32:44 +0900
+
 #include "pch.h"
 #include "PhysXRenderer.h"
 #include "PhysXCommons.h"
@@ -348,3 +356,5 @@ void PhysXRenderer::RenderActors(GameCamera& camera, std::vector<PxRigidActor*>&
 		}
 	}
 }
+
+

@@ -1,22 +1,32 @@
-ï»¿#pragma once
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-07-19 15:29:42 +0900
 
-// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
+#pragma once
+
+// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
 #if defined(_DEBUG)
 	#include <crtdbg.h>
 #endif
 
-// ãƒã‚¯ãƒ­å®šç¾©
+// ƒ}ƒNƒ’è‹`
 #if defined(_DEBUG)
 	#define _CRTDBG_MAP_ALLOC
 	#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
 
-// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°å®šç¾©
+// ƒCƒ“ƒ‰ƒCƒ“ŠÖ”’è‹`
 #if defined(_DEBUG)
-	// ãƒ¡ãƒ¢ãƒªãƒ¼ãƒªãƒ¼ã‚¯æ¤œå‡ºæ©Ÿæ§‹ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
+	// ƒƒ‚ƒŠ[ƒŠ[ƒNŒŸo‹@\‚ÌƒZƒbƒgƒAƒbƒv
 	inline void SetUpMemoryLeakDetector()
 	{
-		// ãƒ¡ãƒ¢ãƒªãƒ¼ãƒªãƒ¼ã‚¯æ¤œå‡ºã®ãŸã‚ã®è¨­å®š
+		// ƒƒ‚ƒŠ[ƒŠ[ƒNŒŸo‚Ì‚½‚ß‚Ìİ’è
 		_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF | _CRTDBG_ALLOC_MEM_DF);
 	}
 #endif
+
+

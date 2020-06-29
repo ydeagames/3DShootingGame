@@ -1,4 +1,12 @@
-ï»¿#include "pch.h"
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-08-05 07:35:38 +0900
+// Modified: 2019-08-05 07:35:38 +0900
+
+#include "pch.h"
 #include "BinaryFile.h"
 
 #include <fstream>
@@ -11,13 +19,13 @@ BinaryFile BinaryFile::LoadFile(const wchar_t * fileName)
 
 	std::ifstream ifs;
 
-	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
+	// ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
 	ifs.open(fileName, std::ios::in | std::ios::binary);
 
-	// èª­ã¿è¾¼ã¿å¤±æ•—æ™‚ã€å¼·åˆ¶çµ‚äº†
+	// “Ç‚İ‚İ¸”sA‹­§I—¹
 	assert(ifs);
 
-	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’å–å¾—
+	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğæ“¾
 	ifs.seekg(0, std::fstream::end);
 	std::streamoff eofPos = ifs.tellg();
 	ifs.clear();
@@ -25,13 +33,13 @@ BinaryFile BinaryFile::LoadFile(const wchar_t * fileName)
 	std::streamoff begPos = ifs.tellg();
 	bin.m_Size = (unsigned int)(eofPos - begPos);
 
-	// èª­ã¿è¾¼ã‚€ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
+	// “Ç‚İ‚Ş‚½‚ß‚Ìƒƒ‚ƒŠ‚ğŠm•Û
 	bin.m_Data.reset(new char[bin.m_Size]);
 
-	// ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã¸ã‚³ãƒ”ãƒ¼ 
+	// ƒtƒ@ƒCƒ‹æ“ª‚©‚çƒoƒbƒtƒ@‚ÖƒRƒs[ 
 	ifs.read(bin.m_Data.get(), bin.m_Size);
 
-	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
+	// ƒtƒ@ƒCƒ‹ƒNƒ[ƒY
 	ifs.close();
 
 	return std::move(bin);
@@ -47,3 +55,5 @@ BinaryFile::BinaryFile(BinaryFile && in)
 	m_Data = std::move(in.m_Data);
 	m_Size = in.m_Size;
 }
+
+

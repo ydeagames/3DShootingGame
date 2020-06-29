@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-10 10:51:51 +0900
+// Modified: 2020-01-21 09:42:10 +0900
+
 #include "pch.h"
 #include "FPSCamera.h"
 #include <Framework/ECS/GameContext.h>
@@ -66,3 +74,5 @@ void FPSCamera::EditorGui()
 	ImGui::InputFloat("yAngleLast", &m_yAngleLast);
 	ImGui::InputFloat("xAngleLast", &m_yAngleLast);
 }
+
+

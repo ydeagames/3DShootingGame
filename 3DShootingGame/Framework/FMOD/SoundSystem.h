@@ -1,7 +1,15 @@
-ï»¿/// FMODã‚’æ‰±ã†ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-01-20 07:31:53 +0900
+// Modified: 2020-02-07 06:07:13 +0900
+
+/// FMOD‚ğˆµ‚¤ƒ‰ƒCƒuƒ‰ƒŠ
 #pragma once
 
-// FMODå®Ÿè£…
+// FMODÀ‘•
 class SoundSystem
 {
 private:
@@ -36,3 +44,5 @@ public:
 	static float DbToVolume(float db);
 	static float VolumeToDb(float volume);
 };
+
+

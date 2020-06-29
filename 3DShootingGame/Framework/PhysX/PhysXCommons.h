@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-08-01 16:18:25 +0900
+
 #pragma once
 
 template<typename T>
@@ -62,3 +70,4 @@ namespace physx
 	inline physx::PxQuat toPhysX(const DirectX::SimpleMath::Quaternion& quat) { return physx::PxQuat(quat.x, quat.y, quat.z, quat.w); }
 	inline physx::PxMat44 toPhysX(const DirectX::SimpleMath::Matrix& mat) { return physx::PxMat44(physx::PxVec4(mat.m[0]), physx::PxVec4(mat.m[1]), physx::PxVec4(mat.m[2]), physx::PxVec4(mat.m[3])); }
 }
+

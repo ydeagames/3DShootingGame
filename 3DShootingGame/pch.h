@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2020-02-07 06:07:13 +0900
+
 //
 // pch.h
 // Header for standard system include files.
@@ -175,3 +183,4 @@ namespace DX
 		}
 	}
 }
+

@@ -1,4 +1,12 @@
-ï»¿#pragma once
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-10 16:21:00 +0900
+// Modified: 2019-12-23 10:56:15 +0900
+
+#pragma once
 #include <Framework/ECS/Component.h>
 
 class GameContext;
@@ -16,29 +24,29 @@ public:
 	}
 
 private:
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	// ƒGƒtƒFƒNƒg
 	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
 
-	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ãƒãƒƒãƒ
+	// ƒvƒŠƒ~ƒeƒBƒuƒoƒbƒ`
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_primitiveBatch;
 
-	// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
+	// ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒg
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout;
 
 public:
-	// ã‚·ãƒ¼ãƒ‰
+	// ƒV[ƒh
 	int seed = 0;
 
-	// ã‚«ãƒ©ãƒ•ãƒ«
+	// ƒJƒ‰ƒtƒ‹
 	bool isColorful = true;
 
-	// è‰²
+	// F
 	DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(DirectX::Colors::Gray);
 
 public:
-	// æç”»åˆæœŸåŒ–
+	// •`‰æ‰Šú‰»
 	void RenderStart();
-	// æç”»
+	// •`‰æ
 	void Render(GameCamera& camera);
 
 public:
@@ -50,3 +58,5 @@ public:
 
 	void EditorGui();
 };
+
+

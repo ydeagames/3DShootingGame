@@ -1,5 +1,13 @@
-ï»¿/// <summary>
-/// ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-08-05 07:35:38 +0900
+// Modified: 2019-08-05 07:35:38 +0900
+
+/// <summary>
+/// ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ğˆµ‚¤ƒNƒ‰ƒX
 /// </summary>
 #pragma once
 
@@ -8,20 +16,22 @@
 class BinaryFile
 {
 public:
-	// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¦ãƒ­ãƒ¼ãƒ‰
+	// ƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚Äƒ[ƒh
 	static BinaryFile LoadFile(const wchar_t* fileName);
 
 	BinaryFile();
-	// ãƒ ãƒ¼ãƒ–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// ƒ€[ƒuƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	BinaryFile(BinaryFile&& in);
 
-	// ã‚¢ã‚¯ã‚»ãƒƒã‚µ
+	// ƒAƒNƒZƒbƒT
 	char* GetData() { return m_Data.get(); }
 	unsigned int GetSize() { return m_Size; }
 
 protected:
-	// ãƒ‡ãƒ¼ã‚¿
+	// ƒf[ƒ^
 	std::unique_ptr<char[]> m_Data;
-	// ã‚µã‚¤ã‚º
+	// ƒTƒCƒY
 	unsigned int m_Size;
 };
+
+

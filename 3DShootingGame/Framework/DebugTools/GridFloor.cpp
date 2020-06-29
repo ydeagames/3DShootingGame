@@ -1,6 +1,14 @@
-ï»¿//======================================================
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-08-06 16:33:46 +0900
+
+//======================================================
 // File Name	: GridFloor.cpp
-// Summary		: ãƒ‡ãƒãƒƒã‚°ã‚°ãƒªãƒƒãƒ‰åºŠ
+// Summary		: ƒfƒoƒbƒOƒOƒŠƒbƒh°
 // Date			: 2019/4/25
 // Author		: Takafumi Ban
 //======================================================
@@ -10,16 +18,16 @@
 
 #include <algorithm>
 
-// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 GridFloor::GridFloor(ID3D11Device* device, ID3D11DeviceContext* context, DirectX::CommonStates* states, float size, int divs) : m_size(size), m_divs(divs), m_states(states)
 {
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+	// ƒGƒtƒFƒNƒg‚Ì¶¬
 	m_basicEffect = std::make_unique<DirectX::BasicEffect>(device);
-	// é ‚ç‚¹ã‚«ãƒ©ãƒ¼(æœ‰åŠ¹)
+	// ’¸“_ƒJƒ‰[(—LŒø)
 	m_basicEffect->SetVertexColorEnabled(true);
-	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
+	// ƒvƒŠƒ~ƒeƒBƒuƒIƒuƒWƒFƒNƒg¶¬
 	m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>(context);
-	// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆç”Ÿæˆ
+	// ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒg¶¬
 	void const* shaderByteCode;
 	size_t byteCodeLength;
 	m_basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
@@ -29,16 +37,16 @@ GridFloor::GridFloor(ID3D11Device* device, ID3D11DeviceContext* context, DirectX
 		m_pInputLayout.ReleaseAndGetAddressOf()));
 }
 
-// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒfƒXƒgƒ‰ƒNƒ^
 GridFloor::~GridFloor()
 {
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
+	// ƒGƒtƒFƒNƒg‚ğ‰ğ•ú‚·‚é
 	m_basicEffect.reset();
-	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’è§£æ”¾ã™ã‚‹
+	// “ü—ÍƒŒƒCƒAƒEƒg‚ğ‰ğ•ú‚·‚é
 	m_pInputLayout.Reset();
 }
 
-// æç”»
+// •`‰æ
 void GridFloor::draw(ID3D11DeviceContext* context, DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj, DirectX::GXMVECTOR color)
 {
 	DirectX::SimpleMath::Matrix world;
@@ -87,4 +95,6 @@ void GridFloor::draw(ID3D11DeviceContext* context, DirectX::SimpleMath::Matrix v
 
 	m_primitiveBatch->End();
 }
+
+
 

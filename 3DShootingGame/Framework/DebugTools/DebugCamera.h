@@ -1,6 +1,14 @@
-ï»¿//======================================================
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-07-19 15:29:42 +0900
+
+//======================================================
 // File Name	: DebugCamera.h
-// Summary		: ãƒ‡ãƒãƒƒã‚°ã‚«ãƒ¡ãƒ©
+// Summary		: ƒfƒoƒbƒOƒJƒƒ‰
 // Date			: 2019/4/25
 // Author		: Takafumi Ban
 //======================================================
@@ -9,73 +17,75 @@
 #include "SimpleMath.h"
 #include "Mouse.h"
 
-// ãƒ‡ãƒãƒƒã‚°ç”¨ã‚«ãƒ¡ãƒ©ã‚¯ãƒ©ã‚¹
+// ƒfƒoƒbƒO—pƒJƒƒ‰ƒNƒ‰ƒX
 class DebugCamera
 {
-public: // å®šæ•°
+public: // ’è”
 
-	// ã‚«ãƒ¡ãƒ©ã®è·é›¢
+	// ƒJƒƒ‰‚Ì‹——£
 	static const float DEFAULT_CAMERA_DISTANCE;
 
-public: // åŸºæœ¬
+public: // Šî–{
 
-	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	DebugCamera();
-	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// ƒfƒXƒgƒ‰ƒNƒ^
 	~DebugCamera();
 
-public: // åŸºæœ¬å‡¦ç†
+public: // Šî–{ˆ—
 
-	// æ›´æ–°
+	// XV
 	void update();
 
-public: // ã‚¢ã‚¯ã‚»ãƒƒã‚µ
+public: // ƒAƒNƒZƒbƒT
 
-	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—å–å¾—
+	// ƒrƒ…[s—ñæ“¾
 	DirectX::SimpleMath::Matrix getViewMatrix()
 	{
 		return m_view;
 	}
 
-	// ãƒ‡ãƒãƒƒã‚°ã‚«ãƒ¡ãƒ©ã®ä½ç½®å–å¾—
+	// ƒfƒoƒbƒOƒJƒƒ‰‚ÌˆÊ’uæ“¾
 	DirectX::SimpleMath::Vector3 getEyePosition()
 	{
 		return m_eye;
 	}
-	// ãƒ‡ãƒãƒƒã‚°ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹å–å¾—
+	// ƒfƒoƒbƒOƒJƒƒ‰‚Ì’‹“_æ“¾
 	DirectX::SimpleMath::Vector3 getTargetPosition()
 	{
 		return m_target;
 	}
 
-private: // ã‚µãƒ–å‡¦ç†
+private: // ƒTƒuˆ—
 	void motion(int x, int y);
 
 public:
-	// æ¨ªå›è»¢
+	// ‰¡‰ñ“]
 	float m_yAngle;
 
-	// ç¸¦å›è»¢
+	// c‰ñ“]
 	float m_xAngle;
 
-private: // å¤‰æ•°
-	// å‰å›ã®ãƒã‚¦ã‚¹åº§æ¨™
+private: // •Ï”
+	// ‘O‰ñ‚Ìƒ}ƒEƒXÀ•W
 	int m_prevX, m_prevY;
 
-	// ç”Ÿæˆã•ã‚ŒãŸãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
+	// ¶¬‚³‚ê‚½ƒrƒ…[s—ñ
 	DirectX::SimpleMath::Matrix m_view;
 
-	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ•ã‚©ã‚¤ãƒ¼ãƒ«å€¤
+	// ƒXƒNƒ[ƒ‹ƒtƒHƒC[ƒ‹’l
 	int m_scrollWheelValue;
-	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ•ã‚©ã‚¤ãƒ¼ãƒ«å€¤
+	// ƒXƒNƒ[ƒ‹ƒtƒHƒC[ƒ‹’l
 	int m_zoom;
 
-	// è¦–ç‚¹
+	// ‹“_
 	DirectX::SimpleMath::Vector3 m_eye;
 
-	// æ³¨è¦–ç‚¹
+	// ’‹“_
 	DirectX::SimpleMath::Vector3 m_target;
 	
-	// ãƒã‚¦ã‚¹ãƒˆãƒ©ãƒƒã‚«ãƒ¼
+	// ƒ}ƒEƒXƒgƒ‰ƒbƒJ[
 	DirectX::Mouse::ButtonStateTracker m_tracker;
 };
+
+

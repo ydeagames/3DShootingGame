@@ -1,14 +1,24 @@
-ï»¿#include <Framework/ECS/Component.h>
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-12-13 16:28:17 +0900
+
+#include <Framework/ECS/Component.h>
 #include "GridFloor.h"
 
 class GameCamera;
 
 class GridFloorWrapper : public Component
 {
-	// ã‚°ãƒªãƒƒãƒ‰åºŠ
+	// ƒOƒŠƒbƒh°
 	std::unique_ptr<GridFloor> m_pGridFloor;
-	// ç”Ÿæˆ
+	// ¶¬
 	void RenderStart();
-	// æç”»
+	// •`‰æ
 	void Render(GameCamera& camera);
 };
+
+

@@ -1,4 +1,12 @@
-﻿#pragma once
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-02-05 23:03:19 +0900
+// Modified: 2020-02-05 23:03:19 +0900
+
+#pragma once
 
 class Light
 {
@@ -17,3 +25,5 @@ public:
 	void SetPosition(const DirectX::SimpleMath::Vector3& positionVec);
 	void SetProjection(const DirectX::SimpleMath::Matrix& proj);
 };
+
+

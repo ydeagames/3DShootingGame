@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-15 17:48:41 +0900
+// Modified: 2019-12-16 05:32:44 +0900
+
 #pragma once
 #include <Framework/ECS/EventBus.h>
 
@@ -26,3 +34,5 @@ public:
 		ECS::EventBusRanged<collection_type::iterator, Collidable, 0, physx::PxRigidActor>::Post(registry, collection.begin(), collection.end(), std::forward<physx::PxRigidActor>(rigid));
 	}
 };
+
+

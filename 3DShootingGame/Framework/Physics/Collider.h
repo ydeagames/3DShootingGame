@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-22 06:12:28 +0900
+// Modified: 2019-12-16 11:08:16 +0900
+
 #pragma once
 #include <Framework/ECS/Component.h>
 #include <Framework/PhysX/PhysXCommons.h>
@@ -51,4 +59,6 @@ public:
 public:
 	void AddCollider(physx::PxRigidActor& rigid) const;
 };
+
+
 

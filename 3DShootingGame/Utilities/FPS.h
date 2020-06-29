@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-20 14:10:15 +0900
+// Modified: 2019-07-20 14:10:15 +0900
+
 #pragma once
 #include <Common/StepTimer.h>
 
@@ -86,3 +94,5 @@ private:
 	int				mFrames;
 	int				mFrames2;
 };
+
+

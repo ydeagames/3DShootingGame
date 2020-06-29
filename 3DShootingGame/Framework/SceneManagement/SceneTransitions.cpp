@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-08-05 05:36:51 +0900
+// Modified: 2020-01-09 20:45:28 +0900
+
 #include "pch.h"
 #include "SceneTransitions.h"
 #include <Framework/ECS/GameContext.h>
@@ -231,3 +239,5 @@ namespace SceneTransitions
 		};
 	}
 }
+
+

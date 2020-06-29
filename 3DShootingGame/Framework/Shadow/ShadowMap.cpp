@@ -1,4 +1,12 @@
-ï»¿#include "pch.h"
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-02-05 23:03:19 +0900
+// Modified: 2020-02-05 23:03:19 +0900
+
+#include "pch.h"
 #include "ShadowMap.h"
 #include "Framework/ECS/GameContext.h"
 #include "Utilities/BinaryFile.h"
@@ -18,40 +26,40 @@ ShadowMap::ShadowMap()
 void ShadowMap::CreateShaderObj()
 {
 	// **********************************************************
-	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚³ãƒ¼ãƒ‰ã‚’ãƒ­ãƒ¼ãƒ‰
+	// ’¸“_ƒVƒF[ƒ_‚ÌƒR[ƒh‚ğƒ[ƒh
 	BinaryFile pBlobVS = BinaryFile::LoadFile(L"Resources/Shaders/Shadow_VS.cso");
-	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã®ä½œæˆ
+	// ’¸“_ƒVƒF[ƒ_‚Ìì¬
 	DX::ThrowIfFailed(device->CreateVertexShader(
-		pBlobVS.GetData(), // ãƒã‚¤ãƒˆãƒ»ã‚³ãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿
-		pBlobVS.GetSize(),    // ãƒã‚¤ãƒˆãƒ»ã‚³ãƒ¼ãƒ‰ã®é•·ã•
+		pBlobVS.GetData(), // ƒoƒCƒgEƒR[ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^
+		pBlobVS.GetSize(),    // ƒoƒCƒgEƒR[ƒh‚Ì’·‚³
 		nullptr,
-		m_vertexShader.ReleaseAndGetAddressOf())); // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã‚’å—ã‘å–ã‚‹å¤‰æ•°
+		m_vertexShader.ReleaseAndGetAddressOf())); // ’¸“_ƒVƒF[ƒ_‚ğó‚¯æ‚é•Ï”
 
 	// **********************************************************
-	// ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚³ãƒ¼ãƒ‰ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+	// ƒsƒNƒZƒ‹EƒVƒF[ƒ_‚ÌƒR[ƒh‚ğƒRƒ“ƒpƒCƒ‹
 	BinaryFile pBlobPS = BinaryFile::LoadFile(L"Resources/Shaders/Shadow_PS.cso");
-	// ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€ã®ä½œæˆ
+	// ƒsƒNƒZƒ‹EƒVƒF[ƒ_‚Ìì¬
 	DX::ThrowIfFailed(device->CreatePixelShader(
-		pBlobPS.GetData(), // ãƒã‚¤ãƒˆãƒ»ã‚³ãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿
-		pBlobPS.GetSize(),    // ãƒã‚¤ãƒˆãƒ»ã‚³ãƒ¼ãƒ‰ã®é•·ã•
+		pBlobPS.GetData(), // ƒoƒCƒgEƒR[ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^
+		pBlobPS.GetSize(),    // ƒoƒCƒgEƒR[ƒh‚Ì’·‚³
 		nullptr,
-		m_pixelShader.ReleaseAndGetAddressOf())); // ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€ã‚’å—ã‘å–ã‚‹å¤‰æ•°
+		m_pixelShader.ReleaseAndGetAddressOf())); // ƒsƒNƒZƒ‹EƒVƒF[ƒ_‚ğó‚¯æ‚é•Ï”
 
-	// ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚³ãƒ¼ãƒ‰ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+	// ƒsƒNƒZƒ‹EƒVƒF[ƒ_‚ÌƒR[ƒh‚ğƒRƒ“ƒpƒCƒ‹
 	BinaryFile pBlobPSNOSM = BinaryFile::LoadFile(L"Resources/Shaders/Shadow_PS_NOSM.cso");
-	// ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€ã®ä½œæˆ
+	// ƒsƒNƒZƒ‹EƒVƒF[ƒ_‚Ìì¬
 	DX::ThrowIfFailed(device->CreatePixelShader(
-		pBlobPSNOSM.GetData(), // ãƒã‚¤ãƒˆãƒ»ã‚³ãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿
-		pBlobPSNOSM.GetSize(),    // ãƒã‚¤ãƒˆãƒ»ã‚³ãƒ¼ãƒ‰ã®é•·ã•
+		pBlobPSNOSM.GetData(), // ƒoƒCƒgEƒR[ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^
+		pBlobPSNOSM.GetSize(),    // ƒoƒCƒgEƒR[ƒh‚Ì’·‚³
 		nullptr,
-		m_pixelShaderNoSM.ReleaseAndGetAddressOf())); // ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€ã‚’å—ã‘å–ã‚‹å¤‰æ•°
+		m_pixelShaderNoSM.ReleaseAndGetAddressOf())); // ƒsƒNƒZƒ‹EƒVƒF[ƒ_‚ğó‚¯æ‚é•Ï”
 
 	// **********************************************************
-	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
+	// ƒ‰ƒXƒ^ƒ‰ƒCƒUEƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg‚Ìì¬
 	D3D11_RASTERIZER_DESC RSDesc;
-	RSDesc.FillMode = D3D11_FILL_SOLID;   // æ™®é€šã«æç”»ã™ã‚‹
-	RSDesc.CullMode = D3D11_CULL_BACK;    // è¡¨é¢ã‚’æç”»ã™ã‚‹
-	RSDesc.FrontCounterClockwise = FALSE; // æ™‚è¨ˆå›ã‚ŠãŒè¡¨é¢
+	RSDesc.FillMode = D3D11_FILL_SOLID;   // •’Ê‚É•`‰æ‚·‚é
+	RSDesc.CullMode = D3D11_CULL_BACK;    // •\–Ê‚ğ•`‰æ‚·‚é
+	RSDesc.FrontCounterClockwise = FALSE; // Œv‰ñ‚è‚ª•\–Ê
 	RSDesc.DepthBias = 0;
 	RSDesc.DepthBiasClamp = 0;
 	RSDesc.SlopeScaledDepthBias = 0;
@@ -65,21 +73,21 @@ void ShadowMap::CreateShaderObj()
 void ShadowMap::CreateShaderShadow()
 {
 	// **********************************************************
-	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚³ãƒ¼ãƒ‰ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+	// ’¸“_ƒVƒF[ƒ_‚ÌƒR[ƒh‚ğƒRƒ“ƒpƒCƒ‹
 	BinaryFile pBlobVS = BinaryFile::LoadFile(L"Resources/Shaders/Shadow_VS_SM.cso");
-	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã®ä½œæˆ
+	// ’¸“_ƒVƒF[ƒ_‚Ìì¬
 	DX::ThrowIfFailed(device->CreateVertexShader(
-		pBlobVS.GetData(), // ãƒã‚¤ãƒˆãƒ»ã‚³ãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿
-		pBlobVS.GetSize(),    // ãƒã‚¤ãƒˆãƒ»ã‚³ãƒ¼ãƒ‰ã®é•·ã•
+		pBlobVS.GetData(), // ƒoƒCƒgEƒR[ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^
+		pBlobVS.GetSize(),    // ƒoƒCƒgEƒR[ƒh‚Ì’·‚³
 		nullptr,
-		m_vertexShaderShadow.ReleaseAndGetAddressOf())); // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã‚’å—ã‘å–ã‚‹å¤‰æ•°
+		m_vertexShaderShadow.ReleaseAndGetAddressOf())); // ’¸“_ƒVƒF[ƒ_‚ğó‚¯æ‚é•Ï”
 
 	// **********************************************************
-	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
+	// ƒ‰ƒXƒ^ƒ‰ƒCƒUEƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg‚Ìì¬
 	D3D11_RASTERIZER_DESC RSDesc;
-	RSDesc.FillMode = D3D11_FILL_SOLID;   // æ™®é€šã«æç”»ã™ã‚‹
-	RSDesc.CullMode = D3D11_CULL_FRONT;   // è¡¨é¢ã‚’æç”»ã™ã‚‹
-	RSDesc.FrontCounterClockwise = FALSE; // æ™‚è¨ˆå›ã‚ŠãŒè¡¨é¢
+	RSDesc.FillMode = D3D11_FILL_SOLID;   // •’Ê‚É•`‰æ‚·‚é
+	RSDesc.CullMode = D3D11_CULL_FRONT;   // •\–Ê‚ğ•`‰æ‚·‚é
+	RSDesc.FrontCounterClockwise = FALSE; // Œv‰ñ‚è‚ª•\–Ê
 	RSDesc.DepthBias = 0;
 	RSDesc.DepthBiasClamp = 0;
 	RSDesc.SlopeScaledDepthBias = 0;
@@ -92,77 +100,77 @@ void ShadowMap::CreateShaderShadow()
 
 void ShadowMap::InitShadowMap(int dimension)
 {
-	// ã‚·ãƒ£ãƒ‰ã‚¦ ãƒãƒƒãƒ—ã®ä½œæˆ
+	// ƒVƒƒƒhƒE ƒ}ƒbƒv‚Ìì¬
 	D3D11_TEXTURE2D_DESC descDepth;
-	descDepth.Width = UINT(dimension);   // å¹…
-	descDepth.Height = UINT(dimension);  // é«˜ã•
-	descDepth.MipLevels = 1;       // ãƒŸãƒƒãƒ—ãƒãƒƒãƒ— ãƒ¬ãƒ™ãƒ«æ•°
-	descDepth.ArraySize = 1;       // é…åˆ—ã‚µã‚¤ã‚º
-	descDepth.Format = DXGI_FORMAT_R32_TYPELESS;  // ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
-	descDepth.SampleDesc.Count = 1;  // ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã®è¨­å®š
-	descDepth.SampleDesc.Quality = 0;  // ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã®å“è³ª
-	descDepth.Usage = D3D11_USAGE_DEFAULT;      // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½¿ç”¨æ³•
-	descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE; // æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã€ã‚·ã‚§ãƒ¼ãƒ€ ãƒªã‚½ãƒ¼ã‚¹ ãƒ“ãƒ¥ãƒ¼ã¨ã—ã¦ä½¿ç”¨
-	descDepth.CPUAccessFlags = 0;   // CPUã‹ã‚‰ã¯ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„
-	descDepth.MiscFlags = 0;   // ãã®ä»–ã®è¨­å®šãªã—
+	descDepth.Width = UINT(dimension);   // •
+	descDepth.Height = UINT(dimension);  // ‚‚³
+	descDepth.MipLevels = 1;       // ƒ~ƒbƒvƒ}ƒbƒv ƒŒƒxƒ‹”
+	descDepth.ArraySize = 1;       // ”z—ñƒTƒCƒY
+	descDepth.Format = DXGI_FORMAT_R32_TYPELESS;  // ƒtƒH[ƒ}ƒbƒg
+	descDepth.SampleDesc.Count = 1;  // ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO‚Ìİ’è
+	descDepth.SampleDesc.Quality = 0;  // ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO‚Ì•i¿
+	descDepth.Usage = D3D11_USAGE_DEFAULT;      // ƒfƒtƒHƒ‹ƒgg—p–@
+	descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE; // [“x/ƒXƒeƒ“ƒVƒ‹AƒVƒF[ƒ_ ƒŠƒ\[ƒX ƒrƒ…[‚Æ‚µ‚Äg—p
+	descDepth.CPUAccessFlags = 0;   // CPU‚©‚ç‚ÍƒAƒNƒZƒX‚µ‚È‚¢
+	descDepth.MiscFlags = 0;   // ‚»‚Ì‘¼‚Ìİ’è‚È‚µ
 	DX::ThrowIfFailed(device->CreateTexture2D(
-		&descDepth,         // ä½œæˆã™ã‚‹2Dãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¨­å®š
+		&descDepth,         // ì¬‚·‚é2DƒeƒNƒXƒ`ƒƒ‚Ìİ’è
 		nullptr,               // 
-		m_shadowMap.ReleaseAndGetAddressOf()));     // ä½œæˆã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å—ã‘å–ã‚‹å¤‰æ•°
+		m_shadowMap.ReleaseAndGetAddressOf()));     // ì¬‚µ‚½ƒeƒNƒXƒ`ƒƒ‚ğó‚¯æ‚é•Ï”
 
-	// æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ« ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
+	// [“x/ƒXƒeƒ“ƒVƒ‹ ƒrƒ…[‚Ìì¬
 	D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
-	descDSV.Format = DXGI_FORMAT_D32_FLOAT;            // ãƒ“ãƒ¥ãƒ¼ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	descDSV.Format = DXGI_FORMAT_D32_FLOAT;            // ƒrƒ…[‚ÌƒtƒH[ƒ}ƒbƒg
 	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	descDSV.Flags = 0;
 	descDSV.Texture2D.MipSlice = 0;
 	DX::ThrowIfFailed(device->CreateDepthStencilView(
-		m_shadowMap.Get(),         // æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ãƒ“ãƒ¥ãƒ¼ã‚’ä½œã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
-		&descDSV,             // æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ãƒ“ãƒ¥ãƒ¼ã®è¨­å®š
-		m_shadowMapDSView.ReleaseAndGetAddressOf())); // ä½œæˆã—ãŸãƒ“ãƒ¥ãƒ¼ã‚’å—ã‘å–ã‚‹å¤‰æ•°
+		m_shadowMap.Get(),         // [“x/ƒXƒeƒ“ƒVƒ‹Eƒrƒ…[‚ğì‚éƒeƒNƒXƒ`ƒƒ
+		&descDSV,             // [“x/ƒXƒeƒ“ƒVƒ‹Eƒrƒ…[‚Ìİ’è
+		m_shadowMapDSView.ReleaseAndGetAddressOf())); // ì¬‚µ‚½ƒrƒ…[‚ğó‚¯æ‚é•Ï”
 
-	// ã‚·ã‚§ãƒ¼ãƒ€ ãƒªã‚½ãƒ¼ã‚¹ ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
+	// ƒVƒF[ƒ_ ƒŠƒ\[ƒX ƒrƒ…[‚Ìì¬
 	D3D11_SHADER_RESOURCE_VIEW_DESC srDesc;
-	srDesc.Format = DXGI_FORMAT_R32_FLOAT; // ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
-	srDesc.ViewDimension = D3D_SRV_DIMENSION_TEXTURE2D;  // 2Dãƒ†ã‚¯ã‚¹ãƒãƒ£
-	srDesc.Texture2D.MostDetailedMip = 0;   // æœ€åˆã®ãƒŸãƒƒãƒ—ãƒãƒƒãƒ— ãƒ¬ãƒ™ãƒ«
-	srDesc.Texture2D.MipLevels = UINT(-1);  // ã™ã¹ã¦ã®ãƒŸãƒƒãƒ—ãƒãƒƒãƒ— ãƒ¬ãƒ™ãƒ«
+	srDesc.Format = DXGI_FORMAT_R32_FLOAT; // ƒtƒH[ƒ}ƒbƒg
+	srDesc.ViewDimension = D3D_SRV_DIMENSION_TEXTURE2D;  // 2DƒeƒNƒXƒ`ƒƒ
+	srDesc.Texture2D.MostDetailedMip = 0;   // Å‰‚Ìƒ~ƒbƒvƒ}ƒbƒv ƒŒƒxƒ‹
+	srDesc.Texture2D.MipLevels = UINT(-1);  // ‚·‚×‚Ä‚Ìƒ~ƒbƒvƒ}ƒbƒv ƒŒƒxƒ‹
 	DX::ThrowIfFailed(device->CreateShaderResourceView(
-		m_shadowMap.Get(),          // ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ ãƒªã‚½ãƒ¼ã‚¹
-		&srDesc,               // ã‚·ã‚§ãƒ¼ãƒ€ ãƒªã‚½ãƒ¼ã‚¹ ãƒ“ãƒ¥ãƒ¼ã®è¨­å®š
-		m_shadowMapSRView.ReleaseAndGetAddressOf()));  // å—ã‘å–ã‚‹å¤‰æ•°
+		m_shadowMap.Get(),          // ƒAƒNƒZƒX‚·‚éƒeƒNƒXƒ`ƒƒ ƒŠƒ\[ƒX
+		&srDesc,               // ƒVƒF[ƒ_ ƒŠƒ\[ƒX ƒrƒ…[‚Ìİ’è
+		m_shadowMapSRView.ReleaseAndGetAddressOf()));  // ó‚¯æ‚é•Ï”
 
-	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
-	m_viewPortShadowMap[0].TopLeftX = 0.0f;				// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆé ˜åŸŸã®å·¦ä¸ŠXåº§æ¨™ã€‚
-	m_viewPortShadowMap[0].TopLeftY = 0.0f;				// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆé ˜åŸŸã®å·¦ä¸ŠYåº§æ¨™ã€‚
-	m_viewPortShadowMap[0].Width = float(dimension);	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆé ˜åŸŸã®å¹…
-	m_viewPortShadowMap[0].Height = float(dimension);	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆé ˜åŸŸã®é«˜ã•
-	m_viewPortShadowMap[0].MinDepth = 0.0f;				// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆé ˜åŸŸã®æ·±åº¦å€¤ã®æœ€å°å€¤
-	m_viewPortShadowMap[0].MaxDepth = 1.0f;				// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆé ˜åŸŸã®æ·±åº¦å€¤ã®æœ€å¤§å€¤
+	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	m_viewPortShadowMap[0].TopLeftX = 0.0f;				// ƒrƒ…[ƒ|[ƒg—Ìˆæ‚Ì¶ãXÀ•WB
+	m_viewPortShadowMap[0].TopLeftY = 0.0f;				// ƒrƒ…[ƒ|[ƒg—Ìˆæ‚Ì¶ãYÀ•WB
+	m_viewPortShadowMap[0].Width = float(dimension);	// ƒrƒ…[ƒ|[ƒg—Ìˆæ‚Ì•
+	m_viewPortShadowMap[0].Height = float(dimension);	// ƒrƒ…[ƒ|[ƒg—Ìˆæ‚Ì‚‚³
+	m_viewPortShadowMap[0].MinDepth = 0.0f;				// ƒrƒ…[ƒ|[ƒg—Ìˆæ‚Ì[“x’l‚ÌÅ¬’l
+	m_viewPortShadowMap[0].MaxDepth = 1.0f;				// ƒrƒ…[ƒ|[ƒg—Ìˆæ‚Ì[“x’l‚ÌÅ‘å’l
 }
 
 void ShadowMap::RenderStart()
 {
 	// **********************************************************
-	// ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+	// ƒVƒF[ƒ_‚ÌƒRƒ“ƒpƒCƒ‹
 	CreateShaderObj();
 	CreateShaderShadow();
 
 	// **********************************************************
-	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®å®šç¾©
+	// ’è”ƒoƒbƒtƒ@‚Ì’è‹`
 	D3D11_BUFFER_DESC cBufferDesc;
 	cBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	cBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // å®šæ•°ãƒãƒƒãƒ•ã‚¡
+	cBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // ’è”ƒoƒbƒtƒ@
 	cBufferDesc.CPUAccessFlags = 0;
 	cBufferDesc.MiscFlags = 0;
 	cBufferDesc.StructureByteStride = 0;
 
-	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
-	cBufferDesc.ByteWidth = sizeof(ShadowParameters); // ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚µã‚¤ã‚º
+	// ’è”ƒoƒbƒtƒ@‚Ìì¬
+	cBufferDesc.ByteWidth = sizeof(ShadowParameters); // ƒoƒbƒtƒ@EƒTƒCƒY
 	DX::ThrowIfFailed(device->CreateBuffer(&cBufferDesc, nullptr, g_pCBuffer.ReleaseAndGetAddressOf()));
 
 	// **********************************************************
-	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
+	// ƒuƒŒƒ“ƒhEƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg‚Ìì¬
 	D3D11_BLEND_DESC BlendState;
 	ZeroMemory(&BlendState, sizeof(D3D11_BLEND_DESC));
 	BlendState.AlphaToCoverageEnable = FALSE;
@@ -172,28 +180,28 @@ void ShadowMap::RenderStart()
 	DX::ThrowIfFailed(device->CreateBlendState(&BlendState, m_blendState.ReleaseAndGetAddressOf()));
 
 	// **********************************************************
-	// æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
+	// [“x/ƒXƒeƒ“ƒVƒ‹EƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg‚Ìì¬
 	D3D11_DEPTH_STENCIL_DESC DepthStencil;
-	DepthStencil.DepthEnable = TRUE; // æ·±åº¦ãƒ†ã‚¹ãƒˆã‚ã‚Š
-	DepthStencil.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL; // æ›¸ãè¾¼ã‚€
-	DepthStencil.DepthFunc = D3D11_COMPARISON_LESS; // æ‰‹å‰ã®ç‰©ä½“ã‚’æç”»
-	DepthStencil.StencilEnable = FALSE; // ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ãƒ†ã‚¹ãƒˆãªã—
-	DepthStencil.StencilReadMask = 0xff;     // ã‚¹ãƒ†ãƒ³ã‚·ãƒ«èª­ã¿è¾¼ã¿ãƒã‚¹ã‚¯ã€‚
-	DepthStencil.StencilWriteMask = 0xff;     // ã‚¹ãƒ†ãƒ³ã‚·ãƒ«æ›¸ãè¾¼ã¿ãƒã‚¹ã‚¯ã€‚
-	// é¢ãŒè¡¨ã‚’å‘ã„ã¦ã„ã‚‹å ´åˆã®ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ãƒ†ã‚¹ãƒˆã®è¨­å®š
-	DepthStencil.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;  // ç¶­æŒ
-	DepthStencil.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;  // ç¶­æŒ
-	DepthStencil.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;  // ç¶­æŒ
-	DepthStencil.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS; // å¸¸ã«æˆåŠŸ
-	// é¢ãŒè£ã‚’å‘ã„ã¦ã„ã‚‹å ´åˆã®ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ãƒ†ã‚¹ãƒˆã®è¨­å®š
-	DepthStencil.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;   // ç¶­æŒ
-	DepthStencil.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;   // ç¶­æŒ
-	DepthStencil.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;   // ç¶­æŒ
-	DepthStencil.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS; // å¸¸ã«æˆåŠŸ
+	DepthStencil.DepthEnable = TRUE; // [“xƒeƒXƒg‚ ‚è
+	DepthStencil.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL; // ‘‚«‚Ş
+	DepthStencil.DepthFunc = D3D11_COMPARISON_LESS; // è‘O‚Ì•¨‘Ì‚ğ•`‰æ
+	DepthStencil.StencilEnable = FALSE; // ƒXƒeƒ“ƒVƒ‹EƒeƒXƒg‚È‚µ
+	DepthStencil.StencilReadMask = 0xff;     // ƒXƒeƒ“ƒVƒ‹“Ç‚İ‚İƒ}ƒXƒNB
+	DepthStencil.StencilWriteMask = 0xff;     // ƒXƒeƒ“ƒVƒ‹‘‚«‚İƒ}ƒXƒNB
+	// –Ê‚ª•\‚ğŒü‚¢‚Ä‚¢‚éê‡‚ÌƒXƒeƒ“ƒVƒ‹EƒeƒXƒg‚Ìİ’è
+	DepthStencil.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;  // ˆÛ
+	DepthStencil.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;  // ˆÛ
+	DepthStencil.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;  // ˆÛ
+	DepthStencil.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS; // í‚É¬Œ÷
+	// –Ê‚ª— ‚ğŒü‚¢‚Ä‚¢‚éê‡‚ÌƒXƒeƒ“ƒVƒ‹EƒeƒXƒg‚Ìİ’è
+	DepthStencil.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;   // ˆÛ
+	DepthStencil.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;   // ˆÛ
+	DepthStencil.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;   // ˆÛ
+	DepthStencil.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS; // í‚É¬Œ÷
 	DX::ThrowIfFailed(device->CreateDepthStencilState(&DepthStencil, &m_depthStencilState));
 
 	// **********************************************************
-	// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ä½œæˆ
+	// ƒTƒ“ƒvƒ‰[‚Ìì¬
 	D3D11_SAMPLER_DESC descSampler;
 	descSampler.Filter = D3D11_FILTER_ANISOTROPIC;
 	descSampler.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -228,18 +236,18 @@ void ShadowMap::RenderStart()
 	DX::ThrowIfFailed(device->CreateSamplerState(&descSampler, &m_textureSampler[1]));
 
 	// **********************************************************
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒ»ãƒãƒƒãƒ—ã®ä½œæˆ
+	// ƒVƒƒƒhƒEEƒ}ƒbƒv‚Ìì¬
 	InitShadowMap(1024);
 }
 
 void ShadowMap::SetShadowMode()
 {
-	// æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã®ã‚¯ãƒªã‚¢
+	// [“x/ƒXƒeƒ“ƒVƒ‹‚ÌƒNƒŠƒA
 	context->ClearDepthStencilView(m_shadowMapDSView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
 	
 	context->ClearState();
 	
-	// RSã«ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’è¨­å®š
+	// RS‚Éƒrƒ…[ƒ|[ƒg‚ğİ’è
 	context->RSSetViewports(1, m_viewPortShadowMap);
 
 	ID3D11RenderTargetView* pRender[1] = { nullptr };
@@ -250,57 +258,57 @@ void ShadowMap::SetRenderMode()
 {
 	context->ClearState();
 
-	// ShaderResourceViewãƒã‚¤ãƒ³ãƒ‰ã‚’è§£é™¤
+	// ShaderResourceViewƒoƒCƒ“ƒh‚ğ‰ğœ
 	ID3D11ShaderResourceView* srv[] = { nullptr };
 	context->PSSetShaderResources(
-		1,              // è¨­å®šã™ã‚‹æœ€åˆã®ã‚¹ãƒ­ãƒƒãƒˆç•ªå·
-		1,              // è¨­å®šã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ»ãƒªã‚½ãƒ¼ã‚¹ãƒ»ãƒ“ãƒ¥ãƒ¼ã®æ•°
-		srv);			// è¨­å®šã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ»ãƒªã‚½ãƒ¼ã‚¹ãƒ»ãƒ“ãƒ¥ãƒ¼ã®é…åˆ—
+		1,              // İ’è‚·‚éÅ‰‚ÌƒXƒƒbƒg”Ô†
+		1,              // İ’è‚·‚éƒVƒF[ƒ_EƒŠƒ\[ƒXEƒrƒ…[‚Ì”
+		srv);			// İ’è‚·‚éƒVƒF[ƒ_EƒŠƒ\[ƒXEƒrƒ…[‚Ì”z—ñ
 
-	// OMã«æç”»ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ ãƒ“ãƒ¥ãƒ¼ã¨æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ãƒ“ãƒ¥ãƒ¼ã‚’è¨­å®š
+	// OM‚É•`‰æƒ^[ƒQƒbƒg ƒrƒ…[‚Æ[“x/ƒXƒeƒ“ƒVƒ‹Eƒrƒ…[‚ğİ’è
 	auto renderTarget = m_deviceResources->GetRenderTargetView();
 	auto depthStencil = m_deviceResources->GetDepthStencilView();
 	context->OMSetRenderTargets(1, &renderTarget, depthStencil);
 
-	// RSã«ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’è¨­å®š
+	// RS‚Éƒrƒ…[ƒ|[ƒg‚ğİ’è
 	auto viewport = m_deviceResources->GetScreenViewport();
 	context->RSSetViewports(1, &viewport);
 }
 
 void ShadowMap::ApplyMode(bool shadowMode)
 {
-	// PSã«ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’è¨­å®š
+	// PS‚ÉƒTƒ“ƒvƒ‰[‚ğİ’è
 	ID3D11SamplerState* samplers[2] = { m_textureSampler[0].Get(), m_textureSampler[1].Get() };
 	context->PSSetSamplers(0, 2, samplers);
 
 	ID3D11ShaderResourceView* srv[] = { shadowMode ? nullptr : m_shadowMapSRView.Get() };
 	context->PSSetShaderResources(
-		1,              // è¨­å®šã™ã‚‹æœ€åˆã®ã‚¹ãƒ­ãƒƒãƒˆç•ªå·
-		1,              // è¨­å®šã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ»ãƒªã‚½ãƒ¼ã‚¹ãƒ»ãƒ“ãƒ¥ãƒ¼ã®æ•°
-		srv);			// è¨­å®šã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ»ãƒªã‚½ãƒ¼ã‚¹ãƒ»ãƒ“ãƒ¥ãƒ¼ã®é…åˆ—
+		1,              // İ’è‚·‚éÅ‰‚ÌƒXƒƒbƒg”Ô†
+		1,              // İ’è‚·‚éƒVƒF[ƒ_EƒŠƒ\[ƒXEƒrƒ…[‚Ì”
+		srv);			// İ’è‚·‚éƒVƒF[ƒ_EƒŠƒ\[ƒXEƒrƒ…[‚Ì”z—ñ
 
-	// VSã«é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã‚’è¨­å®š
+	// VS‚É’¸“_ƒVƒF[ƒ_‚ğİ’è
 	context->VSSetShader(shadowMode ? m_vertexShaderShadow.Get() : m_vertexShader.Get(), nullptr, 0);
 
-	// RSã«ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®š
+	// RS‚Éƒ‰ƒXƒ^ƒ‰ƒCƒUEƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg‚ğİ’è
 	context->RSSetState(shadowMode ? m_rasterizerStateShadow.Get() : m_rasterizerState.Get());
 
-	// PSã«ãƒ”ã‚¯ã‚»ãƒ«ãƒ»ã‚·ã‚§ãƒ¼ãƒ€ã‚’è¨­å®š
+	// PS‚ÉƒsƒNƒZƒ‹EƒVƒF[ƒ_‚ğİ’è
 	context->PSSetShader(shadowMode ? nullptr : (m_shadowMappingEnabled ? m_pixelShader.Get() : m_pixelShaderNoSM.Get()), nullptr, 0);
 
-	// VSã«å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
+	// VS‚É’è”ƒoƒbƒtƒ@‚ğİ’è
 	context->VSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 
-	// PSã«å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
+	// PS‚É’è”ƒoƒbƒtƒ@‚ğİ’è
 	auto& light = GameContext::Get<Light>();
 	m_constBuffer.SMViewProj = (light.view * light.projection).Transpose();
 	context->UpdateSubresource(g_pCBuffer.Get(), 0, nullptr, &m_constBuffer, 0, 0);
 	context->PSSetConstantBuffers(1, 1, g_pCBuffer.GetAddressOf());
 
-	// OMã«ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®š
+	// OM‚ÉƒuƒŒƒ“ƒhEƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg‚ğİ’è
 	FLOAT BlendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 	context->OMSetBlendState(m_blendState.Get(), BlendFactor, 0xffffffff);
-	// OMã«æ·±åº¦/ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®š
+	// OM‚É[“x/ƒXƒeƒ“ƒVƒ‹EƒXƒe[ƒgEƒIƒuƒWƒFƒNƒg‚ğİ’è
 	context->OMSetDepthStencilState(m_depthStencilState.Get(), 0);
 }
 
@@ -313,3 +321,5 @@ void ShadowMap::ApplyRenderMode()
 {
 	ApplyMode(false);
 }
+
+

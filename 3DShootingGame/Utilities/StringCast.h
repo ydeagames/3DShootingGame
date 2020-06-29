@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-09 17:14:07 +0900
+// Modified: 2019-12-09 19:28:46 +0900
+
 #pragma once
 
 template <typename T>
@@ -70,3 +78,5 @@ Td string_cast(Ts* source)
 {
 	return string_cast_imp<Td, typename string_type_of<const Ts*>::wrap>::cast(source);
 }
+
+

@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-09 12:25:31 +0900
+// Modified: 2020-02-07 10:59:30 +0900
+
 #pragma once
 #include "CameraComponent.h"
 #include "Background.h"
@@ -45,3 +53,5 @@ namespace BuildSettings
 		LightComponent
 	>;
 }
+
+

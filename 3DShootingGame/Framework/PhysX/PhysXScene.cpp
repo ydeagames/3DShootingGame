@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-19 15:29:42 +0900
+// Modified: 2019-12-23 07:07:20 +0900
+
 #include "pch.h"
 #include "PhysXScene.h"
 #include "PhysXManager.h"
@@ -75,3 +83,5 @@ void PhysXScene::onContactModify(physx::PxContactModifyPair* const pairs, physx:
 void PhysXScene::onCCDContactModify(physx::PxContactModifyPair* const pairs, physx::PxU32 count)
 {
 }
+
+

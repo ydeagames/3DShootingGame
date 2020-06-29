@@ -1,4 +1,12 @@
-﻿#include "pch.h"
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2020-01-20 07:31:53 +0900
+// Modified: 2020-02-07 06:07:13 +0900
+
+#include "pch.h"
 #include "SoundSystem.h"
 
 class SoundSystem::Implementation
@@ -262,3 +270,5 @@ int SoundSystem::ErrorCheck(FMOD_RESULT result)
 	// cout << "FMOD all good" << endl;
 	return 0;
 }
+
+

@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-16 11:08:16 +0900
+// Modified: 2020-02-08 23:01:03 +0900
+
 #include "pch.h"
 #include "PlayerController.h"
 #include <Framework/Components/Transform.h>
@@ -212,3 +220,5 @@ void PlayerController::EditorGui()
 	ImGui::DragFloat("Time", &powerTime, .01f);
 	ImGui::DragFloat("Percent", &percent, .01f, 0, 1);
 }
+
+

@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-09 17:14:07 +0900
+// Modified: 2019-12-23 11:40:37 +0900
+
 #pragma once
 #include <Framework/ECS/Component.h>
 
@@ -73,4 +81,6 @@ public:
 	void Update();
 	void RenderGui(GameCamera& camera);
 };
+
+
 

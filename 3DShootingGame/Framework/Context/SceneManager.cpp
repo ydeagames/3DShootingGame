@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-12-02 20:52:53 +0900
+// Modified: 2020-01-09 18:30:53 +0900
+
 #include "pch.h"
 #include "SceneManager.h"
 #include <Framework/ECS/GameContext.h>
@@ -69,3 +77,5 @@ void SceneManager::LoadSceneTransition(const SceneInfo& info, const Transition& 
 	};
 	LoadScene(tempScene, LoadSceneMode::Additive);
 }
+
+

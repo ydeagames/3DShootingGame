@@ -1,3 +1,11 @@
+// Copyright (c) 2019-2020 ydeagames
+// Released under the MIT license
+// https://github.com/ydeagames/3DShootingGame/blob/master/LICENSE
+//
+// Author: ${ydeagames}
+// Created: 2019-07-22 06:12:28 +0900
+// Modified: 2020-01-20 08:40:06 +0900
+
 #include "pch.h"
 #include "Collider.h"
 #include <Framework/ECS/GameContext.h>
@@ -64,3 +72,5 @@ void PlaneCollider::AddCollider(physx::PxRigidActor& rigid) const
 void Collider::EditorGui()
 {
 }
+
+
