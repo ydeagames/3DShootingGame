@@ -32,7 +32,7 @@ SceneInfo SceneInfo::CreateFromLocation(const std::string& location)
 
 SceneInfo SceneInfo::CreateFromName(const std::string& name)
 {
-	return SceneInfo(name, name + "." + SceneExtension);
+	return SceneInfo(name, "Resources/Scenes/" + name + "." + SceneExtension);
 }
 
 bool SceneInfo::Valid()
