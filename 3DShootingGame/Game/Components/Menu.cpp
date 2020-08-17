@@ -33,10 +33,10 @@ void TitleMenu::RenderGui(GameCamera& camera)
 	{
 		GameContext::Get<SceneManager>().LoadSceneTransition(SceneInfo::CreateFromName("PlayScene"), SceneTransitions::CreateRuleTransition(3));
 	}
-	if (ImGui::Button(u8"オプション", ImVec2(200, 50)))
-	{
+	// if (ImGui::Button(u8"オプション", ImVec2(200, 50)))
+	// {
 
-	}
+	// }
 	if (ImGui::Button(u8"クレジット", ImVec2(200, 50)))
 	{
 		showCredit = true;
@@ -111,8 +111,9 @@ void PlayMenu::RenderGui(GameCamera& camera)
 
 	ImGui::SetNextWindowPos(ImVec2(10, 700));
 	ImGui::Begin(u8"操作説明", nullptr);
-	ImGui::Text(u8"1. 左クリック長押しで方向を決める");
-	ImGui::Text(u8"2. 左クリックを離してスリングジャーンプ！");
+	ImGui::Text(u8"1. 右ドラッグでカメラを回転させる");
+	ImGui::Text(u8"2. 左クリック長押しで方向を決める");
+	ImGui::Text(u8"3. 左クリックを離してスリングジャーンプ！");
 	ImGui::End();
 }
 
