@@ -28,7 +28,7 @@ namespace ECS
 		static void RegisterCustomOnce(F f)
 		{
 			handlers().push_back([f](entt::registry& registry, auto&& ... args) {
-				registry.view<T>().each([f, &registry, &args](auto& entity, T& comp) {
+				registry.view<T>().each([f, &registry, &args...](auto& entity, T& comp) {
 					f(registry, entity, comp, std::forward<Args>(args)...);
 					});
 				});
